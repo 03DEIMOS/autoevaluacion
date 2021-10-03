@@ -26,7 +26,7 @@ public class PreguntaController {
 
     @GetMapping("/preguntas")
     public String preguntas(Model model) {
-        model.addAttribute("listaP", preguntaService.getPregunta());
+        model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\pregunta\\listar";
     } 
 }

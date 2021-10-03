@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CaracteristicaServiceImpl implements CaracteristicaService{
     @Override
-    public List<Caracteristica> getCaracteristica() {
+    public List<Caracteristica> getCaracteristicas() {
         Caracteristica c = new Caracteristica();
         c.setId(1);
         c.setCodigo("C01");

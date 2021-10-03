@@ -13,5 +13,5 @@ import java.util.List;
  * @author DEIMOS
  */
 public interface EncuestaService {
-    List<Encuesta> getEncuesta();
+    List<Encuesta> getEncuestas();
 }

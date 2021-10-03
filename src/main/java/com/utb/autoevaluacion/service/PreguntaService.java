@@ -13,6 +13,6 @@ import java.util.List;
  * @author DEIMOS
  */
 public interface PreguntaService {
-    List<Pregunta> getPregunta();
+    List<Pregunta> getPreguntas();
     
 }

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EncuestaServiceImpl implements EncuestaService {
     @Override
-    public List<Encuesta> getEncuesta() {
+    public List<Encuesta> getEncuestas() {
         Encuesta e = new Encuesta();
         e.setId(1);
         e.setCodigo("E01");

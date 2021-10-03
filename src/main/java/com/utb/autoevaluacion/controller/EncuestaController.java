@@ -26,7 +26,7 @@ public class EncuestaController {
 
     @GetMapping("/encuestas")
     public String encuestas(Model model) {
-        model.addAttribute("listaE", encuestaService.getEncuesta());
+        model.addAttribute("listaE", encuestaService.getEncuestas());
         return "comiteCentral\\encuesta\\listar";
     } 
 }

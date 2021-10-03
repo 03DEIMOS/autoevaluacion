@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
     @Override
-    public List<Pregunta> getPregunta() {
+    public List<Pregunta> getPreguntas() {
         Pregunta p = new Pregunta();
         p.setId(1);
         p.setCodigo("P01");

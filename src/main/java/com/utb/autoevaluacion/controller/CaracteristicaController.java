@@ -19,7 +19,7 @@ public class CaracteristicaController {
 
     @GetMapping("/caracteristicas")
     public String caracteristicas(Model model) {
-        model.addAttribute("listaC", caracteristicaService.getCaracteristica());
+        model.addAttribute("listaC", caracteristicaService.getCaracteristicas());
         return "comiteCentral\\caracteristica\\listar";
         
     } 

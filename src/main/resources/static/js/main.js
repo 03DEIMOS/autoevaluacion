@@ -1,5 +1,5 @@
 $(function() {
-    location = "/autoevaluacion/#inicio";
+  //  location = "/autoevaluacion/#inicio";
     $('#close1').on("click", function() {
         $(this).parent().hide();
     });
@@ -10,36 +10,9 @@ $(function() {
 
     $("#formulario_login").validate({
         errorLabelContainer: ".alert-error",
-        submitHandler: function() {
+        submitHandler: function(form) {
             $("#btnIniciar").attr("disabled", true);
-            this.timer = setTimeout(function() {
-                $.ajax({
-                    url: '/autoevaluacion/loginController',
-                    data: 'un=' + $('#codigo').val() + '&pw=' + $('#pass').val(),
-                    type: 'post',
-                    success: function(msg) {
-
-                        if (msg === '0')
-                        {
-                            document.location = '/autoevaluacion/';
-
-
-                        } else {
-                            $("#btnIniciar").attr("disabled", false);
-                            if (msg === '1') {
-                                $("#login-error").append("<label generated='true' class='error'>Usuario y/o Contrase&nacute;a incorrectos.</label>");
-                                $("#login-error").show();
-                            }
-
-                        }
-                    }
-
-                });
-
-
-
-            }, 400);
-
+            $(form).submit();
         }
     });
 

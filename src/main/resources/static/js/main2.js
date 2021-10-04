@@ -10,7 +10,7 @@ $(function() {
             return '' + $("#popover").attr("data-content");
         }
     }).popover('show');
-    location = "/autoevaluacion/#inicio";
+    //location = "/autoevaluacion/#inicio2";
     $(document).ajaxStart(function() {
         if ($("div.ui-layout-center").find('div#contenido').length === 0) {
             $("div.ui-layout-center").append("<div id='contenido'></div>");
@@ -88,7 +88,7 @@ $(function() {
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
                 '<li class="nav-header">Modelo</li>' +
-                '<li><a href="#listarModelo"><i class="icon-reorder"></i> Listar Modelos</a></li>' +
+                '<li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Coordinadores</li>' +
                 '<li><a href="#listarCoordinadores"><i class="icon-reorder"></i> Listar Coordinadores</a></li>' +
@@ -103,7 +103,7 @@ $(function() {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
-                '<li><a href="#listarModelo"><i class="icon-level-up"></i>Men&uacute; modelo</a></li>' +
+                '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Men&uacute; modelo</a></li>' +
                 '<li class="nav-header">Factores</li>' +
                 '<li><a href="#listarFactores"><i class="icon-th-large"></i> Listar factores</a></li>' +
                 '<li class="divider"></li>' +
@@ -209,7 +209,7 @@ $(function() {
             }); //fin del $.ajax
         } else {
             if (hash === "#inicio") {
-                var url3 = "/autoevaluacion/" + hash;
+               /* var url3 = "/autoevaluacion/" + hash;
                 url3 = url3.replace('#', "controladorCC?action=") + "CC";
                 $("div.ui-layout-center").empty();
                 $.ajax({
@@ -226,6 +226,7 @@ $(function() {
                         actualizaEnlaces(hash);
                     } //fin success
                 }); //fin del $.ajax
+                */
             } else {
                 if (hash.indexOf("#entrarModelo") !== -1 || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
@@ -258,12 +259,12 @@ $(function() {
                     }); //fin del $.ajax
 
                 } else {
-                    if (hash === "#crearModelo" || hash === "#crearPrograma" || hash === "#listarProgramas" || hash === "#listarModelo" || hash === "#listarCoordinadores" || hash === "#crearCoordinador" || hash === "#controlPanel") {
+                    if (hash === "#crearModelo" || hash === "#crearPrograma" || hash === "#listarProgramas" || hash === "#modelo/modelos" || hash === "#listarCoordinadores" || hash === "#crearCoordinador" || hash === "#controlPanel") {
                         var url3 = "/autoevaluacion/" + hash;
-                        url3 = url3.replace('#', "controladorCC?action=") + "CC";
+                        url3 = url3.replace('#', "");
                         $("div.ui-layout-center").empty();
                         $.ajax({
-                            type: "POST",
+                            type: "GET",
                             url: url3,
                             success: function(data)
                             {
@@ -280,6 +281,7 @@ $(function() {
                             }
 
                         }); //fin del $.ajax
+                        
                     } else {
                         if (hash === "#listarFactores" || hash === "#crearFactor"
                                 || hash === "#listarCaracteristicas" || hash === "#crearCaracteristica"

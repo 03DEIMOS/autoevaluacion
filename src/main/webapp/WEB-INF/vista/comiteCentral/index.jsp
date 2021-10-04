@@ -113,7 +113,7 @@
                     <ul class="nav nav-list">  
                         <button id="west-closer" class="close">&laquo;</button>
                         <li class="nav-header">Modelo</li>
-                        <li><a href="#listarModelo"><i class="icon-reorder"></i> Listar Modelos</a></li>
+                        <li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Coordinadores</li>
                         <li><a href="#listarCoordinadores"><i class="icon-reorder"></i> Listar Coordinadores</a></li>

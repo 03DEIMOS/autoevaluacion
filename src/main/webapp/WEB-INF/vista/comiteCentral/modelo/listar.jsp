@@ -25,7 +25,7 @@
                                     </td>
                                     <td class="action span2">
                                         <a href="#editarModelo&${row.id}" title="Editar"><i class="icon-edit"></i></a>
-                                        <a href="#entrarModelo&${row.id}" title="Entrar"><i class="icon-signin"></i></a>
+                                        <a href="#modelo/entrar/${row.id}" title="Entrar"><i class="icon-signin"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

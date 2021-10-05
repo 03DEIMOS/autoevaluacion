@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.utb.autoevaluacion.service;
+package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Encuesta;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author DEIMOS
  */
-public interface EncuestaService {
-    List<Encuesta> getEncuestas();
+
+@Repository
+public interface EncuestaRepository extends JpaRepository<Encuesta, Integer>{
     
 }

@@ -1,50 +1,31 @@
 package com.utb.autoevaluacion.model;
 
-public class Caracteristica {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="caracteristica")
+public class Caracteristica implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
+    
+    @Column(name="codigo")
     private String codigo;
+    
+    @Column(name="nombre")
     private String nombre;
+    
+    @Column(name="factor_id")
     private Integer factor_id;
 
-    public Caracteristica() {
-    }
-
-    @Override
-    public String toString() {
-        return "Caracteristica{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", factor_id=" + factor_id + '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getFactor_id() {
-        return factor_id;
-    }
-
-    public void setFactor_id(Integer factor_id) {
-        this.factor_id = factor_id;
-    }
-    
-    
+    public Caracteristica() {  } 
 }

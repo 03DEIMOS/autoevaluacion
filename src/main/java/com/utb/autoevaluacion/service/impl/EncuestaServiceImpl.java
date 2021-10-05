@@ -6,9 +6,10 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Encuesta;
+import com.utb.autoevaluacion.repository.EncuestaRepository;
 import com.utb.autoevaluacion.service.EncuestaService;
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,15 +18,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EncuestaServiceImpl implements EncuestaService {
+    
+    @Autowired
+    EncuestaRepository encuestaRepository;
+    
     @Override
     public List<Encuesta> getEncuestas() {
-        Encuesta e = new Encuesta();
-        e.setId(1);
-        e.setCodigo("E01");
-        e.setNombre("Encuesta 1");
-        List<Encuesta> listEncuesta = new ArrayList<>();
-        
-        listEncuesta.add(e);
-        return listEncuesta;
+        return encuestaRepository.findAll();
     }
+    
 }

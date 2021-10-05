@@ -6,9 +6,10 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Pregunta;
+import com.utb.autoevaluacion.repository.PreguntaRepository;
 import com.utb.autoevaluacion.service.PreguntaService;
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,15 +18,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
+    
+    @Autowired
+    PreguntaRepository preguntaRepository;
+    
     @Override
     public List<Pregunta> getPreguntas() {
-        Pregunta p = new Pregunta();
-        p.setId(1);
-        p.setCodigo("P01");
-        p.setPregunta("Pregunta 1");
-        List<Pregunta> listPregunta = new ArrayList<>();
-        
-        listPregunta.add(p);
-        return listPregunta;
+        return preguntaRepository.findAll();
     }
+    
 }

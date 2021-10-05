@@ -1,80 +1,44 @@
 package com.utb.autoevaluacion.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
 
-public class Encuesta {
+@Data
+@Entity
+@Table(name="encuesta")
+public class Encuesta  implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
+    
+    @Column(name="codigo")
     private String codigo;
+    
+    @Column(name="nombre")
     private String nombre;
+    
+    @Column(name="objetivo")
     private String objetivo;
+    
+    @Column(name="instrucciones")
     private String instrucciones;
+    
+    @Column(name="version")
     private String version;
+    
+    @Column(name="fecha")
     private Date fecha;
 
     public Encuesta() {
     }
 
-    @Override
-    public String toString() {
-        return "Encuesta{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", objetivo=" + objetivo + ", instrucciones=" + instrucciones + ", version=" + version + ", fecha=" + fecha + '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
-    }
-
-    public String getInstrucciones() {
-        return instrucciones;
-    }
-
-    public void setInstrucciones(String instrucciones) {
-        this.instrucciones = instrucciones;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-    
-    
-    
 }

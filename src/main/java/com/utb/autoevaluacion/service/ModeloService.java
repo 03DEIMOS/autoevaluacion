@@ -6,4 +6,9 @@ import java.util.List;
 
 public interface ModeloService {
     List<Modelo> getModelos();
+
+
+    Modelo getModeloById(Integer id);
 }
+
+

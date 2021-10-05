@@ -105,19 +105,19 @@ $(function() {
                 '<button id="west-closer" class="close">&laquo;</button>' +
                 '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Men&uacute; modelo</a></li>' +
                 '<li class="nav-header">Factores</li>' +
-                '<li><a href="#listarFactores"><i class="icon-th-large"></i> Listar factores</a></li>' +
+                '<li><a href="#factor/factores"><i class="icon-th-large"></i> Listar factores</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Caracteristicas</li>' +
-                '<li><a href="#listarCaracteristicas"><i class="icon-th-list"></i> Listar caracteristicas</a></li>' +
+                '<li><a href="#caracteristica/caracteristicas"><i class="icon-th-list"></i> Listar caracteristicas</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Indicadores</li>' +
                 '<li><a href="#listarIndicadores"><i class="icon-list"></i> Listar indicadores</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Preguntas</li>' +
-                '<li><a href="#listarPreguntas"><i class="icon-question"></i> Listar preguntas</a></li>' +
+                '<li><a href="#pregunta/preguntas"><i class="icon-question"></i> Listar preguntas</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Encuestas</li>' +
-                '<li><a href="#listarEncuestas"><i class="icon-tasks"></i> Listar encuestas</a></li>' +
+                '<li><a href="#encuesta/encuestas"><i class="icon-tasks"></i> Listar encuestas</a></li>' +
                 '</ul>');
     };
 
@@ -228,17 +228,15 @@ $(function() {
                 }); //fin del $.ajax
                 */
             } else {
-                if (hash.indexOf("#entrarModelo") !== -1 || hash.indexOf("#editarEncuesta") !== -1
+                if (hash.indexOf("#modelo/entrar/") !== -1 || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
                         || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarIndicador") !== -1
                         || hash.indexOf("#editarPregunta") !== -1) {
-                    var cual = hash.split("&");
-                    hash = cual[0];
-                    var url3 = "/autoevaluacion/controladorCC?action=";
-                    url3 = url3.concat(cual[0].substring(1), "CC&id=", cual[1]);
+                    var url3 = "/autoevaluacion/" + hash;
+                     url3 = url3.replace('#', "");
                     $("div.ui-layout-center").empty();
                     $.ajax({
-                        type: "POST",
+                        type: "GET",
                         url: url3,
                         success: function(data)
                         {
@@ -269,7 +267,7 @@ $(function() {
                             success: function(data)
                             {
                                 $("#contenido").append(data);
-                                if ($("ul.nav-list li:eq(0)").html() !== "Modelo") {
+                                if ($("ul.nav-list li:eq(0 )").html() !== "Modelo") {
                                     menuModelo();
                                     myLayout.addCloseBtn("#west-closer", "west");
 
@@ -283,16 +281,16 @@ $(function() {
                         }); //fin del $.ajax
                         
                     } else {
-                        if (hash === "#listarFactores" || hash === "#crearFactor"
-                                || hash === "#listarCaracteristicas" || hash === "#crearCaracteristica"
+                        if (hash === "#factor/factores" || hash === "#crearFactor"
+                                || hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
                                 || hash === "#listarIndicadores" || hash === "#crearIndicador"
-                                || hash === "#listarPreguntas" || hash === "#crearPregunta"
-                                || hash === "#listarEncuestas" || hash === "#crearEncuesta") {
+                                || hash === "#pregunta/preguntas" || hash === "#crearPregunta"
+                                || hash === "#encuesta/encuestas" || hash === "#crearEncuesta") {
                             var url3 = "/autoevaluacion/" + hash;
-                            url3 = url3.replace('#', "controladorCC?action=") + "CC";
+                            url3 = url3.replace('#', "");
                             $("div.ui-layout-center").empty();
                             $.ajax({
-                                type: "POST",
+                                type: "GET",
                                 url: url3,
                                 success: function(data)
                                 {

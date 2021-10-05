@@ -6,9 +6,10 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Caracteristica;
+import com.utb.autoevaluacion.repository.CaracteristicaRepository;
 import com.utb.autoevaluacion.service.CaracteristicaService;
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,15 +18,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CaracteristicaServiceImpl implements CaracteristicaService{
-    @Override
+    
+    @Autowired
+    CaracteristicaRepository caracteristicaRepository;   
+    
+     @Override
     public List<Caracteristica> getCaracteristicas() {
-        Caracteristica c = new Caracteristica();
-        c.setId(1);
-        c.setCodigo("C01");
-        c.setNombre("Caracteristica 1");
-        List<Caracteristica> listCaracteristica = new ArrayList<>();
-        
-        listCaracteristica.add(c);
-        return listCaracteristica;
+        return caracteristicaRepository.findAll();
     }
+    
 }

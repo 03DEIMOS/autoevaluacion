@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="caracteristica")
+@Table(name="pregunta")
 public class Pregunta implements Serializable  {
     
     @Id
@@ -29,7 +29,7 @@ public class Pregunta implements Serializable  {
     private String tipo;
     
     @Column(name="pregunta_padre")
-    private Integer pregunta_padre;
+    private Integer preguntaPadre;
     
     @Column(name="repetir")
     private String repetir;

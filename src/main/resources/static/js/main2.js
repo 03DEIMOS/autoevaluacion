@@ -99,19 +99,17 @@ $(function() {
                 '<li><a href="#controlPanel"><i class="icon-th"></i> Panel de Control</a></li>' +
                 '</ul>');
     };
-    var menuFactores = function() {
+    function menuFactores(modeloId) {
+        console.log("llamando a menuFactores:"+modeloId);
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
                 '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Men&uacute; modelo</a></li>' +
                 '<li class="nav-header">Factores</li>' +
-                '<li><a href="#factor/factores"><i class="icon-th-large"></i> Listar factores</a></li>' +
+                '<li><a href="#factor/factores/'+modeloId+'"><i class="icon-th-large"></i> Listar factores</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Caracteristicas</li>' +
-                '<li><a href="#caracteristica/caracteristicas"><i class="icon-th-list"></i> Listar caracteristicas</a></li>' +
-                '<li class="divider"></li>' +
-                '<li class="nav-header">Indicadores</li>' +
-                '<li><a href="#listarIndicadores"><i class="icon-list"></i> Listar indicadores</a></li>' +
+                '<li><a href="#caracteristica/caracteristicas/'+modeloId+'"><i class="icon-th-list"></i> Listar caracteristicas</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Preguntas</li>' +
                 '<li><a href="#pregunta/preguntas"><i class="icon-question"></i> Listar preguntas</a></li>' +
@@ -231,9 +229,16 @@ $(function() {
                 if (hash.indexOf("#modelo/entrar/") !== -1 || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
                         || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarIndicador") !== -1
-                        || hash.indexOf("#editarPregunta") !== -1) {
+                        || hash.indexOf("#editarPregunta") !== -1 || hash.indexOf("#factor/factores"!== -1)) {
                     var url3 = "/autoevaluacion/" + hash;
-                     url3 = url3.replace('#', "");
+                    url3 = url3.replace('#', "");
+                    
+                    var modelo;
+                    if(hash.indexOf("#modelo/entrar/") !== -1 ){
+                        modelo = hash.replace("#modelo/entrar/","");
+                    }
+                    
+                    console.log("modelo"+modelo);
                     $("div.ui-layout-center").empty();
                     $.ajax({
                         type: "GET",
@@ -242,8 +247,8 @@ $(function() {
                         {
                             $("#contenido").append(data);
 
-                            if ($("ul.nav-list li:eq(1)").html() !== "Factores") {
-                                menuFactores();
+                            if ($("ul.nav-list li:eq(1)").html() !== "Factores" && modelo!== null && modelo!== undefined) {
+                                menuFactores(modelo);
                                 myLayout.addCloseBtn("#west-closer", "west");
                             }
                             $("#contenido").show(200, function() {
@@ -281,7 +286,7 @@ $(function() {
                         }); //fin del $.ajax
                         
                     } else {
-                        if (hash === "#factor/factores" || hash === "#crearFactor"
+                        if (hash === "#crearFactor"
                                 || hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
                                 || hash === "#listarIndicadores" || hash === "#crearIndicador"
                                 || hash === "#pregunta/preguntas" || hash === "#crearPregunta"
@@ -296,7 +301,7 @@ $(function() {
                                 {
                                     $("#contenido").append(data);
                                     if ($("ul.nav-list li:eq(1)").html() !== "Factores") {
-                                        menuFactores();
+                                       // menuFactores();
                                         myLayout.addCloseBtn("#west-closer", "west");
                                     }
                                     $("#contenido").show(200, function() {

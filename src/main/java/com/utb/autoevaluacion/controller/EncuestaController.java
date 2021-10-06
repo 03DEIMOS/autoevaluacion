@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.service.EncuestaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/encuesta")
 public class EncuestaController {
-    private final EncuestaService encuestaService;
+    
+    @Autowired
+    private EncuestaService encuestaService;
 
     public EncuestaController(EncuestaService encuestaService) {
         this.encuestaService = encuestaService;

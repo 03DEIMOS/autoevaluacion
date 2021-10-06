@@ -18,4 +18,9 @@ public class FactorServiceImpl implements FactorService{
         return factorRepository.findAll();
     }
 
+    @Override
+    public List<Factor> getFactoresByModelo(Integer m ) {
+        return factorRepository.findFactorByModeloId(m);
+    }
+
 }

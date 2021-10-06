@@ -6,7 +6,9 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Factor;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,4 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FactorRepository extends JpaRepository<Factor, Integer>{
     
+    @Query("Select f from Factor f where f.modeloId.id=?1")
+    List<Factor> findFactorByModeloId(Integer modeloId);
 }

@@ -5,4 +5,7 @@ import java.util.List;
 
 public interface FactorService {
     List<Factor> getFactores();
+    
+    List<Factor> getFactoresByModelo(Integer modeloId);
+    
 }

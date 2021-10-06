@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface CaracteristicaService {
     List<Caracteristica> getCaracteristicas();
+    
+    List<Caracteristica> getCaracteristicasByModelo(Integer modeloId);
 }

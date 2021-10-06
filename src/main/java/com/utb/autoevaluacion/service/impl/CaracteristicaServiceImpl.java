@@ -26,5 +26,10 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
     public List<Caracteristica> getCaracteristicas() {
         return caracteristicaRepository.findAll();
     }
+
+    @Override
+    public List<Caracteristica> getCaracteristicasByModelo(Integer modeloId) {
+        return caracteristicaRepository.findCaracteristicasByModeloId(modeloId);
+    }
     
 }

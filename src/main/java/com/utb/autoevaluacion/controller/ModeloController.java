@@ -2,6 +2,7 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.service.ModeloService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/modelo")
 public class ModeloController {
-    
-   private final ModeloService modeloService;
+   
+   @Autowired 
+   private ModeloService modeloService;
 
     public ModeloController(ModeloService modeloService) {
         this.modeloService = modeloService;
@@ -27,7 +29,7 @@ public class ModeloController {
     
      @GetMapping("/entrar/{id}" )
     public String entrarModelo(@PathVariable Integer id, Model model) {
-        model.addAttribute("listaM", modeloService.getModeloById(id));
+        model.addAttribute("modelo", modeloService.getModeloById(id));
         return "comiteCentral\\inicio";
         
     } 

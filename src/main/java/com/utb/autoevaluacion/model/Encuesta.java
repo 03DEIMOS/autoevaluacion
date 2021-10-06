@@ -36,7 +36,7 @@ public class Encuesta  implements Serializable {
     private String version;
     
     @Column(name="fecha")
-    private Date fecha;
+    private String fecha;
 
     public Encuesta() {
     }

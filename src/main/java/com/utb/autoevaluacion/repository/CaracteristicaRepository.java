@@ -6,7 +6,9 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Caracteristica;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,4 +19,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CaracteristicaRepository extends JpaRepository<Caracteristica, Integer>{
     
+    @Query("Select c from Caracteristica c where c.factorId.modeloId.id=?1")
+    List<Caracteristica> findCaracteristicasByModeloId(Integer modeloId);
 }

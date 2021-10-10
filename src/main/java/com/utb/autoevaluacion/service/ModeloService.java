@@ -9,6 +9,9 @@ public interface ModeloService {
 
 
     Modelo getModeloById(Integer id);
+    
+    //Para crear Modelo
+    Modelo createModelo(Modelo modelo);
 }
 
 

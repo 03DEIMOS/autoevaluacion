@@ -23,6 +23,13 @@ public class ModeloServiceImpl implements ModeloService{
     public Modelo getModeloById(Integer id) {
         return modeloRepository.getOne(id);
     }
+
+    @Override
+    public Modelo createModelo(Modelo modelo) {
+        return modeloRepository.saveAndFlush(modelo);
+    }/**/
+
+
     
     
     

@@ -1,7 +1,6 @@
 package com.utb.autoevaluacion.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,12 +21,12 @@ public class Modelo implements Serializable {
     private String nombre;
     @Column(name="descripcion")
     private String descripcion;
-    @Column(name="fechaactualizacion")
+     /*@Column(name="fechaactualizacion")
     private Integer fechaactualizacion;
     @Column(name="fechacreacion")
     private Date fechacreacion;
     @Column(name="observaciones")
-    private String observaciones;
+    private String observaciones;*/
 
     public Modelo() {
     }

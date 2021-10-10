@@ -226,10 +226,12 @@ $(function() {
                 }); //fin del $.ajax
                 */
             } else {
-                if (hash.indexOf("#modelo/entrar/") !== -1 || hash.indexOf("#editarEncuesta") !== -1
+                if (hash.indexOf("#modelo/entrar/") !== -1
+                        || hash.indexOf("#factor/crear/") !== -1
+                        || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
                         || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarIndicador") !== -1
-                        || hash.indexOf("#editarPregunta") !== -1 || hash.indexOf("#factor/factores"!== -1)) {
+                        || hash.indexOf("#editarPregunta") !== -1 || hash.indexOf("#factor/factores" !== -1)) {
                     var url3 = "/autoevaluacion/" + hash;
                     url3 = url3.replace('#', "");
                     
@@ -286,8 +288,7 @@ $(function() {
                         }); //fin del $.ajax
                         
                     } else {
-                        if (hash === "#crearFactor"
-                                || hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
+                        if (hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
                                 || hash === "#listarIndicadores" || hash === "#crearIndicador"
                                 || hash === "#pregunta/preguntas" || hash === "#crearPregunta"
                                 || hash === "#encuesta/encuestas" || hash === "#crearEncuesta") {

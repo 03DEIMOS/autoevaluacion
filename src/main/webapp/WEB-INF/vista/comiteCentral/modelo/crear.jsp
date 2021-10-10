@@ -4,7 +4,7 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/modelo/crear/",
+                    url: "/autoevaluacion/modelo/crear",
                     data: $("#formCrearModelo").serialize(),
                     success: function() {
                     location = "/autoevaluacion/login/validate#modelo/modelos";

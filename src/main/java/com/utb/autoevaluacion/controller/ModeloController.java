@@ -41,6 +41,13 @@ public class ModeloController {
         
     } 
     
+    @GetMapping("/crear")
+    public String formularioCrearModelo(Model model) {
+        log.info("Ejecutanto metodo [formularioCrearModelo] ");
+        return "comiteCentral\\modelo\\crear";
+    }
+    
+    
     @PostMapping(value = "/crear" )
     public ResponseEntity<?> crearModelo(@RequestParam String nombre, @RequestParam String descripcion) {
         

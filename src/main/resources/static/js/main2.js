@@ -129,6 +129,7 @@ $(function() {
                 '<li><a href="#detalleProceso"><i class="icon-cogs"></i> Detalle de Proceso</a></li>' +
                 '<li><a href="#listPonderacionFactor"><i class="icon-list"></i>  Factores</a></li>' +
                 '<li><a href="#listPonderacionCara"><i class="icon-list"></i> Características</a></li>' +
+                /*'<li><a href="#listPonderacionInd"><i class="icon-signal"></i> Indicadores</a></li>' +*/
                 '<li><a href="#selectorListMuestra"><i class="icon-group"></i> Muestra Asignada</a></li>' +
                 '<li><a href="#calificarCaracteristicas"><i class="icon-check"></i> Evaluar Caracteristica</a></li>' +
                 '<li><a href="#subirAdjunto"><i class="icon-file-alt"></i> Anexos</a></li>' +
@@ -225,10 +226,12 @@ $(function() {
                 }); //fin del $.ajax
                 */
             } else {
-                if (hash.indexOf("#modelo/entrar/") !== -1 || hash.indexOf("#editarEncuesta") !== -1
+                if (hash.indexOf("#modelo/entrar/") !== -1
+                        || hash.indexOf("#factor/crear/") !== -1
+                        || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
-                        || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarPregunta") !== -1 
-                        || hash.indexOf("#factor/factores"!== -1)) {
+                        || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarIndicador") !== -1
+                        || hash.indexOf("#editarPregunta") !== -1 || hash.indexOf("#factor/factores" !== -1)) {
                     var url3 = "/autoevaluacion/" + hash;
                     url3 = url3.replace('#', "");
                     
@@ -261,7 +264,7 @@ $(function() {
                     }); //fin del $.ajax
 
                 } else {
-                    if (hash === "#modelo/crear" || hash === "#crearPrograma" || hash === "#listarProgramas" || hash === "#modelo/modelos" || hash === "#listarCoordinadores" || hash === "#crearCoordinador" || hash === "#controlPanel") {
+                    if (hash === "#crearModelo" || hash === "#crearPrograma" || hash === "#listarProgramas" || hash === "#modelo/modelos" || hash === "#listarCoordinadores" || hash === "#crearCoordinador" || hash === "#controlPanel") {
                         var url3 = "/autoevaluacion/" + hash;
                         url3 = url3.replace('#', "");
                         $("div.ui-layout-center").empty();
@@ -285,8 +288,8 @@ $(function() {
                         }); //fin del $.ajax
                         
                     } else {
-                        if (hash === "#crearFactor"
-                                || hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
+                        if (hash === "#caracteristica/caracteristicas" || hash === "#crearCaracteristica"
+                                || hash === "#listarIndicadores" || hash === "#crearIndicador"
                                 || hash === "#pregunta/preguntas" || hash === "#crearPregunta"
                                 || hash === "#encuesta/encuestas" || hash === "#crearEncuesta") {
                             var url3 = "/autoevaluacion/" + hash;
@@ -483,8 +486,8 @@ $(function() {
                                         }
                                         //fin success
                                     }); //fin del $.ajax
-                                } else if (hash.indexOf("#detalleFactor") !== -1 || hash.indexOf("#detalleCaracteristica") !== -1 || hash.indexOf("#detallePregunta") !== -1 
-                                        || hash.indexOf("#vistaPreviaPEncuesta") !== -1 || hash.indexOf("#encuestaXaleatoria") !== -1 || hash.indexOf("#detallePFactor") !== -1 || hash.indexOf("#detallePCaracteristica") !== -1 ) {
+                                } else if (hash.indexOf("#detalleFactor") !== -1 || hash.indexOf("#detalleCaracteristica") !== -1 || hash.indexOf("#detalleIndicador") !== -1
+                                        || hash.indexOf("#detallePregunta") !== -1 || hash.indexOf("#vistaPreviaPEncuesta") !== -1 || hash.indexOf("#encuestaXaleatoria") !== -1 || hash.indexOf("#detallePFactor") !== -1 || hash.indexOf("#detallePCaracteristica") !== -1 || hash.indexOf("#detallePIndicador") !== -1) {
                                     var cual = hash.split("&");
                                     hash = cual[0];
                                     var url3 = "/autoevaluacion/controladorCP?action=";

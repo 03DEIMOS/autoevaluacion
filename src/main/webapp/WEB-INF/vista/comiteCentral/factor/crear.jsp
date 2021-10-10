@@ -82,10 +82,10 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=crearFactor",
+                    url: "/autoevaluacion/factor/crear",
                     data: $("#formCrearFactor").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarFactores";
+                        location = "/autoevaluacion/login/validate#factor/factores/${modeloId}";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -175,6 +175,7 @@
             <form id="formCrearFactor" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Crear Factor</legend>
+                    <input type="hidden" name="modeloId" value="${modeloId}">
                     <div class="control-group">
                         <label for="codigo" class="control-label">C&oacute;digo</label>
                         <div class="controls">
@@ -185,20 +186,6 @@
                         <label for="nombre" class="control-label">Factor</label>
                         <div class="controls">
                             <textarea rows="3" name="nombre" id="nombre" class="input-xlarge {required:true}"></textarea>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="descripcion" class="control-label">Asignar Caracteristicas</label>
-                        <div class="controls">
-                            <ul id="fcbklist">
-                                <c:forEach items="${listaC}" var="row" varStatus="iter">
-                                    <li>
-                                        <strong>${row.id}</strong><br/> 
-                                        <span class="fcbkitem_text">${row.nombre}</span>
-                                        <input name="C${row.id}" type="hidden" value="0"/>
-                                    </li>
-                                </c:forEach>
-                            </ul>
                         </div>
                     </div>
                     <div class="form-actions">

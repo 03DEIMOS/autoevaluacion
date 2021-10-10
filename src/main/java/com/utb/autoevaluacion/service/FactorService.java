@@ -8,4 +8,6 @@ public interface FactorService {
     
     List<Factor> getFactoresByModelo(Integer modeloId);
     
+    void crearFactor(String codigo, String nombre, Integer modeloId);
+    
 }

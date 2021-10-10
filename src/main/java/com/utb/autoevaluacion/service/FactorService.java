@@ -10,4 +10,8 @@ public interface FactorService {
     
     void crearFactor(String codigo, String nombre, Integer modeloId);
     
+    void actualizarFactor(Integer factorId, String codigo, String nombre, Integer modeloId);
+    
+    Factor buscarFactor(Integer id);
+    
 }

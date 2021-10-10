@@ -17,11 +17,10 @@ public class FactorServiceImpl implements FactorService {
 
     @Autowired
     FactorRepository factorRepository;
-    
+
     @Autowired
     ModeloRepository modeloRepository;
-    
-    
+
     @Override
     public List<Factor> getFactores() {
         return factorRepository.findAll();
@@ -34,10 +33,10 @@ public class FactorServiceImpl implements FactorService {
 
     @Override
     public void crearFactor(String codigo, String nombre, Integer modeloId) {
-        Factor factor = new Factor();
-        factor.setCodigo(codigo);
-        factor.setNombre(nombre);
         try {
+            Factor factor = new Factor();
+            factor.setCodigo(codigo);
+            factor.setNombre(nombre);
             Modelo modelo = modeloRepository.findById(modeloId).get();
             factor.setModeloId(modelo);
             factorRepository.saveAndFlush(factor);
@@ -47,4 +46,34 @@ public class FactorServiceImpl implements FactorService {
         }
     }
 
+    @Override
+    public void actualizarFactor(Integer factorId, String codigo, String nombre, Integer modeloId) {
+        try {
+            Factor factor = new Factor();
+            factor.setId(factorId);
+            factor.setCodigo(codigo);
+            factor.setNombre(nombre);
+            Modelo modelo = modeloRepository.findById(modeloId).get();
+            factor.setModeloId(modelo);
+            factorRepository.saveAndFlush(factor);
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al actualizar el factor" + e);
+            throw e;
+        }
+    }
+
+    @Override
+    public Factor buscarFactor(Integer id) {
+        Factor factor = null;
+        Optional<Factor> factorOptional = null;
+        try {
+            factorOptional = factorRepository.findById(id);
+            if (factorOptional.isPresent()) {
+                factor = factorOptional.get();
+            }
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado" + e, e);
+        }
+        return factor;
+    }
 }

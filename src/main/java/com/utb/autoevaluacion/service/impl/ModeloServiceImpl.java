@@ -5,6 +5,7 @@ import com.utb.autoevaluacion.model.Modelo;
 import com.utb.autoevaluacion.repository.ModeloRepository;
 import com.utb.autoevaluacion.service.ModeloService;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,32 @@ public class ModeloServiceImpl implements ModeloService{
         }
     }
 
+    @Override
+    public Modelo buscarModelo(Integer modeloId) {
+        Modelo modelo = null;
+        Optional<Modelo> modeloOptional = null;
+        try {
+            modeloOptional = modeloRepository.findById(modeloId);
+            if (modeloOptional.isPresent()) {
+                modelo = modeloOptional.get();
+            }
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado", e);
+        }
+        return modelo;
+    }
 
-    
-    
-    
+    @Override
+    public void actualizarModelo(Integer modeloId, String nombre, String descripcion) {
+        Modelo modelo = new Modelo();
+        modelo.setId(modeloId);
+        modelo.setNombre(nombre);
+        modelo.setDescripcion(descripcion);
+        try {
+            modeloRepository.saveAndFlush(modelo);
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al actualizar el modelo" + e);
+            throw e;
+        }
+    }
 }

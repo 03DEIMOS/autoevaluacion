@@ -26,5 +26,10 @@ public class EncuestaServiceImpl implements EncuestaService {
     public List<Encuesta> getEncuestas() {
         return encuestaRepository.findAll();
     }
+
+    @Override
+    public List<Encuesta> getEncuestasByModelo(Integer modeloId) {
+        return encuestaRepository.findEncuestasByModeloId(modeloId);
+    }
     
 }

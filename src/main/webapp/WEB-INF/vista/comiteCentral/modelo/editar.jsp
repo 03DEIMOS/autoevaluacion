@@ -3,11 +3,11 @@
         $("#formEditarModelo").validate({
             submitHandler: function() {
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=editarModelo",
+                    type: 'PUT',
+                    url: "/autoevaluacion/modelo/editar",
                     data: $("#formEditarModelo").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarModelo";
+                        location.hash = "modelo/modelos";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -20,6 +20,7 @@
             <form id="formEditarModelo" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Editar Modelo</legend>
+                    <input type="hidden" name="modeloId" value="${modelo.id}"/>
                     <div class="control-group">
                         <label for="nombre"  class="control-label">Modelo</label>
                         <div class="controls">

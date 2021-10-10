@@ -11,7 +11,7 @@ public interface ModeloService {
     Modelo getModeloById(Integer id);
     
     //Para crear Modelo
-    Modelo createModelo(Modelo modelo);
+    void crearModelo(String nombre, String descripcion);
 }
 
 

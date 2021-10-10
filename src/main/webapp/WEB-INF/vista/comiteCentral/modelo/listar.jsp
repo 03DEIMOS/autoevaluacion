@@ -36,7 +36,7 @@
                     No Existen Modelos Registrados en el Sistema.
                 </c:otherwise>
             </c:choose>
-            <a href="#crearModelo" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear modelo</a>
+            <a href="#modelo/crear/" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear modelo</a>
         </div>
     </div>
 </div>    

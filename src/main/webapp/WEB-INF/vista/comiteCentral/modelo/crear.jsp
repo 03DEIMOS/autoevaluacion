@@ -4,10 +4,10 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=crearModelo",
+                    url: "/autoevaluacion/modelo/crear/",
                     data: $("#formCrearModelo").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarModelo";
+                        location = "/autoevaluacion/modelo/modelos";
                     } //fin success
                 }); //fin $.ajax    
             }

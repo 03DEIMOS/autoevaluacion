@@ -228,6 +228,7 @@ $(function() {
             } else {
                 if (hash.indexOf("#modelo/entrar/") !== -1
                         || hash.indexOf("#factor/crear/") !== -1
+                        || hash.indexOf("#factor/editar/") !== -1
                         || hash.indexOf("#editarEncuesta") !== -1
                         || hash.indexOf("#vistaPreviaEncuesta") !== -1 || hash.indexOf("#editarFactor") !== -1
                         || hash.indexOf("#editarCaracteristica") !== -1 || hash.indexOf("#editarIndicador") !== -1

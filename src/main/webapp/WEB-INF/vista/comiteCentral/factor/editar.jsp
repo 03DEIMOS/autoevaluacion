@@ -81,11 +81,11 @@
         $("#formEditarFactor").validate({
             submitHandler: function() {
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=editarFactor",
+                    type: 'PUT',
+                    url: "/autoevaluacion/factor/editar",
                     data: $("#formEditarFactor").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarFactores";
+                        location = "/autoevaluacion/login/validate#factor/factores/${factor.getModeloId().getId()}";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -168,9 +168,11 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
-            <form id="formEditarFactor" class="form-horizontal" method="post">
+            <form id="formEditarFactor" class="form-horizontal">
                 <fieldset>
                     <legend>Editar Factor</legend>
+                    <input type="hidden" name="modeloId" value="${factor.getModeloId().getId()}">
+                    <input type="hidden" name="factorId" value="${factor.id}">
                     <div class="control-group">
                         <label for="codigo" class="control-label">C&oacute;digo</label>
                         <div class="controls">
@@ -183,31 +185,6 @@
                             <textarea rows="3" name="nombre" id="nombre" class="input-xlarge {required:true}">${factor.nombre}</textarea>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label for="descripcion" class="control-label">Asignar Caracteristicas</label>
-                        <div class="controls">
-                            <ul id="fcbklist">
-                                <c:forEach items="${listaC}" var="item" varStatus="iter">
-                                    <c:choose>
-                                        <c:when test="${factor.caracteristicaList.contains(item)}">
-                                            <li>
-                                                <strong>${item.codigo}</strong><br/> 
-                                                <span class="fcbkitem_text">${item.nombre}</span>
-                                                <input name="C${item.id}" type="hidden" checked="checked" value="1"/>
-                                            </li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li>
-                                                <strong>${item.codigo}</strong><br/> 
-                                                <span class="fcbkitem_text">${item.nombre}</span>
-                                                <input name="C${item.id}" type="hidden" value="0"/>
-                                            </li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div>    
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                         <button class="btn" type="reset">Cancelar</button>

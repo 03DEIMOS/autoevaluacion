@@ -13,16 +13,16 @@
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listaF}" var="row" varStatus="iter">
+                            <c:forEach items="${listaF}" var="factor" varStatus="iter">
                                 <tr>
                                     <td>   
-                                        <c:out value="${row.codigo}"/>
+                                        <c:out value="${factor.codigo}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${row.nombre}"/>
+                                        <c:out value="${factor.nombre}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#editarFactor&${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#factor/editar/${factor.id}" title="Editar"><i class="icon-edit"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

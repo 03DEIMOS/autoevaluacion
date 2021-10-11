@@ -12,6 +12,11 @@ public interface ModeloService {
     
     //Para crear Modelo
     void crearModelo(String nombre, String descripcion);
+    
+    //Para crear Modelo
+    void actualizarModelo(Integer id, String nombre, String descripcion);
+    
+    Modelo buscarModelo(Integer id);
 }
 
 

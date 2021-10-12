@@ -28,7 +28,7 @@
                                         <c:out value="${row.tipoPregunta.tipo}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#editarPregunta&${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#pregunta/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

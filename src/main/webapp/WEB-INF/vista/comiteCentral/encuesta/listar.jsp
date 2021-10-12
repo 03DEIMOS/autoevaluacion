@@ -24,7 +24,7 @@
                                         <c:out value="${row.objetivo}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#editarEncuesta&${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#encuesta/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
                                         <a href="#vistaPreviaEncuesta&${row.id}" title="Vista previa"><i class="icon-eye-open"></i></a>
                                     </td>
                                 </tr>
@@ -37,7 +37,7 @@
                 </c:otherwise>
             </c:choose>
             <br/>        
-            <a href="#crearEncuesta" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear encuesta</a>
+            <a href="#encuesta/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear encuesta</a>
 
         </div>
     </div>

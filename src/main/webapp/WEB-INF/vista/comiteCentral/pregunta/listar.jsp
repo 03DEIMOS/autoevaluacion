@@ -24,7 +24,7 @@
                                         <c:out value="${row.pregunta}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#editarPregunta&${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#pregunta/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -59,7 +59,7 @@
                 </c:otherwise>
             </c:choose>
             <br/>
-            <a href="#crearPregunta" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear pregunta</a>
+            <a href="#pregunta/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear pregunta</a>
 
         </div>
     </div>

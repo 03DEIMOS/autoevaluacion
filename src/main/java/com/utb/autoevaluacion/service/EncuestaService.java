@@ -16,4 +16,11 @@ public interface EncuestaService {
     List<Encuesta> getEncuestas();
     
     List<Encuesta> getEncuestasByModelo(Integer modeloId);
+    
+    void crearEncuesta(String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha);
+    
+    void actualizarEncuesta(Integer encuestaId, String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha);
+    
+    Encuesta buscarEncuesta(Integer id);
+    
 }

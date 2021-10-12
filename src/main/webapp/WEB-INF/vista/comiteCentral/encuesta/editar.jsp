@@ -81,11 +81,11 @@
         $("#formEditarEncu").validate({
             submitHandler: function() {
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=editarEncuesta",
+                    type: 'PUT',
+                    url: "/autoevaluacion/encuesta/editar",
                     data: $("#formEditarEncu").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarEncuestas";
+                        location.hash = "encuesta/encuestas";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -180,6 +180,7 @@
             <form id="formEditarEncu" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Editar encuesta</legend>
+                    <input type="hidden" name="encuestaId" value="${encuesta.id}"/>
                     <div class="control-group">
                         <label for="nombre" class="control-label">Nombre</label>
                         <div class="controls">
@@ -216,7 +217,7 @@
                             <input type="text" name="fecha" id="fecha" class="input-xlarge {required:true}" value="${encuesta.getFecha()}"/>
                         </div>
                     </div>
-                    <div class="control-group">
+                    <!--<div class="control-group">
                         <label for="fuente" class="control-label">Asignar Fuente</label>
                         <div class="controls">
                             <select id="fuente" name="fuente" class="{required:true}">
@@ -233,7 +234,7 @@
                                 </c:forEach>
                             </select>                
                         </div>
-                    </div>    
+                    </div>   --> 
                     <div class="control-group">
                         <label  class="control-label">Asignar Preguntas</label>
                         <div class="controls">

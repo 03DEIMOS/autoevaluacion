@@ -15,4 +15,10 @@ import java.util.List;
 public interface PreguntaService {
     List<Pregunta> getPreguntas();
     
+    void crearPregunta(String codigo, String pregunta, String tipo, Integer preguntaPadre, String repetir);
+    
+    void actualizarPregunta(Integer preguntaId, String codigo, String pregunta, String tipo, Integer preguntaPadre, String repetir);
+    
+    Pregunta buscarPregunta(Integer preguntaId);
+    
 }

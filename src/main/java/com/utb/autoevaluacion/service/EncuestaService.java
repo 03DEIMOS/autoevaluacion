@@ -15,4 +15,5 @@ import java.util.List;
 public interface EncuestaService {
     List<Encuesta> getEncuestas();
     
+    List<Encuesta> getEncuestasByModelo(Integer modeloId);
 }

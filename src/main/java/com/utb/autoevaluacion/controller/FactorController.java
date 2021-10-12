@@ -75,7 +75,7 @@ public class FactorController {
         HttpStatus status;
         try {
             factorService.actualizarFactor(factorId, codigo, nombre, modeloId);
-            status = HttpStatus.CREATED;
+            status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
             status = HttpStatus.CONFLICT;

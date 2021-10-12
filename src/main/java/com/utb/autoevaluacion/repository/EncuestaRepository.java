@@ -6,7 +6,9 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Encuesta;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +18,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EncuestaRepository extends JpaRepository<Encuesta, Integer>{
-    
+    @Query("Select e from Encuesta e")
+    List<Encuesta> findEncuestasByModeloId(Integer modeloId);
 }

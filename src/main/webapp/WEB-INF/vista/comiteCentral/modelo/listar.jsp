@@ -15,17 +15,17 @@
                         <th>Acci&oacute;n</th>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listaM}" var="row" varStatus="iter">
+                            <c:forEach items="${listaM}" var="modelo" varStatus="iter">
                                 <tr>
                                     <td>   
-                                        <c:out value="${row.nombre}"/>
+                                        <c:out value="${modelo.nombre}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${row.descripcion}"/>
+                                        <c:out value="${modelo.descripcion}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#modelo/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
-                                        <a href="#modelo/entrar/${row.id}" title="Entrar"><i class="icon-signin"></i></a>
+                                        <a href="#modelo/editar/${modelo.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#modelo/entrar/${modelo.id}" title="Entrar"><i class="icon-signin"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

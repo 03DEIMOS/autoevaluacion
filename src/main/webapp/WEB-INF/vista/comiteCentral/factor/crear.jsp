@@ -85,7 +85,7 @@
                     url: "/autoevaluacion/factor/crear",
                     data: $("#formCrearFactor").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/login/validate#factor/factores/${modeloId}";
+                        location.hash = "factor/factores/${modeloId}";
                     } //fin success
                 }); //fin $.ajax    
             }

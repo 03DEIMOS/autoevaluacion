@@ -7,7 +7,7 @@
                     url: "/autoevaluacion/modelo/crear",
                     data: $("#formCrearModelo").serialize(),
                     success: function() {
-                    location = "/autoevaluacion/login/validate#modelo/modelos";
+                    location.hash = "modelo/modelos";
                     } //fin success
                 }); //fin $.ajax    
             }

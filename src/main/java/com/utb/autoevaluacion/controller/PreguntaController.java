@@ -6,21 +6,27 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.service.PreguntaService;
+import com.utb.autoevaluacion.service.TipoPreguntaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author DEIMOS
  */
+@Slf4j
 @Controller
 @RequestMapping("/pregunta")
 public class PreguntaController {
     @Autowired
     private PreguntaService preguntaService;
+    @Autowired
+    private TipoPreguntaService tipoPreguntaService;
 
     public PreguntaController(PreguntaService preguntaService) {
         this.preguntaService = preguntaService;
@@ -31,4 +37,12 @@ public class PreguntaController {
         model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\pregunta\\listar";
     } 
+    
+    @GetMapping("/crear")
+    public String formularioCrearPregunta(Model model) {
+        log.info("Ejecutanto metodo [formularioCrearPregunta]");
+        model.addAttribute("listaTipoP", tipoPreguntaService.buscarTipoPreguntas());
+        return "comiteCentral\\pregunta\\crear";
+    }
+    
 }

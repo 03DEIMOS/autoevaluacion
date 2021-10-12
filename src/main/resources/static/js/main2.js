@@ -113,6 +113,7 @@ $(function () {
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Preguntas</li>' +
                 '<li><a href="#pregunta/preguntas"><i class="icon-question"></i> Listar preguntas</a></li>' +
+                '<li><a href="#tipopregunta/tipospregunta"><i class="icon-question"></i> Listar tipos de pregunta</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Encuestas</li>' +
                 '<li><a href="#encuesta/encuestas"><i class="icon-tasks"></i> Listar encuestas</a></li>' +

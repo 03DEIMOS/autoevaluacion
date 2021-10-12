@@ -15,16 +15,16 @@
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listaC}" var="row" varStatus="iter">
+                            <c:forEach items="${listaC}" var="caracteristica" varStatus="iter">
                                 <tr>
                                     <td>   
-                                        <c:out value="${row.codigo}"/>
+                                        <c:out value="${caracteristica.codigo}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${row.nombre}"/>
+                                        <c:out value="${caracteristica.nombre}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#editarCaracteristica&${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#caracteristica/editar/${caracteristica.id}/${modeloId}" title="Editar"><i class="icon-edit"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -59,7 +59,7 @@
                 </c:otherwise>
             </c:choose>
             <br/>
-            <a href="#crearCaracteristica" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear caracteristica</a>
+            <a href="#caracteristica/crear/${modeloId}" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear caracteristica</a>
 
         </div>
     </div>

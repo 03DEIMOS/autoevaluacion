@@ -41,7 +41,7 @@ public class FactorServiceImpl implements FactorService {
             factor.setModeloId(modelo);
             factorRepository.saveAndFlush(factor);
         } catch (Exception e) {
-            log.info("Ha ocurrido un error al crear el factor" + e);
+            log.error("Ha ocurrido un error al crear el factor" + e);
             throw e;
         }
     }
@@ -57,7 +57,7 @@ public class FactorServiceImpl implements FactorService {
             factor.setModeloId(modelo);
             factorRepository.saveAndFlush(factor);
         } catch (Exception e) {
-            log.info("Ha ocurrido un error al actualizar el factor" + e);
+            log.error("Ha ocurrido un error al actualizar el factor" + e);
             throw e;
         }
     }

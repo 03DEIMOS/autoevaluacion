@@ -82,10 +82,10 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=crearCaracteristica",
+                    url: "/autoevaluacion/caracteristica/crear",
                     data: $("#formCrearCaracteristica").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarCaracteristicas";
+                        location.hash = "caracteristica/caracteristicas/${modeloId}";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -188,30 +188,16 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="factor" class="control-label">Asignar Factor</label>
+                        <label for="factorId" class="control-label">Asignar Factor</label>
                         <div class="controls">
-                            <select id="factor" name="factor" class="{required:true}">
+                            <select id="factorId" name="factorId" class="{required:true}">
                                 <option></option>
-                                <c:forEach items="${listaF}" var="row" varStatus="iter">
-                                    <option value="${row.id}">${row.codigo} ${row.nombre}</option>
+                                <c:forEach items="${listaF}" var="factor" varStatus="iter">
+                                    <option value="${factor.id}">${factor.codigo} ${factor.nombre}</option>
                                 </c:forEach>
                             </select>                
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label  class="control-label">Asignar Indicadores</label>
-                        <div class="controls">
-                            <ul id="fcbklist">
-                                <c:forEach items="${listaI}" var="row" varStatus="iter">
-                                    <li>
-                                        <strong>${row.codigo}</strong><br/> 
-                                        <span class="fcbkitem_text">${row.nombre}</span>
-                                        <input name="I${row.id}" type="hidden" value="0"/>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div> 
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Crear Caracteristica</button>
                         <button class="btn" type="reset">Cancelar</button>

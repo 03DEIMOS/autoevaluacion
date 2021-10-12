@@ -1,41 +1,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style type="text/css">
-    .popover{
-        min-width:500px;
-        width: auto;
-    }
-</style>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script type="text/javascript">
-    $(function() {
-        $("#indicador").on('mouseleave', function(e) {
-            $('#indicador').popover('destroy');
-        });
+    $(function () {
 
-       $("#indicador").on('mouseover', function(e) {
-            var $e = $(e.target);
-            if ($e.is('option')) {
-                $('#indicador').popover('destroy');
-                $("#indicador").popover({
-                    trigger: 'manual',
-                    placement: 'right',
-                    title: $e.attr("data-original-title"),
-                    content: $e.attr("data-content")
-                }).popover('show');
+        $(document).on("click", ".addS", function (e) {
+            e.stopPropagation();
+            $("#opciones").append('<div class="controls">'
+                    + ' <input type="text" name="subpregunta[]" placeholder="subpregunta" class="input-xxlarge {required:true}" value=""/>'
+                    + ' <a class="addS" title="Agregar"><i class="icon-plus-sign"></i></a>'
+                    + ' <a class="removeS" title="Eliminar"><i class="icon-remove-sign"></i></a>'
+                    + ' </div>');
+        });
+        $("#sencilla").click(function () {
+            $("#opciones").toggle();
+        });
+        $("#btnVistaPrevia").click(function () {
+
+            var values = $("#formEditarPregunta").serializeArray();
+            /* Because serializeArray() ignores unset checkboxes and radio buttons: */
+            values = values.concat($('#formEditarPregunta input[type=checkbox]:not(:checked)')
+                    .map(function () {
+                        return {"name": this.name, "value": false}
+                    }).get()
+                    );
+            $.ajax({
+                type: 'POST',
+                url: "/autoevaluacion/pregunta/vistaPrevia",
+                data: values,
+                success: function (data) {
+                    $("#dancing-dots-text").remove();
+                    $("#vista-previa").html(data);
+                } //fin success
             }
+            ); //fin $.ajax    
         });
         $("#formEditarPregunta").validate({
-            submitHandler: function() {
+            submitHandler: function () {
+                var values = $("#formEditarPregunta").serializeArray();
+                /* Because serializeArray() ignores unset checkboxes and radio buttons: */
+                values = values.concat($('#formEditarPregunta input[type=checkbox]:not(:checked)')
+                        .map(function () {
+                            return {"name": this.name, "value": false}
+                        }).get()
+                        );
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=editarPregunta",
-                    data: $("#formEditarPregunta").serialize(),
-                    success: function() {
-                        location = "/autoevaluacion/#listarPreguntas";
+                    type: 'PUT',
+                    url: "/autoevaluacion/pregunta/editar",
+                    data: values,
+                    success: function () {
+                        location.hash = "/pregunta/preguntas";
                     } //fin success
                 }); //fin $.ajax    
             }
         });
-    });
+    }
+    );
 </script>
 <div class="hero-unit">
     <div class="row">
@@ -43,142 +63,61 @@
             <form id="formEditarPregunta" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Editar Pregunta</legend>
+                    <input type="hidden" name="preguntaId" value="${pregunta.id}"/>
                     <div class="control-group">
-                        <label for="codigo" class="control-label">C&oacute;digo</label>
+                        <label for="pregunta"  class="control-label">Pregunta</label>
                         <div class="controls">
-                            <input type="text" name="codigo" id="codigo" class="input-xlarge {required:true}" value="${pregunta.codigo}"/>
+                            <textarea rows="3" name="pregunta" id="pregunta" class="input-xxlarge {required:true}">${pregunta.pregunta}</textarea>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="nombre"  class="control-label">Pregunta</label>
+                        <label for="tipoId" class="control-label">Tipo de la Pregunta</label>
                         <div class="controls">
-                            <input type="text" name="nombre" id="nombre" class="input-xlarge {required:true}" value="${pregunta.pregunta}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="tipo" class="control-label">Tipo de la Pregunta</label>
-                        <div class="controls">
-                            <select name="tipo" id="tipo">
+                            <select name="tipoId" id="tipoId">
                                 <c:choose>
-                                    <c:when test="${pregunta.getTipo().equals('1to5')}">
-                                        <option selected="selected"  value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta">Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
+                                    <c:when test="${fn:length(listaTipoP)!= 0}">
+                                        <c:forEach items="${listaTipoP}" var="tipoPregunta" varStatus="iter">
+                                            <c:choose>
+                                                <c:when test="${tipoPregunta.id == pregunta.tipoPregunta.id}">
+                                                    <option selected value="${tipoPregunta.id}" >${tipoPregunta.tipo}</option>  
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${tipoPregunta.id}" >${tipoPregunta.tipo}</option>  
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:forEach>
                                     </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('abierta')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" selected="selected">Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('smur')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur" selected="selected">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('multiple')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple" selected="selected">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('matriz15')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15" selected="selected">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('simatriz')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz" selected="selected">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('6matriz')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz" selected="selected">Matriz 0-5</option>
-                                        <option value="vecesmatriz">Matriz Veces</option>
-                                    </c:when>
-                                    <c:when test="${pregunta.getTipo().equals('6matriz')}">
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz" selected="selected">Matriz Veces</option>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <option value=""></option>
-                                        <option value="1to5">Elegir del 1 al 5</option>
-                                        <option value="abierta" >Pregunta abierta</option>
-                                        <option value="smur">Selección multiple unica respuesta</option>
-                                        <option value="multiple">Selección multiple multiple respuesta</option>
-                                        <option value="matriz15">Matriz 1-5</option>
-                                        <option value="simatriz">Matriz Si-No</option>
-                                        <option value="6matriz">Matriz 0-5</option>
-                                        <option value="vecesmatriz" selected="selected">Matriz Veces</option>
-                                    </c:otherwise>   
                                 </c:choose>
                             </select>
                         </div>
                     </div>
-
                     <div class="control-group">
-                        <label for="indicador" class="control-label">Asignar Indicador</label>
                         <div class="controls">
-                            <select id="indicador" name="indicador">
-                                <option></option>
-                                <c:forEach items="${listaI}" var="row" varStatus="iter">
-                                    <c:choose>
-                                        <c:when test="${pregunta.getIndicadorId()!= row}">
-                                            <option value="${row.id}" data-content="${row.nombre}" rel="popover2" data-original-title="Indicador">${row.codigo}</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option selected="selected" value="${row.id}" data-content="${row.nombre}" rel="popover2" data-original-title="Indicador">${row.codigo}</option>
-                                        </c:otherwise>       
-                                    </c:choose>    
-
-                                </c:forEach>
-                            </select>                
-
+                            <input name="sencilla" id="sencilla" type="checkbox" value="${sencilla}"> Establecer esto como una escala de valoraciÃ³n de una sola fila (quitar las opciones de fila)?
                         </div>
                     </div>
 
+                    <div id="opciones" class="control-group">
+                        <label for="respuesta" class="control-label">SubPreguntas</label>
+                        <c:choose>
+                            <c:when test="${fn:length(pregunta.getItemPreguntas())!= 0}">
+                                <c:forEach items="${pregunta.getItemPreguntas()}" var="itemPregunta" varStatus="iter">
+                                    <div class="controls">
+                                        <input type="text" name="subpregunta[]" id="respuesta" placeholder="subpregunta" class="input-xxlarge {required:true}" value="${itemPregunta.itemPregunta}"/>
+                                        <a class="addS" title="Agregar"><i class="icon-plus-sign"></i></a>
+                                        <a class="removeS" title="Eliminar"><i class="icon-remove-sign"></i></a>
+                                    </div>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
+
+
+                    </div>
+                    <button type="button" id="btnVistaPrevia">Vista Previa</button> 
+                    <div id="vista-previa"></div>
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                        <button class="btn btn-primary" type="submit">Editar Pregunta</button>
                         <button class="btn" type="reset">Cancelar</button>
                     </div>
                 </fieldset>

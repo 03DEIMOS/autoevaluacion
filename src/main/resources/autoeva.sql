@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2021-10-10 14:47:11
+Date: 2021-10-12 14:43:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -128,13 +128,13 @@ CREATE TABLE `caracteristica` (
   `codigo` varchar(100) NOT NULL,
   `nombre` varchar(1000) NOT NULL,
   `factor_id` int(11) DEFAULT NULL,
-  `modelo_id` int(11) NOT NULL,
+  `modelo_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_caracteristica_factor1_idx` (`factor_id`),
   KEY `fk_caracteristica_modelo1` (`modelo_id`),
   CONSTRAINT `fk_caracteristica_factor1` FOREIGN KEY (`factor_id`) REFERENCES `factor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_caracteristica_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of caracteristica
@@ -295,29 +295,7 @@ INSERT INTO `caracteristica` VALUES ('167', '10.26', 'Recursos bibliográficos y
 INSERT INTO `caracteristica` VALUES ('168', '10.27', 'Adecuado apoyo administrativo a las actividades de docencia, investigación y extensión del programa', '47', '3');
 INSERT INTO `caracteristica` VALUES ('169', '10.28', 'Presupuesto del programa', '47', '3');
 INSERT INTO `caracteristica` VALUES ('170', '10.29', 'Gestión del programa', '47', '3');
-
--- ----------------------------
--- Table structure for condicion
--- ----------------------------
-DROP TABLE IF EXISTS `condicion`;
-CREATE TABLE `condicion` (
-  `idcondicion` int(11) NOT NULL AUTO_INCREMENT,
-  `pregunta_condicionadora` int(11) NOT NULL,
-  `pregunta_condicionada` int(11) NOT NULL,
-  `tipo` varchar(45) DEFAULT NULL,
-  `respuesta_idrespuesta` int(11) NOT NULL,
-  PRIMARY KEY (`idcondicion`),
-  KEY `fk_condicion_pregunta1_idx` (`pregunta_condicionadora`),
-  KEY `fk_condicion_pregunta2_idx` (`pregunta_condicionada`),
-  KEY `fk_condicion_respuesta1_idx` (`respuesta_idrespuesta`),
-  CONSTRAINT `fk_condicion_pregunta1` FOREIGN KEY (`pregunta_condicionadora`) REFERENCES `pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_condicion_pregunta2` FOREIGN KEY (`pregunta_condicionada`) REFERENCES `pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_condicion_respuesta1` FOREIGN KEY (`respuesta_idrespuesta`) REFERENCES `respuesta` (`idrespuesta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of condicion
--- ----------------------------
+INSERT INTO `caracteristica` VALUES ('171', 'Cod1', 'Caract Desc', '12', null);
 
 -- ----------------------------
 -- Table structure for directorprograma
@@ -522,363 +500,6 @@ CREATE TABLE `encuestahaspregunta` (
 -- ----------------------------
 -- Records of encuestahaspregunta
 -- ----------------------------
-INSERT INTO `encuestahaspregunta` VALUES ('1', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('22', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('29', '1');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '2');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '2');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '2');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '2');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '2');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('22', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('29', '3');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '4');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '4');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '4');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '5');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '6');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '7');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '7');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '7');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '7');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '7');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '8');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '8');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '8');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '9');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '9');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '9');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '10');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '11');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '11');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '12');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '13');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '14');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '15');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '16');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '16');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '17');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '17');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '17');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '17');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '18');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '19');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '19');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '20');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '21');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '22');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '22');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '22');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '22');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '23');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '23');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '23');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '23');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '23');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '24');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '25');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '25');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '25');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '25');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '26');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '26');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '26');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '27');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '27');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '27');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '27');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '28');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '29');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '30');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '30');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '31');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '32');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '32');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '33');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '34');
-INSERT INTO `encuestahaspregunta` VALUES ('8', '35');
-INSERT INTO `encuestahaspregunta` VALUES ('9', '35');
-INSERT INTO `encuestahaspregunta` VALUES ('10', '35');
-INSERT INTO `encuestahaspregunta` VALUES ('11', '35');
-INSERT INTO `encuestahaspregunta` VALUES ('32', '36');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '37');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '38');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '38');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '39');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '40');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '41');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '41');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '41');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '42');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '43');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '43');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '43');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '44');
-INSERT INTO `encuestahaspregunta` VALUES ('8', '45');
-INSERT INTO `encuestahaspregunta` VALUES ('9', '45');
-INSERT INTO `encuestahaspregunta` VALUES ('10', '45');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '46');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '46');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '46');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '46');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '47');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '47');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '48');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '48');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('22', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('29', '49');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('22', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('29', '50');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '51');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '52');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '53');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '53');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '53');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('16', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('18', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('20', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('22', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('24', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('26', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('27', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('28', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('29', '54');
-INSERT INTO `encuestahaspregunta` VALUES ('12', '55');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '55');
-INSERT INTO `encuestahaspregunta` VALUES ('14', '55');
-INSERT INTO `encuestahaspregunta` VALUES ('32', '57');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '58');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '58');
-INSERT INTO `encuestahaspregunta` VALUES ('13', '59');
-INSERT INTO `encuestahaspregunta` VALUES ('15', '59');
-INSERT INTO `encuestahaspregunta` VALUES ('19', '59');
-INSERT INTO `encuestahaspregunta` VALUES ('21', '59');
-INSERT INTO `encuestahaspregunta` VALUES ('1', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('2', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('3', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('4', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('5', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('6', '60');
-INSERT INTO `encuestahaspregunta` VALUES ('7', '60');
 
 -- ----------------------------
 -- Table structure for estudiante
@@ -942,7 +563,7 @@ CREATE TABLE `factor` (
   PRIMARY KEY (`id`),
   KEY `fk_factor_modelo1_idx` (`modelo_id`),
   CONSTRAINT `fk_factor_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of factor
@@ -1146,11 +767,15 @@ CREATE TABLE `itempregunta` (
   PRIMARY KEY (`id`),
   KEY `fk_itempregunta_pregunta_idx` (`preguntaid`),
   CONSTRAINT `fk_itempregunta_pregunta` FOREIGN KEY (`preguntaid`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las subpreguntas para preguntas que contienes preguntas anidadas.';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las subpreguntas para preguntas que contienes preguntas anidadas.';
 
 -- ----------------------------
 -- Records of itempregunta
 -- ----------------------------
+INSERT INTO `itempregunta` VALUES ('8', 'a. Conozco, entiendo y aplico la Misión de la UTB.', '312');
+INSERT INTO `itempregunta` VALUES ('9', 'b. Considero que existe correspondencia entre la Misión de la UTB y los procesos académicos y administrativos.', '312');
+INSERT INTO `itempregunta` VALUES ('10', 'c. Considero que ha sido efectivo el uso de los medios de comunicación empleados para difundir la Misión.', '312');
+INSERT INTO `itempregunta` VALUES ('11', 'd. Considero que la UTB en el desarrollo de sus funciones (docencia, investigación y extensión) cumple con lo declarado en la Misión.', '312');
 
 -- ----------------------------
 -- Table structure for item_tipo_pregunta
@@ -1164,11 +789,27 @@ CREATE TABLE `item_tipo_pregunta` (
   PRIMARY KEY (`id`),
   KEY `fk_item_tipo_pregunta_tipo_pregunta` (`tipo_pregunta_id`),
   CONSTRAINT `fk_item_tipo_pregunta_tipo_pregunta` FOREIGN KEY (`tipo_pregunta_id`) REFERENCES `tipo_pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los elementos de los diferentes tipos de pregunta existentes en el sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los elementos de los diferentes tipos de pregunta existentes en el sistema';
 
 -- ----------------------------
 -- Records of item_tipo_pregunta
 -- ----------------------------
+INSERT INTO `item_tipo_pregunta` VALUES ('7', 'Totalmente', '5', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('8', 'En alto grado', '4', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('9', 'Aceptablemente', '3', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('10', 'En bajo grado', '2', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('11', 'En ningún grado', '1', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('12', 'NS/NR', '0', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('18', 'Muy alto', '5', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('19', 'Alto', '4', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('20', 'Medio', '3', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('21', 'Muy bajo', '2', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('22', 'Bajo', '1', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('23', 'Totalmente de acuerdo', '5', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('24', 'Parcialmente de acuerdo', '4', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('25', 'Ni de acuerdo ni en desacuerdo', '3', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('26', 'Parcialmente en desacuerdo', '2', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('27', 'Totalmente en desacuerdo', '1', '3');
 
 -- ----------------------------
 -- Table structure for metas
@@ -1213,7 +854,7 @@ CREATE TABLE `modelo` (
   `fechacreacion` date DEFAULT NULL,
   `observaciones` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of modelo
@@ -22240,7 +21881,7 @@ CREATE TABLE `pregunta` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` varchar(100) DEFAULT NULL,
   `pregunta` varchar(1000) NOT NULL,
-  `tipo` varchar(45) NOT NULL,
+  `tipo` int(11) NOT NULL,
   `indicador_id` int(11) DEFAULT NULL,
   `modelo_id` int(11) DEFAULT NULL,
   `pregunta_padre` int(11) DEFAULT NULL,
@@ -22249,325 +21890,17 @@ CREATE TABLE `pregunta` (
   KEY `fk_pregunta_indicador1_idx` (`indicador_id`),
   KEY `fk_pregunta_modelo1` (`modelo_id`),
   KEY `fk_pregunta_pregunta1_idx` (`pregunta_padre`),
+  KEY `fk_pregunta_tipo_pregunta1` (`tipo`),
+  CONSTRAINT `fk_pregunta_tipo_pregunta1` FOREIGN KEY (`tipo`) REFERENCES `tipo_pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pregunta_indicador1` FOREIGN KEY (`indicador_id`) REFERENCES `indicador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pregunta_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pregunta_pregunta1` FOREIGN KEY (`pregunta_padre`) REFERENCES `pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=312 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pregunta
 -- ----------------------------
-INSERT INTO `pregunta` VALUES ('1', '1', 'Misión de la UTB:\" SOMOS una institución de educación superior, donde la comunidad académica desarrolla, mediante la formación integral, un proyecto educativo, científico, flexible y de calidad que contribuye  a la transformación  de nuestro entorno social, económico, empresarial, cultural y ambiental.\nEn qué grado califica la Misión de la universidad, en cuanto a:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('2', '2', 'Visión de la UTB: \"En 2025 seremos la universidad que logra atraer y retener estudiantes, profesores y socios estratégicos. Caracterizada por su oferta de excelencia académica, formativa, investigativa y de extensión pertinente, contributiva y sostenible. Convirtiéndonos en Colombia  en ejemplo a replicar por pensar globalmente y actuar localmente\".\nEn qué grado califica la visión de la universidad, en cuanto a:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('3', '3', 'Cómo califica el Proyecto Educativo o el Currículo del Programa en cuanto a:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('4', '4', 'En qué grado usted considera que los siguientes aspectos satisfacen las necesidades de los estudiantes actualmente matriculados en su programa', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('5', '5', ' En qué grado la Universidad favorece la participación de sus estudiantes en cada una de las  siguientes actividades:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('6', '6', 'Califique su nivel de satisfacción en relación con las siguientes actividades complementarias de formación académica ofrecidas por la Universidad:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('7', '7', 'En qué grado el Reglamento de Estudiantes de la Universidad cumple los siguientes aspectos: ', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('8', '8', 'Sabía usted que la Universidad cuenta con las siguientes instancias de decisión:', '4', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('9', '9', 'Sabía usted que los estudiantes tienen participación en los siguientes órganos de decisión de la universidad o de dirección del programa :', '4', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('10', '10', 'Califique su nivel de satisfacción con respecto a los siguientes aspectos:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('11', '11', 'En qué grado considera usted que la Universidad aplica  políticas y criterios académicos para :', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('12', '12', 'Cuál es el grado de cumplimiento de la Universidad Tecnológica de Bolívar sobre su:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('13', '13', 'En qué grado el Estatuto Profesoral es:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('14', '14', 'Cuál es el grado de satisfacción sobre la aplicación de las políticas de participación de los profesores en:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('15', '15', 'Cómo califica la calidad general de los profesores del programa en cuanto a:', '3', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('16', '16', 'Cuál es su nivel de satisfacción con respecto a los criterios usados para la distribución de la carga académica.', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('17', '17', 'El sistema de evaluación docente :', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('18', '18', 'El escalafón docente:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('19', '19', 'Cuál es su nivel de satisfacción sobre la calidad y pertinencia de los programas de desarrollo profesoral que brinda la institución.', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('20', '20', 'En qué grado Los incentivos y estímulos previstos para profesores por el ejercicio calificado de la docencia, la investigación, la creación artística, la extensión o proyección social tienen un impacto positivo en el enriquecimiento de la calidad del programa.', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('21', '21', 'Los materiales de apoyo producidos por los profesores del programa son utilizados como fuente de consulta en  el desarrollo de las clases debido a su calidad y pertinencia.', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('22', '22', 'La remuneración recibida  tiene en cuenta los siguientes aspectos:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('23', '23', 'En qué grado la UTB ofrece los medios adecuados para permitir:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('24', '24', 'Cómo califica en general la calidad del programa académico ofrecido por UTB en cuanto a:', '3', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('25', '25', 'Cómo califica el grado de efectividad de las estrategias previstas en el programa académico en materia de flexibilidad curricular:', '3', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('26', '26', 'Cómo califica la calidad de las estrategias previstas en el programa académico para la promoción del trabajo interdisciplinario (trabajo con estudiantes o profesores de diferentes áreas de conocimiento) en:', '3', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('27', '27', 'Las metodologías empleadas por los profesores en el proceso de enseñanza-aprendizaje:', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('28', '28', 'En qué grado las condiciones y exigencias académicas de permanencia y graduación del programa, son acordes con la naturaleza del mismo?', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('29', '29', 'En qué grado los métodos que utilizan los profesores para evaluar a los estudiantes:', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('30', '30', 'En qué grado el sistema de evaluación le ha permitido:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('31', '31', 'Cómo califica la calidad del acompañamiento brindado por  los profesores o tutores del programa durante la realización de los trabajos o tesis de grado.', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('32', '32', ' ¿En qué grado  los trabajos realizados por los estudiantes tienen correspondencia con los objetivos de logro definidos?', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('33', '33', 'Como califica las orientaciones y mecanismos empleados por la UTB para:', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('34', '34', 'En qué grado los resultados de las autoevaluaciones y evaluaciones realizadas en la UTB contribuyen al mejoramiento de la calidad académica de los programas.', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('35', '35', 'En que grado califica:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('36', '36', 'En qué grado el impacto que el programa produce en la región se refleja en:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('37', '37', 'En qué grado el material bibliográfico con que cuenta el programa es', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('38', '38', 'Califique el grado de participación del profesorado en la adquisición y  actualización del material bibliográfico.', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('39', '39', 'En qué grado los recursos informáticos y de comunicación con que cuenta el programa para el desarrollo de las actividades académicas.', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('40', '40', 'valúe la calidad de los siguientes recursos de apoyo a la docencia e investigación con que cuenta el programa para sus desarrollos académicos:', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('41', '41', 'Evalúe la calidad de los siguientes recursos de apoyo a la docencia e investigación con que cuenta el programa para sus desarrollos académicos:', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('42', '42', 'Evalúe en qué grado se dan las siguientes condiciones dentro del programa en cuanto a la  investigación:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('43', '43', 'Como califica las estrategias empleadas por la UTB para articular las líneas de investigación de sus grupos con:', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('44', '44', 'Califique la coherencia de las practicas profesionales o laborales  realizadas durante el proceso de formación en relación con las necesidades de la institución y el sector externo.', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('45', '45', 'Califique su nivel de satisfacción con los siguientes servicios prestados por la UTB a sus egresados:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('46', '46', 'Califique el grado de relación que guardan:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('47', '47', 'En qué grado los procesos de autoevaluación y autorregulación de la UTB permiten construir:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('48', '48', 'Califique el grado de efectividad de las siguientes estrategias empleadas por la UTB para promover  las pasantías investigativas en el exterior:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('49', '49', 'En qué grado las políticas institucionales en materia de bienestar responden a las necesidades de la comunidad universitaria?', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('50', '50', 'Teniendo en cuenta los servicios y programas de bienestar institucional que ofrece la institución, califique su nivel de satisfacción con respecto a:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('51', '51', 'En qué grado sus funciones y tareas administrativas guardan relación con las necesidades  del programa', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('52', '52', 'Cuál es su nivel de satisfacción con respecto a las políticas diseñadas por la UTB para estimular y promover el personal administrativo?', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('53', '53', ' Califique el grado de eficacia de los procesos administrativos en el desarrollo de las funciones de:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('54', '54', 'Califique su grado de satisfacción en relación con la eficiencia de los sistemas y medios de información y comunicación que dispone la UTB:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('55', '55', 'En qué grado los directivos del programa:', '2', null, null, null, 'si');
-INSERT INTO `pregunta` VALUES ('56', '56', 'Califique su grado de satisfacción en relación con los siguientes aspectos:', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('57', '57', 'Califique su nivel de satisfacción en relación con  los egresados de la UTB en:', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('58', '58', 'Califique su nivel de satisfacción sobre la efectividad del seguimiento de los egresados.', '1', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('59', '59', 'En qué grado se dan las siguientes condiciones en la UTB: ', '2', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('60', '60', 'Califique la calidad de los siguientes aspectos de la planta física de la universidad: ', '3', null, null, null, null);
-INSERT INTO `pregunta` VALUES ('61', null, 'a. La apropiación de su enunciado (conoce, entiende y aplica).', '1', null, null, '1', null);
-INSERT INTO `pregunta` VALUES ('62', null, 'b. La correspondencia con los procesos académicos y administrativos.', '1', null, null, '1', null);
-INSERT INTO `pregunta` VALUES ('63', null, 'c.  Los medios empleados para difundirla.', '1', null, null, '1', null);
-INSERT INTO `pregunta` VALUES ('64', null, 'd. Los mecanismos institucionales empleados para propiciar su cumplimiento.', '1', null, null, '1', null);
-INSERT INTO `pregunta` VALUES ('65', null, 'a.  La apropiación de su enunciado (conoce, entiende y aplica).', '1', null, null, '2', null);
-INSERT INTO `pregunta` VALUES ('66', null, 'b.  La correspondencia con los procesos académicos y administrativos.', '1', null, null, '2', null);
-INSERT INTO `pregunta` VALUES ('67', null, 'c.  Los medios empleados para difundirla.', '1', null, null, '2', null);
-INSERT INTO `pregunta` VALUES ('68', null, 'd. Los mecanismos institucionales empleados para propiciar su cumplimiento.', '1', null, null, '2', null);
-INSERT INTO `pregunta` VALUES ('69', null, 'a. Su conocimiento.', '1', null, null, '3', null);
-INSERT INTO `pregunta` VALUES ('70', null, 'b. La coherencia entre los objetivos del programa y los desarrollos curriculares.', '1', null, null, '3', null);
-INSERT INTO `pregunta` VALUES ('71', null, 'c. Los mecanismos empleados por la institución para su difusión.', '1', null, null, '3', null);
-INSERT INTO `pregunta` VALUES ('72', null, 'd. La coherencia con la Misión institucional.', '1', null, null, '3', null);
-INSERT INTO `pregunta` VALUES ('73', null, 'a. Número de Profesores', '2', null, null, '4', 'si');
-INSERT INTO `pregunta` VALUES ('74', null, 'b. Disponibilidad de los recursos de apoyo a la docencia (laboratorios, talleres, equipos audiovisuales, recursos bibliográficos).', '2', null, null, '4', 'si');
-INSERT INTO `pregunta` VALUES ('75', null, 'c. Número y tipo de recursos físicos', '2', null, null, '4', 'si');
-INSERT INTO `pregunta` VALUES ('76', null, 'a. Actividades académicas distintas de la docencia (foros, seminarios, conferencias, congresos)', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('77', null, 'b. Actividades de investigación (Proyectos de investigación, semilleros de investigación)', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('78', null, 'c. Grupos de estudio', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('79', null, 'd. Actividades artísticas y culturales', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('80', null, 'e. Actividades deportivas', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('81', null, 'g. Jornadas académicas del programa (Ferias científicas y culturales)', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('82', null, 'h. Visitas a empresas y/o rutas empresariales  ', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('83', null, 'j. Actividades de internacionalización en el campus.', '1', null, null, '5', null);
-INSERT INTO `pregunta` VALUES ('84', null, 'a. Actividades académicas distintas de la docencia (foros, seminarios, conferencias, congresos)', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('85', null, 'b. Actividades de investigación (Proyectos de investigación, semilleros de investigación)', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('86', null, 'c. Grupos de estudio', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('87', null, 'd. Actividades artísticas y culturales', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('88', null, 'e. Actividades deportivas', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('89', null, 'f. Jornadas académicas del programa (Ferias científicas y culturales)', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('90', null, 'g. Visitas a empresas y/o rutas empresariales', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('91', null, 'h. Actividades de internacionalización en el campus', '1', null, null, '6', null);
-INSERT INTO `pregunta` VALUES ('92', null, 'a. Es conocido por usted', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('93', null, 'b. Garantiza el ejercicio de los derechos y deberes de los estudiantes', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('94', null, 'c. Se aplica con transparencia', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('95', null, 'd. Controla las actividades académicas de los estudiantes.', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('96', null, 'e. Es coherente con la dinámica académica.', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('97', null, 'f. Es ampliamente divulgado', '2', null, null, '7', null);
-INSERT INTO `pregunta` VALUES ('98', null, 'a. Consejo Académico', '4', null, null, '8', null);
-INSERT INTO `pregunta` VALUES ('99', null, 'b. Consejo Administrativo', '4', null, null, '8', null);
-INSERT INTO `pregunta` VALUES ('100', null, 'c. Consejo Superior', '4', null, null, '8', null);
-INSERT INTO `pregunta` VALUES ('101', null, 'a. Comités curriculares', '4', null, null, '9', null);
-INSERT INTO `pregunta` VALUES ('102', null, 'b. Comités de Facultad', '4', null, null, '9', null);
-INSERT INTO `pregunta` VALUES ('103', null, 'c. Consejo Académico', '4', null, null, '9', null);
-INSERT INTO `pregunta` VALUES ('104', null, 'd. Consejo Superior', '4', null, null, '9', null);
-INSERT INTO `pregunta` VALUES ('105', null, 'a. Conformación de los organismos colegiados (consejos y comités) de la institución', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('106', null, 'b. Eficiencia en el funcionamiento de los órganos colegiados (consejos y comités de la institución).', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('107', null, 'c. Participación de los estudiantes en las instancias de decisión establecidas en la Universidad  ', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('108', null, 'd. Compromiso de las directivas con la administración de la Universidad y la gestión de la Facultad y de los programas académicos.', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('109', null, 'e. Posibilidad de discutir abierta y críticamente sobre temas de la realidad local, nacional, regional y mundial', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('110', null, 'f. Comunicación oportuna a los estudiantes por parte de la Universidad sobre las decisiones que los afectan', '1', null, null, '10', null);
-INSERT INTO `pregunta` VALUES ('111', null, 'a. Seleccionar los profesores.', '2', null, null, '11', null);
-INSERT INTO `pregunta` VALUES ('112', null, 'b. Vincular los profesores.', '2', null, null, '11', null);
-INSERT INTO `pregunta` VALUES ('113', null, 'c. Definir la permanencia de los profesores.', '2', null, null, '11', null);
-INSERT INTO `pregunta` VALUES ('114', null, 'a. Política para la selección profesoral', '1', null, null, '12', null);
-INSERT INTO `pregunta` VALUES ('115', null, 'b. Política para la vinculación profesoral', '1', null, null, '12', null);
-INSERT INTO `pregunta` VALUES ('116', null, 'c. Políticas para la permanencia de los profesores.', '1', null, null, '12', null);
-INSERT INTO `pregunta` VALUES ('117', null, 'a. Es conocido por usted', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('118', null, 'b. Establece un conjunto de principios y normas que rigen las relaciones de la Tecnológica y su cuerpo docente', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('119', null, 'c. Define la coherencia, rigurosidad y transparencia en la aplicación del escalafón', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('120', null, 'd. Señala las funciones, derechos, deberes de los docentes', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('121', null, 'e. Determina las condiciones de ingreso, permanencia, promoción y retiro de los docentes', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('122', null, 'f. Trata lo relacionado con la evaluación, capacitación y desarrollo, promoción académica, distinciones e incentivos', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('123', null, 'g. Es pertinente, se encuentra actualizado y es aplicado para el funcionamiento de las relaciones con los docentes', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('124', null, 'h. Se aplica con transparencia', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('125', null, 'i. Está de acuerdo con los actuales desarrollos académicos del programa', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('126', null, 'j. Es ampliamente divulgado', '1', null, null, '13', null);
-INSERT INTO `pregunta` VALUES ('127', null, 'a. Consejo Superior', '1', null, null, '14', null);
-INSERT INTO `pregunta` VALUES ('128', null, 'b.Consejo Académico', '1', null, null, '14', null);
-INSERT INTO `pregunta` VALUES ('129', null, 'c. Comité de Facultad', '1', null, null, '14', null);
-INSERT INTO `pregunta` VALUES ('130', null, 'd. Comité Curricular', '1', null, null, '14', null);
-INSERT INTO `pregunta` VALUES ('131', null, 'a. Formación académica.  ', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('132', null, 'b. Trayectoria profesional y académica.', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('133', null, 'c. Competencias pedagógicas.', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('134', null, 'd. Claridad de métodos de calificación', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('135', null, 'e. Equidad en los métodos de calificación', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('136', null, 'f.  Mecanismos para la evaluación de los estudiantes', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('137', null, 'g.  Oportunidad en la entrega de calificaciones', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('138', null, 'h.  Aprovechamiento de las herramientas tecnológicas de apoyo a la docencia', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('139', null, 'i.  Respeto por el estudiante', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('140', null, 'j. Disposición para atender los estudiantes', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('141', null, 'k.  Compromiso con la investigación', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('142', null, 'l. Compromiso con la extensión o proyección social.', '3', null, null, '15', 'si');
-INSERT INTO `pregunta` VALUES ('143', null, 'a. Evalúa de manera integral a los profesores', '2', null, null, '17', null);
-INSERT INTO `pregunta` VALUES ('144', null, 'b. Sus resultados  impulsan mejoras en la calidad de los profesores y del programa.', '2', null, null, '17', null);
-INSERT INTO `pregunta` VALUES ('145', null, 'c. Se aplica con transparencia y equidad.', '2', null, null, '17', null);
-INSERT INTO `pregunta` VALUES ('146', null, 'a. Tiene en cuenta la formación académica, los méritos académicos e investigativos de los profesores.', '2', null, null, '18', null);
-INSERT INTO `pregunta` VALUES ('147', null, 'b. Es coherente con los principios, objetivos institucionales y exigencias establecidas en el Estatuto Profesoral.', '2', null, null, '18', null);
-INSERT INTO `pregunta` VALUES ('148', null, 'c. Establece claramente los requisitos para ascenso entre categorías.', '2', null, null, '18', null);
-INSERT INTO `pregunta` VALUES ('149', null, 'c. Se aplica con transparencia y equidad.', '2', null, null, '18', null);
-INSERT INTO `pregunta` VALUES ('150', null, 'a. Formación en posgrado.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('151', null, 'b. Formación pedagógica.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('152', null, 'c. Formación en investigación.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('153', null, 'd.  Formación en segunda lengua.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('154', null, 'e. Formación en TICs', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('155', null, 'f.  Asistencia a  eventos externos (Congresos, conferencias, etc.) ', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('156', null, 'g. Cursos de actualización profesional.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('157', null, 'h. Pasantías docentes o investigativas.', '2', null, null, '19', null);
-INSERT INTO `pregunta` VALUES ('158', null, 'a. Bonificación por Productividad intelectual.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('159', null, 'b. Distinción al merito científico.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('160', null, 'c. Distinción al merito académico.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('161', null, 'd. Docente Distinguido.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('162', null, 'e. Docente Emérito', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('163', null, 'f.  Distinción Docente Meritorio UTB.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('164', null, 'g. Premio a la Calidad.', '2', null, null, '20', null);
-INSERT INTO `pregunta` VALUES ('165', null, 'a. La formación académica.', '2', null, null, '22', null);
-INSERT INTO `pregunta` VALUES ('166', null, 'b. La experiencia académica.', '2', null, null, '22', null);
-INSERT INTO `pregunta` VALUES ('167', null, 'c. La experiencia profesional.', '2', null, null, '22', null);
-INSERT INTO `pregunta` VALUES ('168', null, 'd. Los méritos académicos.', '2', null, null, '22', null);
-INSERT INTO `pregunta` VALUES ('169', null, 'e. Los méritos investigativos.', '2', null, null, '22', null);
-INSERT INTO `pregunta` VALUES ('170', null, 'a. La discusión abierta y critica.', '2', null, null, '23', null);
-INSERT INTO `pregunta` VALUES ('171', null, 'b. El conocimiento de sus opiniones e inquietudes.', '2', null, null, '23', null);
-INSERT INTO `pregunta` VALUES ('172', null, 'a. La forma cómo responde a las tendencias académicas en su área de conocimiento.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('173', null, 'b. La calidad de las asignaturas o cursos impartidos.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('174', null, 'c. La profundidad de los temas tratados', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('175', null, 'd. Las estrategias empleadas para lograr una formación integral.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('176', null, 'e. La flexibilidad del currículo.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('177', null, 'f. La utilización de tecnologías de información y comunicación como apoyo a la docencia.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('178', null, 'g. Las posibilidades para trabajar interdisciplinariamente', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('179', null, 'h. Las oportunidades de internacionalización del plan de estudios (intercambio de estudiantes, profesores visitantes, pasantías, prácticas fuera del país, cursos en inglés, entre otros) .', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('180', null, 'i. Las facilidades para participar en foros, seminarios y congresos dentro o fuera de la institución.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('181', null, 'j. La calidad del acompañamiento de los docentes en el proceso de formación.', '3', null, null, '24', 'si');
-INSERT INTO `pregunta` VALUES ('182', null, 'a. La oferta de cursos electivos.', '3', null, null, '25', 'si');
-INSERT INTO `pregunta` VALUES ('183', null, 'b. La posibilidad de cursar doble programa.', '3', null, null, '25', 'si');
-INSERT INTO `pregunta` VALUES ('184', null, 'a. La posibilidad de realizar intercambios a nivel nacional e internacional.', '3', null, null, '25', 'si');
-INSERT INTO `pregunta` VALUES ('185', null, 'b. La posibilidad de realizar un programa coterminal (ver cursos en programas de posgrado).', '3', null, null, '25', 'si');
-INSERT INTO `pregunta` VALUES ('186', null, 'c. El apoyo que brinda la plataforma SAVIO para el desarrollo del proceso docente.', '3', null, null, '25', 'si');
-INSERT INTO `pregunta` VALUES ('187', null, 'a. El desarrollo de los cursos.', '3', null, null, '26', 'si');
-INSERT INTO `pregunta` VALUES ('188', null, 'b. La realización de los trabajos de curso o de investigación.', '3', null, null, '26', 'si');
-INSERT INTO `pregunta` VALUES ('189', null, 'a.  Están en correspondencia con el desarrollo de los contenidos. ', '2', null, null, '27', 'si');
-INSERT INTO `pregunta` VALUES ('190', null, 'b. Contribuyen al mejoramiento del proceso de formación.', '2', null, null, '27', 'si');
-INSERT INTO `pregunta` VALUES ('191', null, 'a. Tienen el propósito de mejorar procesos de enseñanza – aprendizaje.', '2', null, null, '29', 'si');
-INSERT INTO `pregunta` VALUES ('192', null, 'b. Están en correspondencia con los contenidos temáticos desarrollados.', '2', null, null, '29', 'si');
-INSERT INTO `pregunta` VALUES ('193', null, 'a. Ampliar sus conocimientos.', '2', null, null, '30', null);
-INSERT INTO `pregunta` VALUES ('194', null, 'b. Desarrollar nuevas capacidades.', '2', null, null, '30', null);
-INSERT INTO `pregunta` VALUES ('195', null, 'c. Fortalecer sus habilidades.', '2', null, null, '30', null);
-INSERT INTO `pregunta` VALUES ('196', null, 'a.  La creación  de programas de pregrado y posgrado.', '3', null, null, '33', null);
-INSERT INTO `pregunta` VALUES ('197', null, 'b. La evaluación de los currículos.', '3', null, null, '33', null);
-INSERT INTO `pregunta` VALUES ('198', null, 'c. La reforma y actualización de los currículos. ', '3', null, null, '33', null);
-INSERT INTO `pregunta` VALUES ('199', null, 'd. El aseguramiento de calidad en los programas de pregrado y posgrado', '3', null, null, '33', null);
-INSERT INTO `pregunta` VALUES ('200', null, 'a. La pertinencia de los programas ofrecidos por la UTB con las necesidades del entorno.', '1', null, null, '35', null);
-INSERT INTO `pregunta` VALUES ('201', null, 'b. La calidad de los egresados de los diferentes programas de pregrado y posgrado ofrecidos por la UTB', '1', null, null, '35', null);
-INSERT INTO `pregunta` VALUES ('202', null, 'a. La  formación de profesionales idóneos acorde con las necesidades sociales de la región  ', '2', null, null, '36', null);
-INSERT INTO `pregunta` VALUES ('203', null, 'b. El desarrollo de propuestas de investigación que contribuyen al desarrollo de la región', '2', null, null, '36', null);
-INSERT INTO `pregunta` VALUES ('204', null, 'c. La oferta de propuestas de extensión y capacitación de acuerdo con las necesidades del entorno.    ', '2', null, null, '36', null);
-INSERT INTO `pregunta` VALUES ('205', null, 'd. El posicionamiento de los egresados en la organización y consolidación de información útil en los entes públicos y privados de la región', '2', null, null, '36', null);
-INSERT INTO `pregunta` VALUES ('206', null, 'a. Actualizado.', '2', null, null, '37', 'si');
-INSERT INTO `pregunta` VALUES ('207', null, 'b. Suficiente.', '2', null, null, '37', 'si');
-INSERT INTO `pregunta` VALUES ('208', null, 'c. Pertinente.', '2', null, null, '37', 'si');
-INSERT INTO `pregunta` VALUES ('209', null, 'a. Están actualizados.', '2', null, null, '39', 'si');
-INSERT INTO `pregunta` VALUES ('210', null, 'b. Son suficientes.', '2', null, null, '39', 'si');
-INSERT INTO `pregunta` VALUES ('211', null, 'c. Son pertinentes.', '2', null, null, '39', 'si');
-INSERT INTO `pregunta` VALUES ('212', null, 'Biblioteca: 1) Capacidad de la salas de estudio', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('213', null, 'Biblioteca: 2) Accesibilidad  a las salas de consulta', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('214', null, 'Biblioteca: 3) Suficiencia de personal para la atención', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('215', null, 'Biblioteca: 4) Recursos bibliográficos: a) Colecciones', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('216', null, 'Biblioteca: 4) Recursos bibliográficos:  b)Bases de datos y recursos electrónicos', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('217', null, 'Biblioteca: 5) Consulta en línea', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('218', null, 'Biblioteca: 6) Calidad del servicio prestado por el personal de la biblioteca', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('219', null, 'Biblioteca: 7) Mecanismos de actualización de las colecciones', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('220', null, 'Salones de clase: 1) Dotación', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('221', null, 'Salones de clase: 2) Funcionalidad', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('222', null, 'Salones de clase: 3) Mantenimiento', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('223', null, 'Laboratorios y Talleres: 1) Actualización', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('224', null, 'Laboratorios y Talleres:  2) Suficiencia', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('225', null, 'Laboratorios y Talleres: 3) Accesibilidad', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('226', null, 'Laboratorios y Talleres: 4) Mantenimiento', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('227', null, 'Laboratorios y Talleres:  5) Suficiencia de insumos y materiales', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('228', null, 'Laboratorios y Talleres:  6) Existencia de protocolos y guías para el desarrollo del trabajo.', '3', null, null, '40', null);
-INSERT INTO `pregunta` VALUES ('229', null, 'Salas de informática: 1) Suficiencia de salas.', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('230', null, 'Salas de informática: 2) Actualización  del software', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('231', null, 'Salas de informática: 3) Actualización del hardware', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('232', null, 'Salas de informática: 4) Acceso a internet', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('233', null, 'Salas de informática: 5) Mantenimiento', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('234', null, 'Salas de informática: 6) Disponibilidad', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('235', null, 'Salas de informática: 7) Calidad en el servicio prestado', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('236', null, 'Auditorios: 1) Dotación', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('237', null, 'Auditorios: 2)Funcionalidad', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('238', null, 'Auditorios: 3) Mantenimiento', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('239', null, 'Equipos audiovisuales (video beam etc.): 1) Disponibilidad', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('240', null, 'Equipos audiovisuales (video beam etc.): 2) Mantenimiento', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('241', null, 'Funcionalidad de redes Informáticas', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('242', null, 'Correo electrónico institucional', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('243', null, 'Acceso a internet inalámbrico', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('244', null, 'Página web', '3', null, null, '41', null);
-INSERT INTO `pregunta` VALUES ('245', null, 'a. La UTB tiene políticas claras para el fomento, apoyo y desarrollo de la investigación.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('246', null, 'b. La UTB tiene estrategias definidas para articular los trabajos que realizan los estudiantes con las líneas de investigación de los grupos de investigación.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('247', null, 'c. Los estudiantes participan en las investigaciones que desarrollan los profesores.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('248', null, 'd. La bibliografía que se proporciona, estimula el interés por la investigación.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('249', null, 'e. Las actividades de docencia estimulan en los estudiantes la vocación hacia la investigación.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('250', null, 'f. Se ofrece a los estudiantes la posibilidad de estar informados sobre las investigaciones que realizan los grupos de investigación.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('251', null, 'g. La infraestructura prevista para la investigación es adecuada.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('252', null, 'h. La gestión y apoyo financiero para el desarrollo de las investigaciones.', '2', null, null, '42', null);
-INSERT INTO `pregunta` VALUES ('253', null, 'a. El proceso de formación de los estudiantes.', '3', null, null, '43', null);
-INSERT INTO `pregunta` VALUES ('254', null, 'b. El trabajo investigativo de los grupos de investigación de otras universidades nacionales.', '3', null, null, '43', null);
-INSERT INTO `pregunta` VALUES ('255', null, 'c. El trabajo investigativo de universidades extranjeras.', '3', null, null, '43', null);
-INSERT INTO `pregunta` VALUES ('256', null, 'a. Apoyo para la vinculación laboral', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('257', null, 'b. Uso de recursos bibliográficos', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('258', null, 'c. Oferta de programas de posgrados', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('259', null, 'd. Oferta de cursos de educación continua', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('260', null, 'e. Descuentos en programas de posgrado y educación continua', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('261', null, 'f. Noticias y novedades', '2', null, null, '45', null);
-INSERT INTO `pregunta` VALUES ('262', null, 'a. Las líneas de investigación de los grupos con los problemas del país.', '1', null, null, '46', null);
-INSERT INTO `pregunta` VALUES ('263', null, 'b. Los proyectos desarrollados en el programa con la solución de problemas sociales o productivos del entorno.', '1', null, null, '46', null);
-INSERT INTO `pregunta` VALUES ('264', null, 'a. Estadísticas e indicadores de gestión que muestran la realidad de los programas y de la institución.', '2', null, null, '47', null);
-INSERT INTO `pregunta` VALUES ('265', null, 'b. Estadísticas e indicadores de gestión, oportunos y de utilidad para la gestión de los programas y de la institución.', '2', null, null, '47', null);
-INSERT INTO `pregunta` VALUES ('266', null, 'a. Convenios con instituciones o redes investigativas internacionales.', '2', null, null, '48', null);
-INSERT INTO `pregunta` VALUES ('267', null, 'b. Apoyos administrativos para la movilidad internacional de estudiantes y profesores.', '2', null, null, '48', null);
-INSERT INTO `pregunta` VALUES ('268', null, 'c. Apoyos financieros para para la movilidad internacional de estudiantes y profesores.', '2', null, null, '48', null);
-INSERT INTO `pregunta` VALUES ('269', null, 'a. La amplitud de los programas y servicios ofrecidos.', '2', null, null, '50', null);
-INSERT INTO `pregunta` VALUES ('270', null, 'b. La calidad de los programas y servicios ofrecidos', '2', null, null, '50', null);
-INSERT INTO `pregunta` VALUES ('271', null, 'c. La pertinencia de los programas y servicios ofrecidos  con relación a las necesidades de la comunidad universitaria.', '2', null, null, '50', null);
-INSERT INTO `pregunta` VALUES ('272', null, 'a. Docencia', '1', null, null, '53', null);
-INSERT INTO `pregunta` VALUES ('273', null, 'b. Investigación', '1', null, null, '53', null);
-INSERT INTO `pregunta` VALUES ('274', null, 'c. La relación con el sector externo (extensión, servicios, consultoría y/o programas con perspectiva social)', '1', null, null, '53', null);
-INSERT INTO `pregunta` VALUES ('275', null, 'a. Carteleras', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('276', null, 'b. Boletín Conéctate', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('277', null, 'c. Página web', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('278', null, 'd. Utv noticias', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('279', null, 'e. Correo electrónico institucional', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('280', null, 'f. Plataforma  SAVIO', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('281', null, 'g. Sistema académico - SIRIUS', '1', null, null, '54', null);
-INSERT INTO `pregunta` VALUES ('282', null, 'a. Dan una orientación efectiva para el cumplimiento de los objetivos del programa.', '2', null, null, '55', 'si');
-INSERT INTO `pregunta` VALUES ('283', null, 'b. Ejercen un liderazgo.', '2', null, null, '55', 'si');
-INSERT INTO `pregunta` VALUES ('284', null, 'a. La formación recibida fue suficiente para desempeñarse en el mundo laboral', '2', null, null, '56', null);
-INSERT INTO `pregunta` VALUES ('285', null, 'b. La formación recibida cumplió con los objetivos del programa.', '2', null, null, '56', null);
-INSERT INTO `pregunta` VALUES ('286', null, 'c.  La formación recibida en la UTB resultó pertinente.', '2', null, null, '56', null);
-INSERT INTO `pregunta` VALUES ('287', null, 'a. Conocimientos teóricos de la profesión.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('288', null, 'b. Capacidad de análisis.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('289', null, 'c. Capacidad de aprendizaje.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('290', null, 'd. Capacidad de adaptación a los cambios.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('291', null, 'e. Capacidad de trabajar en equipo.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('292', null, 'f. Habilidades comunicativas orales.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('293', null, 'g. Habilidades comunicativas escritas.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('294', null, 'h. Capacidad para resolver problemas concretos.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('295', null, 'i. Capacidad para asumir responsabilidades.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('296', null, 'j. Capacidad para ejercer liderazgo.', '1', null, null, '57', null);
-INSERT INTO `pregunta` VALUES ('297', null, 'a. Los recursos presupuestales asignados al programa son suficientes para mantenimiento de la calidad', '2', null, null, '59', null);
-INSERT INTO `pregunta` VALUES ('298', null, 'b. Existe equidad en la asignación de recursos físicos y financieros para el desarrollo del programa.', '2', null, null, '59', null);
-INSERT INTO `pregunta` VALUES ('299', null, 'a. Aseo y mantenimiento en general', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('300', null, 'b. Condiciones de las áreas de circulación, jardines y zonas verdes', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('301', null, 'c. Condiciones de los espacios para reuniones y estudio (distintos a Biblioteca)', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('302', null, 'd. Condiciones de los espacios para descanso ', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('303', null, 'e. Señalización de los espacios', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('304', null, 'f.  Divulgación de Plan de emergencia', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('305', null, 'g. Señalización de las salidas de emergencia', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('306', null, 'h. Acceso para discapacitados (rampas, ascensores)', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('307', null, 'i.  Parqueaderos', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('308', null, 'j.  Cafetería', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('309', null, 'k. Oficinas de profesores', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('310', null, 'l. Oficinas administrativas', '3', null, null, '60', null);
-INSERT INTO `pregunta` VALUES ('311', null, 'm. Baños', '3', null, null, '60', null);
+INSERT INTO `pregunta` VALUES ('312', null, 'Misión de la UTB:\" SOMOS una institución de educación superior, donde la comunidad académica desarrolla, mediante la formación integral, un proyecto educativo, científico, flexible y de calidad que contribuye a la transformación de nuestro entorno social, económico, empresarial, cultural y ambiental.\r\n\r\nMarque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for pregunta_has_caracteristica
@@ -22892,8 +22225,11 @@ CREATE TABLE `tipo_pregunta` (
   `descripcion` varchar(500) NOT NULL COMMENT 'descripción del tipo de pregunta',
   `estado` varchar(1) DEFAULT NULL COMMENT 'estado activo o inactivo del tipo de pregunta',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los diferentes tipos de pregunta existentes en el sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los diferentes tipos de pregunta existentes en el sistema';
 
 -- ----------------------------
 -- Records of tipo_pregunta
 -- ----------------------------
+INSERT INTO `tipo_pregunta` VALUES ('1', 'Tipo 1', 'Muy alto; Alto; Medio; Bajo; Muy bajo', null);
+INSERT INTO `tipo_pregunta` VALUES ('2', 'Tipo 2', 'Totalmente; En alto grado; Aceptablemente; En bajo grado; 1:En ningún grado; NS/NR', null);
+INSERT INTO `tipo_pregunta` VALUES ('3', 'Tipo 3', 'Totalmente de acuerdo; Parcialmente de acuerdo; Ni de acuerdo ni en desacuerdo; Parcialmente en desacuerdo; Totalmente en desacuerdo', null);

@@ -10,6 +10,7 @@ import com.utb.autoevaluacion.model.TipoPregunta;
 import com.utb.autoevaluacion.repository.PreguntaRepository;
 import com.utb.autoevaluacion.service.PreguntaService;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,42 +22,50 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
-    
+
     @Autowired
     PreguntaRepository preguntaRepository;
-    
+
     @Override
     public List<Pregunta> getPreguntas() {
         return preguntaRepository.findAll();
     }
 
     @Override
-    public void crearPregunta(String codigo, String pregunta, String tipo, Integer preguntaPadre, String repetir) {
-        Pregunta objPregunta = new Pregunta();
-        
-        objPregunta.setCodigo(codigo);
-        objPregunta.setPregunta(pregunta);
-        //TipoPregunta tipoPregunta = preguntaRepository.findById(tipo);
-        //objPregunta.setTipo(tipoPregunta);
-        //objPregunta.setPreguntaPadre(preguntaPadre);
-        objPregunta.setRepetir(repetir);
-        
+    public Pregunta crearPregunta(Pregunta pregunta) {
         try {
-            preguntaRepository.saveAndFlush(objPregunta);
+            preguntaRepository.saveAndFlush(pregunta);
         } catch (Exception e) {
-            log.info("Ha ocurrido un error al crear el modelo" + e);
+            log.info("Ha ocurrido un error al crear la pregunta" + e);
             throw e;
         }
+        return pregunta;
     }
 
     @Override
-    public void actualizarPregunta(Integer preguntaId, String codigo, String pregunta, String tipo, Integer preguntaPadre, String repetir) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Pregunta buscarPregunta(Integer id) {
+        Pregunta pregunta = null;
+        Optional<Pregunta> preguntaOptional = null;
+        try {
+            preguntaOptional = preguntaRepository.findById(id);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado: " + e, e);
+        }
+        if (preguntaOptional.isPresent()) {
+            pregunta = preguntaOptional.get();
+        }
+        return pregunta;
     }
 
     @Override
-    public Pregunta buscarPregunta(Integer preguntaId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Pregunta actualizarPregunta(Pregunta pregunta) {
+        try {
+            preguntaRepository.saveAndFlush(pregunta);
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al crear la pregunta" + e);
+            throw e;
+        }
+        return pregunta;
     }
-    
+
 }

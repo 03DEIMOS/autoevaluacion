@@ -12,20 +12,50 @@
                     + ' <a class="removeS" title="Eliminar"><i class="icon-remove-sign"></i></a>'
                     + ' </div>');
         });
+        $("#sencilla").click(function () {
+            $("#opciones").toggle();
+        });
+        $("#btnVistaPrevia").click(function () {
 
+            var values = $("#formCrearPregunta").serializeArray();
+            /* Because serializeArray() ignores unset checkboxes and radio buttons: */
+            values = values.concat($('#formCrearPregunta input[type=checkbox]:not(:checked)')
+                    .map(function () {
+                        return {"name": this.name, "value": false}
+                    }).get()
+                    );
+            $.ajax({
+                type: 'POST',
+                url: "/autoevaluacion/pregunta/vistaPrevia",
+                data: values,
+                success: function (data) {
+                    $("#dancing-dots-text").remove();
+                    $("#vista-previa").html(data);
+                } //fin success
+            }
+            ); //fin $.ajax    
+        });
         $("#formCrearPregunta").validate({
             submitHandler: function () {
+                var values = $("#formCrearPregunta").serializeArray();
+                /* Because serializeArray() ignores unset checkboxes and radio buttons: */
+                values = values.concat($('#formCrearPregunta input[type=checkbox]:not(:checked)')
+                        .map(function () {
+                            return {"name": this.name, "value": false}
+                        }).get()
+                        );
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=crearPregunta",
-                    data: $("#formCrearPregunta").serialize(),
+                    url: "/autoevaluacion/pregunta/crear",
+                    data: values,
                     success: function () {
-                        location = "/autoevaluacion/#listarPreguntas";
+                        location.hash = "/pregunta/preguntas";
                     } //fin success
                 }); //fin $.ajax    
             }
         });
-    });
+    }
+    );
 </script>
 <div class="hero-unit">
     <div class="row">
@@ -34,19 +64,19 @@
                 <fieldset>
                     <legend>Crear Pregunta</legend>
                     <div class="control-group">
-                        <label for="nombre"  class="control-label">Pregunta</label>
+                        <label for="pregunta"  class="control-label">Pregunta</label>
                         <div class="controls">
-                            <textarea rows="3" name="nombre" id="nombre" class="input-xxlarge {required:true}"></textarea>
+                            <textarea rows="3" name="pregunta" id="pregunta" class="input-xxlarge {required:true}"></textarea>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="tipo" class="control-label">Tipo de la Pregunta</label>
+                        <label for="tipoId" class="control-label">Tipo de la Pregunta</label>
                         <div class="controls">
-                            <select name="tipo" id="tipo">
+                            <select name="tipoId" id="tipoId">
                                 <c:choose>
                                     <c:when test="${fn:length(listaTipoP)!= 0}">
                                         <c:forEach items="${listaTipoP}" var="tipoPregunta" varStatus="iter">
-                                            <option value="${tipoPregunta.id}" >${tipoPregunta.tipo}</a></option>
+                                            <option value="${tipoPregunta.id}" >${tipoPregunta.tipo}</option>
                                             </c:forEach>
                                         </c:when>
                                     </c:choose>
@@ -55,7 +85,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <input name="sencilla" type="checkbox"> Establecer esto como una escala de valoración de una sola fila (quitar las opciones de fila)?
+                            <input name="sencilla" id="sencilla" type="checkbox" value="1"> Establecer esto como una escala de valoración de una sola fila (quitar las opciones de fila)?
                         </div>
                     </div>
 
@@ -67,7 +97,8 @@
                             <a class="removeS" title="Eliminar"><i class="icon-remove-sign"></i></a>
                         </div>
                     </div>
-
+                    <button type="button" id="btnVistaPrevia">Vista Previa</button> 
+                    <div id="vista-previa"></div>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Crear Pregunta</button>
                         <button class="btn" type="reset">Cancelar</button>

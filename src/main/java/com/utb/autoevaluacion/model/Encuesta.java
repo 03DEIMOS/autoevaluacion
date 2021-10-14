@@ -2,11 +2,16 @@ package com.utb.autoevaluacion.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -37,6 +42,12 @@ public class Encuesta  implements Serializable {
     
     @Column(name="fecha")
     private String fecha;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "encuestahaspregunta",
+            joinColumns = { @JoinColumn(name = "encuesta_id", referencedColumnName = "id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "pregunta_id", referencedColumnName = "id", nullable = false) })
+    private List<Pregunta> preguntaList;
 
     public Encuesta() {
     }

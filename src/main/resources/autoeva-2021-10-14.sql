@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : loca
 Source Server Version : 50542
 Source Host           : localhost:3306
-Source Database       : autoeva
+Source Database       : autoeval
 
 Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2021-10-12 14:43:29
+Date: 2021-10-14 15:35:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,35 +89,9 @@ CREATE TABLE `asignacionencuesta` (
 INSERT INTO `asignacionencuesta` VALUES ('1', '1', '1', '1');
 INSERT INTO `asignacionencuesta` VALUES ('2', '2', '4', '1');
 INSERT INTO `asignacionencuesta` VALUES ('3', '3', '7', '1');
-INSERT INTO `asignacionencuesta` VALUES ('4', '4', '8', '1');
 INSERT INTO `asignacionencuesta` VALUES ('5', '5', '6', '1');
-INSERT INTO `asignacionencuesta` VALUES ('6', '6', '11', '1');
 INSERT INTO `asignacionencuesta` VALUES ('7', '7', '3', '1');
-INSERT INTO `asignacionencuesta` VALUES ('8', '8', '2', '1');
-INSERT INTO `asignacionencuesta` VALUES ('9', '9', '9', '1');
-INSERT INTO `asignacionencuesta` VALUES ('10', '10', '10', '1');
 INSERT INTO `asignacionencuesta` VALUES ('11', '11', '5', '1');
-INSERT INTO `asignacionencuesta` VALUES ('12', '7', '24', '4');
-INSERT INTO `asignacionencuesta` VALUES ('13', '2', '26', '4');
-INSERT INTO `asignacionencuesta` VALUES ('14', '11', '27', '4');
-INSERT INTO `asignacionencuesta` VALUES ('15', '5', '28', '4');
-INSERT INTO `asignacionencuesta` VALUES ('16', '3', '29', '4');
-INSERT INTO `asignacionencuesta` VALUES ('17', '9', '30', '4');
-INSERT INTO `asignacionencuesta` VALUES ('19', '6', '31', '4');
-INSERT INTO `asignacionencuesta` VALUES ('20', '1', '12', '2');
-INSERT INTO `asignacionencuesta` VALUES ('21', '2', '13', '2');
-INSERT INTO `asignacionencuesta` VALUES ('22', '3', '16', '2');
-INSERT INTO `asignacionencuesta` VALUES ('23', '4', '17', '2');
-INSERT INTO `asignacionencuesta` VALUES ('24', '5', '15', '2');
-INSERT INTO `asignacionencuesta` VALUES ('25', '11', '14', '2');
-INSERT INTO `asignacionencuesta` VALUES ('26', '6', '32', '2');
-INSERT INTO `asignacionencuesta` VALUES ('27', '8', '18', '3');
-INSERT INTO `asignacionencuesta` VALUES ('28', '2', '19', '3');
-INSERT INTO `asignacionencuesta` VALUES ('29', '11', '20', '3');
-INSERT INTO `asignacionencuesta` VALUES ('30', '5', '21', '3');
-INSERT INTO `asignacionencuesta` VALUES ('31', '3', '22', '3');
-INSERT INTO `asignacionencuesta` VALUES ('32', '10', '23', '3');
-INSERT INTO `asignacionencuesta` VALUES ('33', '6', '33', '3');
 
 -- ----------------------------
 -- Table structure for caracteristica
@@ -439,7 +413,7 @@ CREATE TABLE `encuesta` (
   `nombre` varchar(255) NOT NULL,
   `objetivo` varchar(1000) NOT NULL,
   `instrucciones` varchar(1000) NOT NULL,
-  `modelo_id` int(11) NOT NULL,
+  `modelo_id` int(11) DEFAULT NULL,
   `version` varchar(45) NOT NULL,
   `fecha` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
@@ -451,7 +425,7 @@ CREATE TABLE `encuesta` (
 -- Records of encuesta
 -- ----------------------------
 INSERT INTO `encuesta` VALUES ('1', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A ESTUDIANTES DE PREGRADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('2', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A ESTUDIANTES DE MAESTRÍA Y DOCTORADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
+INSERT INTO `encuesta` VALUES ('2', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A ESTUDIANTES DE POSGRADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 INSERT INTO `encuesta` VALUES ('3', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A ESTUDIANTES DE ESPECIALIZACIÓN', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 INSERT INTO `encuesta` VALUES ('4', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A PROFESORES DE PLANTA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 INSERT INTO `encuesta` VALUES ('5', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A PROFESORES DE CATEDRA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
@@ -461,27 +435,6 @@ INSERT INTO `encuesta` VALUES ('8', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A EG
 INSERT INTO `encuesta` VALUES ('9', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A EGRESADOS DE ESPECIALIZACIONES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 INSERT INTO `encuesta` VALUES ('10', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A EGRESADOS DE MAESTRIA Y DOCTORADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 INSERT INTO `encuesta` VALUES ('11', 'FO-DO/AA-002', 'ENCUESTA INSTITUCIONAL A EMPLEADORES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '1', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('12', 'FO-DO/AA-002', 'ENCUESTA A ESTUDIANTES DE PREGRADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('13', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE PLANTA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('14', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE CATEDRA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('15', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL DIRECTIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('16', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL ADMINISTRATIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('17', 'FO-DO/AA-002', 'ENCUESTA A EGRESADOS DE PREGRADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('18', 'FO-DO/AA-002', 'ENCUESTA A ESTUDIANTES DE MAESTRÍA Y DOCTORADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('19', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE PLANTA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('20', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE CATEDRA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('21', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL DIRECTIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('22', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL ADMINISTRATIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('23', 'FO-DO/AA-002', 'ENCUESTA A EGRESADOS DE MAESTRIA Y DOCTORADO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('24', 'FO-DO/AA-002', 'ENCUESTA A ESTUDIANTES DE ESPECIALIZACIÓN', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('26', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE PLANTA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('27', 'FO-DO/AA-002', 'ENCUESTA A PROFESORES DE CATEDRA', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('28', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL DIRECTIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('29', 'FO-DO/AA-002', 'ENCUESTA A PERSONAL ADMINISTRATIVO', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('30', 'FO-DO/AA-002', 'ENCUESTA A EGRESADOS DE ESPECIALIZACIONES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('31', 'FO-DO/AA-002', 'ENCUESTA A EMPLEADORES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '4', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('32', 'FO-DO/AA-002', 'ENCUESTA A EMPLEADORES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '2', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
-INSERT INTO `encuesta` VALUES ('33', 'FO-DO/AA-002', 'ENCUESTA A EMPLEADORES', 'Recoger su percepción sobre algunos aspectos relacionados con la calidad de la Universidad Tecnológica de Bolívar.', 'Esta encuesta es uno de los instrumentos que se han diseñado para el proceso de autoevaluación que se realiza con miras a la renovación de la acreditación institucional. Cada pregunta debe contestarse seleccionado la casilla que a su juicio representa mayor o menor calificación de acuerdo con el enunciado. Si el enunciado no aplica, seleccione el espacio NS. NR', '3', 'Procedimiento: Autoevaluación', 'Rige a partir de: 04/04/08');
 
 -- ----------------------------
 -- Table structure for encuestahaspregunta
@@ -500,6 +453,237 @@ CREATE TABLE `encuestahaspregunta` (
 -- ----------------------------
 -- Records of encuestahaspregunta
 -- ----------------------------
+INSERT INTO `encuestahaspregunta` VALUES ('1', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '312');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '313');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '314');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '314');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '315');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '316');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '316');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '316');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '317');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '317');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '317');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '318');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '319');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '319');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '319');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '319');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '320');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '321');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '321');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '321');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '321');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '322');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '323');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '324');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '325');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '326');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '326');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '326');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '326');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '327');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '327');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '327');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '327');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '328');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '328');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '328');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '328');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '329');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '329');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '329');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '329');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '330');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '330');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '330');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '330');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '331');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '331');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '331');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '331');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '332');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '333');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '333');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '333');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '333');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '334');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '334');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '334');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '334');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '335');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '336');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '336');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '336');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '336');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '337');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '337');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '337');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '337');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '338');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '338');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '338');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '339');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '339');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '339');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '339');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '340');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '340');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '340');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '341');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '341');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '341');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '342');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '342');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '342');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '342');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '343');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '343');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '343');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '343');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '343');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '344');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '345');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '345');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '346');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '346');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '346');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '347');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '347');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '347');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '347');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '347');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '348');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '348');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '348');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '349');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '349');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '349');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '350');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '350');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '350');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '350');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '350');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '351');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '351');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '351');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '352');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '352');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '352');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '353');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '353');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '353');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '354');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '354');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '355');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '355');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '356');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '357');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '357');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '357');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '357');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '358');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '358');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '358');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '358');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '358');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '359');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '359');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '359');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '359');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '359');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '360');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '360');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '361');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '362');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '362');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '362');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '362');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '362');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '363');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '363');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '363');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '364');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '364');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '364');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '364');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '365');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '365');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '365');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '365');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('4', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('5', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('6', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('7', '366');
+INSERT INTO `encuestahaspregunta` VALUES ('1', '367');
+INSERT INTO `encuestahaspregunta` VALUES ('2', '367');
 
 -- ----------------------------
 -- Table structure for estudiante
@@ -655,16 +839,11 @@ CREATE TABLE `fuente` (
 -- Records of fuente
 -- ----------------------------
 INSERT INTO `fuente` VALUES ('1', 'Estudiantes pregrado', 'Estudiantes pregrado');
-INSERT INTO `fuente` VALUES ('2', 'Docentes planta', 'Docentes planta');
+INSERT INTO `fuente` VALUES ('2', 'Profesores planta', 'Profesores planta');
 INSERT INTO `fuente` VALUES ('3', 'Administrativos', 'Administrativos');
-INSERT INTO `fuente` VALUES ('4', 'Egresados pregrado', 'Egresados pregrado');
 INSERT INTO `fuente` VALUES ('5', 'Directivos', 'Directivos');
-INSERT INTO `fuente` VALUES ('6', 'Empleadores', 'Empleadores');
-INSERT INTO `fuente` VALUES ('7', 'Estudiantes especialización', 'Estudiantes especialización');
-INSERT INTO `fuente` VALUES ('8', 'Estudiantes maestria-doctorado', 'Estudiantes maestria-doctorado');
-INSERT INTO `fuente` VALUES ('9', 'Egresados especializacion', 'Egresados especializacion');
-INSERT INTO `fuente` VALUES ('10', 'Egresados maestria-doctorado', 'Egresados maestria-doctorado');
-INSERT INTO `fuente` VALUES ('11', 'Docentes catedra', 'Docentes catedra');
+INSERT INTO `fuente` VALUES ('7', 'Estudiantes posgrado', 'Estudiantes posgrado');
+INSERT INTO `fuente` VALUES ('11', 'Profesores catedra', 'Profesores catedra');
 
 -- ----------------------------
 -- Table structure for glosario
@@ -767,15 +946,117 @@ CREATE TABLE `itempregunta` (
   PRIMARY KEY (`id`),
   KEY `fk_itempregunta_pregunta_idx` (`preguntaid`),
   CONSTRAINT `fk_itempregunta_pregunta` FOREIGN KEY (`preguntaid`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las subpreguntas para preguntas que contienes preguntas anidadas.';
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las subpreguntas para preguntas que contienes preguntas anidadas.';
 
 -- ----------------------------
 -- Records of itempregunta
 -- ----------------------------
-INSERT INTO `itempregunta` VALUES ('8', 'a. Conozco, entiendo y aplico la Misión de la UTB.', '312');
-INSERT INTO `itempregunta` VALUES ('9', 'b. Considero que existe correspondencia entre la Misión de la UTB y los procesos académicos y administrativos.', '312');
-INSERT INTO `itempregunta` VALUES ('10', 'c. Considero que ha sido efectivo el uso de los medios de comunicación empleados para difundir la Misión.', '312');
-INSERT INTO `itempregunta` VALUES ('11', 'd. Considero que la UTB en el desarrollo de sus funciones (docencia, investigación y extensión) cumple con lo declarado en la Misión.', '312');
+INSERT INTO `itempregunta` VALUES ('8', 'a. Conozco y  entiendo  la Misión de la UTB.', '312');
+INSERT INTO `itempregunta` VALUES ('9', 'b. Considero qué existe correspondencia entre la Misión de la UTB y los procesos académicos y administrativos.', '312');
+INSERT INTO `itempregunta` VALUES ('10', 'c.  Considero qué  ha sido efectivo el uso de los  medios de comunicación empleados para difundir la Misión.', '312');
+INSERT INTO `itempregunta` VALUES ('11', 'd. Considero qué  la UTB en el desarrollo de sus funciones (docencia, investigación y extensión) cumple con lo declarado en la Misión.', '312');
+INSERT INTO `itempregunta` VALUES ('13', 'e. Considero qué la UTB hace Investigación con impacto en el entorno.', '312');
+INSERT INTO `itempregunta` VALUES ('14', 'f. El Proyecto educativo de la UTB es crítico, flexible y global.', '312');
+INSERT INTO `itempregunta` VALUES ('15', 'g. El sentido de responsabilidad social de la Universidad es conducente al mejoramiento de la calidad de vida de nuestra ciudad y del Caribe.', '312');
+INSERT INTO `itempregunta` VALUES ('16', 'a. Conozco las estrategias que ha implementado la UTB para fortalecer la formación integral de los estudiantes.', '315');
+INSERT INTO `itempregunta` VALUES ('17', 'b. Considero que el ambiente institucional de la Universidad para el fortalecimiento de la comunidad académica es adecuado e incluyente. ', '315');
+INSERT INTO `itempregunta` VALUES ('18', 'c. En mi opinión la UTB divulga ampliamente, a nivel interno y externo, las estrategias que implementa para fortalecer la formación integral de los estudiantes.', '315');
+INSERT INTO `itempregunta` VALUES ('19', 'd. Considero que la UTB ha consolidado su identidad como una institución orientada a la  formación integral de sus estudiantes.', '315');
+INSERT INTO `itempregunta` VALUES ('20', 'e. La UTB es una Universidad que es reconocida por su impacto social para la transformación de su entorno', '315');
+INSERT INTO `itempregunta` VALUES ('21', 'a. Me entero oportunamente a través de medios de comunicación oficiales sobre la convocatoria para ser representante ante Consejo Superior de la Universidad.', '316');
+INSERT INTO `itempregunta` VALUES ('22', 'b. Conozco  el proceso de selección de los representantesante el Consejo Superior de la Universidad.', '316');
+INSERT INTO `itempregunta` VALUES ('23', 'c. Conozco los mecanismos de participación ante el Consejo Superior de la Universidad.', '316');
+INSERT INTO `itempregunta` VALUES ('24', 'a. Me entero oportunamente a través de medios de comunicación oficiales sobre la convocatoria para ser representante ante Consejo Académico de la Universidad.', '317');
+INSERT INTO `itempregunta` VALUES ('25', 'b. Conozco  el proceso de selección de los representantes ante el Consejo Académico de la Universidad.', '317');
+INSERT INTO `itempregunta` VALUES ('26', 'a. Considero que los órganos de gobierno universitario (Consejo Superior y Consejo Académico) son eficientes en la toma de decisiones', '318');
+INSERT INTO `itempregunta` VALUES ('27', 'b. En mi opinión, los órganos de gobierno universitario (Consejo Superior y Consejo Académico) y sus integrantes se caracterizan por su transparencia ', '318');
+INSERT INTO `itempregunta` VALUES ('28', 'c. Considero que los órganos de gobierno universitario (Consejo Superior y Consejo Académico) y sus integrantes facilitan  e implementan buenas prácticas como parte del proceso de mejora continua.', '318');
+INSERT INTO `itempregunta` VALUES ('29', 'a. Considero que la gestión de los Comités de Facultad es eficiente.', '319');
+INSERT INTO `itempregunta` VALUES ('30', 'b. En mi opinión, los Comités de Facultad y sus integrantes se caracterizan por su transparencia ', '319');
+INSERT INTO `itempregunta` VALUES ('31', 'c. Considero que los Comités de Facultad  y sus integrantes facilitan  e implementan buenas prácticas como parte del proceso de mejora continua.', '319');
+INSERT INTO `itempregunta` VALUES ('32', 'd. Considero que la gestión de los Comités Curriculares de los programas es eficiente', '319');
+INSERT INTO `itempregunta` VALUES ('33', 'e. En mi opinión, los Comités Curriculares de los programas y sus integrantes se caracterizan por su transparencia. ', '319');
+INSERT INTO `itempregunta` VALUES ('34', 'f. Considero que los Comités Curriculares de los programas y sus integrantes facilitan  e implementan buenas prácticas como parte del proceso de mejora continua. ', '319');
+INSERT INTO `itempregunta` VALUES ('35', 'g. Considero que la gestión del Comité de Bibliotecas y Archivos es eficiente.', '319');
+INSERT INTO `itempregunta` VALUES ('37', 'h. En mi opinión, el Comité de Bibliotecas y Archivos  y sus integrantes se caracterizan por su transparencia .', '319');
+INSERT INTO `itempregunta` VALUES ('38', 'i. Considero que el Comité de Bibliotecas y Archivos  y sus integrantes facilitan  e implementan buenas prácticas como parte del proceso de mejora continua. ', '319');
+INSERT INTO `itempregunta` VALUES ('39', 'a.Comunicación clara y oportuna de los aspectos relevantes y de interés para la comunidad y sus grupos de interés', '320');
+INSERT INTO `itempregunta` VALUES ('40', 'b.Eficiencia de los canales de comunicación internos y externos (Página web, Redes Sociales, plataformas tecnológicas, Correo Electrónico, Call Center, Chat, entre otros)', '320');
+INSERT INTO `itempregunta` VALUES ('41', 'c.Disponibilidad de canales de comunicación de doble vía para expresar opiniones, comentarios, sugerencias, quejas y/o reclamos', '320');
+INSERT INTO `itempregunta` VALUES ('42', 'a. Considero que la estructura organizacional responde a la naturaleza, tamaño y complejidad de la Universidad', '321');
+INSERT INTO `itempregunta` VALUES ('43', 'b. En mi opinión, la definición de funciones y responsabilidades de los cargos que componen la estructura organizacional son claras y responden a la naturaleza, tamaño y complejidad de la Universidad', '321');
+INSERT INTO `itempregunta` VALUES ('44', 'a. Considero que la estructura organizacional y función administrativa es eficiente para el desarrollo de la docencia ', '322');
+INSERT INTO `itempregunta` VALUES ('45', 'b. Considero que la estructura organizacional y función administrativa es eficiente para el desarrollo de la investigación', '322');
+INSERT INTO `itempregunta` VALUES ('46', 'c. Considero que la estructura organizacional y función administrativa es eficiente para el desarrollo de la internacionalización', '322');
+INSERT INTO `itempregunta` VALUES ('47', 'd. Considero que la estructura organizacional y función administrativa es eficiente para el fortalecimiento de  la relación con el sector externo (extensión, servicios, consultoría y/o programas con perspectiva social)', '322');
+INSERT INTO `itempregunta` VALUES ('48', 'a. Considero que la plataforma tecnológica que usa la Universidad garantiza la conectividad.', '323');
+INSERT INTO `itempregunta` VALUES ('49', 'b. En mi opinión, la plataforma tecnológica de la UTB es fácilmente accesible.', '323');
+INSERT INTO `itempregunta` VALUES ('50', 'c. Considero qué la plataforma tecnológica de la Universidad es amigable y de fácil uso.', '323');
+INSERT INTO `itempregunta` VALUES ('51', 'a. Considero que la Universidad tiene políticas para el acceso a información pertinente y veraz sobre los servicios, actores y dinámicas institucionales.', '324');
+INSERT INTO `itempregunta` VALUES ('52', 'b. En mi opinión, los mecanismos, plataformas y medios utilizados para comunicar información pertinente y veraz sobre los servicios, actores y las dinámicas institucionales son adecuados.', '324');
+INSERT INTO `itempregunta` VALUES ('53', 'c. Considero que la UTB cuenta con los mecanismos, recursos humanos y medios de comunicación adecuados para mantener a la comunidad interconectada con los demás actores del entorno.', '324');
+INSERT INTO `itempregunta` VALUES ('54', 'a.Considero que la estructura organizacional y administrativa es coherente con las características y el proyecto educativo de la Universidad.', '325');
+INSERT INTO `itempregunta` VALUES ('55', 'b. Considero que las diferentes dependencias de la Universidad están lideradas por personas íntegras e idóneas para el ejercicio de sus cargos', '325');
+INSERT INTO `itempregunta` VALUES ('56', 'a. La Universidad cuenta con colecciones bibliográficas, documentales y de archivo, bases de datos y revistas suficientes para la capacidad de la institución, pertinentes y actualizadas para respaldar las labores académicas.', '327');
+INSERT INTO `itempregunta` VALUES ('57', 'b.Considero que los laboratorios y sitios de práctica para las labores académicas de la institución (docencia, investigación, extensión o proyección social) son accesibles, con amplia disponibilidad, pertinentes y de calidad).', '327');
+INSERT INTO `itempregunta` VALUES ('58', 'c.La Universidad cuenta con mecanismos claros para la compra, mantenimiento, renovación y acceso a los equipos, mobiliario, plataformas tecnológicas, sistemas informáticos y lo que haga sus veces, recursos bibliográficos físicos y/o digitales, bases de datos, recursos de aprendizaje e información acordes con los diferentes niveles de formación y modalidades de sus programas académicos, en correspondencia con su naturaleza jurídica, identidad, misión, tipología y contexto regional.', '327');
+INSERT INTO `itempregunta` VALUES ('59', 'a. Considero que el ambiente de aprendizaje SAVIO cumple con las características adecuadas de calidad para el buen desarrollo de las actividades académicas.', '328');
+INSERT INTO `itempregunta` VALUES ('60', 'b. En mi opinión, el ambiente de aprendizaje SAVIO cumple con las características adecuadas de  disponibilidad para el buen desarrollo de las actividades académicas.', '328');
+INSERT INTO `itempregunta` VALUES ('61', 'c. En mi opinión, el ambiente de aprendizaje SAVIO cumple con las características adecuadas de accesibilidad para el buen desarrollo de las actividades académicas.', '328');
+INSERT INTO `itempregunta` VALUES ('62', 'a. Considero que  Microsoft Teams cumple con las características adecuadas de calidad para el buen desarrollo de las actividades académicas.', '329');
+INSERT INTO `itempregunta` VALUES ('63', 'b. En mi opinión,  Microsoft Teams cumple con las características adecuadas de  disponibilidad para el buen desarrollo de las actividades académicas.', '329');
+INSERT INTO `itempregunta` VALUES ('64', 'c. En mi opinión,  Microsoft teams cumple con las características adecuadas de accesibilidad para el buen desarrollo de las actividades académicas.', '329');
+INSERT INTO `itempregunta` VALUES ('65', '\r\na.Considero que la Universidad cuenta con un sistema de indicadores de gestión (definición, construcción y seguimiento) coherentes con las proyecciones institucionales expresadas en sus planes de desarrollo y de mejora.', '331');
+INSERT INTO `itempregunta` VALUES ('66', 'b. En mi opinión, la Universidad articula de manera adecuada los programas de mejoramiento con la planeación y el presupuesto general de la Institución.', '331');
+INSERT INTO `itempregunta` VALUES ('67', '\r\na. Considero que los órganos de dirección de la Universidad fomentan el diálogo y el trabajo participativo para realizar seguimiento, evaluación y ajuste de los procesos institucionales con el objetivo de lograr las metas, propósitos y mejoramiento continuo.', '332');
+INSERT INTO `itempregunta` VALUES ('68', 'b. En mi opinión, los órganos de dirección de la Universidad facilitan la participación activa en un marco de valores como la autocrítica y la transparencia para el seguimiento, evaluación y ajuste de los procesos institucionales con el objetivo de lograr las metas y propósitos. ', '332');
+INSERT INTO `itempregunta` VALUES ('69', 'c. Considero que la Universidad posee mecanismos adecuados de convocatoria y participación en los diferentes órganos de dirección institucional.', '332');
+INSERT INTO `itempregunta` VALUES ('70', 'd. En mi opinión, la Universidad propende por la reconfiguración permanente de los diversos procesos institucionales y la consecución de metas y propósitos consensuados y de interés común .', '332');
+INSERT INTO `itempregunta` VALUES ('71', 'a. Considero que en la UTB se generan y aprovechan los ambientes para la discusión crítica sobre la ciencia, la tecnología y la innovación.', '335');
+INSERT INTO `itempregunta` VALUES ('72', 'b. En mi opinión, en la Universidad se generan y aprovechan los ambientes para la discusión crítica sobre el arte, la cultura.', '335');
+INSERT INTO `itempregunta` VALUES ('73', 'c. Considero que en la UTB  se generan y aprovechan los ambientes para la discusión crítica sobre  los valores.', '335');
+INSERT INTO `itempregunta` VALUES ('74', 'd. En mi opinión, en la Universidad se generan y aprovechan los ambientes para la discusión crítica sobre la sociedad y el Estado.', '335');
+INSERT INTO `itempregunta` VALUES ('75', 'a. Considero que las políticas y estrategias institucionales de la UTB relacionadas con la  formación integral son eficientes.', '336');
+INSERT INTO `itempregunta` VALUES ('76', 'b. En mi opinión, la UTB ha implementado políticas y estrategias eficientes relacionadas con la  flexibilidad curricular.', '336');
+INSERT INTO `itempregunta` VALUES ('77', 'c. Considero que en la Universidad tiene políticas  y estrategias eficientes de internacionalización.', '336');
+INSERT INTO `itempregunta` VALUES ('78', 'd. En mi opinión, la UTB ha implementado políticas y estrategias institucionales eficientes para fomentar la interdisciplinareidad.', '336');
+INSERT INTO `itempregunta` VALUES ('79', 'a.Considero que la Universidad ha implementado un  sistema eficiente para la evaluación estudiantil con miras al logro de los perfiles de egreso definidos en los programas.', '337');
+INSERT INTO `itempregunta` VALUES ('80', 'b. Considero que la Universidad ha implementado procesos para el seguimiento, evaluación y ajuste a las políticas, criterios y mecanismos de evaluación estudiantil en la institución en favor del logro de los resultados de aprendizaje de sus estudiantes.', '337');
+INSERT INTO `itempregunta` VALUES ('81', 'a.Considero que la Universidad ha implementado  políticas, estrategias y apoyos institucionales  eficientes para la  creación, modificación, extensión y cierre de programas académicos.', '338');
+INSERT INTO `itempregunta` VALUES ('82', 'b. Considero que la Universidad es eficiente en la implementación de  las políticas, mecanismos y participación de cuerpos colegiados en la evaluación de los procedimientos orientados a la creación, modificación, extensión y cierre de programas.', '338');
+INSERT INTO `itempregunta` VALUES ('83', '\r\na.Considero que la Universidad aporta al estudio y a la solución de problemas regionales, nacionales e internacionales.', '343');
+INSERT INTO `itempregunta` VALUES ('84', 'b.Considero que la Universidad desarrolla programas académicos, actividades de investigación, de extensión que se relacionan con contextos o áreas de acción de la Institución, que le dan reconocimiento por el servicio que presta en las comunidades y en los territorios.', '343');
+INSERT INTO `itempregunta` VALUES ('85', 'a.En mi opinión, los servicios de bienestar Universitario que ofrece la Universidad son de calidad y generan  impacto en la comunidad.', '344');
+INSERT INTO `itempregunta` VALUES ('86', 'a. Considero que el Estatuto Profesoral posibilita la selección, vinculación, cualificación y promoción de los docentes de la Universidad.', '345');
+INSERT INTO `itempregunta` VALUES ('87', 'b. En mi opinión, el Estatuto Profesoral posibilita los estímulos aplicados al desempeño y producción investigativa.', '345');
+INSERT INTO `itempregunta` VALUES ('88', 'a. Conozco que en la Universidad existe un núcleo de profesores con vinculación a término indefinido,que es suficiente y adecuado para el desarrollo de las labores formativas, académicas, docentes, científicas, culturales y de extensión.', '347');
+INSERT INTO `itempregunta` VALUES ('89', 'b. En mi opinión, la relación profesor-estudiante es adecuada  para los distintos programas académicos de la Universidad.', '347');
+INSERT INTO `itempregunta` VALUES ('90', 'a.Conozco que en la Universidad existe un escalafón docente con categorías académicas que permite la movilidad, cualificación y promoción profesional de los profesores.', '352');
+INSERT INTO `itempregunta` VALUES ('91', 'b. Considero que en la Universidad se cumplen de manera transparente los criterios y mecanismos para la determinación de la asignación salarial y el estímulo a los profesores.', '352');
+INSERT INTO `itempregunta` VALUES ('92', '\r\na. Conozco que la Universidad dispone de evidencias de las evaluaciones realizadas dentro del modelo de evaluación integral a profesores.', '355');
+INSERT INTO `itempregunta` VALUES ('93', 'b. Considero que las evidencias de las que dispone la Universidad sobre las evaluaciones realizadas dentro del modelo de evaluación integral a profesores son eficientes y eficaces. ', '355');
+INSERT INTO `itempregunta` VALUES ('94', 'c. En mi opinión, las evidencias de las que dispone la Universidad sobre las evaluaciones realizadas dentro del modelo de evaluación integral a profesores son transparentes.', '355');
+INSERT INTO `itempregunta` VALUES ('95', 'siguientes afirmaciones:\r\n\r\na. Considero que la Universidad aplica un reglamento estudiantil que establece las condiciones de ingreso, permanencia, evaluación y graduación.', '357');
+INSERT INTO `itempregunta` VALUES ('96', 'b. En mi opinión, en el reglamento estudiantil de la Universidad establece los derechos y deberes de los estudiantes de los diferentes programas de pregrado y posgrado. ', '357');
+INSERT INTO `itempregunta` VALUES ('97', 'a. Considero que la Universidad aplica criterios claros para el avance académico de los estudiantes.', '359');
+INSERT INTO `itempregunta` VALUES ('98', 'b. En mi opinión, la Universidad aplica criterios  especificos para las transferencias de programas.', '359');
+INSERT INTO `itempregunta` VALUES ('99', 'c. Considero que la Universidad aplica criterios  claros para la graduación de los estudiantes.', '359');
+INSERT INTO `itempregunta` VALUES ('100', 'a. Considero que en la Universidad fomenta la participación de los  estudiantes en los organismos de decisión de la Institución.', '360');
+INSERT INTO `itempregunta` VALUES ('101', 'b. Considero que la Universidad aplica mecanismos transparentes para la elección de representantes estudiantiles en los organismos de decisión.', '360');
+INSERT INTO `itempregunta` VALUES ('102', 'a.Considero que en la Universidad se implementan las políticas de equidad de género a través de comités y organismos que promueven la igualdad y el respeto.', '361');
+INSERT INTO `itempregunta` VALUES ('103', 'b. Considero que la Universidad admite estudiantes con capacidades especiales o en condición de discapacidad.', '361');
+INSERT INTO `itempregunta` VALUES ('104', 'a. Conozco que en la Universidad existen  criterios y estrategias para admitir estudiantes procedentes de otras Instituciones nacionales e internacionales.', '364');
+INSERT INTO `itempregunta` VALUES ('105', 'b. Considero que la Universidad aplica políticas y estrategias para la admisión y permanencia de los estudiantes.', '364');
+INSERT INTO `itempregunta` VALUES ('106', 'c.Considero que la Universidad ha implementado reglas claras para el intercambio estudiantil.', '364');
+INSERT INTO `itempregunta` VALUES ('107', '\r\na. Conozco que en la Universidad existen criterios para asignación de los apoyos estudiantiles', '365');
+INSERT INTO `itempregunta` VALUES ('108', 'b. En mi opinión, en la Universidad se aplican con transparencia los criterios para asignación de los apoyos estudiantiles.', '365');
+INSERT INTO `itempregunta` VALUES ('109', 'c. Conozco que en la Universidad existen convenios activos para el desarrollo de programas de becas , apoyo financiero, apoyos al éxito académico, a la movilidad internacional, entre otras,  tendientes a facilitar el ingreso y permanencia de estudiante', '365');
+INSERT INTO `itempregunta` VALUES ('110', '\r\na. Conozco que en la Universidad existen mecanismos para la relación e interacción de sus egresados con sus respectivos programas académicos. ', '368');
+INSERT INTO `itempregunta` VALUES ('111', 'b. Considero que la Universidad se aplican políticas para la relación e interacción de sus egresados con sus respectivos programas académicos.', '368');
+INSERT INTO `itempregunta` VALUES ('112', 'a.  Conozco que en la Universidad existen sistemas de información, tales como: actualización de datos, red de egresados, estudio de egresados, entre otros, para el seguimiento de la relación con la Institución ', '370');
+INSERT INTO `itempregunta` VALUES ('113', 'b. Considero que los sistemas de información, tales como: actualización de datos, red de egresados, estudio de egresados, entre otros, son eficaces para el seguimiento de la relación con la Institución ', '370');
+INSERT INTO `itempregunta` VALUES ('116', 'a.  Conozco que en la Universidad existen canales de comunciación con los egresados para apoyar el desarrollo institucional y fomentar procesos de cooperación mutua', '371');
+INSERT INTO `itempregunta` VALUES ('117', 'b. Considero que los canales de comunciación que utiliza la Universidad con los egresados son oportunos para apoyar el desarrollo institucional y fomentar procesos de cooperación mutua ', '371');
 
 -- ----------------------------
 -- Table structure for item_tipo_pregunta
@@ -789,27 +1070,28 @@ CREATE TABLE `item_tipo_pregunta` (
   PRIMARY KEY (`id`),
   KEY `fk_item_tipo_pregunta_tipo_pregunta` (`tipo_pregunta_id`),
   CONSTRAINT `fk_item_tipo_pregunta_tipo_pregunta` FOREIGN KEY (`tipo_pregunta_id`) REFERENCES `tipo_pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los elementos de los diferentes tipos de pregunta existentes en el sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan los elementos de los diferentes tipos de pregunta existentes en el sistema';
 
 -- ----------------------------
 -- Records of item_tipo_pregunta
 -- ----------------------------
-INSERT INTO `item_tipo_pregunta` VALUES ('7', 'Totalmente', '5', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('8', 'En alto grado', '4', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('9', 'Aceptablemente', '3', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('10', 'En bajo grado', '2', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('11', 'En ningún grado', '1', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('12', 'NS/NR', '0', '2');
-INSERT INTO `item_tipo_pregunta` VALUES ('18', 'Muy alto', '5', '1');
-INSERT INTO `item_tipo_pregunta` VALUES ('19', 'Alto', '4', '1');
-INSERT INTO `item_tipo_pregunta` VALUES ('20', 'Medio', '3', '1');
-INSERT INTO `item_tipo_pregunta` VALUES ('21', 'Muy bajo', '2', '1');
-INSERT INTO `item_tipo_pregunta` VALUES ('22', 'Bajo', '1', '1');
-INSERT INTO `item_tipo_pregunta` VALUES ('23', 'Totalmente de acuerdo', '5', '3');
-INSERT INTO `item_tipo_pregunta` VALUES ('24', 'Parcialmente de acuerdo', '4', '3');
-INSERT INTO `item_tipo_pregunta` VALUES ('25', 'Ni de acuerdo ni en desacuerdo', '3', '3');
-INSERT INTO `item_tipo_pregunta` VALUES ('26', 'Parcialmente en desacuerdo', '2', '3');
-INSERT INTO `item_tipo_pregunta` VALUES ('27', 'Totalmente en desacuerdo', '1', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('38', 'Deficiente', '1', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('39', 'Regular', '2', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('40', 'Aceptable', '3', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('41', 'Bueno', '4', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('42', 'Excelente', '5', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('43', 'NS/NR', '0', '1');
+INSERT INTO `item_tipo_pregunta` VALUES ('44', 'Totalmente en desacuerdo', '1', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('45', 'Parcialmente en desacuerdo', '2', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('46', 'Ni de acuerdo ni en desacuerdo', '3', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('47', 'parcialmente de acuerdo', '4', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('48', 'Totalmente de acuerdo', '5', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('49', 'NS/NR', '0', '2');
+INSERT INTO `item_tipo_pregunta` VALUES ('50', 'Totalmente en desacuerdo', '1', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('51', 'Parcialmente en desacuerdo', '2', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('52', 'Ni de acuerdo ni en desacuerdo', '3', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('53', 'parcialmente de acuerdo', '4', '3');
+INSERT INTO `item_tipo_pregunta` VALUES ('54', 'Totalmente de acuerdo', '5', '3');
 
 -- ----------------------------
 -- Table structure for metas
@@ -21886,21 +22168,82 @@ CREATE TABLE `pregunta` (
   `modelo_id` int(11) DEFAULT NULL,
   `pregunta_padre` int(11) DEFAULT NULL,
   `repetir` varchar(45) DEFAULT NULL,
+  `disenio` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_pregunta_indicador1_idx` (`indicador_id`),
   KEY `fk_pregunta_modelo1` (`modelo_id`),
   KEY `fk_pregunta_pregunta1_idx` (`pregunta_padre`),
   KEY `fk_pregunta_tipo_pregunta1` (`tipo`),
-  CONSTRAINT `fk_pregunta_tipo_pregunta1` FOREIGN KEY (`tipo`) REFERENCES `tipo_pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pregunta_indicador1` FOREIGN KEY (`indicador_id`) REFERENCES `indicador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_pregunta_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pregunta_pregunta1` FOREIGN KEY (`pregunta_padre`) REFERENCES `pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_pregunta_pregunta1` FOREIGN KEY (`pregunta_padre`) REFERENCES `pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pregunta_tipo_pregunta1` FOREIGN KEY (`tipo`) REFERENCES `tipo_pregunta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pregunta
 -- ----------------------------
-INSERT INTO `pregunta` VALUES ('312', null, 'Misión de la UTB:\" SOMOS una institución de educación superior, donde la comunidad académica desarrolla, mediante la formación integral, un proyecto educativo, científico, flexible y de calidad que contribuye a la transformación de nuestro entorno social, económico, empresarial, cultural y ambiental.\r\n\r\nMarque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null);
+INSERT INTO `pregunta` VALUES ('312', null, 'Misión de la UTB:\" SOMOS una institución de educación superior, donde la comunidad académica desarrolla, mediante la formación integral, un proyecto educativo, científico, flexible y de calidad que contribuye  a la transformación  de nuestro entorno social, económico, empresarial, cultural y ambiental.\r\n\r\nMarque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('313', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero qué la UTB ha implementado mecanismos adecuados de evaluación de la gestión  de su proyecto educativo institucional.\r\n', '2', null, null, null, null, 'Horizontal');
+INSERT INTO `pregunta` VALUES ('314', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero qué la UTB brinda herramientas, guías y orientaciones para el desarrollo de estrategias para fortalecer la formación integral de los estudiantes.', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('315', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('316', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('317', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('318', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('319', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('320', null, 'Según su opinión, califique cada uno de los siguientes criterios:', '1', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('321', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('322', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('323', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('324', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('325', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('326', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nLa Universidad cuenta con mecanismos claros para la designación de los cargos de dirección, asignación de responsabilidades, funciones, roles y procedimientos que deben seguir.', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('327', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('328', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('329', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('330', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que la Universidad cuenta con políticas y estrategias adecuadas para la asignación, ejecución y evaluación presupuestal y de administración financiera para atender al cumplimiento del Proyecto Educativo Institucional y el logro de las metas del plan de desarrollo institucional', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('331', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('332', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('333', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco las políticas y estrategias implementadas por la Universidad para la gestión de la calidad, la autoevaluación y la planeación en las distintas áreas de desarrollo, unidades \r\nacadémicas y administrativas de la institución, así como su evolución y mejora. ', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('334', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nLa Universidad cuenta con políticas, mecanismos y estrategias institucionales claras para la designación del personal académico, administrativo y de apoyo; así como de la asignación de responsabilidades, funciones y procedimientos que deben seguirse dentro de la institución.', '3', null, null, null, null, 'Horizontal');
+INSERT INTO `pregunta` VALUES ('335', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('336', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('337', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('338', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('339', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que la Universidad es eficiente en la implementación de  las políticas  y estrategias institucionales para favorecer la formación investigativa de los estudiantes en el pregrado y posgrado.\r\n', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('340', null, 'Indique que tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\nConsidero qué  la Universidad es eficiente en la implementación de  las políticas, mecanismos y participación de cuerpos colegiados en la evaluación de los procedimientos orientados a la creación, modificación, extensión y cierre de programas.', '3', null, null, null, null, 'Horizontal');
+INSERT INTO `pregunta` VALUES ('341', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que la Universidad es eficiente en la definición de las políticas y estrategias para la asignación de tiempo a los profesores para el desarrollo de proyectos de investigación y la socialización de sus resultados', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('342', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en la Universidad es adecuado el apoyo administrativo y financiero para el desarrollo y gestión de la investigación, la  creación de empresas y de planes de negocios (como los centros de incubación y financiación empresarial, los centros de investigación y desarrollo tecnológico, entre otros) y la creación artística y cultural.', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('343', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('344', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('345', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las  afirmaciones sobre el Estatuto Profesoral 2021.', '3', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('346', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en la Universidad los mecanismos de convocatoria, selección y participación de los profesores en los órganos de gobierno de la institución son adecuados.', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('347', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('348', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen y se aplican mecanismos de selección, vinculación y contratación de profesores que propendan por la consolidación de una comunidad académica, diversa e inclusiva, comprometida con las labores formativas, académicas, docentes, científicas, culturales y de extensión.', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('349', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen criterios para definir responsabilidades del profesorado en relación con el desarrollo de funciones sustantivas y gestiones académico-administrativas, de acuerdo con la categoría en el escalafón', '2', null, null, null, null, 'Horizontal');
+INSERT INTO `pregunta` VALUES ('350', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen mecanismos de evaluación de las actividades asignadas a los profesores con miras a cualificar, promocionar y estimular su labor', '2', null, null, null, null, 'Vertical');
+INSERT INTO `pregunta` VALUES ('351', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en la Universidad son apropiados los criterios para la distribución de las labores asignadas a los profesores para desarrollar sus funciones en condiciones de calidad y en los diferentes espacios institucionales ', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('352', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('353', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que la Universidad propende por  la existencia, cobertura, calidad y pertinencia de los programas de desarrollo profesoral.', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('354', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en  la Universidad se aplican los criterios de reconocimiento y estímulo al ejercicio calificado de las labores formativas, académicas, docentes, científicas, culturales y de extensión', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('355', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('356', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen evidencias de las capacitaciones realizadas a los profesores y los resultados de las mismas.', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('357', null, 'Marque la respuesta que exprese mejor que tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('358', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en la Universidad se aplican criterios para el ingreso y permanencia de los estudiantes en la Institución acorde con la normatividad vigente.', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('359', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('360', null, 'ndique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciónes:\r\n', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('361', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con la siguientes afirmaciónes:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('362', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que la Universidad garantiza la inclusión de los estudiantes  en consideración a su heterogeneidad social y cultural.', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('363', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen programas, tales como: monitorías, Ubuntu, ALEKS, TEPAYA, entre otros, orientados a la disminución de la deserción de estudiantes, análisis de causas y estrategias de permanencia en condiciones de calidad', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('364', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('365', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('366', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen mecanismos de divulgación de los sistemas de crédito, becas, subsidios, apoyos económicos y estímulos a los estudiantes', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('367', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existen procedimientos de control para garantizar que los estudiantes beneficiados con los apoyos institucionales hagan buen uso de éstos en los tiempos previstos para su graduación', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('368', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('369', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco que en la Universidad existe un portafolio de servicios que presta la Institución para facilitar la incorporación de los egresados al ámbito laboral, tales como:  Ubicación Laboral, descuentos en programas de posgrado y educación permanente, uso de recursos bibliográficos, oferta de programa de posgrados, oferta de cursos para el perfeccionamiento y actualización de los egresados\r\n', '2', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('370', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('371', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones: ', '2', null, null, null, null, 'Matriz con unica respuesta');
+INSERT INTO `pregunta` VALUES ('372', null, 'Indiqué que tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que en la Universidad dispone de mecanismos  para la relación e interacción con sus egresados, su contribución a las funciones sustantivas y su apreciación sobre su participación en las dinámicas Institucionales', '2', null, null, null, null, 'Horizontal');
 
 -- ----------------------------
 -- Table structure for pregunta_has_caracteristica
@@ -21946,6 +22289,7 @@ CREATE TABLE `proceso` (
   `descripcion` varchar(500) DEFAULT NULL,
   `programa_id` int(11) NOT NULL,
   `modelo_id` int(11) NOT NULL,
+  `estado` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_proceso_programa1_idx` (`programa_id`),
   KEY `fk_proceso_modelo1` (`modelo_id`),
@@ -21956,7 +22300,7 @@ CREATE TABLE `proceso` (
 -- ----------------------------
 -- Records of proceso
 -- ----------------------------
-INSERT INTO `proceso` VALUES ('1', '17/10/2017', '--', 'Proceso de Autoevaluación con fines de renovar la acreditación institucional', '1', '1');
+INSERT INTO `proceso` VALUES ('1', '17/10/2017', '--', 'Proceso de Autoevaluación con fines de renovar la acreditación institucional', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for procesohasindicador
@@ -22230,6 +22574,6 @@ CREATE TABLE `tipo_pregunta` (
 -- ----------------------------
 -- Records of tipo_pregunta
 -- ----------------------------
-INSERT INTO `tipo_pregunta` VALUES ('1', 'Tipo 1', 'Muy alto; Alto; Medio; Bajo; Muy bajo', null);
-INSERT INTO `tipo_pregunta` VALUES ('2', 'Tipo 2', 'Totalmente; En alto grado; Aceptablemente; En bajo grado; 1:En ningún grado; NS/NR', null);
-INSERT INTO `tipo_pregunta` VALUES ('3', 'Tipo 3', 'Totalmente de acuerdo; Parcialmente de acuerdo; Ni de acuerdo ni en desacuerdo; Parcialmente en desacuerdo; Totalmente en desacuerdo', null);
+INSERT INTO `tipo_pregunta` VALUES ('1', 'Tipo 1', '1. Deficiente\r\n2. Regular\r\n3. Aceptable\r\n4. Bueno\r\n5. Excelente\r\n5.NS/NR', null);
+INSERT INTO `tipo_pregunta` VALUES ('2', 'Tipo 2', '1. Totalmente en desacuerdo\r\n2.  Parcialmente en desacuerdo\r\n3. Ni de acuerdo ni en desacuerdo\r\n4.parcialmente de acuerdo\r\n5. Totalmente de acuerdo\r\n6. NS/NR', null);
+INSERT INTO `tipo_pregunta` VALUES ('3', 'Tipo 3', '1. Totalmente en desacuerdo\r\n2.  Parcialmente en desacuerdo\r\n3. Ni de acuerdo ni en desacuerdo\r\n4.parcialmente de acuerdo\r\n5. Totalmente de acuerdo', null);

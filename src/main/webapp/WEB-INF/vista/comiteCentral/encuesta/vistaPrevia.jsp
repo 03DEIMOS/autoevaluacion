@@ -51,80 +51,92 @@
                 <div class="row" id="pregunta${pregunta.id}">
                     <div class="span10">
                         <p style="font-weight: bold;">${status.index+1} ${pregunta.getPregunta()}</p>
-
-
-                        <table class="table">
-                            <c:choose>
-                                <c:when test="${pregunta.getTipo()=='1'}">
+                        <c:choose>
+                            <c:when test="${pregunta.disenio=='Vertical' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta" varStatus="iter">
+                                    <c:out escapeXml="false" value='<label class="radio"><input type="radio" name="pregunta.id">${tipoPregunta.respuesta}</label>'/>
+                                </c:forEach>
+                            </c:when>
+                            <c:when test="${pregunta.disenio=='Horizontal' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="span3"></th>
-                                            <th class="span2" style="font-size: 12px">1:Muy bajo</th>
-                                            <th class="span2" style="font-size: 12px">2:Bajo</th>
-                                            <th class="span2" style="font-size: 12px">3:Medio</th>
-                                            <th class="span2" style="font-size: 12px">4:Alto</th>
-                                            <th class="span2" style="font-size: 12px">5:Muy alto</th>
-                                            <th class="span2" style="font-size: 12px">NS/NR</th>
+                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta" varStatus="iter">
+                                                <c:out escapeXml="false" value='<th>${tipoPregunta.respuesta}</th>'/>
+                                            </c:forEach>
                                         </tr>
                                     </thead>
-                                </c:when>
-                                <c:when test="${pregunta.getTipo()=='2'}">
+                                    <tbody>
+                                        <tr>
+                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta" varStatus="iter">
+                                                <c:out escapeXml="false" value='<td><label class="radio" ><input type="radio" name="${pregunta.id}"></label></td>'/>
+                                            </c:forEach>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </c:when>
+                            <c:when test="${pregunta.disenio=='Matriz con unica respuesta' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="span3"></th>
-                                            <th class="span2" style="font-size: 12px">1:En ningún grado</th>
-                                            <th class="span2" style="font-size: 12px">2:En bajo grado</th>
-                                            <th class="span2" style="font-size: 12px">3:Aceptablemente</th>
-                                            <th class="span2" style="font-size: 12px">4:En alto grado</th>
-                                            <th class="span2" style="font-size: 12px">5:Totalmente</th>
-                                            <th class="span2" style="font-size: 12px">NS/NR</th>
+                                            <th></th>
+                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta" varStatus="iter">
+                                                    <c:out escapeXml="false" value='<th>${tipoPregunta.respuesta}</th>'/>
+                                                </c:forEach>
                                         </tr>
                                     </thead>
-                                </c:when>
-                                <c:when test="${pregunta.getTipo()=='3'}">
-                                    <thead>
-                                        <tr>
-                                            <th class="span3"></th>
-                                            <th class="span2" style="font-size: 12px">1:Muy mala</th>
-                                            <th class="span2" style="font-size: 12px">2:Mala</th>
-                                            <th class="span2" style="font-size: 12px">3:Regular</th>
-                                            <th class="span2" style="font-size: 12px">4:Buena</th>
-                                            <th class="span2" style="font-size: 12px">5:Excelente</th>
-                                            <th class="span2" style="font-size: 12px">NS/NR</th>
-                                        </tr>
-                                    </thead>
-                                </c:when>
-                            </c:choose>
-                            <tbody>
+                                    <tbody>
+                                        <c:choose>
+                                            <c:when test="${fn:length(pregunta.getItemPreguntas())!= 0}">
+                                                <c:forEach items="${pregunta.getItemPreguntas()}" var="itemPregunta" varStatus="iter2">
+                                                    <tr>
+                                                        <td style="text-align: left">${itemPregunta.itemPregunta}</td>
+                                                        <c:choose>
+                                                            <c:when test="${fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta2" varStatus="iter">
+                                                                    <c:out escapeXml="false" value='<td><label class="radio"><input type="radio" name="${itemPregunta.id}" value="${tipoPregunta2.id}"/></label></td>'/>
+                                                                </c:forEach>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </tr>
+                                                </c:forEach>
+                                            </c:when>
+                                        </c:choose>
+                                    </tbody>
+                                </table>
+                            </c:when>
+                            <c:when test="${pregunta.disenio=='Desplegable' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
                                 <c:choose>
-                                    <c:when test="${fn:length(pregunta.preguntaList)!= 0}">
-                                        <c:forEach items="${pregunta.preguntaList}" var="sub">
-                                            <tr>
-                                                <td>${sub.getPregunta()}</td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="1" /></label></td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="2" /></label></td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="3" /></label></td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="4" /></label></td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="5" /></label></td>
-                                                <td><label class="radio"><input type="radio" name="pregunta${sub.id}" value="0" /></label></td>
-                                            </tr>
-                                        </c:forEach>
+                                    <c:when test="${fn:length(pregunta.getItemPreguntas())!= 0}">
+                                        <table class="table">
+                                            <tbody>
+                                                <c:forEach items="${pregunta.getItemPreguntas()}" var="itemPregunta" varStatus="iter2">
+                                                    <tr>
+                                                        <td style="text-align: left">${itemPregunta.itemPregunta}</td>
+                                                        <td> 
+                                                            <select name="respuestas">
+                                                                <option value=""></option>    
+                                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta2" varStatus="iter">
+                                                                    <option value="${tipoPregunta2.id}">${tipoPregunta2.respuesta}</option>    
+                                                                </c:forEach>
+                                                            </select> 
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>    
                                     </c:when>
                                     <c:otherwise>
-                                        <tr>
-                                            <td></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="1" /></label></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="2" /></label></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="3" /></label></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="4" /></label></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="5" /></label></td>
-                                            <td><label class="radio"><input type="radio" name="pregunta${pregunta.id}" value="0" /></label></td>
-                                        </tr>
-                                    </c:otherwise>        
+                                        <select name="respuestas">
+                                            <option value=""></option>    
+                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="tipoPregunta" varStatus="iter">
+                                                <option value="${tipoPregunta.id}">${tipoPregunta.respuesta}</option>    
+                                            </c:forEach>
+                                        </select> 
+                                    </c:otherwise>
                                 </c:choose>
-
-                            </tbody>
-                        </table>
+                            </c:when>
+                        </c:choose>
                     </div> 
                 </div>
             </c:forEach>  
@@ -134,17 +146,17 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $("p").html(function(busca, reemplaza) {
+    $(function () {
+        $("p").html(function (busca, reemplaza) {
             return reemplaza.replace('_PROGRAMA_', 'Administración');
         });
-        $("#spanprograma").html(function(busca, reemplaza) {
+        $("#spanprograma").html(function (busca, reemplaza) {
             return reemplaza.replace('_PROGRAMA_', 'Administración');
         });
 
 
-        setTimeout(function() {
-            $("#printEnlace").click(function() {
+        setTimeout(function () {
+            $("#printEnlace").click(function () {
                 var contents = $("#toPrint").html();
                 var frame1 = $('<iframe />');
                 frame1[0].name = "frame1";
@@ -161,7 +173,7 @@
                 frameDoc.document.write(contents);
                 frameDoc.document.write('</body></html>');
                 frameDoc.document.close();
-                setTimeout(function() {
+                setTimeout(function () {
                     window.frames["frame1"].focus();
                     window.frames["frame1"].print();
                     frame1.remove();

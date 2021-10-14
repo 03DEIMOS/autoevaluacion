@@ -27,10 +27,6 @@ public class CaracteristicaController {
     @Autowired
     private FactorService factorService;
 
-    public CaracteristicaController(CaracteristicaService caracteristicaService) {
-        this.caracteristicaService = caracteristicaService;
-    }
-
     @GetMapping("/caracteristicas/{modeloId}")
     public String caracteristicas(@PathVariable Integer modeloId, Model model) {
         model.addAttribute("listaC", caracteristicaService.getCaracteristicasByModelo(modeloId));

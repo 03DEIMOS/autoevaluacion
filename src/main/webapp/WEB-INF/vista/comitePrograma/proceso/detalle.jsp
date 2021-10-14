@@ -24,10 +24,10 @@
                                         <c:out value="${item.descripcion}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${item.fechainicio}"/>
+                                        <c:out value="${item.fechaInicio}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${item.fechacierre}"/>
+                                        <c:out value="${item.fechaCierre}"/>
                                     </td>
                                     <td>   
                                         <c:out value="${item.modeloId.nombre}"/>

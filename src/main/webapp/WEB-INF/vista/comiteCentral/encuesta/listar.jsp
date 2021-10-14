@@ -25,7 +25,7 @@
                                     </td>
                                     <td class="action span2">
                                         <a href="#encuesta/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
-                                        <a href="#vistaPreviaEncuesta&${row.id}" title="Vista previa"><i class="icon-eye-open"></i></a>
+                                        <a href="#encuesta/vistaPrevia/${row.id}" title="Vista previa"><i class="icon-eye-open"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

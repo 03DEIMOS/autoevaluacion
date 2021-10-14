@@ -7,6 +7,7 @@ package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.Encuesta;
 import com.utb.autoevaluacion.service.EncuestaService;
+import com.utb.autoevaluacion.service.PreguntaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,9 @@ public class EncuestaController {
 
     @Autowired
     private EncuestaService encuestaService;
+    
+    @Autowired
+    private PreguntaService preguntaService;
 
     public EncuestaController(EncuestaService encuestaService) {
         this.encuestaService = encuestaService;
@@ -53,7 +57,16 @@ public class EncuestaController {
         log.info("Ejecutanto metodo [formularioEditarEncuesta] encuestaId:{} ", encuestaId);
         Encuesta encuesta = encuestaService.buscarEncuesta(encuestaId);
         model.addAttribute("encuesta", encuesta);
+        model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\encuesta\\editar";
+    }
+    
+    @GetMapping("/vistaPrevia/{encuestaId}")
+    public String encuestaVistaPrevia(@PathVariable Integer encuestaId, Model model) {
+        log.info("Ejecutanto metodo [encuestaVistaPrevia] encuestaId:{} ", encuestaId);
+        Encuesta encuesta = encuestaService.buscarEncuesta(encuestaId);
+        model.addAttribute("encuesta", encuesta);
+        return "comiteCentral\\encuesta\\vistaPrevia";
     }
 
     @PostMapping(value = "/crear")

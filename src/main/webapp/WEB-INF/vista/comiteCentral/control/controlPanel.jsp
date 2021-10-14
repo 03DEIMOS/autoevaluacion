@@ -21,16 +21,16 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${listProcesos}" var="row" varStatus="iter">
-                                <c:if test="${row.fechainicio == 'En Configuración'}">
+                                <c:if test="${row.fechaInicio == 'En Configuración'}">
                                     <tr  class="warning">
                                         <td>   
                                             <c:out value="${row.programaId.facultadId.nombre}"/>
                                         </td>
                                         <td>   
-                                            <a href="#verProcesos&${row.id}">${row.programaId.nombre}</a>
+                                            <a href="#proceso/entrar/${row.id}">${row.programaId.nombre}</a>
                                         </td>
                                         <td>   
-                                            <c:out value="${row.fechainicio}"/>
+                                            <c:out value="${row.fechaInicio}"/>
                                         </td>
                                         <td>
                                             <span class="label label-warning"><i class="icon-cog"></i> En Configuración</span>
@@ -40,16 +40,16 @@
                                         </td>
                                     </tr>
                                 </c:if>
-                                <c:if test="${row.fechainicio != 'En Configuración' && row.fechacierre=='--'}">
+                                <c:if test="${row.fechaInicio != 'En Configuración' && row.fechaCierre=='--'}">
                                     <tr  class="info">
                                         <td>   
                                             <c:out value="${row.programaId.facultadId.nombre}"/>
                                         </td>
                                         <td>   
-                                            <a href="#verProcesos&${row.id}">${row.programaId.nombre}</a>
+                                           <a href="#proceso/entrar/${row.id}">${row.programaId.nombre}</a>
                                         </td>
                                         <td>   
-                                            <c:out value="${row.fechainicio}"/>
+                                            <c:out value="${row.fechaInicio}"/>
                                         </td>
                                         <td>   
                                             <span class="label label-info"><i class="icon-play-sign"></i> En Ejecución</span>
@@ -59,16 +59,16 @@
                                         </td>
                                     </tr>
                                 </c:if>
-                                <c:if test="${row.fechainicio != 'En Configuración' && row.fechacierre!='--'}">
+                                <c:if test="${row.fechaInicio != 'En Configuración' && row.fechaCierre!='--'}">
                                     <tr  class="success">
                                         <td>   
                                             <c:out value="${row.programaId.facultadId.nombre}"/>
                                         </td>
                                         <td>   
-                                            <a href="#verProcesos&${row.id}">${row.programaId.nombre}</a>
+                                            <a href="#proceso/entrar/${row.id}">${row.programaId.nombre}</a>
                                         </td>
                                         <td>   
-                                            <c:out value="${row.fechainicio}"/>
+                                            <c:out value="${row.fechaInicio}"/>
                                         </td>
                                         <td>   
                                             <span class="label label-success"><i class="icon-flag-checkered"></i> Proceso finalizado</span>

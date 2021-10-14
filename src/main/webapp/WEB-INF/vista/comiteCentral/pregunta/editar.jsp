@@ -26,7 +26,7 @@
                     );
             $.ajax({
                 type: 'POST',
-                url: "/autoevaluacion/pregunta/vistaPrevia",
+                url: "/autoevaluacion/pregunta/vistaPreviaEditar",
                 data: values,
                 success: function (data) {
                     $("#dancing-dots-text").remove();

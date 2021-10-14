@@ -12,9 +12,6 @@
 
         $(".clearer").before('<input type="text" id="filter" class="input-medium search-query" placeholder="Buscar" style="padding-top: 0px; padding-bottom: 0px; float: right; border-right-width: 1px; padding-right: 14px; margin-right: 35px;">');
 
-
-
-
         $('#filter').keyup(function() {
             var $this = $(this);
 
@@ -217,7 +214,7 @@
                             <input type="text" name="fecha" id="fecha" class="input-xlarge {required:true}" value="${encuesta.getFecha()}"/>
                         </div>
                     </div>
-                    <!--<div class="control-group">
+                    <%--<div class="control-group">
                         <label for="fuente" class="control-label">Asignar Fuente</label>
                         <div class="controls">
                             <select id="fuente" name="fuente" class="{required:true}">
@@ -234,7 +231,7 @@
                                 </c:forEach>
                             </select>                
                         </div>
-                    </div>   --> 
+                    </div>   --%> 
                     <div class="control-group">
                         <label  class="control-label">Asignar Preguntas</label>
                         <div class="controls">

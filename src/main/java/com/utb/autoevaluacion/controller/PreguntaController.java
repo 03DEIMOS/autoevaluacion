@@ -56,8 +56,8 @@ public class PreguntaController {
         model.addAttribute("listaTipoP", tipoPreguntaService.buscarTipoPreguntas());
         return "comiteCentral\\pregunta\\crear";
     }
-    
-     @GetMapping("/editar/{preguntaId}")
+
+    @GetMapping("/editar/{preguntaId}")
     public String formularioEditarPregunta(@PathVariable Integer preguntaId, Model model) {
         log.info("Ejecutanto metodo [formularioEditarPregunta] preguntaId:{} ", preguntaId);
         Pregunta pregunta = preguntaService.buscarPregunta(preguntaId);
@@ -66,8 +66,7 @@ public class PreguntaController {
         model.addAttribute("sencilla", pregunta.getItemPreguntas().isEmpty());
         return "comiteCentral\\pregunta\\editar";
     }
-    
-    
+
     @PostMapping(value = "/vistaPrevia")
     public String vistaPrevia(@RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla, @RequestParam(value = "subpregunta[]") String[] subpreguntas, Model model) {
         log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}, tipoId:{}, sencilla:{}, subpreguntas:{} ", pregunta, tipoId, sencilla, subpreguntas);
@@ -85,6 +84,19 @@ public class PreguntaController {
             p.setItemPreguntas(itemPreguntas);
             model.addAttribute("pregunta", p);
             model.addAttribute("sencilla", sencilla);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error: " + e);
+        }
+
+        return "comiteCentral\\pregunta\\vistaPrevia";
+    }
+
+    @PostMapping(value = "/vistaPreviaEditar")
+    public String vistaPreviaEditar(@RequestParam Integer preguntaId, Model model) {
+        log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}", preguntaId);
+        try {
+            Pregunta p = preguntaService.buscarPregunta(preguntaId);
+            model.addAttribute("pregunta", p);
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
         }
@@ -116,7 +128,7 @@ public class PreguntaController {
         }
         return new ResponseEntity<>(status);
     }
-    
+
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editar(@RequestParam Integer preguntaId, @RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla, @RequestParam(value = "subpregunta[]") String[] subpreguntas, Model model) {
         log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}, tipoId:{}, sencilla:{}, subpreguntas:{} ", pregunta, tipoId, sencilla, subpreguntas);

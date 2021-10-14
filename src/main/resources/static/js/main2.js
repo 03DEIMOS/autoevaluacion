@@ -83,6 +83,19 @@ $(function () {
     };
 
 
+    var menuProceso = function (procesoId) {
+        $(".ui-layout-content > .alert").remove();
+        $("#menu").html('<ul class="nav nav-list">'
+                + '<button id="west-closer" class="close">&laquo;</button>'
+                + '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Regresar al proceso</a></li>'
+                + '<li class="nav-header">Proceso de Autoevaluación</li>'
+                + '<li><a href="#detalleProceso"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
+                + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
+                + '<li class="nav-header">Estado del proceso</li>'
+                + '<li><a href="#estadoProceso"><i class="icon-bar-chart"></i> Estado del proceso</a></li>'
+                + '</ul>');
+    };
+
     var menuModelo = function () {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
@@ -90,17 +103,13 @@ $(function () {
                 '<li class="nav-header">Modelo</li>' +
                 '<li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>' +
                 '<li class="divider"></li>' +
-                '<li class="nav-header">Coordinadores</li>' +
-                '<li><a href="#listarCoordinadores"><i class="icon-reorder"></i> Listar Coordinadores</a></li>' +
-                '<li class="divider"></li>' +
                 '<li class="nav-header">Programas</li>' +
                 '<li><a href="#listarProgramas"><i class="icon-reorder"></i> Listar Programas</a></li>' +
                 '<li class="divider"></li>' +
-                '<li><a href="#controlPanel"><i class="icon-th"></i> Panel de Control</a></li>' +
+                '<li><a href="#proceso/procesos"><i class="icon-th"></i> Panel de Control</a></li>' +
                 '</ul>');
     };
     function menuFactores(modeloId) {
-        console.log("llamando a menuFactores:" + modeloId);
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
@@ -133,10 +142,14 @@ $(function () {
         } else {
             var url3 = "/autoevaluacion/" + hash;
             url3 = url3.replace('#', "");
-            var modelo;
+            var modelo, proceso;
             if (hash.indexOf("#modelo/entrar/") !== -1) {
                 modelo = hash.replace("#modelo/entrar/", "");
             }
+            if (hash.indexOf("#proceso/entrar/") !== -1) {
+                proceso = hash.replace("#proceso/entrar/", "");
+            }
+            console.log($("ul.nav-list li:eq(1)").html().trim());
             $("div.ui-layout-center").empty();
             $.ajax({
                 type: "GET",
@@ -147,9 +160,11 @@ $(function () {
 
                     if ($("ul.nav-list li:eq(1)").html().trim() !== "Factores" && hash.indexOf("#modelo/entrar/") !== -1) {
                         menuFactores(modelo);
-                        
-                    } else if ($("ul.nav-list li:eq(1)").html().trim() === "Factores" && hash.indexOf("#modelo/modelos")!==-1) {
+
+                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && hash.indexOf("#modelo/modelos") !== -1) {
                         menuModelo();
+                    } else if ($("ul.nav-list li:eq(1)").html().trim() !== "Proceso de Autoevaluación" && hash.indexOf("#proceso/entrar/") !== -1) {
+                        menuProceso(proceso);
                     }
                     myLayout.addCloseBtn("#west-closer", "west");
                     $("#contenido").show(200, function () {

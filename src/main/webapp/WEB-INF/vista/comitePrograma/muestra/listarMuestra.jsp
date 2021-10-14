@@ -1,7 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/print.css" media="print">
-<link rel="stylesheet" href="css/jquery.fileupload.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.fileupload.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.fileupload-ui.css">
 <style type="text/css">
     #sharefLI_1 {
         box-sizing: border-box;
@@ -82,7 +84,7 @@
             if (a == 0) {
                 $("#listM").empty();
                 $("#help1").html('<div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione una fuente para ver la muestra asignada a la misma.</div>');
-            } else if (a == 1 || a == 2 || a == 3|| a == 4 || a == 5) {
+            } else if (a == 1 || a == 2 || a == 3 || a == 4 || a == 5) {
                 $("#divPrograma").show();
                 $("#help1").html('Seleccione un programa para filtrar los resultados.');
                 $("#listM").empty();
@@ -155,24 +157,21 @@
             <ul class="nav nav-pills" style="margin-bottom: 0px">
                 <form id="formListarMuestra" class="" method="post" style="margin-bottom: 0px">
                     <fieldset>
-                        <legend>Asignación de  Muestra</legend>
+                        <legend>Asignación de  público</legend>
                         <div class="span3" style="margin-left: 0px">
                             <div class="control-group">
-                                <label for="selectListMuestra"  class="control-label">Fuente: </label>
+                                <label for="selectListMuestra"  class="control-label">Público: </label>
                                 <div class="controls">
                                     <select name="fuente" id="selectListMuestra">
-                                        <option value="--">Seleccionar Fuente</option>
-                                        <option value="EstudianteP">ESTUDIANTES PREGRADO</option>
-                                        <option value="EstudianteM">ESTUDIANTES MAESTRIAS Y DOCTORADOS</option>
-                                        <option value="EstudianteE">ESTUDIANTES DE ESPECIALIZACIONES</option>
-                                        <option value="ProfesorP">PROFESORES DE PLANTA</option>
-                                        <option value="ProfesorC">PROFESORES DE CÁTEDRA</option>
-                                        <option value="Directivo">DIRECTIVOS</option>
-                                        <option value="Administrativo">ADMINISTRATIVOS</option>
-                                        <option value="EgresadoP">EGRESADOS PREGRADO</option>
-                                        <option value="EgresadoE">EGRESADOS ESPECIALIZACIONES</option>
-                                        <option value="EgresadoM">EGRESADOS MAESTRIA Y DOCTORADO</option>
-                                        <option value="Empleador">EMPLEADORES</option>
+                                        <option value="--">Seleccionar Público</option>
+                                        <c:choose>
+                                            <c:when test="${fn:length(fuentes)!= 0}">
+                                                <c:forEach items="${fuentes}" var="fuente" varStatus="iter">
+                                                    <option value="${fuente.id}">${fuente.nombre}</option>
+                                                </c:forEach>
+                                            </c:when>
+                                        </c:choose>
+
                                     </select>
                                 </div>
                             </div>
@@ -190,41 +189,40 @@
                         </div> 
                     </fieldset>
                 </form>
-                <div id="help1"><div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione una fuente para ver la muestra asignada a la misma.</div></div>             
+                <div id="help1"><div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione un público para ver la población asignada al mismo.</div></div>             
             </ul>
             <div id="listM"></div>
-            <c:if test="${(EstadoProceso == 2 || EstadoProceso == 1) && tipoLogin=='Comite central'}">
-                <h2>Adjuntar Archivo con la población</h2> 
-                <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
-                    <div class="form-group">
-                        <!-- The global progress bar -->
-                        <div class="col-sm-12">
-                            <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-5">
 
-                            <span class="btn btn-success fileinput-button">      
-                                <i class="glyphicon glyphicon-plus"></i>
-                                <span>Seleccionar archivo...</span>
-                                <input id="fileupload" type="file" name="files[]" multiple>
-                            </span>
-                        </div>
-                        <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n.<br>Solamente se aceptan archivos con el formato brindado.</label>
-                        <div class="col-sm-10">
-                            <div class="col-sm-5">
-                                <li id="sharefLI_1">
-                                    <a href="DescargarFormato" id="sharefA_2" target="_blank"><i id="sharefI_3" class="icon-download-alt"></i> Descargar formato</a>
-                                </li>
-                            </div>
-                            <!-- The file input field used as target for the file upload widget -->
-                            <!-- The container for the uploaded files -->
-                            <div id="files" class="files"></div>
+            <h2>Adjuntar Archivo con la población</h2> 
+            <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <!-- The global progress bar -->
+                    <div class="col-sm-12">
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
                         </div>
                     </div>
-                </form>
-            </c:if>
+                    <div class="col-sm-5">
+
+                        <span class="btn btn-success fileinput-button">      
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Seleccionar archivo...</span>
+                            <input id="fileupload" type="file" name="files[]" multiple>
+                        </span>
+                    </div>
+                    <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n.<br>Solamente se aceptan archivos con el formato brindado.</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-5">
+                            <li id="sharefLI_1">
+                                <a href="DescargarFormato" id="sharefA_2" target="_blank"><i id="sharefI_3" class="icon-download-alt"></i> Descargar formato</a>
+                            </li>
+                        </div>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <!-- The container for the uploaded files -->
+                        <div id="files" class="files"></div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>                      

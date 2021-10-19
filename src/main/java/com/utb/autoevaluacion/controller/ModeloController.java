@@ -19,34 +19,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/modelo")
 public class ModeloController {
-   
-   @Autowired 
-   private ModeloService modeloService;
 
-    public ModeloController(ModeloService modeloService) {
-        this.modeloService = modeloService;
-    }
+    @Autowired
+    private ModeloService modeloService;
 
     @GetMapping("/modelos")
     public String modelos(Model model) {
         model.addAttribute("listaM", modeloService.getModelos());
         return "comiteCentral\\modelo\\listar";
-        
-    } 
-    
-    @GetMapping("/entrar/{id}" )
+
+    }
+
+    @GetMapping("/entrar/{id}")
     public String entrarModelo(@PathVariable Integer id, Model model) {
         model.addAttribute("modelo", modeloService.getModeloById(id));
         return "comiteCentral\\inicio";
-        
-    } 
-    
+
+    }
+
     @GetMapping("/crear")
     public String formularioCrearModelo(Model model) {
         log.info("Ejecutanto metodo [formularioCrearModelo] ");
         return "comiteCentral\\modelo\\crear";
     }
-    
+
     @GetMapping("/editar/{modeloId}")
     public String formularioEditarModelo(@PathVariable Integer modeloId, Model model) {
         log.info("Ejecutanto metodo [formularioEditarModelo] modeloId:{} ", modeloId);
@@ -54,10 +50,10 @@ public class ModeloController {
         model.addAttribute("modelo", modelo);
         return "comiteCentral\\modelo\\editar";
     }
-    
-    @PostMapping(value = "/crear" )
+
+    @PostMapping(value = "/crear")
     public ResponseEntity<?> crearModelo(@RequestParam String nombre, @RequestParam String descripcion) {
-        
+
         log.info("Ejecutanto metodo [crearModelo] nombre:{}, descripcion:{} ", nombre, descripcion);
         HttpStatus status;
         try {
@@ -70,10 +66,10 @@ public class ModeloController {
 
         return new ResponseEntity<>(status);
     }
-    
-    @PutMapping(value = "/editar" )
+
+    @PutMapping(value = "/editar")
     public ResponseEntity<?> editarModelo(@RequestParam Integer modeloId, @RequestParam String nombre, @RequestParam String descripcion) {
-        
+
         log.info("Ejecutanto metodo [editarModelo] modeloId:{}, nombre:{}, descripcion:{} ", modeloId, nombre, descripcion);
         HttpStatus status;
         try {
@@ -85,6 +81,6 @@ public class ModeloController {
         }
 
         return new ResponseEntity<>(status);
-        
+
     }
 }

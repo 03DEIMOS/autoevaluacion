@@ -40,10 +40,6 @@ public class PreguntaController {
     @Autowired
     private TipoPreguntaService tipoPreguntaService;
 
-    public PreguntaController(PreguntaService preguntaService) {
-        this.preguntaService = preguntaService;
-    }
-
     @GetMapping("/preguntas")
     public String preguntas(Model model) {
         model.addAttribute("listaP", preguntaService.getPreguntas());

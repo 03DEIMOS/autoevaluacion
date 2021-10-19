@@ -1,5 +1,5 @@
 $(function () {
-    location = "/autoevaluacion/#inicio";
+  //  location = "/autoevaluacion/#inicio";
     /*$(document).ajaxStart(function() {
      
      });*/
@@ -32,96 +32,14 @@ $(function () {
     // save selector strings to vars so we don't have to repeat it
     // must prefix paneClass with "body > " to target ONLY the outerLayout panes
 
-
-
-
-
-    var actualizaEnlaces = function (hash) {
-        $(".nav li").removeClass("active");
-        $("a[href='" + hash + "']").parent().addClass("active");
-    };
     var hash;
     $(window).hashchange(function () {
         hash = location.hash;
-        if (hash === "#CerrarSesion") {
-            $.post('/autoevaluacion/loginController?action=CerrarSesion', function () {
+        if (hash === "#cerrarSesion") {
+            $.post('/autoevaluacion/cerrarSesion', function () {
                 location = "/autoevaluacion";
             }); //fin post
 
-        } else {
-            if (hash === "#responderEncuestaF") {
-                var url3 = "/autoevaluacion/controladorF?action=";
-                url3 = url3.concat(hash.substring(1));
-                $("div.ui-layout-center").empty();
-                $.ajax({
-                    type: "POST",
-                    url: url3,
-                    beforeSend: function () {
-                        $("div.ui-layout-center").append("<div id='contenido'></div>");
-                        $("#contenido").hide();
-                        $("div.ui-layout-center").append(""
-                                + "<div id='dancing-dots-text'>"
-                                + "Cargando <span></span> "
-                                + "</div>");
-                    },
-                    success: function (data)
-                    {
-                        $("#contenido").append(data);
-                        $("#contenido").show(400, function () {
-                            $("#dancing-dots-text").remove();
-                        });
-                    } //fin success
-                }); //fin del $.ajax
-
-            }else if (hash === "#responderEncuesta2F") {
-                var url3 = "/autoevaluacion/controladorF?action=";
-                url3 = url3.concat(hash.substring(1));
-                $("div.ui-layout-center").empty();
-                $.ajax({
-                    type: "POST",
-                    url: url3,
-                    beforeSend: function () {
-                        $("div.ui-layout-center").append("<div id='contenido'></div>");
-                        $("#contenido").hide();
-                        $("div.ui-layout-center").append(""
-                                + "<div id='dancing-dots-text'>"
-                                + "Cargando <span></span> "
-                                + "</div>");
-                    },
-                    success: function (data)
-                    {
-                        $("#contenido").append(data);
-                        $("#contenido").show(400, function () {
-                            $("#dancing-dots-text").remove();
-                        });
-                    } //fin success
-                }); //fin del $.ajax
-
-            } else if (hash === "#inicio" || hash === "#perfil") {
-                var url3 = "/autoevaluacion/" + hash;
-                url3 = url3.replace('#', "controladorF?action=") + "CC";
-                $("div.ui-layout-center").empty();
-                $.ajax({
-                    type: "POST",
-                    url: url3,
-                    beforeSend: function () {
-                        $("div.ui-layout-center").append("<div id='contenido'></div>");
-                        $("#contenido").hide();
-                        $("div.ui-layout-center").append(""
-                                + "<div id='dancing-dots-text'>"
-                                + "Cargando <span></span> "
-                                + "</div>");
-                    },
-                    success: function (data)
-                    {
-                        $("#contenido").append(data);
-                        $("#contenido").show(200, function () {
-                            $("#dancing-dots-text").remove();
-                        });
-                    } //fin success
-                }); //fin del $.ajax
-            }
-
-        } //fin else
+        }
     });
 });

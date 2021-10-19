@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link href="css/layout-sitenav.css" type="text/css" rel="stylesheet" media="screen">
-        <title></title>
+        <title>Autoevaluacion UTB</title>
         <link href="http://fonts.googleapis.com/css?family=Lobster|Oswald|Kaushan+Script" rel="stylesheet" type="text/css">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
@@ -22,44 +23,33 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
     </head>
-    <body style="padding-top: 0px; background-image: url(img/UTB_autoevaluacionBanner.jpg); background-repeat: no-repeat;background-size: 100%;">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" style="padding-top: 10px; padding-bottom: 5px;" href="#"><img src="img/LETRAS.png"/></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav barra" >
-                            <li class="active"><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
-        <header style="padding-top:2px;">
-
-        </header>
-         <!--<div class="container">-->
-             <div class="row" id="login">
-                 <form name="formularioLogin" class="form-signin" id="formulario_login" action="/" method="post" style="max-width: 700px;">
-                     <div class="alert alert-error fade in" id="login-error" style="display:none;">
-                         <button type="button" class="close" id="close1">x</button>
-                     </div>
-                     <!--<h2 class="form-signin-heading">Acceder</h2>-->
-                     <div style="text-align: center">
-                     <input type="text" placeholder="Usuario" name="codigo" id="codigo" class="{required:true}">
-                     <button id="btnIniciar" type="submit" class="btn btn-large btn-primary" style="margin-bottom: 15px;">Acceder</button>
-                     </div>
-                 </form>
-             </div>
- 
-        <!--</div>-->
+    <body style="background: url(img/websiteBackground_2400.jpg) no-repeat center center fixed; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;">
         
+
+        <!--<div class="container">-->
+        <div class="row" id="login" >
+            <form name="formularioLogin" class="form-signin" id="formulario_login" action="<%=request.getContextPath()%>/" method="post" style="max-width: 700px;">
+                <c:if test="${errorLogin == true}">
+                    <div class="alert alert-error fade in" id="login-error">
+                        <button type="button" class="close" id="close1">x</button>
+                        <label generated='true' class='error'>Credenciales incorrectas.</label>
+                    </div>
+                </c:if>
+                <!--<h2 class="form-signin-heading">Acceder</h2>-->
+                <div style="text-align: center">
+                    <input type="text" placeholder="Código" name="codigo" id="codigo" class="{required:true}">
+                    <button id="btnIniciar" type="submit" class="btn btn-large btn-primary" style="margin-bottom: 15px;">Acceder</button>
+                    <label style="color:white;">* Si es Directivo o Administrativo por favor ingrese con su numero de cedula.</label>
+                </div>
+            </form>
+        </div>
+
+        <!--</div>-->
+
         <!-- /container -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -71,6 +61,6 @@
         <script type='text/javascript' src='js/slider.js'></script>
         <script src="js/main.js"></script>
 
-        
+
     </body>
 </html>

@@ -23,10 +23,6 @@ public class FactorController {
     @Autowired
     private FactorService factorService;
 
-    public FactorController(FactorService factorService) {
-        this.factorService = factorService;
-    }
-
     @GetMapping("/factores/{modeloId}")
     public String factores(@PathVariable Integer modeloId, Model model) {
         model.addAttribute("listaF", factorService.getFactoresByModelo(modeloId));

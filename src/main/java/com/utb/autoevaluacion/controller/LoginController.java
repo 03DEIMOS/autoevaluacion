@@ -5,9 +5,16 @@
  */
 package com.utb.autoevaluacion.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.utb.autoevaluacion.model.Encuesta;
+import com.utb.autoevaluacion.model.Persona;
+import com.utb.autoevaluacion.service.EncuestaService;
+import com.utb.autoevaluacion.service.PersonaService;
+import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,13 +23,41 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author ASUS
  */
+@Slf4j
 @Controller
-@RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    PersonaService personaService;
+
+    @Autowired
+    EncuestaService encuestaService;
     
-    @PostMapping("/validate")
-    public String validar(@RequestParam String codigo, @RequestParam String clave ) {
-         System.out.println("Logueando a user:"+codigo+" pw:"+clave);
-        return "comiteCentral\\index";
-    } 
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+    
+    @PostMapping("cerrarSesion")
+    public String cerrarSesion() {
+        log.info("Ejecutando metodo cerrarSesion");
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String validar(@RequestParam String codigo, Model model) {
+         log.info("Ejecutando metodo validar codigo:{}", codigo);
+        List<Persona> personas = personaService.buscarPersonaPorUsuarioActivaYEsMuestra(codigo);
+        if (personas!=null && !personas.isEmpty()) {
+            Persona persona = personas.get(0);
+            Encuesta encuesta = encuestaService.obtenerEncuestasDePersona(persona);
+            model.addAttribute("encuesta", encuesta);
+            model.addAttribute("persona", persona);
+            return "fuente\\index";
+        } else {
+            log.info("Devuelto al index");
+            model.addAttribute("errorLogin", true);
+            return "index";
+        }
+    }
 }

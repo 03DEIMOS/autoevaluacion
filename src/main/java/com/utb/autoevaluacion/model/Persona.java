@@ -5,39 +5,47 @@
  */
 package com.utb.autoevaluacion.model;
 
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tipo_pregunta")
-public class TipoPregunta {
-    
+@Table(name = "persona")
+public class Persona {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
-    
-    @Column(name = "tipo")
-    private String tipo;
-    
-    @Column(name = "descripcion")
-    private String descripcion;
-    
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "tipo_pregunta_id", referencedColumnName = "id", nullable = false)
-    private List<ItemTipoPregunta> itemTipoPreguntaList;
-    
-    
 
+    private String variable1;
     
+    private String variable2;
+
+    private String estado;
+
+    private String terminado;
+    
+    @Column(name = "ES_MUESTRA")
+    private String esMuestra;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "PROCESO_ID")
+    private Proceso proceso;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "FUENTE_ID")
+    private Fuente fuente;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuarioId;
+  
+
 }

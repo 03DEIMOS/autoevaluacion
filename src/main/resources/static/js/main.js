@@ -1,5 +1,4 @@
 $(function() {
-  //  location = "/autoevaluacion/#inicio";
     $('#close1').on("click", function() {
         $(this).parent().hide();
     });

@@ -134,7 +134,7 @@ $(function () {
     $(window).hashchange(function () {
         hash = location.hash;
         if (hash === "#CerrarSesion") {
-            $.post('/autoevaluacion/loginController?action=CerrarSesion', function () {
+            $.post('/autoevaluacion/cerrarSesion', function () {
                 location = "/autoevaluacion";
 
             });//fin post

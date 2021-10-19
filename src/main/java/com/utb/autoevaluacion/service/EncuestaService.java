@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.model.Encuesta;
+import com.utb.autoevaluacion.model.Persona;
 import java.util.List;
 
 /**
@@ -22,5 +23,7 @@ public interface EncuestaService {
     void actualizarEncuesta(Integer encuestaId, String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha);
     
     Encuesta buscarEncuesta(Integer id);
+    
+    Encuesta obtenerEncuestasDePersona(Persona persona);
     
 }

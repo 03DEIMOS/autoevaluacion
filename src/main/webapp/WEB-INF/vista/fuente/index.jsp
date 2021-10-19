@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -21,7 +22,6 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/docs.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-responsive.min.css">
         <script src="<%=request.getContextPath()%>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -44,14 +44,11 @@
                                 <li class="dropdown loggining"> 
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                         <i class="icon-user"></i> 
-                                        ${participante.nombre}
+                                        ${persona.getUsuarioId().nombre}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Perfil</a></li>
-                                        <li><a href="#">Cambiar Contrase&ntilde;a</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="<%=request.getContextPath()%>/#CerrarSesion">Cerrar Sesion</a></li>
+                                        <li><a href="<%=request.getContextPath()%>/#cerrarSesion">Cerrar Sesion</a></li>
                                     </ul>
 
                                 </li>
@@ -74,7 +71,134 @@
         </div><!--South-->
 
         <div class="ui-layout-center">
+            <div class="container">
+                <div style="margin-left: -30px;">
+                    <div id="conte" class="span12" style="text-align: justify">
+                        <div class="row">
+                            <table class="table table-bordered table-striped" style="font-weight: bold;">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2" style="width: 25%; text-align: center;"><img src="/autoevaluacion/img/LogoUTB.png"></td>
+                                        <td style="width: 75%; text-align: center;">UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 75%; text-align: center;">${encuesta.getNombre()}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <p class="insp">${encuesta.getObjetivo()}</p>
+                            <p class="insp">${encuesta.getInstrucciones()}</p>
+                            <br/>
+                        </div>
+                        <form id="formResponderE" method="POST">
+                            <input type="hidden" name="personaId" value="${persona.getId()}">
+                            <input type="hidden" name="encuestaId" value="${encuesta.getId()}">
+                            <c:forEach items="${encuesta.getPreguntaList()}" var="pregunta" varStatus="status">
 
+                                <div class="row" id="pregunta${pregunta.id}">
+                                    <div class="span10">
+                                        <p style="font-weight: bold;">${status.index+1} ${pregunta.getPregunta()}</p>
+                                        <c:choose>
+                                            <c:when test="${pregunta.disenio=='Vertical' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
+                                                    <c:out escapeXml="false" value='<label class="radio"><input type="radio" name="${pregunta.id}" value="${itemTipoPregunta.valor}" class="{required:true}">${itemTipoPregunta.respuesta}</label>'/>
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:when test="${pregunta.disenio=='Horizontal' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
+                                                                <c:out escapeXml="false" value='<th>${itemTipoPregunta.respuesta}</th>'/>
+                                                            </c:forEach>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
+                                                                <c:out escapeXml="false" value='<td><label class="radio" ><input type="radio" name="${pregunta.id}" value="${itemTipoPregunta.valor}" class="{required:true}"></label></td>'/>
+                                                            </c:forEach>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </c:when>
+                                            <c:when test="${pregunta.disenio=='Matriz con unica respuesta' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
+                                                                    <c:out escapeXml="false" value='<th>${itemTipoPregunta.respuesta}</th>'/>
+                                                                </c:forEach>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:choose>
+                                                            <c:when test="${fn:length(pregunta.getItemPreguntas())!= 0}">
+                                                                <c:forEach items="${pregunta.getItemPreguntas()}" var="itemPregunta" varStatus="iter2">
+                                                                    <tr>
+                                                                        <td style="text-align: left">${itemPregunta.itemPregunta}</td>
+                                                                        <c:choose>
+                                                                            <c:when test="${fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta2" varStatus="iter">
+                                                                                    <c:out escapeXml="false" value='<td><label class="radio"><input type="radio" name="i${itemPregunta.id}" class="{required:true}" value="${itemTipoPregunta2.valor}"/></label></td>'/>
+                                                                                </c:forEach>
+                                                                            </c:when>
+                                                                        </c:choose>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </tbody>
+                                                </table>
+                                            </c:when>
+                                            <c:when test="${pregunta.disenio=='Desplegable' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
+                                                <c:choose>
+                                                    <c:when test="${fn:length(pregunta.getItemPreguntas())!= 0}">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <c:forEach items="${pregunta.getItemPreguntas()}" var="itemPregunta" varStatus="iter2">
+                                                                    <tr>
+                                                                        <td style="text-align: left">${itemPregunta.itemPregunta}</td>
+                                                                        <td> 
+                                                                            <select name="i${itemPregunta.id}" class="{required:true}">
+                                                                                <option value=""></option>    
+                                                                                <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
+                                                                                    <option value="${itemTipoPregunta.valor}">${itemTipoPregunta.respuesta}</option>    
+                                                                                </c:forEach>
+                                                                            </select> 
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>    
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <select name="${pregunta.id}" class="{required:true}">
+                                                            <option value=""></option>    
+                                                            <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta2" varStatus="iter">
+                                                                <option value="${itemTipoPregunta2.valor}">${itemTipoPregunta2.respuesta}</option>    
+                                                            </c:forEach>
+                                                        </select> 
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:when>
+                                        </c:choose>
+                                    </div> 
+                                </div>
+                            </c:forEach> 
+                            <div class="row"> 
+                                <div class="span2">
+                                    <div style="text-align: left; margin-top: 22px;">
+                                        <button class="btn btn-primary" data-content="Env&iacute;a la encuesta evaluada. Verifique que todas las preguntas han sido respondidas correctamente. Esta operación no se podrá deshacer."  value="1" data-original-title="Enviar encuesta" type="submit">Enviar</button>
+                                    </div>    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div><!--/Center-->
 
 
@@ -91,7 +215,38 @@
         <script src="<%=request.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/jquery.ba-hashchange.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/main3.js"></script>
-
+        <script type="text/javascript">
+            $(function () {
+                var validator = $("#formResponderE").bind("invalid-form.validate", function () {
+                    alert("usted ha dejado de contestar " + validator.numberOfInvalids() + " preguntas, por favor contestelas todas.");
+                })
+                        .validate({
+                            ignore: "",
+                            submitHandler: function () {
+                                $("button").attr("disabled", true);
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "<%=request.getContextPath()%>/encuesta/enviar",
+                                    data: $("#formResponderE").serialize(),
+                                    beforeSend: function () {
+                                        $("div.ui-layout-center").append(""
+                                                + "<div id='dancing-dots-text'>"
+                                                + "Enviando <span><span>.</span><span>.</span><span>.</span><span>.</span><span>.</span></span> "
+                                                + "</div>");
+                                    },
+                                    success: function () {
+                                        $("#dancing-dots-text").remove();
+                                        $("#myModalGracias").modal();
+                                        $('#myModalGracias').on('hidden', function () {
+                                            location.hash = "cerrarSesion";
+                                        });
+                                    } //fin success
+                                }); //fin $.ajax
+                            }
+                        });
+                $("button").popover({trigger: "hover", placement: 'top'});
+            });
+        </script>
     </body>
 </html>
 <div class="modal hide fade" id="myModalGracias">

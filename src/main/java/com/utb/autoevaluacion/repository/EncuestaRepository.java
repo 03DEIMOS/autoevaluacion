@@ -20,4 +20,8 @@ import org.springframework.stereotype.Repository;
 public interface EncuestaRepository extends JpaRepository<Encuesta, Integer>{
     @Query("Select e from Encuesta e")
     List<Encuesta> findEncuestasByModeloId(Integer modeloId);
+    
+    @Query(value = "SELECT * FROM encuesta WHERE modelo_id = ?1 AND fuente_id = ?2 LIMIT 1",
+            nativeQuery = true)
+    Encuesta buscarEncuestaPorPersona(Integer modeloId, Integer fuenteId);
 }

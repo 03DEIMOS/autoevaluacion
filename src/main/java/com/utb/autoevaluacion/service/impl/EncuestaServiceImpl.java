@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Encuesta;
+import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.repository.EncuestaRepository;
 import com.utb.autoevaluacion.service.EncuestaService;
 import java.util.List;
@@ -87,4 +88,18 @@ public class EncuestaServiceImpl implements EncuestaService {
         return encuesta;
     }
     
+    
+    @Override
+    public Encuesta obtenerEncuestasDePersona(Persona persona) {
+        Encuesta encuesta = null;
+        try {
+            if (persona.getProceso().getEstado().equals("En Ejecución")) {
+                encuesta = encuestaRepository.buscarEncuestaPorPersona(persona.getProceso().getModeloId().getId(), persona.getFuente().getId());
+            }
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado :{}", e);
+        }
+
+        return encuesta;
+    }
 }

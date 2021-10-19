@@ -442,3 +442,7 @@ div.DTFC_LeftFootWrapper table {
     padding-bottom: 1px;
     padding-top: 1px;
 }
+
+label.error{
+    color:red;
+}

@@ -193,26 +193,16 @@
             }); //fin $.ajax   
         });
     });</script>
-    <c:if test="${EstadoProceso == 2}">
-    <div class="span10">
-        <a style="float:right; cursor: pointer" id="actEnlace"><i class="icon-refresh"></i> Actualizar</a>  
-        <a style="float:right; padding-right: 10px; cursor: pointer" id="printEnlace"><i class="icon-print"></i> Imprimir</a>      
-    </div>
 
-</c:if>
-<c:if test="${EstadoProceso != 2}">
-    <div class="span10">
-        <a  style="float: right; cursor: pointer" id="printEnlace"><i class="icon-print"></i> Imprimir</a>  
-    </div>
 
-</c:if>
+<div class="span10">
+    <a  style="float: right; cursor: pointer" id="printEnlace"><i class="icon-print"></i> Imprimir</a>  
+</div>
 <div id="printMuestra">
-    <c:if test="${EstadoProceso == 2}">
-        <div>
-            <div style="margin-left: 0px;" class="span1"><span style="margin-left: 0px;" id="spanActualizado" class="label label-info span1">Actualizado</span></div>
-            <div class="span9"><p id="hora" class="help-block"></p></div>
-        </div>
-    </c:if>
+    <div>
+        <div style="margin-left: 0px;" class="span1"><span style="margin-left: 0px;" id="spanActualizado" class="label label-info span1">Actualizado</span></div>
+        <div class="span9"><p id="hora" class="help-block"></p></div>
+    </div>
     <div id="listM2" class="span10" style="margin-left: 0px;">
         <div class="span10" style="margin-left: 0px;">
             <div class="btn-group" data-toggle="buttons">
@@ -224,44 +214,34 @@
                 </label>
             </div> 								
             <div id="editM">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#poblacionest" data-toggle="tab">Población</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="poblacionest">
                         <table id="tablaY1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Identificación</th>
                                     <th>Nombre</th>
-                                    <th>Programa</th>
                                 </tr>
                             </thead>
                             <tbody id="bodytablaestudiante">
                                 <c:choose>
-                                    <c:when test="${fn:length(participantes)!= 0}">
-                                        <c:forEach items="${participantes}" var="participante" varStatus="iter1">
+                                    <c:when test="${fn:length(personas)!= 0}">
+                                        <c:forEach items="${personas}" var="persona" varStatus="iter1">
                                             <c:choose>   
-                                                <c:when test="${participante[3] != null}">
+                                                <c:when test="${persona.terminado == 'S'}">
                                                     <tr class="terminadoC">
                                                     </c:when>
                                                     <c:otherwise>
                                                     <tr class="pendienteC"> 
                                                     </c:otherwise>    
                                                 </c:choose>
-                                                <td <c:if test="${participante[3] != null}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${participante[0]}</td>
-                                                <td <c:if test="${participante[3] != null}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${participante[1]}</td>
-                                                <td <c:if test="${participante[3] != null}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${participante[2]}</td>
+                                                <td <c:if test="${persona.terminado == 'S'}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${persona.getUsuarioId().usuario}</td>
+                                                <td <c:if test="${persona.terminado == 'S'}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${persona.getUsuarioId().nombre}</td>
                                                 </tr>
                                         </c:forEach>
                                     </c:when>
                                 </c:choose>
                             </tbody>
                         </table>
-                        <p id="total0" style="font-weight: bold">Total: ${fn:length(participantes)}</p>
-
-                    </div>
-                </div>
+                        <p id="total0" style="font-weight: bold">Total: ${fn:length(personas)}</p>
             </div>
         </div>
     </div>

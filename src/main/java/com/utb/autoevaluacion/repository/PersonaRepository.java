@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
-    @Query(value = "SELECT * FROM persona WHERE usuario_id = ?1 AND terminado='N' AND estado = 'A' AND ES_MUESTRA='S'",
+    @Query(value = "SELECT * FROM persona WHERE usuario_id = ?1 AND estado = 'A' AND ES_MUESTRA='S'",
             nativeQuery = true)
     List<Persona> buscarPersonaPorUsuarioIdActivaYEsMuestra(Integer usuario);
 
@@ -25,5 +25,9 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
     @Query(value = "UPDATE persona SET terminado='S' WHERE id = ?1 AND terminado='N' AND estado = 'A' AND ES_MUESTRA='S'",
             nativeQuery = true)
     void personaTerminaEncuesta(Integer personaId);
+    
+    @Query(value = "SELECT * FROM persona WHERE proceso_id = ?1 "
+            + "AND fuente_id = ?2 AND estado = 'A' AND ES_MUESTRA='S' ", nativeQuery = true)
+    List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer proceso, Integer fuente);
 
 }

@@ -84,27 +84,13 @@
             if (a == 0) {
                 $("#listM").empty();
                 $("#help1").html('<div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione una fuente para ver la muestra asignada a la misma.</div>');
-            } else if (a == 1 || a == 2 || a == 3 || a == 4 || a == 5) {
-                $("#divPrograma").show();
-                $("#help1").html('Seleccione un programa para filtrar los resultados.');
-                $("#listM").empty();
-                $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCP?action=listarProgramasSelect&a=" + a,
-                    success: function (datos) {
-                        $("#selectPrograma").html(datos);
-                        setTimeout(function () {
-                            $("#dancing-dots-text").remove();
-                        }, 200);
-                    } //fin success
-                }); //fin $.ajax 
-            } else {//para hacer el editar muestra
+            }else {//para hacer el editar muestra
                 $("#help1").empty();
                 $("#divPrograma").hide();
                 $("#listM").empty();
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCP?action=selectorListMuestra",
+                    type: 'GET',
+                    url: "/autoevaluacion/persona/poblacion",
                     data: $("#formListarMuestra").serialize(),
                     success: function (datos) {
                         $("#listM").append(datos);
@@ -115,27 +101,7 @@
                 }); //fin $.ajax    
             }
         });
-        $("#selectPrograma").change(function () {
-            var a = $("#selectPrograma option:selected").index();
-            if (a == 0) {
-                $("#listM").empty();
-            } else {
-
-                $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCP?action=selectorListPrograma",
-                    data: $("#formListarMuestra").serialize(),
-                    success: function (datos) {
-                        $("#listM").empty();
-                        $("#listM").append(datos);
-                        setTimeout(function () {
-                            $("#dancing-dots-text").remove();
-                        }, 200);
-
-                    } //fin success
-                }); //fin $.ajax    
-            }
-        });
+        
         $(".btn-group > .btn").click(function () {
             $("tr.terminadoC").hide();
             $("tr.pendienteC").hide();
@@ -156,13 +122,14 @@
         <div id="conte" class="span10">
             <ul class="nav nav-pills" style="margin-bottom: 0px">
                 <form id="formListarMuestra" class="" method="post" style="margin-bottom: 0px">
+                    <input type="hidden" name="procesoId" value="${proceso.id}">
                     <fieldset>
                         <legend>Asignación de  público</legend>
                         <div class="span3" style="margin-left: 0px">
                             <div class="control-group">
                                 <label for="selectListMuestra"  class="control-label">Público: </label>
                                 <div class="controls">
-                                    <select name="fuente" id="selectListMuestra">
+                                    <select name="fuenteId" id="selectListMuestra">
                                         <option value="--">Seleccionar Público</option>
                                         <c:choose>
                                             <c:when test="${fn:length(fuentes)!= 0}">
@@ -171,22 +138,10 @@
                                                 </c:forEach>
                                             </c:when>
                                         </c:choose>
-
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="control-group" id="divPrograma" style="display: none" class="span7">
-                            <label for="selectPrograma"  class="control-label">Programa: </label>
-                            <div class="controls">
-                                <form id="formSelectMuestra"  method="post">
-                                    <select name="programa" id="selectPrograma">
-                                        <option value="--">Seleccione Programa</option>
-                                        <option value="todos">Todos</option>
-                                    </select>
-                                </form>
-                            </div>
-                        </div> 
                     </fieldset>
                 </form>
                 <div id="help1"><div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione un público para ver la población asignada al mismo.</div></div>             

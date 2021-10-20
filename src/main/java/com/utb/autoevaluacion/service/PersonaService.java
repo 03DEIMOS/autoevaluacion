@@ -14,5 +14,7 @@ public interface PersonaService {
     
     Persona buscarPersona(Integer personaId);
     
+    List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer procesoId, Integer fuenteId);
+    
 
 }

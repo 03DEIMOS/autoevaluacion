@@ -55,5 +55,15 @@ public class PersonaServiceImpl implements PersonaService {
         }
         return persona;
     }
-
+    
+    @Override
+    public List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer procesoId, Integer fuenteId) {
+        List<Persona> personas = null;
+        try {
+            personas = personaRepository.buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(procesoId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return personas;
+    }
 }

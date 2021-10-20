@@ -79,10 +79,10 @@
                                 <tbody>
                                     <tr>
                                         <td rowspan="2" style="width: 25%; text-align: center;"><img src="/autoevaluacion/img/LogoUTB.png"></td>
-                                        <td style="width: 75%; text-align: center;">UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</td>
+                                        <td style="width: 75%; text-align: center; vertical-align: middle;">UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 75%; text-align: center;">${encuesta.getNombre()}</td>
+                                        <td style="width: 75%; text-align: center; vertical-align: middle;">${encuesta.getNombre()}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -98,7 +98,7 @@
 
                                 <div class="row" id="pregunta${pregunta.id}">
                                     <div class="span10">
-                                        <p style="font-weight: bold;">${status.index+1} ${pregunta.getPregunta()}</p>
+                                        <p class="insp" style="font-weight: bold;">${status.index+1} ${pregunta.getPregunta()}</p>
                                         <c:choose>
                                             <c:when test="${pregunta.disenio=='Vertical' && fn:length(pregunta.getTipoPregunta().getItemTipoPreguntaList())!= 0}">
                                                 <c:forEach items="${pregunta.getTipoPregunta().getItemTipoPreguntaList()}" var="itemTipoPregunta" varStatus="iter">
@@ -217,6 +217,12 @@
         <script src="<%=request.getContextPath()%>/js/main3.js"></script>
         <script type="text/javascript">
             $(function () {
+                $('.insp').each(function(index) {
+                    var textoConSaltosHtml = $(this).text().replace(/(?:\r\n|\r|\n)/g, '<br/>');
+                    console.log(textoConSaltosHtml);
+                    $(this).html(textoConSaltosHtml);
+                });
+                
                 var validator = $("#formResponderE").bind("invalid-form.validate", function () {
                     alert("usted ha dejado de contestar " + validator.numberOfInvalids() + " preguntas, por favor contestelas todas.");
                 })
@@ -229,10 +235,10 @@
                                     url: "<%=request.getContextPath()%>/encuesta/enviar",
                                     data: $("#formResponderE").serialize(),
                                     beforeSend: function () {
-                                        $("div.ui-layout-center").append(""
-                                                + "<div id='dancing-dots-text'>"
-                                                + "Enviando <span><span>.</span><span>.</span><span>.</span><span>.</span><span>.</span></span> "
-                                                + "</div>");
+                                        $("div.ui-layout-center").append("" +
+                                                "<div id='dancing-dots-text'>" +
+                                                "Enviando <span><span>.</span><span>.</span><span>.</span><span>.</span><span>.</span></span> " +
+                                                "</div>");
                                     },
                                     success: function () {
                                         $("#dancing-dots-text").remove();
@@ -245,7 +251,7 @@
                             }
                         });
                 $("button").popover({trigger: "hover", placement: 'top'});
-            });
+                });
         </script>
     </body>
 </html>

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -32,12 +31,12 @@ public class LoginController {
 
     @Autowired
     EncuestaService encuestaService;
-    
+
     @GetMapping("/")
     public String index() {
         return "index";
     }
-    
+
     @PostMapping("cerrarSesion")
     public String cerrarSesion() {
         log.info("Ejecutando metodo cerrarSesion");
@@ -46,17 +45,29 @@ public class LoginController {
 
     @PostMapping("/")
     public String validar(@RequestParam String codigo, Model model) {
-         log.info("Ejecutando metodo validar codigo:{}", codigo);
+        log.info("Ejecutando metodo validar codigo:{}", codigo);
         List<Persona> personas = personaService.buscarPersonaPorUsuarioActivaYEsMuestra(codigo);
-        if (personas!=null && !personas.isEmpty()) {
-            Persona persona = personas.get(0);
-            Encuesta encuesta = encuestaService.obtenerEncuestasDePersona(persona);
-            model.addAttribute("encuesta", encuesta);
-            model.addAttribute("persona", persona);
-            return "fuente\\index";
+        if (personas != null && !personas.isEmpty()) {
+            for (Persona persona : personas) {
+                if (persona.getTerminado().equals("N")) {
+                    Encuesta encuesta = encuestaService.obtenerEncuestasDePersona(persona);
+                    model.addAttribute("encuesta", encuesta);
+                    model.addAttribute("persona", persona);
+                    return "fuente\\index";
+                }
+            }
+            log.info("Devuelto al index");
+            model.addAttribute("errorLogin", true);
+            model.addAttribute("message", "Usuario ya realizó la encuesta");
+            return "index";
+
+        } else if (codigo.equals("admin2021")) {
+            log.info("Devuelto al index");
+            return "comiteCentral\\index";
         } else {
             log.info("Devuelto al index");
             model.addAttribute("errorLogin", true);
+            model.addAttribute("message", "Código de usuario no registrado");
             return "index";
         }
     }

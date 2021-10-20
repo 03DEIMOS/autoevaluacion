@@ -23,12 +23,14 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
     </head>
-    <body style="background: url(img/websiteBackground_2400.jpg) no-repeat center center fixed; 
+    
+   <%-- <body style="padding-top: 0px; background-image: url(img/UTB_1920x970.jpg); background-repeat: no-repeat;background-size: 100%;"> --%>
+    <body style="background: url(img/UTB_1920x820.jpg) no-repeat center center fixed; 
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
           background-size: cover;">
-        
+   
 
         <!--<div class="container">-->
         <div class="row" id="login" >
@@ -36,14 +38,14 @@
                 <c:if test="${errorLogin == true}">
                     <div class="alert alert-error fade in" id="login-error">
                         <button type="button" class="close" id="close1">x</button>
-                        <label generated='true' class='error'>Credenciales incorrectas.</label>
+                        <label generated='true' class='error'>${message}</label>
                     </div>
                 </c:if>
                 <!--<h2 class="form-signin-heading">Acceder</h2>-->
                 <div style="text-align: center">
                     <input type="text" placeholder="Código" name="codigo" id="codigo" class="{required:true}">
                     <button id="btnIniciar" type="submit" class="btn btn-large btn-primary" style="margin-bottom: 15px;">Acceder</button>
-                    <label style="color:white;">* Si es Directivo o Administrativo por favor ingrese con su numero de cedula.</label>
+                    <label style="color:white;">* Si es Directivo o Administrativo por favor ingrese con su número de cédula.</label>
                 </div>
             </form>
         </div>

@@ -25,7 +25,7 @@
     </head>
     
    <%-- <body style="padding-top: 0px; background-image: url(img/UTB_1920x970.jpg); background-repeat: no-repeat;background-size: 100%;"> --%>
-    <body style="background: url(img/UTB_1920x820.jpg) no-repeat center center fixed; 
+    <body style="background: url(img/fondoUtb.jpg) no-repeat center center fixed; 
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
@@ -44,7 +44,7 @@
                 <!--<h2 class="form-signin-heading">Acceder</h2>-->
                 <div style="text-align: center">
                     <input type="text" placeholder="Código" name="codigo" id="codigo" class="{required:true}">
-                    <button id="btnIniciar" type="submit" class="btn btn-large btn-primary" style="margin-bottom: 15px;">Acceder</button>
+                    <button id="btnIniciar" type="submit" class="btn btn-primary" style="margin-bottom: 15px;">Acceder</button>
                     <label style="color:white;">* Si es Directivo o Administrativo por favor ingrese con su número de cédula.</label>
                 </div>
             </form>

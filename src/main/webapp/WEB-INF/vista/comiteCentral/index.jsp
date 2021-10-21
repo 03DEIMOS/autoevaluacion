@@ -72,7 +72,6 @@
             <footer id="footer" class="contenedor_footer fondo_footer">
                 <div class="links">
                     <a style="font-weight: normal;-moz-text-decoration-line: none;"><span class="muted">&copy; Universidad Tecnológica de Bolívar</span></a>
-                    <a href="#" target="_blank"><span>Ayuda</span></a>
                 </div>
             </footer>
         </div><!--South-->

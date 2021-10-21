@@ -65,14 +65,13 @@
             <footer id="footer" class="contenedor_footer fondo_footer">
                 <div class="links">
                     <a style="font-weight: normal;-moz-text-decoration-line: none;"><span class="muted">&copy; Universidad Tecnológica de Bolívar</span></a>
-                    <a href="#" target="_blank"><span>Ayuda</span></a>
                 </div>
             </footer>
         </div><!--South-->
 
         <div class="ui-layout-center">
             <div class="container">
-                <div style="margin-left: -30px;">
+                <div>
                     <div id="conte" class="span12" style="text-align: justify">
                         <div class="row">
                             <table class="table table-bordered table-striped" style="font-weight: bold;">

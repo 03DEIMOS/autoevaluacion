@@ -3,6 +3,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/print.css" media="print">
 <link rel="stylesheet" href="css/jquery.fileupload.css">
 <style type="text/css">
+
+    tr.terminadoC td{
+        background-color: #DFF0D8 !important; 
+        color: #468847;
+    }
+
     #sharefLI_1 {
         box-sizing: border-box;
         color: rgb(95, 118, 118);
@@ -192,7 +198,26 @@
                 } //fin success
             }); //fin $.ajax   
         });
-    });</script>
+
+        $("#sharefA_2").click(function () {
+            fetch('/autoevaluacion/utilitario/downloadFile?archivo=plantilla')
+                    .then(resp => resp.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        // the filename you want
+                        a.download = 'plantilla.xlsx';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    })
+                    .catch(() => alert('Ha ocurrido un error intentando descargar el formato de población!'));
+        });
+
+    });
+</script>
 
 
 <div class="span10">
@@ -214,34 +239,73 @@
                 </label>
             </div> 								
             <div id="editM">
-                        <table id="tablaY1" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Identificación</th>
-                                    <th>Nombre</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodytablaestudiante">
-                                <c:choose>
-                                    <c:when test="${fn:length(personas)!= 0}">
-                                        <c:forEach items="${personas}" var="persona" varStatus="iter1">
-                                            <c:choose>   
-                                                <c:when test="${persona.terminado == 'S'}">
-                                                    <tr class="terminadoC">
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                    <tr class="pendienteC"> 
-                                                    </c:otherwise>    
-                                                </c:choose>
-                                                <td <c:if test="${persona.terminado == 'S'}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${persona.getUsuarioId().usuario}</td>
-                                                <td <c:if test="${persona.terminado == 'S'}">style="background-color: #DFF0D8; color: #468847;"</c:if>>${persona.getUsuarioId().nombre}</td>
-                                                </tr>
-                                        </c:forEach>
-                                    </c:when>
-                                </c:choose>
-                            </tbody>
-                        </table>
-                        <p id="total0" style="font-weight: bold">Total: ${fn:length(personas)}</p>
+                <table id="tablaY1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Correo electrónico</th>
+                            <th>Variable1</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodytablaestudiante">
+                        <c:choose>
+                            <c:when test="${fn:length(personas)!= 0}">
+                                <c:forEach items="${personas}" var="persona" varStatus="iter1">
+                                    <c:choose>   
+                                        <c:when test="${persona.terminado == 'S'}">
+                                            <tr class="terminadoC">
+                                            </c:when>
+                                            <c:otherwise>
+                                            <tr class="pendienteC"> 
+                                            </c:otherwise>    
+                                        </c:choose>
+                                        <td>${persona.getUsuarioId().usuario}</td>
+                                        <td>${persona.getUsuarioId().identificacion}</td>
+                                        <td>${persona.getUsuarioId().nombre}</td>
+                                        <td>${persona.getUsuarioId().apellido}</td>
+                                        <td>${persona.getUsuarioId().email}</td>
+                                        <td>${persona.variable1}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
+                    </tbody>
+                </table>
+                <p id="total0" style="font-weight: bold">Total: ${fn:length(personas)}</p>
+
+                <h2>Adjuntar Archivo con la población</h2> 
+                <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <!-- The global progress bar -->
+                        <div class="col-sm-12">
+                            <div id="progress" class="progress">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+
+                            <span class="btn btn-success fileinput-button">      
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Seleccionar archivo...</span>
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                            </span>
+                        </div>
+                        <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n.<br>Solamente se aceptan archivos con el formato brindado.</label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-5">
+                                <li id="sharefLI_1">
+                                    <a id="sharefA_2" target="_blank"><i id="sharefI_3" class="icon-download-alt"></i> Descargar formato</a>
+                                </li>
+                            </div>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <!-- The container for the uploaded files -->
+                            <div id="files" class="files"></div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -254,15 +318,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
         'use strict';
-
         // Initialize the jQuery File Upload widget:
         $('#fileupload').fileupload({
             // Uncomment the following to send cross-domain cookies:
             //xhrFields: {withCredentials: true},
-            url: 'SubirArchivo',
-            acceptFileTypes: /(\.|\/)(gif|jpg|png|pdf|xlsx)$/i,
+            url: '/autoevaluacion/utilitario/uploadFile',
+            method: "POST",
+            formData: {procesoId: '' + $("#procesoId").val(), fuenteId: '' + $("#selectListMuestra").val()},
+            acceptFileTypes: /(\.|\/)(xls|gif|jpg|png|pdf|xlsx)$/i,
             previewFileTypes: /^.*\/(gif|jpeg|png|pdf|PDF)$/
-
         });
 
         // Enable iframe cross-domain access via redirect option:
@@ -301,6 +365,7 @@
             $("#dancing-dots-text").remove();
             $('#selectListMuestra').val('--').trigger('change');
         });
+
 
 
         $('#tablaY1').DataTable({

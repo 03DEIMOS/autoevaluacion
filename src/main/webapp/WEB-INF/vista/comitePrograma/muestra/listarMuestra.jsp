@@ -84,7 +84,7 @@
             if (a == 0) {
                 $("#listM").empty();
                 $("#help1").html('<div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione una fuente para ver la muestra asignada a la misma.</div>');
-            }else {//para hacer el editar muestra
+            } else {//para hacer el editar muestra
                 $("#help1").empty();
                 $("#divPrograma").hide();
                 $("#listM").empty();
@@ -101,7 +101,7 @@
                 }); //fin $.ajax    
             }
         });
-        
+
         $(".btn-group > .btn").click(function () {
             $("tr.terminadoC").hide();
             $("tr.pendienteC").hide();
@@ -115,6 +115,9 @@
             $("#total").text("Total: " + ($("tr.terminadoC:visible").length + $("tr.pendienteC:visible").length));
         });
     });
+
+    
+
 </script>   
 
 <div class="hero-unit">
@@ -122,7 +125,7 @@
         <div id="conte" class="span10">
             <ul class="nav nav-pills" style="margin-bottom: 0px">
                 <form id="formListarMuestra" class="" method="post" style="margin-bottom: 0px">
-                    <input type="hidden" name="procesoId" value="${proceso.id}">
+                    <input type="hidden" id="procesoId"  name="procesoId" value="${proceso.id}">
                     <fieldset>
                         <legend>Asignación de  público</legend>
                         <div class="span3" style="margin-left: 0px">
@@ -147,37 +150,6 @@
                 <div id="help1"><div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione un público para ver la población asignada al mismo.</div></div>             
             </ul>
             <div id="listM"></div>
-
-            <h2>Adjuntar Archivo con la población</h2> 
-            <form action="Formulario" class="form row-border" enctype='multipart/form-data'>
-                <div class="form-group">
-                    <!-- The global progress bar -->
-                    <div class="col-sm-12">
-                        <div id="progress" class="progress">
-                            <div class="progress-bar progress-bar-success"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-
-                        <span class="btn btn-success fileinput-button">      
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Seleccionar archivo...</span>
-                            <input id="fileupload" type="file" name="files[]" multiple>
-                        </span>
-                    </div>
-                    <label class="col-sm-10 control-label">Ingrese el archivo excel con la poblaci&oacute;n.<br>Solamente se aceptan archivos con el formato brindado.</label>
-                    <div class="col-sm-10">
-                        <div class="col-sm-5">
-                            <li id="sharefLI_1">
-                                <a href="DescargarFormato" id="sharefA_2" target="_blank"><i id="sharefI_3" class="icon-download-alt"></i> Descargar formato</a>
-                            </li>
-                        </div>
-                        <!-- The file input field used as target for the file upload widget -->
-                        <!-- The container for the uploaded files -->
-                        <div id="files" class="files"></div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
-</div>                      
+</div>

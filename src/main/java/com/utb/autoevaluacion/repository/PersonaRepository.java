@@ -29,5 +29,9 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
     @Query(value = "SELECT * FROM persona WHERE proceso_id = ?1 "
             + "AND fuente_id = ?2 AND estado = 'A' AND ES_MUESTRA='S' ", nativeQuery = true)
     List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer proceso, Integer fuente);
+    
+     @Query(value = "SELECT * FROM persona WHERE proceso_id = ?1 "
+            + "AND fuente_id = ?2 AND usuario_id =?3 AND estado = 'A' ", nativeQuery = true)
+    Persona buscarPersonaPorProcesoFuenteYUsuarioActiva(Integer proceso, Integer fuente, Integer usuario);
 
 }

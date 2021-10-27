@@ -17,8 +17,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -41,11 +43,16 @@ public class Usuario {
     
     @Column(name = "ENABLED")
     private Boolean enabled;
-    
-    
 
-   
-
-    
+     public Usuario(String usuario, String identificacion, String nombre, String apellido,
+            String email, String estado, boolean enabled) {
+        this.usuario = usuario;
+        this.identificacion = identificacion;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.estado = estado;
+        this.enabled = enabled;
+    }
 
 }

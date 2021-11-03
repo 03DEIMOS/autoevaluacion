@@ -87,12 +87,12 @@ $(function () {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">'
                 + '<button id="west-closer" class="close">&laquo;</button>'
-                + '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Regresar al proceso</a></li>'
+                + '<li><a href="#proceso/procesos"><i class="icon-level-up"></i>Regresar a procesos</a></li>'
                 + '<li class="nav-header">Proceso de Autoevaluación</li>'
                 + '<li><a href="#detalleProceso"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
                 + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
                 + '<li class="nav-header">Estado del proceso</li>'
-                + '<li><a href="#estadoProceso"><i class="icon-bar-chart"></i> Estado del proceso</a></li>'
+                + '<li><a href="#informe/estadoGeneralDelProceso/'+procesoId+'"><i class="icon-bar-chart"></i> Informes</a></li>'
                 + '</ul>');
     };
 
@@ -106,7 +106,7 @@ $(function () {
                 '<li class="nav-header">Programas</li>' +
                 '<li><a href="#listarProgramas"><i class="icon-reorder"></i> Listar Programas</a></li>' +
                 '<li class="divider"></li>' +
-                '<li><a href="#proceso/procesos"><i class="icon-th"></i> Panel de Control</a></li>' +
+                '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
                 '</ul>');
     };
     function menuFactores(modeloId) {
@@ -149,6 +149,9 @@ $(function () {
             if (hash.indexOf("#proceso/entrar/") !== -1) {
                 proceso = hash.replace("#proceso/entrar/", "");
             }
+            if (hash.indexOf("#informe/estadoGeneralDelProceso/") !== -1) {
+                proceso = hash.replace("#informe/estadoGeneralDelProceso/", "");
+            }
             console.log($("ul.nav-list li:eq(1)").html().trim());
             $("div.ui-layout-center").empty();
             $.ajax({
@@ -160,8 +163,7 @@ $(function () {
 
                     if ($("ul.nav-list li:eq(1)").html().trim() !== "Factores" && hash.indexOf("#modelo/entrar/") !== -1) {
                         menuFactores(modelo);
-
-                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && hash.indexOf("#modelo/modelos") !== -1) {
+                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && (hash.indexOf("#modelo/modelos") !== -1 || hash.indexOf("#proceso/procesos") !== -1 )) {
                         menuModelo();
                     } else if ($("ul.nav-list li:eq(1)").html().trim() !== "Proceso de Autoevaluación" && hash.indexOf("#proceso/entrar/") !== -1) {
                         menuProceso(proceso);

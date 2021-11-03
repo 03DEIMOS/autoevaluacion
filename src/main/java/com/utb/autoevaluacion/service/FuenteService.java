@@ -18,5 +18,8 @@ public interface FuenteService {
     
     List<Fuente> buscarFuentes();
     
-
+    List<Fuente> buscarFuentesXproceso(Integer procesoId);
+    
+    List<Fuente> buscarFuentesXmodeloXpregunta(Integer idModelo, Integer idPregunta) ;
+    
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50542
 File Encoding         : 65001
 
-Date: 2021-10-20 08:15:29
+Date: 2021-11-02 21:34:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,168 +30,42 @@ CREATE TABLE `caracteristica` (
   KEY `fk_caracteristica_modelo1` (`modelo_id`),
   CONSTRAINT `fk_caracteristica_factor1` FOREIGN KEY (`factor_id`) REFERENCES `factor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_caracteristica_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of caracteristica
 -- ----------------------------
-INSERT INTO `caracteristica` VALUES ('1', '1', 'Coherencia y pertinencia de la Misión', '1', '1');
-INSERT INTO `caracteristica` VALUES ('2', '2', 'Orientaciones y estrategias del Proyecto Institucional', '1', '1');
-INSERT INTO `caracteristica` VALUES ('3', '3', 'Formación integral y construcción de la comunidad académica en el Proyecto Institucional', '1', '1');
-INSERT INTO `caracteristica` VALUES ('4', '4', 'Deberes y derechos de los estudiantes', '2', '1');
-INSERT INTO `caracteristica` VALUES ('5', '5', 'Admisión y permanencia de estudiantes', '2', '1');
-INSERT INTO `caracteristica` VALUES ('6', '6', 'Sistemas de estímulos y créditos para estudiantes', '2', '1');
-INSERT INTO `caracteristica` VALUES ('7', '7', 'Deberes y derechos del profesorado', '3', '1');
-INSERT INTO `caracteristica` VALUES ('8', '8', 'Planta profesoral', '3', '1');
-INSERT INTO `caracteristica` VALUES ('9', '9', 'Carrera docente', '3', '1');
-INSERT INTO `caracteristica` VALUES ('10', '10', 'Desarrollo profesoral', '3', '1');
-INSERT INTO `caracteristica` VALUES ('11', '11', 'Interacción académica de los profesores', '3', '1');
-INSERT INTO `caracteristica` VALUES ('12', '12', 'Políticas académicas', '4', '1');
-INSERT INTO `caracteristica` VALUES ('13', '13', 'Pertinencia académica y relevancia social', '4', '1');
-INSERT INTO `caracteristica` VALUES ('14', '14', 'Procesos de creación, modificación y extensión de programas académicos', '4', '1');
-INSERT INTO `caracteristica` VALUES ('15', '15', 'Inserción de la institución en contextos académicos nacionales e internacionales', '5', '1');
-INSERT INTO `caracteristica` VALUES ('16', '16', 'Relaciones externas de profesores y estudiantes', '5', '1');
-INSERT INTO `caracteristica` VALUES ('17', '17', 'Formación para la investigación', '6', '1');
-INSERT INTO `caracteristica` VALUES ('18', '18', 'Investigación', '6', '1');
-INSERT INTO `caracteristica` VALUES ('19', '19', 'Institución y entorno', '7', '1');
-INSERT INTO `caracteristica` VALUES ('20', '20', 'Graduados e institución', '7', '1');
-INSERT INTO `caracteristica` VALUES ('21', '21', 'Sistemas de autoevaluación', '8', '1');
-INSERT INTO `caracteristica` VALUES ('22', '22', 'Sistemas de información', '8', '1');
-INSERT INTO `caracteristica` VALUES ('23', '23', 'Evaluación de directivas, profesores y personal administrativo', '8', '1');
-INSERT INTO `caracteristica` VALUES ('24', '24', 'Estructura y funcionamiento del bienestar institucional', '9', '1');
-INSERT INTO `caracteristica` VALUES ('25', '25', 'Administración y gestión', '10', '1');
-INSERT INTO `caracteristica` VALUES ('26', '26', 'Procesos de comunicación', '10', '1');
-INSERT INTO `caracteristica` VALUES ('27', '27', 'Capacidad de gestión', '10', '1');
-INSERT INTO `caracteristica` VALUES ('28', '28', 'Recursos de apoyo académico', '11', '1');
-INSERT INTO `caracteristica` VALUES ('29', '29', 'Infraestructura física', '11', '1');
-INSERT INTO `caracteristica` VALUES ('30', '30', 'Recursos, presupuesto y gestión financiera', '12', '1');
-INSERT INTO `caracteristica` VALUES ('31', '1', 'Misión, Visión y Proyecto Institucional', '13', '2');
-INSERT INTO `caracteristica` VALUES ('32', '2', 'Proyecto Educativo del Programa', '13', '2');
-INSERT INTO `caracteristica` VALUES ('33', '3', 'Relevancia académica y pertinencia social del programa', '13', '2');
-INSERT INTO `caracteristica` VALUES ('34', '4', 'Mecanismos de selección e ingreso', '14', '2');
-INSERT INTO `caracteristica` VALUES ('35', '5', 'Estudiantes admitidos y capacidad institucional', '14', '2');
-INSERT INTO `caracteristica` VALUES ('36', '6', 'Participación en actividades de formación integral ', '14', '2');
-INSERT INTO `caracteristica` VALUES ('37', '7', 'Reglamentos estudiantil y académico ', '14', '2');
-INSERT INTO `caracteristica` VALUES ('38', '8', 'Selección, vinculación y permanencia de profesores', '15', '2');
-INSERT INTO `caracteristica` VALUES ('39', '9', 'Estatuto profesoral', '15', '2');
-INSERT INTO `caracteristica` VALUES ('40', '10', 'Número, dedicación, nivel de formación y experiencia de los profesores', '15', '2');
-INSERT INTO `caracteristica` VALUES ('41', '11', 'Desarrollo profesoral', '15', '2');
-INSERT INTO `caracteristica` VALUES ('42', '12', 'Estímulos a la docencia, investigación, creación artística y cultural, extensión o proyección social y a la cooperación internacional', '15', '2');
-INSERT INTO `caracteristica` VALUES ('43', '13', 'Producción, pertinencia, utilización e impacto de material docente', '15', '2');
-INSERT INTO `caracteristica` VALUES ('44', '14', 'Remuneración por méritos', '15', '2');
-INSERT INTO `caracteristica` VALUES ('45', '15', 'Evaluación de profesores', '15', '2');
-INSERT INTO `caracteristica` VALUES ('46', '16', 'Integralidad del currículo', '16', '2');
-INSERT INTO `caracteristica` VALUES ('47', '17', 'Flexibilidad del currículo', '16', '2');
-INSERT INTO `caracteristica` VALUES ('48', '18', 'Interdisciplinariedad', '16', '2');
-INSERT INTO `caracteristica` VALUES ('49', '19', 'Estrategias de enseñanza y aprendizaje', '16', '2');
-INSERT INTO `caracteristica` VALUES ('50', '20', 'Sistema de evaluación de estudiantes', '16', '2');
-INSERT INTO `caracteristica` VALUES ('51', '21', 'Trabajos de los estudiantes', '16', '2');
-INSERT INTO `caracteristica` VALUES ('52', '22', 'Evaluación y autorregulación del programa', '16', '2');
-INSERT INTO `caracteristica` VALUES ('53', '23', 'Extensión o proyección social', '16', '2');
-INSERT INTO `caracteristica` VALUES ('54', '24', 'Recursos bibliográficos', '16', '2');
-INSERT INTO `caracteristica` VALUES ('55', '25', 'Recursos informáticos y de comunicación', '16', '2');
-INSERT INTO `caracteristica` VALUES ('56', '26', 'Recursos de apoyo docente', '16', '2');
-INSERT INTO `caracteristica` VALUES ('57', '27', 'Inserción del programa en contextos académicos nacionales e internacionales', '17', '2');
-INSERT INTO `caracteristica` VALUES ('58', '28', 'Relaciones externas de profesores y estudiantes', '17', '2');
-INSERT INTO `caracteristica` VALUES ('59', '29', 'Formación para la investigación, la innovación y la creación artística y cultural', '18', '2');
-INSERT INTO `caracteristica` VALUES ('60', '30', 'Compromiso con la investigación, la innovación y la creación artística y cultural', '18', '2');
-INSERT INTO `caracteristica` VALUES ('61', '31', 'Políticas, programas y servicios de bienestar universitario', '19', '2');
-INSERT INTO `caracteristica` VALUES ('62', '32', 'Permanencia y retención estudiantil', '19', '2');
-INSERT INTO `caracteristica` VALUES ('63', '33', 'Organización, administración y gestión del programa', '20', '2');
-INSERT INTO `caracteristica` VALUES ('64', '34', 'Sistemas de comunicación e información', '20', '2');
-INSERT INTO `caracteristica` VALUES ('65', '35', 'Dirección del programa', '20', '2');
-INSERT INTO `caracteristica` VALUES ('66', '36', 'Seguimiento de los egresados', '21', '2');
-INSERT INTO `caracteristica` VALUES ('67', '37', 'Impacto de los egresados en el medio social y académico', '21', '2');
-INSERT INTO `caracteristica` VALUES ('68', '38', 'Recursos físicos', '22', '2');
-INSERT INTO `caracteristica` VALUES ('69', '39', 'Presupuesto del programa', '22', '2');
-INSERT INTO `caracteristica` VALUES ('70', '40', 'Administración de recursos', '22', '2');
-INSERT INTO `caracteristica` VALUES ('85', '1.1', 'La denominación o nombre del programa; el título que se va a expedir; el nivel técnico profesional, tecnológico, profesional universitario, de especialización, maestría o doctorado al que aplica, y su correspondencia con losmcontenidos curriculares del programa', '23', '4');
-INSERT INTO `caracteristica` VALUES ('86', '2.2', 'El estado de la educación en el área del programa, y de la ocupación, profesión arte u oficio, cuando sea del caso, en los ámbitos nacional e internacional.', '24', '4');
-INSERT INTO `caracteristica` VALUES ('87', '2.3', 'Las necesidades del país o de la región que, según la propuesta, puedan tener relación con el programa en concordancia con referentes internacionales, si éstos vienen al caso. Para tal efecto se tomará como referente la información suministrada por la institución y la disponible en el Observatorio Laboral del Ministerio de Educación Nacional y  demás sistemas de información de los que éste dispone.', '24', '4');
-INSERT INTO `caracteristica` VALUES ('88', '2.4', 'Una explicación de los atributos o factores que constituyen los rasgos distintivos del programa.', '24', '4');
-INSERT INTO `caracteristica` VALUES ('89', '3.5', 'La fundamentación teórica del programa. ', '25', '4');
-INSERT INTO `caracteristica` VALUES ('90', '3.6', 'Los propósitos de formación del programa, las competencias y los perfiles definidos', '25', '4');
-INSERT INTO `caracteristica` VALUES ('91', '3.7', 'El plan general de estudios representado en créditos académicos. ', '25', '4');
-INSERT INTO `caracteristica` VALUES ('92', '3.8', 'El componente de interdisciplinariedad del programa.', '25', '4');
-INSERT INTO `caracteristica` VALUES ('93', '3.9', 'Las estrategias de flexibilización para el desarrollo del programa.', '25', '4');
-INSERT INTO `caracteristica` VALUES ('94', '3.10', 'Los lineamientos pedagógicos y didácticos adoptados en la institución según la metodología y modalidad del programa', '25', '4');
-INSERT INTO `caracteristica` VALUES ('95', '3.11', 'El contenido general de las actividades académicas. ', '25', '4');
-INSERT INTO `caracteristica` VALUES ('96', '3.12', 'En el caso de los programas por ciclos propedéuticos, además se debe describir el componente propedéutico que hace parte de los programas.', '25', '4');
-INSERT INTO `caracteristica` VALUES ('97', '3.13', 'En el caso de los programas por ciclos propedéuticos, además se debe describir el componente propedéutico que hace parte de los programas. Las estrategias pedagógicas que apunten al desarrollo de competencias comunicativas en un segundo idioma en los programas de pregrado.', '25', '4');
-INSERT INTO `caracteristica` VALUES ('98', '4.14', 'La propuesta para la organización de las actividades académicas del programa (laboratorios, talleres, seminarios, etc.), que guarde coherencia con sus componentes y metodología, para alcanzar las metas de formación. ', '26', '4');
-INSERT INTO `caracteristica` VALUES ('99', '4.15', 'Los programas del área de ciencias de la salud deben prever las prácticas formativas, supervisadas por profesores responsables de ellas y disponer de los escenarios  propiados para su realización, y estarán sujetos a lo dispuesto en este decreto, en concordancia con la Ley 1164 de 2007, el modelo de evaluación de la relación docencia servicio y demás  normas vigentes sobre la materia', '26', '4');
-INSERT INTO `caracteristica` VALUES ('100', '5.16', 'El programa debe prever la manera como va a promover la formación investigativa de los estudiantes o los procesos de investigación, o de creación, en concordancia con el nivel de formación y sus objetivos. ', '27', '4');
-INSERT INTO `caracteristica` VALUES ('101', '5.17', 'El programa debe describir los procedimientos para incorporar el uso de las tecnologías de la información y de la comunicación en la formación investigativa de los estudiantes', '27', '4');
-INSERT INTO `caracteristica` VALUES ('102', '5.18', 'La existencia de un ambiente de investigación, innovación o creación, el cual exige políticas institucionales en la materia; una organización del trabajo investigativo que Incluya estrategias para incorporar los resultados de la investigación al quehacer formativo y medios para la difusión de los resultados de investigación. Para los programas nuevos de pregrado debe presentarse el proyecto previsto para el logro del ambiente de investigación y desarrollo de la misma, que contenga por lo menos recursos asignados, cronograma y los resultados esperados. ', '27', '4');
-INSERT INTO `caracteristica` VALUES ('103', '5.19', 'Los productos de investigación en los programas en funcionamiento de pregrado y posgrado y los resultados de investigación con auspicio institucional, para los programas nuevos de maestría y doctorado. Los resultados de procesos creativos de los programas en artes, podrán evidenciarse en exposiciones, escenificaciones, composiciones o interpretaciones y sustentarse en registro de la obra, estudios sobre el campo artístico y publicaciones en diversos formatos. ', '27', '4');
-INSERT INTO `caracteristica` VALUES ('104', '5.20', 'En los programas de maestría y doctorado la participación de los estudiantes en los grupos de investigación o en las unidades de investigación del programa. ', '27', '4');
-INSERT INTO `caracteristica` VALUES ('105', '5.21', 'La disponibilidad de profesores que tengan a su cargo fomentar la investigación y que cuenten con asignación horaria destinada a investigar; títulos de maestría o doctorado o experiencia y trayectoria en investigación demostrada con resultados debidamente publicados, patentados o registrados. ', '27', '4');
-INSERT INTO `caracteristica` VALUES ('106', '6.22', 'La vinculación con el sector productivo, según la naturaleza del programa.', '28', '4');
-INSERT INTO `caracteristica` VALUES ('107', '6.23', 'El trabajo con la comunidad o la forma en que ella puede beneficiarse.', '28', '4');
-INSERT INTO `caracteristica` VALUES ('108', '6.24', 'Con relación a programas en funcionamiento, el impacto derivado de la formación de los graduados, evidenciado a través de un documento que analice su desempeño laboral. En el caso de los programas nuevos, debe presentarse un análisis prospectivo del potencial desempeño de sus graduados. ', '28', '4');
-INSERT INTO `caracteristica` VALUES ('109', '6.25', 'La generación de nuevos conocimientos derivados de la investigación.', '28', '4');
-INSERT INTO `caracteristica` VALUES ('110', '6.26', 'El desarrollo de actividades de servicio social a la comunidad', '28', '4');
-INSERT INTO `caracteristica` VALUES ('111', '7.27', 'Estructura de la organización docente: La institución debe presentar la estructura y perfiles de su planta docente actual o futura, teniendo en cuenta la metodología y naturaleza del programa; la cifra de estudiantes prevista para los programas nuevos o matriculados para los programas en funcionamiento; las actividades académicas específicas que incorpora o la cantidad de trabajos de investigación que deban ser dirigidos en el caso de las maestrías y los doctorados. ', '29', '4');
-INSERT INTO `caracteristica` VALUES ('112', '7.28', 'Profesores con titulación académica acorde con la naturaleza del programa, equivalente o superior al nivel del programa en que se desempeñarán. Cuando no se ostente la pertinente titulación, de manera excepcional, podrá admitirse un número limitado de profesores que posean experiencia nacional o internacional y que acredite aportes en el campo de la ciencia, la tecnología, las artes o las humanidades, debidamente demostrado por la institución.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('113', '7.29', 'Profesores vinculados a proyectos de relación con el sector externo o que tengan experiencia laboral específica referida a las actividades académicas que van a desarrollar, cuando sea del caso.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('114', '7.30', 'Un núcleo de profesores de tiempo completo con experiencia acreditada en investigación, con formación de maestría o doctorado en el caso de los programas profesionales universitarios y de posgrado, o con especialización cuando se trate de programas técnicos profesionales y tecnológicos. Las funciones sustantivas de un programa están en cabeza de los profesores de tiempo completo. La institución además de presentar el núcleo de profesores de tiempo completo debe presentar los perfiles de los demás profesores contratados o que se obliga a contratar indicando funciones y tipo de vinculación. En razón de que los roles de los profesores de tiempo completo, medio tiempo y hora cátedra son distintos, no es factible invocar equivalencia entre estas modalidades de dedicación para efectos de establecer la cantidad de profesores de tiempo completo y medio tiempo con vinculación al programa.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('115', '7.31', 'Idoneidad de los profesores encargados de desarrollar los programas a distancia o virtuales, y los mecanismos de acompañamiento y de seguimiento de su desempeño. Cuando la complejidad del tipo de tecnologías de información y comunicación utilizadas en los programas lo requiera, se debe garantizar la capacitación de los profesores en  su uso.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('116', '7.32', 'Un plan de vinculación de docentes de acuerdo con la propuesta presentada, que incluya perfiles, funciones y tipo de vinculación', '29', '4');
-INSERT INTO `caracteristica` VALUES ('117', '7.33', 'Un plan de formación docente que promueva el mejoramiento de la calidad de los procesos de docencia, investigación y extensión.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('118', '7.34', 'Existencia y aplicación de un estatuto o reglamento docente.', '29', '4');
-INSERT INTO `caracteristica` VALUES ('119', '8.35', 'Disponibilidad y capacitación para el uso de por lo menos los siguientes medios educativos: recursos bibliográficos y de hemeroteca, bases de datos con licencia, equipos y aplicativos informáticos, sistemas de interconectividad, laboratorios físicos, escenarios de simulación virtual de experimentación y práctica, talleres con instrumentos y herramientas técnicas e insumos, según el programa y la demanda estudiantil real o potencial cuando se trate de programas nuevos.', '30', '4');
-INSERT INTO `caracteristica` VALUES ('120', '8.36', 'Adicionalmente podrán acreditar convenios interbibliotecarios con instituciones de educación superior o entidades privadas, que permitan el uso a los estudiantes y Profesores, como elementos complementarios que faciliten el acceso a la información.', '30', '4');
-INSERT INTO `caracteristica` VALUES ('121', '8.37', 'En los programas a distancia o virtuales la institución debe indicar el proceso de diseño, gestión, producción, distribución y uso de materiales y recursos, con observancia de las disposiciones que salvaguardan los derechos de autor. Para los programas nuevos adicionalmente la institución debe presentar los módulos que correspondan por lo menos al 15% de los créditos del programa completamente desarrollados, y el plan de diseño y desarrollo de los demás cursos que conforman el plan de estudios. Para el caso de los programas virtuales, deben estar disponibles en la plataforma seleccionada. ', '30', '4');
-INSERT INTO `caracteristica` VALUES ('122', '8.38', 'Respecto de los programas virtuales la institución debe garantizar la disponibilidad de una plataforma tecnológica apropiada, la infraestructura de conectividad y las herramientas metodológicas necesarias para su desarrollo, así como las estrategias de seguimiento, auditoría y verificación de la operación de dicha plataforma, y está obligada a suministrar información pertinente a la comunidad sobre los requerimientos tecnológicos y de conectividad necesarios para cursar el programa. ', '30', '4');
-INSERT INTO `caracteristica` VALUES ('123', '9.39', 'La institución debe garantizar una infraestructura física en aulas, biblioteca, auditorios, laboratorios y espacios para la enseñanza, el aprendizaje y el bienestar universitario, de acuerdo con la naturaleza del programa, considerando la modalidad de formación, la metodología y las estrategias pedagógicas, las actividades docentes, investigativas, administrativas y de proyección social y el número de estudiantes y profesores previstos para el desarrollo del programa.', '31', '4');
-INSERT INTO `caracteristica` VALUES ('124', '9.40', 'La institución debe acreditar que la infraestructura inmobiliaria propuesta cumple las normas de uso del suelo autorizado de conformidad con las disposiciones locales del municipio en cuya jurisdicción se desarrollará el programa.', '31', '4');
-INSERT INTO `caracteristica` VALUES ('125', '9.41', 'Para los programas en ciencias de la salud que impliquen formación en el campo asistencial es indispensable la disponibilidad de escenarios de práctica de conformidad con las normas vigentes.', '31', '4');
-INSERT INTO `caracteristica` VALUES ('126', '9.42', 'Para los programas virtuales la institución debe evidenciar la infraestructura de hardware y conectividad; el software que permita la producción de materiales, la  disponibilidad de plataformas de aulas virtuales y aplicativos para la administración de procesos de formación y demás procesos académicos, administrativos y de apoyo en línea; las herramientas de comunicación, interacción, evaluación y seguimiento; el acceso a bibliotecas y bases de datos digitales; las estrategias y dispositivos de seguridad de la información y de la red institucional; las políticas de renovación y actualización tecnológica, y el plan estratégico de tecnologías de información y comunicación que garantice su confiabilidad y estabilidad.', '31', '4');
-INSERT INTO `caracteristica` VALUES ('127', '9.43', 'La institución debe informar y demostrar respecto de los programas a distancia o virtuales que requieran la presencia de los estudiantes en centros de tutoría, de prácticas, clínicas o talleres, que cuenta con las condiciones de infraestructura y de medios educativos en el lugar donde se realizarán.', '31', '4');
-INSERT INTO `caracteristica` VALUES ('128', '10.44', 'La existencia de documentos de política institucional, estatuto docente y reglamento estudiantil, en los que se adopten mecanismos y criterios para la selección, permanencia, promoción y evaluación de los profesores y de los estudiantes, con sujeción a lo previsto en la Constitución y la ley. Tales instrumentos deben estar dispuestos en la página Web institucional.', '32', '4');
-INSERT INTO `caracteristica` VALUES ('129', '10.45', 'La institución que pretenda ofrecer y desarrollar programas a distancia o virtuales, debe incorporar en tales documentos los mecanismos de selección, inducción a la  modalidad, seguimiento y acompañamiento a los estudiantes por parte de los tutores o consejeros .', '32', '4');
-INSERT INTO `caracteristica` VALUES ('130', '10.46', 'Para los programas en el área de la salud que impliquen formación en el campo asistencial, los cupos de matrícula deben estar sujetos a la capacidad autorizada a los escenarios de práctica.', '32', '4');
-INSERT INTO `caracteristica` VALUES ('131', '11.47', 'La existencia de una estructura organizativa, sistemas de información y mecanismos de gestión que permitan ejecutar procesos de planeación, administración, evaluación y seguimiento de los contenidos curriculares, de las experiencias investigativas y de los diferentes servicios y recursos.', '33', '4');
-INSERT INTO `caracteristica` VALUES ('132', '11.48', 'La infraestructura y sistemas de información de las cuales disponga la institución deben garantizar, entre otros aspectos, conectividad que facilite el intercambio y reporte electrónico de información con el Ministerio de Educación Nacional.', '33', '4');
-INSERT INTO `caracteristica` VALUES ('133', '11.49', 'Para el caso de los programas a distancia o virtuales debe preverse que dicha estructura garantice el soporte al diseño, la producción y el montaje del material pedagógico y el servicio de mantenimiento, así como el seguimiento a estudiantes, profesores y personal de apoyo.', '33', '4');
-INSERT INTO `caracteristica` VALUES ('134', '12.50', 'La existencia o promoción de una cultura de autoevaluación que tenga en cuenta el diseño y aplicación de políticas que involucren a los distintos miembros de la comunidad académica, y pueda ser verificable a través de evidencias e indicadores de resultado. La autoevaluación abarcará las distintas condiciones de calidad, los resultados que ha obtenido en matrícula, permanencia y grado, al igual que el efecto de las estrategias aplicadas para mejorar los resultados en los exámenes de calidad para la educación superior.', '34', '4');
-INSERT INTO `caracteristica` VALUES ('135', '12.51', 'Para la renovación del registro calificado la institución de educación superior debe presentar además los resultados de al menos dos procesos de autoevaluación realizados durante la vigencia del registro calificado, de tal forma que entre su aplicación exista por lo menos un intervalo de dos años. ', '34', '4');
-INSERT INTO `caracteristica` VALUES ('136', '13.52', 'El desarrollo de una estrategia de seguimiento de corto y largo plazo a egresados, que permita conocer y valorar su desempeño y el impacto social del programa, así como estimular el intercambio de experiencias académicas e investigativas. Para tal efecto, la institución podrá apoyarse en la información que brinda el Ministerio de Educación Nacional a través del Observatorio Laboral para la Educación y los demás sistemas de información disponibles. Para la renovación del registro calificado la institución de educación superior debe presenta los resultados de la aplicación de esta estrategia. ', '35', '4');
-INSERT INTO `caracteristica` VALUES ('137', '14.53', 'La institución debe definir la organización encargada de planear y ejecutar programas y actividades de bienestar en las que participe la comunidad educativa, procurar espacios físicos que propicien el aprovechamiento del tiempo libre, atender las áreas de salud, cultura, desarrollo humano, promoción socioeconómica, recreación y deporte, ya sea  con infraestructura propia o la que se pueda obtener mediante convenios, así como propiciar el establecimiento de canales de expresión a través de los cuales puedan manifestar los usuarios sus opiniones e inquietudes, sugerencias e iniciativas', '36', '4');
-INSERT INTO `caracteristica` VALUES ('138', '14.54', 'Las acciones de bienestar universitario exigen la existencia de programas y servicios preventivos de salud para la atención de emergencias, primeros auxilios y situaciones de riesgo en las instalaciones de la institución de educación superior. ', '36', '4');
-INSERT INTO `caracteristica` VALUES ('139', '14.55', 'El modelo de bienestar debe identificar y hacer seguimiento a las variables asociadas a la deserción y a las estrategias orientadas a disminuirla, para lo cual debe utilizar la información del Sistema para la Prevención y Análisis de la Deserción en las Instituciones de Educación Superior -SPADIES-, del Ministerio de Educación Nacional. Si se trata de un programa nuevo se deben tomar como referentes las tasas de deserción, las variables y las estrategias institucionales.', '36', '4');
-INSERT INTO `caracteristica` VALUES ('140', '14.56', 'Para los programas a distancia o virtuales la institución debe plantear las estrategias que permitan la participación de los estudiantes en los planes de bienestar universitario.', '36', '4');
-INSERT INTO `caracteristica` VALUES ('141', '15.57', 'La viabilidad financiera para la oferta y desarrollo del programa de acuerdo con su metodología, para lo cual debe presentar el estudio de factibilidad económica elaborado para tal efecto o el correspondiente plan de inversión cuando se trate de programas en funcionamiento. El estudio debe desagregar los montos y fuentes de origen de los recursos de inversión y funcionamiento previstos para el cumplimiento de las condiciones de calidad propuestas y la proyección de ingresos y egresos que cubra por lo menos una cohorte.', '37', '4');
-INSERT INTO `caracteristica` VALUES ('142', '1.1', 'Cumplimiento con los objetivos del programa y coherencia con la Visión, Misión y Proyecto Institucional de la Universidad', '38', '3');
-INSERT INTO `caracteristica` VALUES ('143', '2.2', 'El perfil o características al momento de su ingres', '39', '3');
-INSERT INTO `caracteristica` VALUES ('144', '2.3', 'Permanencia y desempeño de los estudiantes durante el posgrado', '39', '3');
-INSERT INTO `caracteristica` VALUES ('145', '2.4', 'Características de los graduados del programa', '39', '3');
-INSERT INTO `caracteristica` VALUES ('146', '3.5', 'Perfil de los profesores', '40', '3');
-INSERT INTO `caracteristica` VALUES ('147', '3.6', 'Producción científica de los profesores', '40', '3');
-INSERT INTO `caracteristica` VALUES ('148', '3.7', 'Relación estudiante/tutor', '40', '3');
-INSERT INTO `caracteristica` VALUES ('149', '3.8', 'Política sobre profesores', '40', '3');
-INSERT INTO `caracteristica` VALUES ('150', '4.9', 'Formación, aprendizaje y desarrollo de investigadores: el papel de las tutorías de posgrado', '41', '3');
-INSERT INTO `caracteristica` VALUES ('151', '4.10', 'Formación del investigador en términos de capacidad para comprender el entorno social y geopolítico de la ciencia', '41', '3');
-INSERT INTO `caracteristica` VALUES ('152', '4.11', 'Flexibilidad del currículo', '41', '3');
-INSERT INTO `caracteristica` VALUES ('153', '4.12', 'Aseguramiento de la calidad y mejora continua', '41', '3');
-INSERT INTO `caracteristica` VALUES ('154', '5.13', 'Articulación de la investigación o la creación artística al programa', '42', '3');
-INSERT INTO `caracteristica` VALUES ('155', '5.14', 'Los grupos de investigación y sus líneas', '42', '3');
-INSERT INTO `caracteristica` VALUES ('156', '5.15', 'Productos de la investigación y su impacto', '42', '3');
-INSERT INTO `caracteristica` VALUES ('157', '6.16', 'Posibilidad de trabajo inter y transdisciplinario', '43', '3');
-INSERT INTO `caracteristica` VALUES ('158', '6.17', 'Relevancia de las líneas de investigación y de las Tesis de grado para el desarrollo del país o de la región', '43', '3');
-INSERT INTO `caracteristica` VALUES ('159', '6.18', 'Experiencias de interacción con el entorno', '43', '3');
-INSERT INTO `caracteristica` VALUES ('160', '7.19', 'Internacionalización del currículo y bilingüismo', '44', '3');
-INSERT INTO `caracteristica` VALUES ('161', '7.20', 'Internacionalización de los estudiantes y profesores (movilidad internacional)', '44', '3');
-INSERT INTO `caracteristica` VALUES ('162', '7.21', 'Internacionalización de la investigación y de los graduados', '44', '3');
-INSERT INTO `caracteristica` VALUES ('163', '8.22', 'Actividades de bienestar', '45', '3');
-INSERT INTO `caracteristica` VALUES ('164', '9.23', 'Producción científica de los graduados', '46', '3');
-INSERT INTO `caracteristica` VALUES ('165', '9.24', 'Análisis del impacto del programa', '46', '3');
-INSERT INTO `caracteristica` VALUES ('166', '10.25', 'Infraestructura física adecuada', '47', '3');
-INSERT INTO `caracteristica` VALUES ('167', '10.26', 'Recursos bibliográficos y de comunicación', '47', '3');
-INSERT INTO `caracteristica` VALUES ('168', '10.27', 'Adecuado apoyo administrativo a las actividades de docencia, investigación y extensión del programa', '47', '3');
-INSERT INTO `caracteristica` VALUES ('169', '10.28', 'Presupuesto del programa', '47', '3');
-INSERT INTO `caracteristica` VALUES ('170', '10.29', 'Gestión del programa', '47', '3');
-INSERT INTO `caracteristica` VALUES ('171', 'Cod1', 'Caract Desc', '12', null);
+INSERT INTO `caracteristica` VALUES ('172', '1', 'COHERENCIA Y PERTINENCIA DE LA MISIÓN.', '60', '1');
+INSERT INTO `caracteristica` VALUES ('173', '2', 'ORIENTACIONES Y ESTRATEGIAS DEL PROYECTO EDUCATIVO INSTITUCIONAL O LO QUE HAGA SUS VECES', '60', '1');
+INSERT INTO `caracteristica` VALUES ('174', '3', 'FORMACIÓN INTEGRAL Y CONSTRUCCIÓN DE IDENTIDAD', '60', '1');
+INSERT INTO `caracteristica` VALUES ('175', '4', 'BUEN GOBIERNO Y MÁXIMO ÓRGANO DE GOBIERNO', '61', '1');
+INSERT INTO `caracteristica` VALUES ('176', '5', 'RELACIÓN CON GRUPOS DE INTERÉS', '61', '1');
+INSERT INTO `caracteristica` VALUES ('177', '7', 'ADMINISTRACIÓN Y GESTIÓN', '62', '1');
+INSERT INTO `caracteristica` VALUES ('178', '8', 'PROCESOS DE COMUNICACIÓN', '62', '1');
+INSERT INTO `caracteristica` VALUES ('179', '9', 'CAPACIDAD DE GESTIÓN.', '62', '1');
+INSERT INTO `caracteristica` VALUES ('180', '10', 'RECURSOS DE APOYO ACADÉMICO', '62', '1');
+INSERT INTO `caracteristica` VALUES ('181', '11', 'INFRAESTRUCTURA FÍSICA Y TECNOLÓGICA', '62', '1');
+INSERT INTO `caracteristica` VALUES ('182', '12', 'RECURSOS Y GESTIÓN FINANCIERA', '62', '1');
+INSERT INTO `caracteristica` VALUES ('183', '13', 'CULTURA DE LA AUTOEVALUACIÓN', '63', '1');
+INSERT INTO `caracteristica` VALUES ('184', '14', 'PROCESOS DE AUTORREGULACIÓN.', '63', '1');
+INSERT INTO `caracteristica` VALUES ('185', '15', 'SISTEMA INTERNO DE ASEGURAMIENTO DE LA CALIDAD', '63', '1');
+INSERT INTO `caracteristica` VALUES ('186', '16', 'EVALUACIÓN DE DIRECTIVAS, PROFESORES Y PERSONAL ADMINISTRATIVO', '63', '1');
+INSERT INTO `caracteristica` VALUES ('187', '17', 'COMPONENTES FORMATIVOS', '64', '1');
+INSERT INTO `caracteristica` VALUES ('188', '18', 'COMPONENTES PEDAGÓGICOS Y DE EVALUACIÓN', '64', '1');
+INSERT INTO `caracteristica` VALUES ('189', '20', 'PROCESOS DE CREACIÓN, MODIFICACIÓN Y AMPLIACIÓN DE PROGRAMAS ACADÉMICOS', '64', '1');
+INSERT INTO `caracteristica` VALUES ('190', '21', 'FORMACIÓN PARA LA INVESTIGACIÓN, CREACIÓN E INNOVACIÓN', '65', '1');
+INSERT INTO `caracteristica` VALUES ('191', '22', 'INVESTIGACIÓN, DESARROLLO TECNOLÓGICO, INNOVACIÓN Y CREACIÓN', '65', '1');
+INSERT INTO `caracteristica` VALUES ('192', '23', 'INSTITUCIÓN Y ENTORNO', '66', '1');
+INSERT INTO `caracteristica` VALUES ('193', '27', 'ESTRUCTURA Y FUNCIONAMIENTO DEL BIENESTAR INSTITUCIONAL.', '68', '1');
+INSERT INTO `caracteristica` VALUES ('194', '28', 'DERECHOS Y DEBERES DE LOS PROFESORES', '69', '1');
+INSERT INTO `caracteristica` VALUES ('195', '29', 'PLANTA PROFESORAL', '69', '1');
+INSERT INTO `caracteristica` VALUES ('196', '30', 'TRAYECTORIA PROFESORAL', '69', '1');
+INSERT INTO `caracteristica` VALUES ('197', '31', 'DESARROLLO PROFESORAL', '69', '1');
+INSERT INTO `caracteristica` VALUES ('198', '33', 'DERECHOS Y DEBERES DE LOS ESTUDIANTES', '70', '1');
+INSERT INTO `caracteristica` VALUES ('199', '34', 'ADMISIÓN Y PERMANENCIA DE ESTUDIANTES.', '70', '1');
+INSERT INTO `caracteristica` VALUES ('200', '35', 'ESTÍMULOS Y APOYOS PARA ESTUDIANTES', '70', '1');
+INSERT INTO `caracteristica` VALUES ('201', '37', 'EGRESADOS Y PROGRAMAS ACADÉMICOS', '71', '1');
+INSERT INTO `caracteristica` VALUES ('202', '38', 'RELACIÓN DE LOS EGRESADOS CON LA INSTITUCIÓN', '71', '1');
 
 -- ----------------------------
 -- Table structure for encuesta
@@ -508,58 +382,23 @@ CREATE TABLE `factor` (
   PRIMARY KEY (`id`),
   KEY `fk_factor_modelo1_idx` (`modelo_id`),
   CONSTRAINT `fk_factor_modelo1` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of factor
 -- ----------------------------
-INSERT INTO `factor` VALUES ('1', '1', 'Misión y Proyecto Institucional', '1');
-INSERT INTO `factor` VALUES ('2', '2', 'Estudiantes', '1');
-INSERT INTO `factor` VALUES ('3', '3', 'Profesores', '1');
-INSERT INTO `factor` VALUES ('4', '4', 'Procesos Académicos', '1');
-INSERT INTO `factor` VALUES ('5', '5', 'Visibilidad Nacional e Internacional', '1');
-INSERT INTO `factor` VALUES ('6', '6', 'Investigación y Creación Artística', '1');
-INSERT INTO `factor` VALUES ('7', '7', 'Pertinencia e Impacto Social', '1');
-INSERT INTO `factor` VALUES ('8', '8', 'Procesos de Autoevaluación y Autorregulación', '1');
-INSERT INTO `factor` VALUES ('9', '9', 'Bienestar Institucional', '1');
-INSERT INTO `factor` VALUES ('10', '10', 'Organización, Gestión y Administración', '1');
-INSERT INTO `factor` VALUES ('11', '11', 'Recursos de Apoyo Académico e Infraestructura Física', '1');
-INSERT INTO `factor` VALUES ('12', '12', 'Recursos Financieros', '1');
-INSERT INTO `factor` VALUES ('13', '1', 'Misión, Proyecto Institucional y de programa', '2');
-INSERT INTO `factor` VALUES ('14', '2', 'Estudiantes', '2');
-INSERT INTO `factor` VALUES ('15', '3', 'Profesores', '2');
-INSERT INTO `factor` VALUES ('16', '4', 'Procesos académicos', '2');
-INSERT INTO `factor` VALUES ('17', '5', 'Visibilidad nacional e internacional', '2');
-INSERT INTO `factor` VALUES ('18', '6', 'Investigación, innovación, creación artística y cultural', '2');
-INSERT INTO `factor` VALUES ('19', '7', 'Bienestar institucional', '2');
-INSERT INTO `factor` VALUES ('20', '8', 'Organización, administración y gestión', '2');
-INSERT INTO `factor` VALUES ('21', '9', 'Impacto de los egresados en el medio', '2');
-INSERT INTO `factor` VALUES ('22', '10', 'Recursos físicos y financieros', '2');
-INSERT INTO `factor` VALUES ('23', '1', 'Denominación', '4');
-INSERT INTO `factor` VALUES ('24', '2', 'Justificación', '4');
-INSERT INTO `factor` VALUES ('25', '3', 'Contenidos curriculares', '4');
-INSERT INTO `factor` VALUES ('26', '4', 'Organización de las actividades académicas.', '4');
-INSERT INTO `factor` VALUES ('27', '5', 'Investigación', '4');
-INSERT INTO `factor` VALUES ('28', '6', 'Relación con el sector externo', '4');
-INSERT INTO `factor` VALUES ('29', '7', 'Personal Docente', '4');
-INSERT INTO `factor` VALUES ('30', '8', 'Medios Educativos', '4');
-INSERT INTO `factor` VALUES ('31', '9', 'Infraestructura Física', '4');
-INSERT INTO `factor` VALUES ('32', '10', 'Mecanismos de selección y evaluación.', '4');
-INSERT INTO `factor` VALUES ('33', '11', 'Estructura administrativa y académica.', '4');
-INSERT INTO `factor` VALUES ('34', '12', 'Autoevaluación.', '4');
-INSERT INTO `factor` VALUES ('35', '13', 'Programa de egresados', '4');
-INSERT INTO `factor` VALUES ('36', '14', 'Bienestar universitario', '4');
-INSERT INTO `factor` VALUES ('37', '15', 'Recursos financieros suficientes', '4');
-INSERT INTO `factor` VALUES ('38', '1', 'Cumplimiento de los objetivos del programa y coherencia con la Visión y Misión de la Universidad', '3');
-INSERT INTO `factor` VALUES ('39', '2', 'Estudiantes', '3');
-INSERT INTO `factor` VALUES ('40', '3', 'Profesores - Investigadores', '3');
-INSERT INTO `factor` VALUES ('41', '4', 'Procesos académicos y lineamientos curriculares', '3');
-INSERT INTO `factor` VALUES ('42', '5', 'Investigación, generación de conocimiento y producción artística', '3');
-INSERT INTO `factor` VALUES ('43', '6', 'Articulación con el entorno y capacidad para generar procesos de innovación', '3');
-INSERT INTO `factor` VALUES ('44', '7', 'Internacionalización, alianzas estratégicas e inserción en redes científicas globales', '3');
-INSERT INTO `factor` VALUES ('45', '8', 'Bienestar y ambiente institucional', '3');
-INSERT INTO `factor` VALUES ('46', '9', 'Graduados y análisis de impacto del programa', '3');
-INSERT INTO `factor` VALUES ('47', '10', 'Recursos físicos y gestión administrativa y financiera', '3');
+INSERT INTO `factor` VALUES ('60', '1', 'IDENTIDAD INSTITUCIONAL', '1');
+INSERT INTO `factor` VALUES ('61', '2', 'GOBIERNO INSTITUCIONAL Y TRANSPARENCIA', '1');
+INSERT INTO `factor` VALUES ('62', '3', 'DESARROLLO, GESTIÓN Y SOSTENIBILIDAD INSTITUCIONAL.', '1');
+INSERT INTO `factor` VALUES ('63', '4', 'MEJORAMIENTO CONTINUO Y AUTORREGULACIÓN', '1');
+INSERT INTO `factor` VALUES ('64', '5', 'ESTRUCTURA Y PROCESOS ACADÉMICOS', '1');
+INSERT INTO `factor` VALUES ('65', '6', 'APORTES DE LA INVESTIGACIÓN, LA INNOVACIÓN, EL DESARROLLO TECNOLÓGICO Y LA CREACIÓN AL ENTORNO', '1');
+INSERT INTO `factor` VALUES ('66', '7', 'IMPACTO SOCIAL', '1');
+INSERT INTO `factor` VALUES ('67', '8', 'FACTOR 8', '1');
+INSERT INTO `factor` VALUES ('68', '9', 'BIENESTAR INSTITUCIONAL', '1');
+INSERT INTO `factor` VALUES ('69', '10', 'COMUNIDAD DE PROFESORES', '1');
+INSERT INTO `factor` VALUES ('70', '11', 'COMUNIDAD DE ESTUDIANTES.', '1');
+INSERT INTO `factor` VALUES ('71', '12', 'COMUNIDAD DE EGRESADOS.', '1');
 
 -- ----------------------------
 -- Table structure for facultad
@@ -764,7 +603,7 @@ INSERT INTO `itempregunta` VALUES ('91', 'b. Considero que en la Universidad se 
 INSERT INTO `itempregunta` VALUES ('92', '\r\na. Conozco que la Universidad dispone de evidencias de las evaluaciones realizadas dentro del modelo de evaluación integral a profesores.', '355');
 INSERT INTO `itempregunta` VALUES ('93', 'b. Considero que las evidencias de las que dispone la Universidad sobre las evaluaciones realizadas dentro del modelo de evaluación integral a profesores son eficientes y eficaces.', '355');
 INSERT INTO `itempregunta` VALUES ('94', 'c. En mi opinión, las evidencias de las que dispone la Universidad sobre las evaluaciones realizadas dentro del modelo de evaluación integral a profesores son transparentes.', '355');
-INSERT INTO `itempregunta` VALUES ('95', 'siguientes afirmaciones:\r\n\r\na. Considero que la Universidad aplica un reglamento estudiantil que establece las condiciones de ingreso, permanencia, evaluación y graduación.', '357');
+INSERT INTO `itempregunta` VALUES ('95', 'a. Considero que la Universidad aplica un reglamento estudiantil que establece las condiciones de ingreso, permanencia, evaluación y graduación.', '357');
 INSERT INTO `itempregunta` VALUES ('96', 'b. En mi opinión, en el reglamento estudiantil de la Universidad establece los derechos y deberes de los estudiantes de los diferentes programas de pregrado y posgrado.', '357');
 INSERT INTO `itempregunta` VALUES ('97', 'a. Considero que la Universidad aplica criterios claros para el avance académico de los estudiantes.', '359');
 INSERT INTO `itempregunta` VALUES ('98', 'b. En mi opinión, la Universidad aplica criterios  especificos para las transferencias de programas.', '359');
@@ -18936,7 +18775,7 @@ CREATE TABLE `persona` (
   CONSTRAINT `fk_persona_fuente` FOREIGN KEY (`fuente_id`) REFERENCES `fuente` (`id`),
   CONSTRAINT `fk_persona_proceso` FOREIGN KEY (`proceso_id`) REFERENCES `proceso` (`id`),
   CONSTRAINT `fk_persona_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7315 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las persona que hacen parte del población de los procesos de autoevaluación';
+) ENGINE=InnoDB AUTO_INCREMENT=7319 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las persona que hacen parte del población de los procesos de autoevaluación';
 
 -- ----------------------------
 -- Records of persona
@@ -18966,7 +18805,7 @@ INSERT INTO `persona` VALUES ('1671', 'S', 'DIRECTOR(A) DE INFRAESTRUCTURA Y MED
 INSERT INTO `persona` VALUES ('1672', 'S', 'DIRECTOR(A) DE GESTIÓN HUMANA', null, 'N', 'A', null, '5', '1', '1327');
 INSERT INTO `persona` VALUES ('1673', 'S', 'DIRECTOR(A) DE SERVICIOS ADMINISTRATIVOS', null, 'N', 'A', null, '5', '1', '1328');
 INSERT INTO `persona` VALUES ('1674', 'S', 'DIRECTOR(A) DE TECNOLOGÍAS DE INFORMACIÓN Y COMUNICACIÓN', null, 'N', 'A', null, '5', '1', '1329');
-INSERT INTO `persona` VALUES ('1675', 'S', 'PROFESIONAL DE APOYO ADMINISTRATIVO Y BIENESTAR PREGRADO', '', 'N', 'A', null, '3', '1', '1330');
+INSERT INTO `persona` VALUES ('1675', 'S', 'PROFESIONAL DE APOYO ADMINISTRATIVO Y BIENESTAR PREGRADO', '', 'S', 'A', null, '3', '1', '1330');
 INSERT INTO `persona` VALUES ('1676', 'S', 'ASISTENTE DE OPERACIONES POSGRADO', '', 'N', 'A', null, '3', '1', '1331');
 INSERT INTO `persona` VALUES ('1677', 'S', 'AUXILIAR DE COMPENSACION', '', 'N', 'A', null, '3', '1', '1332');
 INSERT INTO `persona` VALUES ('1678', 'S', 'AUXILIAR DE COCINA', '', 'N', 'A', null, '3', '1', '1333');
@@ -19860,7 +19699,7 @@ INSERT INTO `persona` VALUES ('2565', 'S', 'MAESTRIA EN DESARR Y CULTURA', '2019
 INSERT INTO `persona` VALUES ('2566', 'S', 'MAESTRIA EN DESARR Y CULTURA', '201150', 'N', 'A', null, '7', '1', '2221');
 INSERT INTO `persona` VALUES ('2567', 'S', 'ESP GERENCIA DE PROD Y CALIDAD', '202060', 'N', 'A', null, '7', '1', '2222');
 INSERT INTO `persona` VALUES ('2568', 'S', 'MBA ESPECIALISTA', '202150', 'N', 'A', null, '7', '1', '2223');
-INSERT INTO `persona` VALUES ('2569', 'S', 'Contaduría Pública', null, 'N', 'A', null, '1', '1', '2224');
+INSERT INTO `persona` VALUES ('2569', 'S', 'Contaduría Pública', null, 'S', 'A', null, '1', '1', '2224');
 INSERT INTO `persona` VALUES ('2570', 'S', 'Ingeniería Industrial', null, 'N', 'A', null, '1', '1', '2225');
 INSERT INTO `persona` VALUES ('2571', 'S', 'Contaduría Pública', null, 'N', 'A', null, '1', '1', '2226');
 INSERT INTO `persona` VALUES ('2572', 'S', 'Ingeniería Biomédica', null, 'N', 'A', null, '1', '1', '2227');
@@ -24606,6 +24445,9 @@ INSERT INTO `persona` VALUES ('7311', 'S', 'COORDINACIÓN ESTADÍSTICA', null, '
 INSERT INTO `persona` VALUES ('7312', 'S', 'INGENIERÍA CIVIL', null, 'N', 'A', null, '2', '1', '6967');
 INSERT INTO `persona` VALUES ('7313', 'S', 'HUMANIDADES', null, 'N', 'A', null, '2', '1', '6968');
 INSERT INTO `persona` VALUES ('7314', 'S', 'INGENIERÍA DE SISTEMAS Y COMPUTACIÓN', null, 'N', 'A', null, '2', '1', '6969');
+INSERT INTO `persona` VALUES ('7315', 'N', 'EMAIL DE PRUEBA', 'VARIABLE DE PRUEBA', 'N', 'A', null, '1', '1', '6970');
+INSERT INTO `persona` VALUES ('7316', 'N', 'ViceRector Academico', '', 'N', 'A', null, '5', '1', '6971');
+INSERT INTO `persona` VALUES ('7318', 'S', 'ViceRector Academico', '', 'N', 'A', null, '5', '1', '6973');
 
 -- ----------------------------
 -- Table structure for pregunta
@@ -24656,7 +24498,7 @@ INSERT INTO `pregunta` VALUES ('329', null, 'Marque la respuesta que exprese mej
 INSERT INTO `pregunta` VALUES ('330', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConsidero que la Universidad cuenta con políticas y estrategias adecuadas para la asignación, ejecución y evaluación presupuestal y de administración financiera para atender al cumplimiento del Proyecto Educativo Institucional y el logro de las metas del plan de desarrollo institucional', '3', null, null, null, null, 'Desplegable');
 INSERT INTO `pregunta` VALUES ('331', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
 INSERT INTO `pregunta` VALUES ('332', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:\r\n', '3', null, null, null, null, 'Matriz con unica respuesta');
-INSERT INTO `pregunta` VALUES ('333', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco las políticas y estrategias implementadas por la Universidad para la gestión de la calidad, la autoevaluación y la planeación en las distintas áreas de desarrollo, unidades \r\nacadémicas y administrativas de la institución, así como su evolución y mejora. ', '3', null, null, null, null, 'Desplegable');
+INSERT INTO `pregunta` VALUES ('333', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nConozco las políticas y estrategias implementadas por la Universidad para la gestión de la calidad, la autoevaluación y la planeación en las distintas áreas de desarrollo, unidades académicas y administrativas de la institución, así como su evolución y mejora. ', '3', null, null, null, null, 'Desplegable');
 INSERT INTO `pregunta` VALUES ('334', null, 'Indique qué tan de acuerdo o en desacuerdo se encuentra usted con la siguiente afirmación:\r\n\r\nLa Universidad cuenta con políticas, mecanismos y estrategias institucionales claras para la designación del personal académico, administrativo y de apoyo; así como de la asignación de responsabilidades, funciones y procedimientos que deben seguirse dentro de la institución.', '3', null, null, null, null, 'Horizontal');
 INSERT INTO `pregunta` VALUES ('335', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '3', null, null, null, null, 'Matriz con unica respuesta');
 INSERT INTO `pregunta` VALUES ('336', null, 'Marque la respuesta que exprese mejor qué tan de acuerdo o en desacuerdo está usted con las siguientes afirmaciones:', '2', null, null, null, null, 'Matriz con unica respuesta');
@@ -24714,6 +24556,67 @@ CREATE TABLE `pregunta_has_caracteristica` (
 -- ----------------------------
 -- Records of pregunta_has_caracteristica
 -- ----------------------------
+INSERT INTO `pregunta_has_caracteristica` VALUES ('312', '172');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('313', '173');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('314', '173');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('315', '174');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('316', '175');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('317', '175');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('318', '175');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('319', '175');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('320', '176');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('321', '177');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('322', '177');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('323', '178');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('324', '178');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('325', '179');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('326', '179');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('327', '180');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('328', '181');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('329', '181');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('330', '182');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('331', '183');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('332', '184');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('333', '185');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('334', '186');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('335', '187');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('336', '187');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('337', '188');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('338', '189');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('339', '190');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('340', '190');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('341', '191');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('342', '191');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('343', '192');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('344', '193');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('345', '194');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('346', '194');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('347', '195');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('348', '195');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('349', '195');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('350', '195');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('351', '195');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('352', '196');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('353', '197');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('354', '197');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('355', '197');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('356', '197');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('357', '198');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('358', '198');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('359', '198');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('360', '198');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('361', '198');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('362', '199');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('363', '199');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('364', '199');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('365', '200');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('366', '200');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('367', '200');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('368', '201');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('369', '202');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('370', '202');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('371', '202');
+INSERT INTO `pregunta_has_caracteristica` VALUES ('372', '202');
 
 -- ----------------------------
 -- Table structure for privilegio
@@ -24966,11 +24869,159 @@ CREATE TABLE `resultadoevaluacion` (
   CONSTRAINT `fk_ResultadoEvaluacion_persona` FOREIGN KEY (`persona_id`) REFERENCES `persona` (`id`),
   CONSTRAINT `fk_ResultadoEvaluacion_pregunta1` FOREIGN KEY (`pregunta_id`) REFERENCES `pregunta` (`id`),
   CONSTRAINT `fk_ResultadoEvaluacion_tipo_pregunta` FOREIGN KEY (`tipo_pregunta_id`) REFERENCES `tipo_pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1127 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las respuestas dadas por las personas de la muestra a cada una de las preguntas en las encuestas aplicadas.';
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan las respuestas dadas por las personas de la muestra a cada una de las preguntas en las encuestas aplicadas.';
 
 -- ----------------------------
 -- Records of resultadoevaluacion
 -- ----------------------------
+INSERT INTO `resultadoevaluacion` VALUES ('97', '1', '312', '8', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('98', '1', '312', '9', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('99', '1', '312', '10', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('100', '2', '312', '11', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('101', '1', '312', '13', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('102', '2', '312', '14', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('103', '1', '312', '15', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('104', '2', '313', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('105', '1', '315', '16', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('106', '1', '315', '17', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('107', '1', '315', '18', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('108', '1', '315', '19', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('109', '1', '315', '20', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('110', '2', '316', '21', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('111', '2', '316', '22', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('112', '1', '316', '23', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('113', '3', '317', '24', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('114', '3', '317', '25', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('115', '1', '318', '26', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('116', '1', '318', '27', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('117', '2', '318', '28', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('118', '1', '319', '29', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('119', '2', '319', '30', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('120', '3', '319', '31', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('121', '3', '319', '32', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('122', '4', '319', '33', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('123', '3', '319', '34', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('124', '2', '319', '35', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('125', '1', '319', '37', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('126', '2', '319', '38', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('127', '1', '320', '39', '1', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('128', '1', '320', '40', '1', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('129', '2', '320', '41', '1', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('130', '3', '322', '44', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('131', '3', '322', '45', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('132', '2', '322', '46', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('133', '1', '322', '47', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('134', '1', '323', '48', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('135', '1', '323', '49', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('136', '1', '323', '50', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('137', '1', '324', '51', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('138', '2', '324', '52', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('139', '1', '324', '53', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('140', '2', '325', '54', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('141', '2', '325', '55', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('142', '3', '327', '56', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('143', '4', '327', '57', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('144', '1', '327', '58', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('145', '2', '328', '59', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('146', '2', '328', '60', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('147', '1', '328', '61', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('148', '2', '329', '62', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('149', '3', '329', '63', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('150', '2', '329', '64', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('151', '2', '332', '67', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('152', '2', '332', '68', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('153', '3', '332', '69', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('154', '2', '332', '70', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('155', '2', '335', '71', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('156', '3', '335', '72', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('157', '2', '335', '73', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('158', '1', '335', '74', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('159', '1', '336', '75', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('160', '2', '336', '76', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('161', '3', '336', '77', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('162', '3', '336', '78', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('163', '1', '337', '79', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('164', '1', '337', '80', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('165', '2', '339', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('166', '1', '342', '118', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('167', '1', '342', '119', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('168', '1', '343', '83', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('169', '1', '343', '84', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('170', '2', '344', '85', '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('171', '2', '347', '88', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('172', '1', '347', '89', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('173', '1', '350', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('174', '1', '357', '95', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('175', '3', '357', '96', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('176', '4', '358', null, '3', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('177', '3', '359', '97', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('178', '3', '359', '98', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('179', '5', '359', '99', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('180', '2', '360', '100', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('181', '1', '360', '101', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('182', '0', '361', '102', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('183', '0', '361', '103', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('184', '2', '362', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('185', '0', '363', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('186', '1', '364', '104', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('187', '1', '364', '105', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('188', '1', '364', '106', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('189', '1', '365', '107', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('190', '1', '365', '108', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('191', '1', '365', '109', '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('192', '1', '366', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('193', '1', '367', null, '2', '2569');
+INSERT INTO `resultadoevaluacion` VALUES ('194', '4', '312', '8', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('195', '1', '312', '9', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('196', '1', '312', '10', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('197', '1', '312', '11', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('198', '1', '312', '13', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('199', '1', '312', '14', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('200', '1', '312', '15', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('201', '2', '313', null, '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('202', '1', '315', '16', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('203', '1', '315', '17', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('204', '1', '315', '18', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('205', '1', '315', '19', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('206', '1', '315', '20', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('207', '1', '318', '26', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('208', '1', '318', '27', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('209', '1', '318', '28', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('210', '1', '320', '39', '1', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('211', '1', '320', '40', '1', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('212', '1', '320', '41', '1', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('213', '1', '321', '42', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('214', '1', '321', '43', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('215', '2', '322', '44', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('216', '2', '322', '45', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('217', '2', '322', '46', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('218', '2', '322', '47', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('219', '1', '323', '48', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('220', '1', '323', '49', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('221', '1', '323', '50', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('222', '1', '324', '51', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('223', '1', '324', '52', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('224', '1', '324', '53', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('225', '2', '325', '54', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('226', '2', '325', '55', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('227', '1', '326', null, '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('228', '1', '330', null, '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('229', '1', '331', '65', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('230', '1', '331', '66', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('231', '1', '332', '67', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('232', '1', '332', '68', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('233', '1', '332', '69', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('234', '1', '332', '70', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('235', '2', '333', null, '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('236', '1', '334', null, '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('237', '1', '335', '71', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('238', '1', '335', '72', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('239', '1', '335', '73', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('240', '1', '335', '74', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('241', '2', '344', '85', '3', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('242', '1', '361', '102', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('243', '1', '361', '103', '2', '1675');
+INSERT INTO `resultadoevaluacion` VALUES ('244', '3', '366', null, '2', '1675');
 
 -- ----------------------------
 -- Table structure for rol
@@ -25032,7 +25083,7 @@ CREATE TABLE `usuario` (
   `ultimo_reset_de_contrasena` varchar(45) DEFAULT NULL COMMENT 'fecha en que se hace el ultimo reseteo de la clave',
   `enabled` varchar(10) DEFAULT NULL COMMENT 'estado que indica si un usuario puede acceder o no al sistema',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6970 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan todos los usuario que acceden al sistema.';
+) ENGINE=InnoDB AUTO_INCREMENT=6974 DEFAULT CHARSET=utf8 COMMENT='Tabla donde se guardan todos los usuario que acceden al sistema.';
 
 -- ----------------------------
 -- Records of usuario
@@ -30702,3 +30753,6 @@ INSERT INTO `usuario` VALUES ('6966', 'T00057400', '73211243', 'JORGE LUIS VILLA
 INSERT INTO `usuario` VALUES ('6967', 'T00051182', '73194496', 'SERGIO  VILLAR SALINAS ', null, 'svillars@utb.edu.co', 'A', null, null);
 INSERT INTO `usuario` VALUES ('6968', 'T00036421', '367760', 'NICHOLAS FORD WOODWARD ', null, 'nwoodward@utb.edu.co', 'A', null, null);
 INSERT INTO `usuario` VALUES ('6969', 'T00000021', '73116898', 'ISAAC  ZUÑIGA SILGADO', null, 'izuniga@utb.edu.co', 'A', null, null);
+INSERT INTO `usuario` VALUES ('6970', '9999999', '9999999', 'NOMBRE 1', ' NOMBRE2', 'APELIIDO PRUEBA', 'A', null, '1');
+INSERT INTO `usuario` VALUES ('6971', '73214802', '73214802', 'Oscar Javier', 'Ballestero Pacheco', 'oscar7685@utb.edu.co', 'A', null, '1');
+INSERT INTO `usuario` VALUES ('6973', 'T00073214802', '73214802', 'Oscar Javier', 'Ballestero Pacheco', 'oscar7685@utb.edu.co', 'A', null, '1');

@@ -36,4 +36,26 @@ public class FuenteServiceImpl implements FuenteService{
         }
         return fuente;
     }   
+    
+    @Override
+    public List<Fuente> buscarFuentesXproceso(Integer procesoId) {
+        List<Fuente> fuentes = null;
+        try {
+            fuentes = fuenteRepository.findFuentesByProceso(procesoId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+        return fuentes;
+    }
+    
+     @Override
+    public List<Fuente> buscarFuentesXmodeloXpregunta(Integer idModelo, Integer idPregunta) {
+        List<Fuente> fuentes = null;
+        try {
+            fuentes = fuenteRepository.findByModeloPregunta(idModelo, idPregunta);
+        } catch (Exception e) {
+            log.error("Ha oscurrido un error inesperado:{} ", e);
+        }
+        return fuentes;
+    }
 }

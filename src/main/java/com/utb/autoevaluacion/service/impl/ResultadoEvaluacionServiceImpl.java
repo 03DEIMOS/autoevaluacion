@@ -46,4 +46,29 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
         }
     }
     
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuente(Integer procesoId, Integer itemPreguntaId, Integer fuenteId) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuente(procesoId, itemPreguntaId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado " + e, e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+    
+     @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuente(procesoId, preguntaId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado " + e, e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+    
+      
 }

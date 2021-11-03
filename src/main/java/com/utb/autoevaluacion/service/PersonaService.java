@@ -23,4 +23,6 @@ public interface PersonaService {
     Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente(Integer procesoId, Integer fuenteId);
     
     Integer cantidadTotalMuestraPorProcesoFuente(Integer procesoId, Integer fuenteId);
+    
+ 
 }

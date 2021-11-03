@@ -5,8 +5,10 @@
  */
 package com.utb.autoevaluacion.controller;
 
+import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.model.Proceso;
 import com.utb.autoevaluacion.service.InformeService;
+import com.utb.autoevaluacion.service.PreguntaService;
 import com.utb.autoevaluacion.service.ProcesoService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,9 @@ public class InformeController {
     @Autowired
     ProcesoService procesoService;
     
+    @Autowired
+    private PreguntaService preguntaService;
+    
     @GetMapping("/estadoGeneralDelProceso/{procesoId}")
     public String estadoGeneralDelProceso(@PathVariable Integer procesoId, Model model) {
         Proceso proceso = null;
@@ -48,6 +53,7 @@ public class InformeController {
         model.addAttribute("proceso", proceso);
         return "comitePrograma\\proceso\\informe\\estadoProceso";
     }
+    
     @GetMapping("/informeDMA/{procesoId}")
     public String informeDMAPorProceso(@PathVariable Integer procesoId, Model model) {
 
@@ -59,5 +65,12 @@ public class InformeController {
         }
         model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\dmaProgramas";
+    }
+    
+    @GetMapping("/informePreguntas")
+    public String informePreguntasPorProceso(Model model) {
+        //log.info("Ejecutanto metodo [informePreguntasPorProceso] procesoId:{} ", procesoId);
+        model.addAttribute("listaI", preguntaService.getPreguntas());
+        return "comitePrograma\\proceso\\informe\\informePreguntas";
     }
 }

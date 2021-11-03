@@ -16,5 +16,7 @@ public interface InformeService {
     List<Object> estadoGeneralDelProceso(Integer procesoId);
     
     List<Object> informeDMAPorProceso(Integer procesoId);
+    
+    //List<Object> informePreguntasPorProceso(Integer procesoId);
 
 }

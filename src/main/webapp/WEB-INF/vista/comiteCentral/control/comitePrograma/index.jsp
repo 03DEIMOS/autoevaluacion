@@ -45,7 +45,7 @@
                 <li><a href="#calificarCaracteristicas"><i class="icon-check"></i> Evaluar Caracteristica</a></li>
                 <li><a href="#subirAdjunto"><i class="icon-file-alt"></i> Anexos</a></li>
                 <li class="nav-header">Estado del proceso</li>
-                <li><a href="#estadoProceso"><i class="icon-bar-chart"></i> Estado del proceso</a></li>
+                <li><a href="#proceso/estadoProceso/${proceso.id}"><i class="icon-bar-chart"></i> Estado del proceso</a></li>
                 <!--<li><a  id="informeEncuesta"  href="#informeDMA"><i class="icon-table"></i> Informe DMA</a></li>
                 <li><a href="#graficasDMA"><i class="icon-bar-chart"></i> Graficas DMA</a></li>
                 <li><a href="#informeMatrizFactores"><i class="icon-bar-chart"></i> Matriz factores</a></li>

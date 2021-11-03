@@ -122,7 +122,7 @@ $(function() {
                 '<li><a href="#calificarCaracteristicas"><i class="icon-check"></i> Evaluar Caracteristica</a></li>' +
                 '<li><a href="#subirAdjunto"><i class="icon-file-alt"></i> Anexos</a></li>' +
                 '<li class="nav-header">Estado del proceso</li>' +
-                '<li><a href="#estadoProceso"><i class="icon-bar-chart"></i> Estado del proceso</a></li>' +
+                '<li><a href="#proceso/estadoProceso/' + procesoId + '"><i class="icon-bar-chart"></i> Estado del proceso</a></li>' +
                 '</ul>' +
                 '</div>'
                 );
@@ -167,11 +167,11 @@ $(function() {
                 || hash === "#selectorListMuestra" || hash === "#listMuestra" || hash === "#preparedEvaluador" || hash === "#preparedEditPonderarFactor"
                 || hash === "#preparedEditPonderarCara" || hash === "#generarMuestraAleatoria" || hash === "#preparedEditarMuestra"
                 || hash === "#editarMuestra" || hash === "#selectorListSemestre" || hash === "#preparedInfoNumerica" || hash === "#preparedInfoDocumental"
-                || hash === "#estadoProceso" || hash === "#informeMatrizFactores" || hash === "#informeMatrizCaracteristicas" || hash === "#listarEvaluarDoc" || hash === "#listarEvaluarNum"
+                || hash === "#proceso/estadoProceso/" + procesoId + "" || hash === "#informeMatrizFactores" || hash === "#informeMatrizCaracteristicas" || hash === "#listarEvaluarDoc" || hash === "#listarEvaluarNum"
                 || hash === "#listEncuestas" || hash === "#cerrarPreguntas" || hash === "#encuestaAleatoria" || hash === "#informeMatrizFactoresP" || hash === "#informeMatrizCaracteristicasP"
                 || hash === "#comentarios" || hash === "#todosResultados" || hash === "#listPonderacionInd" || hash === "#calificarCaracteristicas" || hash === "#listEvaluacionCara" || hash === "#editarEvaluacionCara" || hash === "#editarEvaluacionCara2" || hash === "#subirAdjunto" || hash === "#informeDMA" || hash === "#graficasDMA") {
             var url3 = "/autoevaluacion/" + hash;
-            url3 = url3.replace('#', "controladorCP?action=");
+            url3 = url3.replace('#', "");
             $("div.ui-layout-center").empty();
             $.ajax({
                 type: "POST",

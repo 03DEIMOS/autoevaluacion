@@ -101,10 +101,10 @@
                     </thead>
                     <tbody>
                         <tr> 
-                            <td class="span4">${Proceso.descripcion}</td>
-                            <td>${Proceso.fechainicio}</td>
-                            <td>${Proceso.fechacierre}</td>
-                            <td>${Proceso.programaId.nombre}</td>
+                            <td class="span4">${proceso.descripcion}</td>
+                            <td>${proceso.fechaInicio}</td>
+                            <td>${proceso.fechaCierre}</td>
+                            <!--<td>${proceso.programaId.nombre}</td>-->
                         </tr>
                     </tbody>
                 </table> 

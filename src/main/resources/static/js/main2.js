@@ -92,7 +92,7 @@ $(function () {
                 + '<li><a href="#detalleProceso"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
                 + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
                 + '<li class="nav-header">Estado del proceso</li>'
-                + '<li><a href="#estadoProceso"><i class="icon-bar-chart"></i> Estado del proceso</a></li>'
+                + '<li><a href="#proceso/estadoProceso/'+ procesoId +'"><i class="icon-bar-chart"></i> Estado del proceso</a></li>'
                 + '</ul>');
     };
 

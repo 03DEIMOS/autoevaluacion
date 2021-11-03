@@ -30,9 +30,8 @@
         <script src="<%=request.getContextPath()%>/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
     </head>
+
     <body>
-
-
         <div class="ui-layout-north ui-widget-content">
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">

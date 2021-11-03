@@ -16,5 +16,11 @@ public interface PersonaService {
     
     List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer procesoId, Integer fuenteId);
     
-
+    List<Persona> muestraPorProceso(Integer procesoId);
+    
+    List<Persona> personasEncuestaTerminadaPorProceso(Integer procesoId);
+    
+    Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente(Integer procesoId, Integer fuenteId);
+    
+    Integer cantidadTotalMuestraPorProcesoFuente(Integer procesoId, Integer fuenteId);
 }

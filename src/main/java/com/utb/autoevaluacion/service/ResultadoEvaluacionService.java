@@ -15,4 +15,8 @@ import java.util.List;
 public interface ResultadoEvaluacionService {
     
     void asignarResultadoEvaluacion(List<ResultadoEvaluacion> resultadoEvaluaciones);
+    
+    List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuente(Integer procesoId, Integer itemPreguntaId, Integer fuenteId);
+    
+     List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
 }

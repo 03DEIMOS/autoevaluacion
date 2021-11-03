@@ -7,8 +7,10 @@ package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.Factor;
+import com.utb.autoevaluacion.model.Modelo;
 import com.utb.autoevaluacion.repository.CaracteristicaRepository;
 import com.utb.autoevaluacion.repository.FactorRepository;
+import com.utb.autoevaluacion.repository.ModeloRepository;
 import com.utb.autoevaluacion.service.CaracteristicaService;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +30,10 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
     CaracteristicaRepository caracteristicaRepository;  
     
     @Autowired
-    FactorRepository factorRepository;  
+    FactorRepository factorRepository; 
+    
+    @Autowired
+    ModeloRepository modeloRepository; 
     
      @Override
     public List<Caracteristica> getCaracteristicas() {
@@ -87,4 +92,9 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
         }
     }
     
+     @Override
+    public List<Caracteristica> buscarPorModeloYConPreguntasAsociadas(Modelo modelo){
+        List<Caracteristica> caracteristicas = caracteristicaRepository.buscarPorModeloYConPreguntasAsociadas(modeloRepository.findById(modelo.getId()).get());
+        return caracteristicas;
+    }
 }

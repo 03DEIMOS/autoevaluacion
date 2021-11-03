@@ -33,5 +33,23 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
      @Query(value = "SELECT * FROM persona WHERE proceso_id = ?1 "
             + "AND fuente_id = ?2 AND usuario_id =?3 AND estado = 'A' ", nativeQuery = true)
     Persona buscarPersonaPorProcesoFuenteYUsuarioActiva(Integer proceso, Integer fuente, Integer usuario);
-
+    
+    @Query(value = "SELECT a.* FROM persona a INNER JOIN fuente b ON b.id = a.fuente_id"
+            + " WHERE a.proceso_id= ?1 AND a.estado = 'A' AND a.es_muestra='S' "
+            + " ORDER BY  b.nombre ASC",
+            nativeQuery = true)
+    List<Persona> muestraPorProceso(Integer procesoId);
+    
+    @Query(value = "SELECT * FROM persona WHERE proceso_id= ?1 AND estado = 'A' AND es_muestra='S' AND terminado='S' ORDER BY fuente_id ASC",
+            nativeQuery = true)
+    List<Persona> muestraPorProcesoEncuestaTerminada(Integer procesoId);
+    
+    @Query(value = "SELECT COUNT(*) FROM persona WHERE proceso_id= ?1 AND fuente_id= ?2 AND estado = 'A' AND es_muestra='S' ",
+            nativeQuery = true)
+    Integer cantidadTotalMuestraPorProcesoFuente(Integer procesoId, Integer fuenteId);
+    
+    @Query(value = "SELECT COUNT(*) FROM persona WHERE proceso_id= ?1 AND fuente_id= ?2 AND estado = 'A' AND es_muestra='S' AND terminado='S' ",
+            nativeQuery = true)
+    Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente(Integer procesoId, Integer fuenteId);
+    
 }

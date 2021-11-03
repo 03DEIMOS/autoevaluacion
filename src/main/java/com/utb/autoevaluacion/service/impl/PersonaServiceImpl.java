@@ -55,7 +55,7 @@ public class PersonaServiceImpl implements PersonaService {
         }
         return persona;
     }
-    
+
     @Override
     public List<Persona> buscarPoblacionPorProcesoYFuenteActivaYEsMuestra(Integer procesoId, Integer fuenteId) {
         List<Persona> personas = null;
@@ -65,5 +65,50 @@ public class PersonaServiceImpl implements PersonaService {
             log.error("Ha ocurrido un error inesperado:{}", e);
         }
         return personas;
+    }
+
+    @Override
+    public List<Persona> muestraPorProceso(Integer procesoId) {
+
+        List<Persona> personas = null;
+        try {
+            personas = personaRepository.muestraPorProceso(procesoId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return personas;
+    }
+
+    @Override
+    public List<Persona> personasEncuestaTerminadaPorProceso(Integer procesoId) {
+        List<Persona> personas = null;
+        try {
+            personas = personaRepository.muestraPorProcesoEncuestaTerminada(procesoId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return personas;
+    }
+
+    @Override
+    public Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente(Integer procesoId, Integer fuenteId) {
+        Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente = 0;
+        try {
+            cantidadMuestraEncuestaTerminadaPorProcesoFuente = personaRepository.cantidadMuestraEncuestaTerminadaPorProcesoFuente(procesoId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return cantidadMuestraEncuestaTerminadaPorProcesoFuente;
+    }
+
+    @Override
+    public Integer cantidadTotalMuestraPorProcesoFuente(Integer procesoId, Integer fuenteId) {
+         Integer cantidadTotalMuestraPorProcesoFuente = 0;
+        try {
+            cantidadTotalMuestraPorProcesoFuente = personaRepository.cantidadTotalMuestraPorProcesoFuente(procesoId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return cantidadTotalMuestraPorProcesoFuente;
     }
 }

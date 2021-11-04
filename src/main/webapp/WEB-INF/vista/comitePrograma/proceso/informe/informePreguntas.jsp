@@ -18,7 +18,7 @@
                         <tbody>
                             <c:forEach items="${listaI}" var="pregunta" varStatus="status">
 
-                            <div class="row" id="pregunta${pregunta.codigo}">
+                            <div class="row" id="pregunta${pregunta.id}">
                                 <div class="span10">
                                     <p style="font-weight: bold;">${status.index+1} ${pregunta.getPregunta()}</p>
                                     <c:choose>

@@ -6,19 +6,23 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.dto.InformeDmaDTO;
+import com.utb.autoevaluacion.dto.InformeValoresAbsolutosDTO;
 import com.utb.autoevaluacion.dto.MuestraInformeDTO;
 import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.Fuente;
+import com.utb.autoevaluacion.model.ItemTipoPregunta;
 import com.utb.autoevaluacion.model.Modelo;
 import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.model.Proceso;
 import com.utb.autoevaluacion.model.ResultadoEvaluacion;
+import com.utb.autoevaluacion.model.TipoPregunta;
 import com.utb.autoevaluacion.repository.PersonaRepository;
 import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.FuenteService;
 import com.utb.autoevaluacion.service.InformeService;
 import com.utb.autoevaluacion.service.PersonaService;
+import com.utb.autoevaluacion.service.PreguntaService;
 import com.utb.autoevaluacion.service.ProcesoService;
 import com.utb.autoevaluacion.service.ResultadoEvaluacionService;
 import java.util.ArrayList;
@@ -53,6 +57,9 @@ public class InformeServiceImpl implements InformeService {
     
     @Autowired
     ResultadoEvaluacionService resultadoEvaluacionService;
+    
+    @Autowired
+    PreguntaService preguntaService;
 
     @Override
     public List<Object> estadoGeneralDelProceso(Integer procesoId) {
@@ -194,99 +201,48 @@ public class InformeServiceImpl implements InformeService {
         return informeDMA;
     }
 
-/*@Override
+    @Override
     public List<Object> informePreguntasPorProceso(Integer procesoId) {
 
         List<Object> lista = new ArrayList();
         //List<Object> informeDMA = new ArrayList();
         Proceso proceso = procesoService.buscarProceso(procesoId);
         Modelo modelo = proceso.getModeloId();
-                List<Pregunta> preguntas = caracteristica.getPreguntaList();
+                List<Pregunta> preguntas = preguntaService.getPreguntas();
                 for (Pregunta pregunta : preguntas) {
-                    String primerMasAlto = pregunta.getTipoPregunta().getItemTipoPreguntaList().get(0).getValor();
-                    String segundoMasAlto = pregunta.getTipoPregunta().getItemTipoPreguntaList().get(1).getValor();
-
-                    InformeDmaDTO infDMAResult = new InformeDmaDTO(pregunta,
+                    
+                    InformeValoresAbsolutosDTO infValoresAbsolutosResult = new InformeValoresAbsolutosDTO(pregunta,
                             new ArrayList<String>(),// de itempregunta
-                            new ArrayList<String>(), // de fuente
-                            new ArrayList<Double>(), // de dma para cuando NO tiene subpreguntas
-                            new ArrayList<List<Double>>(), //de dma para cuando SI tiene subpreguntas
-                            new ArrayList<Double>(), // de ceros para cuando NO tiene subpreguntas
-                            new ArrayList<List<Double>>()); //de ceros para cuando SI tiene subpreguntas
+                            new ArrayList<Integer>(), // de Respuestas (Contador) cuando no tiene subpreguntas
+                            new ArrayList<List<Integer>>()); // Contador de Respuestas para cuando SI tiene subpreguntas
 
                     if (pregunta.getItemPreguntas().size() > 0) {
                         for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
-                            List<Double> DMAList = new ArrayList();
-                            List<Double> cerosList = new ArrayList();
+                            //Resultado del contador de las respuestas de los ítems de la pregunta
+                            List<Integer> resultadoList = new ArrayList();
 
-                            infDMAResult.getItemPregunta().add(pregunta.getItemPreguntas().get(i).getItemPregunta());
-
-                            for (Fuente fuente : fuentes) {
-                                List<ResultadoEvaluacion> rs = null;
-                                rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaFuente(proceso.getId(),
-                                        pregunta.getItemPreguntas().get(i).getId(), fuente.getId());
-                                int cuatros = 0;
-                                int cincos = 0;
-                                int ceros = 0;
-                                for (ResultadoEvaluacion respuestas : rs) {
-                                    if (respuestas.getRespuesta().equals("0")) {
-                                        ceros++;
-                                    } else if (respuestas.getRespuesta().equals(segundoMasAlto)) {
-                                        cuatros++;
-                                    } else if (respuestas.getRespuesta().equals(primerMasAlto)) {
-                                        cincos++;
-                                    }
-                                }
-                                if (rs.isEmpty()) {
-                                    DMAList.add(-1.0);
-                                    cerosList.add(-1.0);
-                                } else {
-                                    double dma = (double) ((cincos + cuatros) * 100) / rs.size();
-                                    double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
-                                    DMAList.add(dma);
-                                    cerosList.add(cerosPorcentaje);
-
-                                }
+                            //Setea los ítems para esa pregunta
+                            infValoresAbsolutosResult.getItemPregunta().add(pregunta.getItemPreguntas().get(i).getItemPregunta());
+                             
+                            List<ItemTipoPregunta> tiposPregunta =  pregunta.getTipoPregunta().getItemTipoPreguntaList();
+                            
+                            for(ItemTipoPregunta itemTipoPregunta : tiposPregunta){
+                             itemTipoPregunta.getValor();
                             }
-                            infDMAResult.getDMAList().add(DMAList);
-                            infDMAResult.getPorcentajeCerosList().add(cerosList);
+                             
+                            //Agrega los valores del contador a la lista
+                            infValoresAbsolutosResult.getResultadosAbsolutosConSubpreguntaContador().add(resultadoList);
+                            
                         }
-                        for (Fuente fuente : fuentes) {
-                            infDMAResult.getFuente().add(fuente.getNombre());
+                        
+                        
+                        
+                           
+                        }
+                        
                         }
                         informeDMA.add(infDMAResult);
-                    } else {
-                        for (Fuente fuente : fuentes) {
-                            List<ResultadoEvaluacion> rs = null;
-                            rs = resultadoEvaluacionService.buscarPorProcesoPreguntaFuente(proceso.getId(),
-                                    pregunta.getId(), fuente.getId());
-                            int cuatros = 0, cincos = 0, ceros = 0;
-                            for (ResultadoEvaluacion respuestas : rs) {
-                                if (respuestas.getRespuesta().equals("0")) {
-                                    ceros++;
-                                } else if (respuestas.getRespuesta().equals(segundoMasAlto)) {
-                                    cuatros++;
-                                } else if (respuestas.getRespuesta().equals(primerMasAlto)) {
-                                    cincos++;
-                                }
-                            }
-                            if (rs.isEmpty()) {
-                                infDMAResult.getDMA().add(-1.0);
-                                infDMAResult.getPorcentajeCeros().add(-1.0);
-                                infDMAResult.getFuente().add(fuente.getNombre());
-                            } else {
-                                double dma = (double) ((cincos + cuatros) * 100) / rs.size();
-                                double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
-                                infDMAResult.getDMA().add(dma);
-                                infDMAResult.getPorcentajeCeros().add(cerosPorcentaje);
-                                infDMAResult.getFuente().add(fuente.getNombre());
-
-                            }
-                        }
-                        informeDMA.add(infDMAResult);
-                    }
-                }
         
         return informeDMA;
-    }*/
+    }
 }//End class

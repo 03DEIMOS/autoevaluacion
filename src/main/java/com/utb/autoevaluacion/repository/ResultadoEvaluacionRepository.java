@@ -29,4 +29,23 @@ public interface ResultadoEvaluacionRepository extends JpaRepository<ResultadoEv
             + " AND a.item_pregunta_id IS NULL ORDER BY  a.pregunta_id ASC",
             nativeQuery = true)
     List<ResultadoEvaluacion> findByProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
+
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2  AND a.respuesta = ?3 ",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoItemPreguntaRespuesta(Integer procesoId, Integer itemPreguntaId, Integer respuesta);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2  AND a.respuesta = ?3 ",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoPreguntaRespuesta(Integer procesoId, Integer preguntaId, Integer respuesta);
+    
+    @Query(value = "SELECT COUNT(*) FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 ",
+            nativeQuery = true)
+    Integer findTotalPersonasContestaronPregunta(Integer procesoId, Integer preguntaId);
+    
+    @Query(value = "SELECT COUNT(*) FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id "
+            + "WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND a.item_pregunta_id = ?3 ",
+            nativeQuery = true)
+    Integer findTotalPersonasContestaronPreguntaItemPregunta(Integer procesoId, Integer preguntaId, Integer itemPreguntaId );
 }

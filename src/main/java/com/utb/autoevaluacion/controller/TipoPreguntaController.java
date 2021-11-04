@@ -57,7 +57,7 @@ public class TipoPreguntaController {
     }
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crearTipoPregunta(@RequestParam String tipo, @RequestParam String descripcion, @RequestParam(value = "respuesta[]") String[] respuestas, @RequestParam(value = "valor[]") String[] valores) {
+    public ResponseEntity<?> crearTipoPregunta(@RequestParam String tipo, @RequestParam String descripcion, @RequestParam(value = "respuesta[]") String[] respuestas, @RequestParam(value = "valor[]") Integer[] valores) {
 
         log.info("Ejecutanto metodo [crearTipoPregunta] tipo:{}, descripcion:{}, respuestas:{}, valores:{} ", tipo, descripcion, respuestas, valores);
         HttpStatus status;
@@ -86,7 +86,7 @@ public class TipoPreguntaController {
     }
 
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarTipoPregunta(@RequestParam Integer tipoPreguntaid, @RequestParam String tipo, @RequestParam String descripcion, @RequestParam(value = "respuesta[]") String[] respuestas, @RequestParam(value = "valor[]") String[] valores) {
+    public ResponseEntity<?> editarTipoPregunta(@RequestParam Integer tipoPreguntaid, @RequestParam String tipo, @RequestParam String descripcion, @RequestParam(value = "respuesta[]") String[] respuestas, @RequestParam(value = "valor[]") Integer[] valores) {
         log.info("Ejecutanto metodo [editarTipoPregunta] tipoPreguntaid:{}, tipo:{}, descripcion:{}, respuestas:{}, valores:{} ", tipoPreguntaid, tipo, descripcion, respuestas, valores);
         HttpStatus status;
         try {

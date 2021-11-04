@@ -10,14 +10,13 @@ import com.utb.autoevaluacion.dto.InformeValoresAbsolutosDTO;
 import com.utb.autoevaluacion.dto.MuestraInformeDTO;
 import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.Fuente;
+import com.utb.autoevaluacion.model.ItemPregunta;
 import com.utb.autoevaluacion.model.ItemTipoPregunta;
 import com.utb.autoevaluacion.model.Modelo;
 import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.model.Proceso;
 import com.utb.autoevaluacion.model.ResultadoEvaluacion;
-import com.utb.autoevaluacion.model.TipoPregunta;
-import com.utb.autoevaluacion.repository.PersonaRepository;
 import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.FuenteService;
 import com.utb.autoevaluacion.service.InformeService;
@@ -54,10 +53,10 @@ public class InformeServiceImpl implements InformeService {
 
     @Autowired
     CaracteristicaService caracteristicaService;
-    
+
     @Autowired
     ResultadoEvaluacionService resultadoEvaluacionService;
-    
+
     @Autowired
     PreguntaService preguntaService;
 
@@ -104,13 +103,13 @@ public class InformeServiceImpl implements InformeService {
         Proceso proceso = procesoService.buscarProceso(procesoId);
         Modelo modelo = proceso.getModeloId();
         List<Caracteristica> caracteristicas = caracteristicaService.buscarPorModeloYConPreguntasAsociadas(modelo);
-           for (Caracteristica caracteristica : caracteristicas) {
+        for (Caracteristica caracteristica : caracteristicas) {
             if (caracteristica.getPreguntaList().size() > 0) {
                 List<Pregunta> preguntas = caracteristica.getPreguntaList();
                 for (Pregunta pregunta : preguntas) {
                     List<Fuente> fuentes = fuenteService.buscarFuentesXmodeloXpregunta(modelo.getId(), pregunta.getId());
-                    String primerMasAlto = pregunta.getTipoPregunta().getItemTipoPreguntaList().get(0).getValor();
-                    String segundoMasAlto = pregunta.getTipoPregunta().getItemTipoPreguntaList().get(1).getValor();
+                    Integer primerMasAlto = 5;
+                    Integer segundoMasAlto = 4;
 
                     InformeDmaDTO infDMAResult = new InformeDmaDTO(pregunta,
                             new ArrayList<String>(),// de itempregunta
@@ -139,9 +138,9 @@ public class InformeServiceImpl implements InformeService {
                                 for (ResultadoEvaluacion respuestas : rs) {
                                     if (respuestas.getRespuesta().equals("0")) {
                                         ceros++;
-                                    } else if (respuestas.getRespuesta().equals(segundoMasAlto)) {
+                                    } else if (respuestas.getRespuesta().equals(segundoMasAlto.toString())) {
                                         cuatros++;
-                                    } else if (respuestas.getRespuesta().equals(primerMasAlto)) {
+                                    } else if (respuestas.getRespuesta().equals(primerMasAlto.toString())) {
                                         cincos++;
                                     }
                                 }
@@ -197,52 +196,58 @@ public class InformeServiceImpl implements InformeService {
 
             }
         }
-        
+
         return informeDMA;
     }
 
     @Override
     public List<Object> informePreguntasPorProceso(Integer procesoId) {
 
-        List<Object> lista = new ArrayList();
-        //List<Object> informeDMA = new ArrayList();
-        Proceso proceso = procesoService.buscarProceso(procesoId);
-        Modelo modelo = proceso.getModeloId();
-                List<Pregunta> preguntas = preguntaService.getPreguntas();
-                for (Pregunta pregunta : preguntas) {
-                    
-                    InformeValoresAbsolutosDTO infValoresAbsolutosResult = new InformeValoresAbsolutosDTO(pregunta,
-                            new ArrayList<String>(),// de itempregunta
-                            new ArrayList<Integer>(), // de Respuestas (Contador) cuando no tiene subpreguntas
-                            new ArrayList<List<Integer>>()); // Contador de Respuestas para cuando SI tiene subpreguntas
+        List<Object> informePreguntasPorProceso = new ArrayList();
+        List<Pregunta> preguntas = preguntaService.getPreguntasPorProceso(procesoId);
+        for (Pregunta pregunta : preguntas) {
 
-                    if (pregunta.getItemPreguntas().size() > 0) {
-                        for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
-                            //Resultado del contador de las respuestas de los ítems de la pregunta
-                            List<Integer> resultadoList = new ArrayList();
+            InformeValoresAbsolutosDTO informeValoresAbsolutosResult = new InformeValoresAbsolutosDTO(pregunta,
+                    new ArrayList<String>(),// de itempregunta
+                    new ArrayList<Integer>(), // de Respuestas (Contador) cuando no tiene subpreguntas
+                    new ArrayList<List<Integer>>(),// Contador de Respuestas para cuando SI tiene subpreguntas
+                    0); //Total personas que contestaron la pregunta
 
-                            //Setea los ítems para esa pregunta
-                            infValoresAbsolutosResult.getItemPregunta().add(pregunta.getItemPreguntas().get(i).getItemPregunta());
-                             
-                            List<ItemTipoPregunta> tiposPregunta =  pregunta.getTipoPregunta().getItemTipoPreguntaList();
-                            
-                            for(ItemTipoPregunta itemTipoPregunta : tiposPregunta){
-                             itemTipoPregunta.getValor();
-                            }
-                             
-                            //Agrega los valores del contador a la lista
-                            infValoresAbsolutosResult.getResultadosAbsolutosConSubpreguntaContador().add(resultadoList);
-                            
-                        }
-                        
-                        
-                        
-                           
-                        }
-                        
-                        }
-                        informeDMA.add(infDMAResult);
-        
-        return informeDMA;
+            List<ItemTipoPregunta> tiposPregunta = pregunta.getTipoPregunta().getItemTipoPreguntaList();
+
+            if (pregunta.getItemPreguntas().size() > 0) {
+                List<ItemPregunta> itemPreguntas = pregunta.getItemPreguntas();
+                int i=0;
+                for (ItemPregunta itemPregunta : itemPreguntas) {
+                    // Si la pregunta tiene subpreguntas
+                    if (i == 0) {
+                        informeValoresAbsolutosResult.setTotalPersonaQueContestaron(resultadoEvaluacionService.buscarTotalPersonasContestaronPreguntaItemPregunta(procesoId, pregunta.getId(), itemPregunta.getId()));
+                        i++;
+                    }
+                    //Resultado del contador de las respuestas de los ítems de la pregunta
+                    List<Integer> resultadoList = new ArrayList();
+
+                    //Setea los ítems para esa pregunta
+                    informeValoresAbsolutosResult.getItemPregunta().add(itemPregunta.getItemPregunta());
+                    List<ResultadoEvaluacion> rs = null;
+                    for (ItemTipoPregunta itemTipoPregunta : tiposPregunta) {
+                        rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaRespuesta(procesoId,itemPregunta.getId(), itemTipoPregunta.getValor());
+                        resultadoList.add(rs.size());
+                    }
+                    //Agrega los valores del contador a la lista
+                    informeValoresAbsolutosResult.getResultadosAbsolutosConSubpreguntaContador().add(resultadoList);
+                }
+            } else {
+                List<ResultadoEvaluacion> rs = null;
+                informeValoresAbsolutosResult.setTotalPersonaQueContestaron(resultadoEvaluacionService.buscarTotalPersonasContestaronPregunta(procesoId, pregunta.getId()));
+                for (ItemTipoPregunta itemTipoPregunta : tiposPregunta) {
+                    rs = resultadoEvaluacionService.buscarPorProcesoPreguntaRespuesta(procesoId, pregunta.getId(), itemTipoPregunta.getValor());
+                    informeValoresAbsolutosResult.getResultadosAbsolutosSinSubpreguntaContador().add(rs.size());
+                }
+            }
+            informePreguntasPorProceso.add(informeValoresAbsolutosResult);
+        }
+
+        return informePreguntasPorProceso;
     }
 }//End class

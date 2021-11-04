@@ -121,7 +121,7 @@
                 <div>
                      <%--<a href="<%=request.getContextPath()%>/#" class="btn btn-primary"><i class="icon-bar-chart"></i> Graficas DMA</a>--%>
                     <a href="<%=request.getContextPath()%>/#informe/informeDMA/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart"></i> Informe DMA</a>
-                    <a href="<%=request.getContextPath()%>/#informe/informePreguntas" class="btn btn-warning"><i class="icon-bar-chart"></i>Informe por preguntas</a>
+                    <a href="<%=request.getContextPath()%>/#informe/informePreguntas/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart"></i>Informe por preguntas</a>
                      <%--<a href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas" class="btn btn-warning"><i class="icon-bar-chart">  </i>Matriz de calidad por caracter&iacute;sticas</a>
                     <a  href="<%=request.getContextPath()%>/#resultadosGenerales"><i class="icon-bar-chart"></i> Resultados Generales</a>-->
 

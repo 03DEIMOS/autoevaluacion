@@ -29,16 +29,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/informe")
 public class InformeController {
-    
+
     @Autowired
     InformeService informeService;
-    
+
     @Autowired
     ProcesoService procesoService;
-    
+
     @Autowired
     private PreguntaService preguntaService;
-    
+
     @GetMapping("/estadoGeneralDelProceso/{procesoId}")
     public String estadoGeneralDelProceso(@PathVariable Integer procesoId, Model model) {
         Proceso proceso = null;
@@ -53,7 +53,7 @@ public class InformeController {
         model.addAttribute("proceso", proceso);
         return "comitePrograma\\proceso\\informe\\estadoProceso";
     }
-    
+
     @GetMapping("/informeDMA/{procesoId}")
     public String informeDMAPorProceso(@PathVariable Integer procesoId, Model model) {
 
@@ -66,11 +66,17 @@ public class InformeController {
         model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\dmaProgramas";
     }
-    
-    @GetMapping("/informePreguntas")
-    public String informePreguntasPorProceso(Model model) {
-        //log.info("Ejecutanto metodo [informePreguntasPorProceso] procesoId:{} ", procesoId);
-        model.addAttribute("listaI", preguntaService.getPreguntas());
+
+    @GetMapping("/informePreguntas/{procesoId}")
+    public String informePreguntasPorProceso(@PathVariable Integer procesoId, Model model) {
+        log.info("Ejecutanto metodo [informePreguntasPorProceso] procesoId:{} ", procesoId);
+        List<Object> resultado = null;
+        try {
+            resultado = informeService.informePreguntasPorProceso(procesoId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+        }
+        model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\informePreguntas";
     }
 }

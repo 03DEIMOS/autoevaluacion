@@ -23,9 +23,11 @@ public class InformeValoresAbsolutosDTO {
 
     private List<String> itemPregunta;
     
-    private List<Integer> resultadosAbsolutosSinSubpreguntaContador; //
+    private List<Integer> resultadosAbsolutosSinSubpreguntaContador; 
 
     private List<List<Integer>> resultadosAbsolutosConSubpreguntaContador;
+    
+    private Integer totalPersonaQueContestaron;
     
     
     

@@ -27,7 +27,7 @@ public class ItemTipoPregunta {
     private String respuesta;
     
     @Column(name = "valor")
-    private String valor;
+    private Integer valor;
     
     @Column(name = "tipo_pregunta_id", insertable = false, updatable = false)
     private Integer tipoPreguntaId;

@@ -20,13 +20,14 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionService{
+public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionService {
+
     @Autowired
     ResultadoEvaluacionRepository resultadoEvaluacionRepository;
-    
+
     @Autowired
     PersonaRepository personaRepository;
-    
+
     @Override
     public void asignarResultadoEvaluacion(List<ResultadoEvaluacion> resultadoEvaluaciones) {
         Integer personaId = resultadoEvaluaciones.get(0).getPersona().getId();
@@ -45,7 +46,7 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
             log.error("Ha ocurrido un error inesperado:{} ", e);
         }
     }
-    
+
     @Override
     public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuente(Integer procesoId, Integer itemPreguntaId, Integer fuenteId) {
         List<ResultadoEvaluacion> resultadoEvaluaciones = null;
@@ -57,8 +58,8 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
 
         return resultadoEvaluaciones;
     }
-    
-     @Override
+
+    @Override
     public List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId) {
         List<ResultadoEvaluacion> resultadoEvaluaciones = null;
         try {
@@ -69,6 +70,51 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
 
         return resultadoEvaluaciones;
     }
-    
-      
+
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaRespuesta(Integer procesoId, Integer itemPreguntaId, Integer respuesta) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaRespuesta(procesoId, itemPreguntaId, respuesta);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoPreguntaRespuesta(Integer procesoId, Integer preguntaId, Integer respuesta) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaRespuesta(procesoId, preguntaId, respuesta);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+
+    @Override
+    public Integer buscarTotalPersonasContestaronPregunta(Integer procesoId, Integer preguntaId) {
+        Integer totalPersonasContestaronPregunta = 0;
+        try {
+            totalPersonasContestaronPregunta = resultadoEvaluacionRepository.findTotalPersonasContestaronPregunta(procesoId, preguntaId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return totalPersonasContestaronPregunta;
+    }
+
+    @Override
+    public Integer buscarTotalPersonasContestaronPreguntaItemPregunta(Integer procesoId, Integer preguntaId, Integer itemPreguntaId) {
+        Integer totalPersonasContestaronPregunta = 0;
+        try {
+            totalPersonasContestaronPregunta = resultadoEvaluacionRepository.findTotalPersonasContestaronPreguntaItemPregunta(procesoId, preguntaId, itemPreguntaId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return totalPersonasContestaronPregunta;
+    }
+
 }

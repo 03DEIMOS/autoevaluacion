@@ -73,4 +73,9 @@ public class PreguntaServiceImpl implements PreguntaService {
         return preguntaRepository.buscarPreguntasPorProceso(procesoId);
     }
 
+    @Override
+    public List<Pregunta> getPreguntasPorProcesoyPublico(Integer procesoId, Integer publicoId) {
+        return preguntaRepository.buscarPreguntasPorProcesoyPublico(procesoId, publicoId);
+    }
+
 }

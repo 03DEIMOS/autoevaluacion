@@ -119,27 +119,31 @@
                 </legend>
                 <p>Informes: </p>
                 <div>
-                     <%--<a href="<%=request.getContextPath()%>/#" class="btn btn-primary"><i class="icon-bar-chart"></i> Graficas DMA</a>--%>
+                    <%--<a href="<%=request.getContextPath()%>/#" class="btn btn-primary"><i class="icon-bar-chart"></i> Graficas DMA</a>--%>
                     <a href="<%=request.getContextPath()%>/#informe/informeDMA/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart"></i> Informe DMA</a>
-                    <a href="<%=request.getContextPath()%>/#informe/informePreguntas/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart"></i>Informe por preguntas</a>
-                     <%--<a href="<%=request.getContextPath()%>/#informeMatrizCaracteristicas" class="btn btn-warning"><i class="icon-bar-chart">  </i>Matriz de calidad por caracter&iacute;sticas</a>
-                    <a  href="<%=request.getContextPath()%>/#resultadosGenerales"><i class="icon-bar-chart"></i> Resultados Generales</a>-->
-
+                    <a href="<%=request.getContextPath()%>/#informe/informeCaracteristicas/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart">  </i>Matriz de calidad por caracter&iacute;sticas</a>
+                    <a href="<%=request.getContextPath()%>/#informe/informeFactores/${proceso.id}" class="btn btn-primary"><i class="icon-bar-chart">  </i>Matriz de calidad por factores</a>
                     <div class="btn-group">
-                        <a class="btn btn-warning" href="<%=request.getContextPath()%>/#encuestaAleatoria"><i class="icon-random"></i> Ver al azar encuesta respondida</a>
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/#informe/informePreguntas/${proceso.id}"><i class="icon-random"></i> Informe por preguntas</a>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#encuestaXaleatoria&1">de un estudiante</a></li>
-                            <li><a href="#encuestaXaleatoria&2">de un docente</a></li>
-                            <li><a href="#encuestaXaleatoria&4">de un egresado</a></li>
-                            <li><a href="#encuestaXaleatoria&3">de un administrativo</a></li>
-                            <li><a href="#encuestaXaleatoria&5">de un director de programa</a></li>
-                            <li><a href="#encuestaXaleatoria&6">de un empleador</a></li>
-                        </ul>
+                        <ul class="dropdown-menu" >
+                            <c:choose>
+                                <c:when test="${fn:length(fuentes)!= 0}">
+                                    <c:forEach items="${fuentes}" var="fuente" varStatus="iter">
+                                        <li><a href="<%=request.getContextPath()%>/#informe/informePreguntas/proceso/${proceso.id}/publico/${fuente.id}">${fuente.nombre}</a></li>
+                                    </c:forEach>
+                                </c:when>
+                            </c:choose>
+                           </ul>
                     </div>
+
+                    <%--
+                    <a  href="<%=request.getContextPath()%>/#resultadosGenerales"><i class="icon-bar-chart"></i> Resultados Generales</a>-->
+
                     --%>
+
                 </div>
                 <br>
                 <p>Estado general del proceso:</p>

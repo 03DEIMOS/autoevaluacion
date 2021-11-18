@@ -1,6 +1,7 @@
 package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.model.Factor;
+import com.utb.autoevaluacion.model.Modelo;
 import java.util.List;
 
 public interface FactorService {
@@ -13,5 +14,7 @@ public interface FactorService {
     void actualizarFactor(Integer factorId, String codigo, String nombre, Integer modeloId);
     
     Factor buscarFactor(Integer id);
+    
+    List<Factor> buscarPorModeloYConPreguntasAsociadas(Integer modeloId);
     
 }

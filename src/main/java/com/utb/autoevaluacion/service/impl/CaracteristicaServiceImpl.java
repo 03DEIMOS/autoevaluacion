@@ -97,4 +97,10 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
         List<Caracteristica> caracteristicas = caracteristicaRepository.buscarPorModeloYConPreguntasAsociadas(modeloRepository.findById(modelo.getId()).get());
         return caracteristicas;
     }
+
+    @Override
+    public List<Caracteristica> getCaracteristicasByFactor(Integer factorId) {
+        List<Caracteristica> caracteristicas = caracteristicaRepository.findCaracteristicasByFactorId(factorId);
+        return caracteristicas;
+    }
 }

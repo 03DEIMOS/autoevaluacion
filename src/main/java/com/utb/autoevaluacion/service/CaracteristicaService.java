@@ -9,6 +9,8 @@ public interface CaracteristicaService {
     
     List<Caracteristica> getCaracteristicasByModelo(Integer modeloId);
     
+    List<Caracteristica> getCaracteristicasByFactor(Integer factorId);
+    
     void crearCaracteristica(String codigo, String nombre, Integer factorId);
     
     Caracteristica buscarCaracteristica(Integer caracteristicaId);

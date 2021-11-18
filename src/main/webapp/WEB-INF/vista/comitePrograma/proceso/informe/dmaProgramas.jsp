@@ -3,10 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style type="text/css">
     .table td{
-        font-size: 11px;
+        font-size: 10px;
+        vertical-align: middle;
     }
-    .table th {
+    .table thead th {
         font-size: 11px;
+        vertical-align: middle;
+        text-align: center;
     }
     .table .success{
         background-color: #DFF0D8; 
@@ -40,20 +43,23 @@
                     <table class="table table-bordered" id="tableR">
                         <thead style="background-color: #ffffff;">
                             <tr>
-                                <th class="span1">FACTOR</th>
-                                <th class="span1">CARACTERISTICA</th>
-                                <th class="span4">PREGUNTA</th>
-                                    <c:forEach items="${InformeDMA.fuente}" var="fuente" varStatus="status2">
+                                <th class="span1" rowspan="2" >Factor</th>
+                                <th class="span1" rowspan="2">Caracteristica</th>
+                                <th class="span4" rowspan="2">Pregunta</th>
+                                <th class="span6" colspan="${InformeDMA.fuente.size()}" style="text-align: center">Público</th>    
+                            </tr>
+                            <tr>
+                                <c:forEach items="${InformeDMA.fuente}" var="fuente" varStatus="status2">
                                     <th class="span1">${fuente}</th>
-                                    </c:forEach>
+                                </c:forEach>
                             </tr>
                         </thead>
                         <tbody>
                             <c:choose>
                                 <c:when test="${fn:length(InformeDMA.pregunta.itemPreguntas)!= 0}">
                                     <tr>
-                                        <td rowspan="${InformeDMA.pregunta.itemPreguntas.size() + 1}">${InformeDMA.factor}</td>
-                                        <td rowspan="${InformeDMA.pregunta.itemPreguntas.size()+1}">${InformeDMA.caracteristica}</td>
+                                        <td rowspan="${InformeDMA.pregunta.itemPreguntas.size() + 1}">${InformeDMA.factor.codigo} ${InformeDMA.factor.nombre}</td>
+                                        <td rowspan="${InformeDMA.pregunta.itemPreguntas.size()+1}">${InformeDMA.caracteristica.codigo} ${InformeDMA.caracteristica.nombre}</td>
                                         <td>${InformeDMA.pregunta.pregunta}</td>
                                         <td colspan="${InformeDMA.fuente.size()}"></td>
                                     </tr>
@@ -86,8 +92,8 @@
                                 </c:when>
                                 <c:otherwise>
                                     <tr>
-                                        <td rowspan="2">${InformeDMA.factor}</td>
-                                        <td rowspan="2">${InformeDMA.caracteristica}</td>
+                                        <td rowspan="2">${InformeDMA.factor.codigo} ${InformeDMA.factor.nombre}</td>
+                                        <td rowspan="2">${InformeDMA.caracteristica.codigo} ${InformeDMA.caracteristica.nombre}</td>
                                         <td>${InformeDMA.pregunta.pregunta}</td>
                                         <c:forEach items="${InformeDMA.DMA}" var="dma" varStatus="status5">
                                             <c:choose>
@@ -115,22 +121,21 @@
                     </table>
                 </c:forEach>
             </div>
-        </div>
+                    </div>
     </div>
 </div>
- <script type="text/javascript">
-                        var tableToExcel = (function() {
-                                var uri = 'data:application/vnd.ms-excel;base64,'
-                                        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
-  return function(table, name) {
-    if (!table.nodeType) table = document.getElementById(table)
-    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-    window.location.href = uri + base64(format(template, ctx))
-  }
+<script type="text/javascript">
+                           var tableToExcel = (function() {             var uri = 'data:application/vnd.ms-excel;base64,'
+                   , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+   , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+   , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+ return function(table, name) {
+   if (!table.nodeType) table = document.getElementById(table)
+   var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+   window.location.href = uri + base64(format(template, ctx))
+ }
 })()
-                    </script>
+</script>
 
 
 

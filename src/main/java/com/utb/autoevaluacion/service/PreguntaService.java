@@ -23,5 +23,7 @@ public interface PreguntaService {
     Pregunta actualizarPregunta(Pregunta pregunta);
 
     Pregunta buscarPregunta(Integer preguntaId);
+    
+    List<Pregunta> getPreguntasPorProcesoyPublico(Integer procesoId, Integer publico);
 
 }

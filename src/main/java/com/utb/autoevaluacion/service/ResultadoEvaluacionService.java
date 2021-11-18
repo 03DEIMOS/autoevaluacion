@@ -22,9 +22,17 @@ public interface ResultadoEvaluacionService {
     
     List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaRespuesta(Integer procesoId, Integer itemPreguntaId, Integer respuesta);
     
+    List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaRespuestaFuente(Integer procesoId, Integer itemPreguntaId, Integer respuesta, Integer fuenteId);
+    
     List<ResultadoEvaluacion> buscarPorProcesoPreguntaRespuesta(Integer procesoId, Integer preguntaId, Integer respuesta);
     
     Integer buscarTotalPersonasContestaronPregunta(Integer procesoId, Integer preguntaId);
     
     Integer buscarTotalPersonasContestaronPreguntaItemPregunta(Integer procesoId, Integer preguntaId, Integer itemPreguntaId);
+    
+    Integer buscarTotalPersonasContestaronPreguntaItemPreguntaFuente(Integer procesoId, Integer preguntaId, Integer itemPreguntaId, Integer fuenteId);
+    
+    List<ResultadoEvaluacion> buscarPorProcesoPreguntaRespuestaFuente(Integer procesoId, Integer preguntaId, Integer respuesta, Integer fuenteId);
+    
+    Integer buscarTotalPersonasContestaronPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
 }

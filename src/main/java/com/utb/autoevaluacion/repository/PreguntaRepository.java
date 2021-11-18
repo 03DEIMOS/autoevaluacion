@@ -27,4 +27,14 @@ public interface PreguntaRepository extends JpaRepository<Pregunta, Integer> {
             + "group by p.id",
             nativeQuery = true)
     List<Pregunta> buscarPreguntasPorProceso(Integer procesoId);
+
+    @Query(value = "SELECT p.* FROM pregunta p "
+            + "INNER JOIN encuestahaspregunta ep on ep.pregunta_id = p.id "
+            + "INNER JOIN encuesta e on e.id = ep.encuesta_id "
+            + "INNER JOIN modelo m on m.id = e.modelo_id "
+            + "INNER JOIN proceso pr on pr.modelo_id = m.id "
+            + "WHERE pr.id = ?1 and e.fuente_id = ?2 "
+            + "group by p.id",
+            nativeQuery = true)
+    List<Pregunta> buscarPreguntasPorProcesoyPublico(Integer procesoId, Integer fuenteId);
 }

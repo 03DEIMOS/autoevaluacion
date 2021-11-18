@@ -24,6 +24,9 @@ public interface CaracteristicaRepository extends JpaRepository<Caracteristica, 
     @Query("Select c from Caracteristica c where c.factorId.modeloId.id=?1")
     List<Caracteristica> findCaracteristicasByModeloId(Integer modeloId);
     
+    @Query("Select c from Caracteristica c where c.factorId.id=?1")
+    List<Caracteristica> findCaracteristicasByFactorId(Integer factorId);
+    
     @Query("SELECT c FROM Caracteristica c LEFT JOIN FETCH c.factorId WHERE "
             + "c.modeloId = :modelo and size(c.preguntaList) > 0 ")
     List<Caracteristica> buscarPorModeloYConPreguntasAsociadas(@Param("modelo") Modelo modelo);

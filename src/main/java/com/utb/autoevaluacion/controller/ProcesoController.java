@@ -50,15 +50,8 @@ public class ProcesoController {
     public String muestra(@PathVariable Integer procesoId, Model model) {
         Proceso proceso = procesoService.buscarProceso(procesoId);
         model.addAttribute("proceso", proceso);
-        model.addAttribute("fuentes", fuenteService.buscarFuentes());
+        model.addAttribute("fuentes", fuenteService.buscarFuentesXproceso(procesoId));
         return "comitePrograma\\muestra\\listarMuestra";
     }
     
-     @GetMapping("/estadoProceso/{procesoId}")
-    public String estadoProceso(@PathVariable Integer procesoId, Model model) {
-        Proceso proceso = procesoService.buscarProceso(procesoId);
-        model.addAttribute("proceso", proceso);
-       // model.addAttribute("fuentes", fuenteService.buscarFuentes());
-        return "comitePrograma\\proceso\\informe\\estadoProceso";
-    }
 }

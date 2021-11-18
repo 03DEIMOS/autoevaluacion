@@ -5,6 +5,8 @@
  */
 package com.utb.autoevaluacion.service;
 
+import com.utb.autoevaluacion.dto.InformeCaracteristicasDTO;
+import com.utb.autoevaluacion.dto.InformeFactoresDTO;
 import java.util.List;
 
 /**
@@ -17,6 +19,12 @@ public interface InformeService {
     
     List<Object> informeDMAPorProceso(Integer procesoId);
     
+    InformeCaracteristicasDTO informeCaracteristicasPorProceso(Integer procesoId);
+    
+    InformeFactoresDTO informeFactoresPorProceso(Integer procesoId);
+    
     List<Object> informePreguntasPorProceso(Integer procesoId);
+    
+    List<Object> informePreguntasPorProcesoyPublico(Integer procesoId, Integer publico);
 
 }

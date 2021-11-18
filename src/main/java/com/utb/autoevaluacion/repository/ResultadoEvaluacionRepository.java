@@ -48,4 +48,24 @@ public interface ResultadoEvaluacionRepository extends JpaRepository<ResultadoEv
             + "WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND a.item_pregunta_id = ?3 ",
             nativeQuery = true)
     Integer findTotalPersonasContestaronPreguntaItemPregunta(Integer procesoId, Integer preguntaId, Integer itemPreguntaId );
+    
+    @Query(value = "SELECT COUNT(*) FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id "
+            + "WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND a.item_pregunta_id = ?3 and b.fuente_id = ?4 ",
+            nativeQuery = true)
+    Integer findTotalPersonasContestaronPreguntaItemPreguntaFuente(Integer procesoId, Integer preguntaId, Integer itemPreguntaId, Integer fuenteId);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2  AND a.respuesta = ?3 and b.fuente_id = ?4 ",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoItemPreguntaRespuestaFuente(Integer procesoId, Integer itemPreguntaId, Integer respuesta, Integer fuenteId);
+    
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2  AND a.respuesta = ?3 and b.fuente_id = ?4 ",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoPreguntaRespuestaFuente(Integer procesoId, Integer preguntaId, Integer respuesta, Integer fuenteId);
+    
+    @Query(value = "SELECT COUNT(*) FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND fuente_id = ?3 ",
+            nativeQuery = true)
+    Integer findTotalPersonasContestaronPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
 }

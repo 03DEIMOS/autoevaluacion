@@ -76,4 +76,10 @@ public class FactorServiceImpl implements FactorService {
         }
         return factor;
     }
+
+    @Override
+    public List<Factor> buscarPorModeloYConPreguntasAsociadas(Integer modeloId) {
+        List<Factor> factores = factorRepository.buscarPorModeloYConPreguntasAsociadas(modeloId);
+        return factores;
+    }
 }

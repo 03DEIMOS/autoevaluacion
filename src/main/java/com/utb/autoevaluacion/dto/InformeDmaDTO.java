@@ -5,6 +5,8 @@
  */
 package com.utb.autoevaluacion.dto;
 
+import com.utb.autoevaluacion.model.Caracteristica;
+import com.utb.autoevaluacion.model.Factor;
 import com.utb.autoevaluacion.model.Pregunta;
 import java.util.List;
 
@@ -20,9 +22,9 @@ public class InformeDmaDTO {
 
     private List<String> fuente;
 
-    private String caracteristica;
+    private Caracteristica caracteristica;
 
-    private String factor;
+    private Factor factor;
 
     private List<Double> DMA;
 
@@ -36,7 +38,7 @@ public class InformeDmaDTO {
         super();
     }
 
-    public InformeDmaDTO(Pregunta pregunta, List<String> itemPregunta, List<String> fuente, String caracteristica, String factor, List<Double> DMA, List<Double> porcentajeCeros) {
+    public InformeDmaDTO(Pregunta pregunta, List<String> itemPregunta, List<String> fuente, Caracteristica caracteristica, Factor factor, List<Double> DMA, List<Double> porcentajeCeros) {
         this.pregunta = pregunta;
         this.itemPregunta = itemPregunta;
         this.fuente = fuente;
@@ -47,7 +49,7 @@ public class InformeDmaDTO {
     }
 
     public InformeDmaDTO(Pregunta pregunta, List<String> itemPregunta, List<String> fuente,
-            String caracteristica, String factor,
+            Caracteristica caracteristica, Factor factor,
             List<Double> DMA, List<List<Double>> DMAList, List<Double> porcentajeCeros,
             List<List<Double>> porcentajeCerosList) {
         this.pregunta = pregunta;
@@ -85,19 +87,19 @@ public class InformeDmaDTO {
         this.fuente = fuente;
     }
 
-    public String getCaracteristica() {
+    public Caracteristica getCaracteristica() {
         return caracteristica;
     }
 
-    public void setCaracteristica(String caracteristica) {
+    public void setCaracteristica(Caracteristica caracteristica) {
         this.caracteristica = caracteristica;
     }
 
-    public String getFactor() {
+    public Factor getFactor() {
         return factor;
     }
 
-    public void setFactor(String factor) {
+    public void setFactor(Factor factor) {
         this.factor = factor;
     }
 

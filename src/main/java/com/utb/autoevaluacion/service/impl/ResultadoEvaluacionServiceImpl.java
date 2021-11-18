@@ -117,4 +117,50 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
         return totalPersonasContestaronPregunta;
     }
 
+    @Override
+    public Integer buscarTotalPersonasContestaronPreguntaItemPreguntaFuente(Integer procesoId, Integer preguntaId, Integer itemPreguntaId, Integer fuenteId) {
+        Integer totalPersonasContestaronPregunta = 0;
+        try {
+            totalPersonasContestaronPregunta = resultadoEvaluacionRepository.findTotalPersonasContestaronPreguntaItemPreguntaFuente(procesoId, preguntaId, itemPreguntaId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return totalPersonasContestaronPregunta;
+    }
+
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaRespuestaFuente(Integer procesoId, Integer itemPreguntaId, Integer respuesta, Integer fuenteId) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaRespuestaFuente(procesoId, itemPreguntaId, respuesta, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoPreguntaRespuestaFuente(Integer procesoId, Integer preguntaId, Integer respuesta, Integer fuenteId) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaRespuestaFuente(procesoId, preguntaId, respuesta, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+
+    @Override
+    public Integer buscarTotalPersonasContestaronPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId) {
+        Integer totalPersonasContestaronPregunta = 0;
+        try {
+            totalPersonasContestaronPregunta = resultadoEvaluacionRepository.findTotalPersonasContestaronPreguntaFuente(procesoId, preguntaId, fuenteId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return totalPersonasContestaronPregunta;
+    }
+
 }

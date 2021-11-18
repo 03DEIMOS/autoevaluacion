@@ -21,4 +21,10 @@ public interface FactorRepository extends JpaRepository<Factor, Integer>{
     
     @Query("Select f from Factor f where f.modeloId.id=?1")
     List<Factor> findFactorByModeloId(Integer modeloId);
+    
+    @Query("SELECT f FROM Factor f "
+            + "INNER JOIN Caracteristica c ON c.factorId.id = f.id "
+            + "WHERE f.modeloId.id = ?1 and size(c.preguntaList) > 0 "
+            + "GROUP BY f.id")
+    List<Factor> buscarPorModeloYConPreguntasAsociadas(Integer modeloId);
 }

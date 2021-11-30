@@ -73,16 +73,16 @@
                                                         <td>N/A</td>
                                                     </c:when>
                                                     <c:when  test="${dma>=70.0}">
-                                                        <td  bgcolor="#008000">${dma}</td>
+                                                        <td  bgcolor="#008000"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                     </c:when>
                                                     <c:when  test="${ dma >= 50.0 && dma < 70.0}">
-                                                        <td  bgcolor="#FFFF00">${dma}</td>
+                                                        <td  bgcolor="#FFFF00"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                     </c:when>    
                                                     <c:when  test="${ dma < 50.0}">
-                                                        <td  bgcolor="#FF0000">${dma}</td>
+                                                        <td  bgcolor="#FF0000"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td>${dma}</td>
+                                                        <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                     </c:otherwise>    
                                                 </c:choose>
                                             </c:forEach>
@@ -101,16 +101,16 @@
                                                     <td>N/A</td>
                                                 </c:when>
                                                 <c:when  test="${dma>=70}">
-                                                    <td  bgcolor="#008000">${dma}</td>
+                                                    <td  bgcolor="#008000"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                 </c:when>
                                                 <c:when  test="${ dma < 50 && dma > 0}">
-                                                    <td  bgcolor="#FF0000">${dma}</td>
+                                                    <td  bgcolor="#FF0000"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                 </c:when>
                                                 <c:when  test="${ dma >= 50 && dma < 70}">
-                                                    <td  bgcolor="#FFFF00">${dma}</td>
+                                                    <td  bgcolor="#FFFF00"><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <td>${dma}</td>
+                                                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${dma}"/></td>
                                                 </c:otherwise>    
                                             </c:choose>
                                         </c:forEach>

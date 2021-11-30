@@ -37,7 +37,7 @@
                                                 ${caracteristica.codigo}
                                             </td>
                                             <td style="text-align: left">   
-                                                <a href="#detallePCaracteristica&${caracteristica.id}" data="${caracteristica.nombre}">${caracteristica.nombre}</a> 
+                                                <a href="#informe/detallePCaracteristica/${procesoId}/${caracteristica.id}" data="${caracteristica.nombre}">${caracteristica.nombre}</a> 
                                             </td>
                                             <td>   
                                                 <fmt:formatNumber type="number" maxFractionDigits="1" value="${resultado.cumplimiento[iter.index]}"/>

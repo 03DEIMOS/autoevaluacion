@@ -6,10 +6,15 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.dto.InformeCaracteristicasDTO;
+import com.utb.autoevaluacion.dto.InformeDetalleCaracteristicaDTO;
 import com.utb.autoevaluacion.dto.InformeFactoresDTO;
+import com.utb.autoevaluacion.model.Caracteristica;
+import com.utb.autoevaluacion.model.Factor;
 import com.utb.autoevaluacion.model.Fuente;
 import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.model.Proceso;
+import com.utb.autoevaluacion.service.CaracteristicaService;
+import com.utb.autoevaluacion.service.FactorService;
 import com.utb.autoevaluacion.service.FuenteService;
 import com.utb.autoevaluacion.service.InformeService;
 import com.utb.autoevaluacion.service.PreguntaService;
@@ -42,6 +47,12 @@ public class InformeController {
 
     @Autowired
     private PreguntaService preguntaService;
+    
+    @Autowired
+    private CaracteristicaService caracteristicaService;
+    
+    @Autowired
+    private FactorService factorService;
     
     @Autowired
     private FuenteService fuenteService;
@@ -128,4 +139,43 @@ public class InformeController {
         model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\informePreguntas";
     }
+    
+    @GetMapping("/detallePCaracteristica/{procesoId}/{caracteristicaId}")
+    public String informeDetallePorCaracteristica(@PathVariable Integer procesoId, @PathVariable Integer caracteristicaId, Model model) {
+        log.info("Ejecutanto metodo [informeDetallePorCaracteristica] procesoId:{}, caracteristicaId:{} ", procesoId, caracteristicaId);
+        InformeDetalleCaracteristicaDTO resultado = null;
+        Caracteristica caracteristica = null;
+        Proceso proceso = null;
+        try {
+            caracteristica = caracteristicaService.buscarCaracteristica(caracteristicaId);
+            proceso = procesoService.buscarProceso(procesoId);
+            resultado = informeService.informeDetallePorCaracteristica(procesoId, caracteristicaId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+        }
+        model.addAttribute("resultado", resultado);
+        model.addAttribute("caracteristica", caracteristica);
+        model.addAttribute("proceso", proceso);
+        return "comitePrograma\\proceso\\informe\\detalleCaracteristicaP";
+    }
+    
+    @GetMapping("/detallePFactor/{procesoId}/{factorId}")
+    public String informeDetallePorFactor(@PathVariable Integer procesoId, @PathVariable Integer factorId, Model model) {
+        log.info("Ejecutanto metodo [informeDetallePorFactor] procesoId:{}, factorId:{} ", procesoId, factorId);
+        InformeCaracteristicasDTO resultado = null;
+        Factor factor = null;
+        Proceso proceso = null;
+        try {
+            factor = factorService.buscarFactor(factorId);
+            proceso = procesoService.buscarProceso(procesoId);
+            resultado = informeService.informeDetallePorFactor(procesoId, factorId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+        }
+        model.addAttribute("resultado", resultado);
+        model.addAttribute("factor", factor);
+        model.addAttribute("proceso", proceso);
+        return "comitePrograma\\proceso\\informe\\detalleCaracteristicaP";
+    }
+    
 }

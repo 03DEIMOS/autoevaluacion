@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.dto.InformeCaracteristicasDTO;
+import com.utb.autoevaluacion.dto.InformeDetalleCaracteristicaDTO;
 import com.utb.autoevaluacion.dto.InformeDmaDTO;
 import com.utb.autoevaluacion.dto.InformeFactoresDTO;
 import com.utb.autoevaluacion.dto.InformeValoresAbsolutosDTO;
@@ -537,11 +538,214 @@ public class InformeServiceImpl implements InformeService {
                 cumplimiento[f] = (float) cumplimientoXfactor / numCar;
             } else {
                 cumplimiento[f] = (float) 0.0;
-            }           
+            }
         }
 
         InformeFactoresDTO informeFactoresDTO = new InformeFactoresDTO(factores, cumplimiento);
 
         return informeFactoresDTO;
+    }
+
+    @Override
+    public InformeDetalleCaracteristicaDTO informeDetallePorCaracteristica(Integer procesoId, Integer caracteristicaId) {
+        Proceso proceso = procesoService.buscarProceso(procesoId);
+        Modelo modelo = proceso.getModeloId();
+        Caracteristica caracteristica = caracteristicaService.buscarCaracteristica(caracteristicaId);
+        InformeDetalleCaracteristicaDTO informeDetalleCaracteristicaDTO = new InformeDetalleCaracteristicaDTO();
+        //Verificamos que la caracteristica tengan preguntas asociadas
+        if (caracteristica.getPreguntaList().size() > 0) {
+            List<Pregunta> preguntas = caracteristica.getPreguntaList();
+            float promedioPregunta, suma, numP;
+            //declaramos promedio de respuestas para cada preguntas
+            List<Double> promediorespuestas = new ArrayList<Double>();
+            List<String> preguntaReales = new ArrayList<String>();
+
+            for (Pregunta pregunta : preguntas) {
+                List<Fuente> fuentes = fuenteService.buscarFuentesXmodeloXpregunta(modelo.getId(), pregunta.getId());
+
+                if (pregunta.getItemPreguntas().size() > 0) {
+                    for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
+                        float promediorespuestapreguntaxfuente[] = new float[fuentes.size()];
+                        for (int j = 0; j < fuentes.size(); j++) {
+                            suma = 0;
+                            numP = 0;
+                            List<ResultadoEvaluacion> rs = null;
+                            rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaFuente(proceso.getId(),
+                                    pregunta.getItemPreguntas().get(i).getId(), fuentes.get(j).getId());
+
+                            for (ResultadoEvaluacion respuesta : rs) {
+                                if (!respuesta.getRespuesta().equals("0")) {
+                                    suma += Integer.parseInt(respuesta.getRespuesta());
+                                    numP++;
+                                }
+                            }
+
+                            if (suma > 0) {
+                                promediorespuestapreguntaxfuente[j] = (float) suma / numP;
+                            }
+                        }
+                        //calculamos el promedio de respuesta por pregunta usando los promedios por encuesta
+                        float promedioPreguntaAux = 0;
+                        int fuentesQueHanRespondido = 0;
+                        int cantidadFuentes = fuentes.size();
+                        for (int m = 0; m < cantidadFuentes; m++) {
+                            if (promediorespuestapreguntaxfuente[m] > 0.0) {
+                                fuentesQueHanRespondido++;
+                            }
+                            promedioPreguntaAux += promediorespuestapreguntaxfuente[m];
+                        }
+                        promedioPregunta = (float) promedioPreguntaAux / fuentesQueHanRespondido;
+                        preguntaReales.add(pregunta.getPregunta() + " " + pregunta.getItemPreguntas().get(i).getItemPregunta());
+                        promediorespuestas.add((Double) Math.rint(promedioPregunta * 10) / 10);
+                    }
+                } else {
+                    float promediorespuestapreguntaxfuente[] = new float[fuentes.size()];
+                    for (int j = 0; j < fuentes.size(); j++) {
+                        suma = 0;
+                        numP = 0;
+                        List<ResultadoEvaluacion> rs = null;
+                        rs = resultadoEvaluacionService.buscarPorProcesoPreguntaFuente(proceso.getId(), pregunta.getId(), fuentes.get(j).getId());
+                        for (ResultadoEvaluacion respuesta : rs) {
+                            if (!respuesta.getRespuesta().equals("0")) {
+                                suma += Integer.parseInt(respuesta.getRespuesta());
+                                numP++;
+                            }
+                        }
+                        if (suma > 0) {
+                            promediorespuestapreguntaxfuente[j] = (float) suma / numP;
+                        }
+                    }
+                    //calculamos el promedio de respuesta por pregunta usando los promedios por encuesta
+                    float promedioPreguntaAux = 0;
+                    int fuentesQueHanRespondido = 0;
+                    int cantidadFuentes = fuentes.size();
+                    for (int m = 0; m < cantidadFuentes; m++) {
+                        if (promediorespuestapreguntaxfuente[m] > 0.0) {
+                            fuentesQueHanRespondido++;
+                        }
+                        promedioPreguntaAux += promediorespuestapreguntaxfuente[m];
+                    }
+                    if (fuentesQueHanRespondido > 0) {
+                        promedioPregunta = (float) promedioPreguntaAux / fuentesQueHanRespondido;
+                    } else {
+                        promedioPregunta = (float) 0.0;
+                    }
+                    preguntaReales.add(pregunta.getPregunta());
+                    promediorespuestas.add((Double) Math.rint(promedioPregunta * 10) / 10);
+                }
+            }
+            informeDetalleCaracteristicaDTO.setPreguntaReales(preguntaReales);
+            informeDetalleCaracteristicaDTO.setPromediorespuestas(promediorespuestas);
+        }
+        return informeDetalleCaracteristicaDTO;
+    }
+
+    @Override
+    public InformeCaracteristicasDTO informeDetallePorFactor(Integer procesoId, Integer factorId) {
+        Proceso proceso = procesoService.buscarProceso(procesoId);
+        Modelo modelo = proceso.getModeloId();
+        List<Caracteristica> caracteristicas = caracteristicaService.getCaracteristicasByFactor(factorId);
+        float cumplimiento[] = new float[caracteristicas.size()];
+        float cumplimientoXcaracteristica;
+        for (int a = 0; a < caracteristicas.size(); a++) {
+            if (caracteristicas.get(a).getPreguntaList().size() > 0) {
+                List<Pregunta> preguntas = caracteristicas.get(a).getPreguntaList();
+
+                float promedioPregunta, suma, numP;
+
+                //declaramos promedio de respuestas para cada preguntas
+                List<Double> promediorespuestas = new ArrayList<Double>();
+                cumplimientoXcaracteristica = 0;
+                for (Pregunta pregunta : preguntas) {
+                    List<Fuente> fuentes = fuenteService.buscarFuentesXmodeloXpregunta(modelo.getId(), pregunta.getId());
+
+                    if (pregunta.getItemPreguntas().size() > 0) {
+                        for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
+                            float promediorespuestapreguntaxfuente[] = new float[fuentes.size()];
+                            for (int j = 0; j < fuentes.size(); j++) {
+                                suma = 0;
+                                numP = 0;
+                                List<ResultadoEvaluacion> rs = null;
+                                rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaFuente(proceso.getId(),
+                                        pregunta.getItemPreguntas().get(i).getId(), fuentes.get(j).getId());
+
+                                for (ResultadoEvaluacion respuesta : rs) {
+                                    if (!respuesta.getRespuesta().equals("0")) {
+                                        suma += Integer.parseInt(respuesta.getRespuesta());
+                                        numP++;
+                                    }
+                                }
+
+                                if (suma > 0) {
+                                    promediorespuestapreguntaxfuente[j] = (float) suma / numP;
+                                }
+                            }
+                            //calculamos el promedio de respuesta por pregunta usando los promedios por encuesta
+                            float promedioPreguntaAux = 0;
+                            int fuentesQueHanRespondido = 0;
+                            int cantidadFuentes = fuentes.size();
+                            for (int m = 0; m < cantidadFuentes; m++) {
+                                if (promediorespuestapreguntaxfuente[m] > 0.0) {
+                                    fuentesQueHanRespondido++;
+                                }
+                                promedioPreguntaAux += promediorespuestapreguntaxfuente[m];
+                            }
+                            promedioPregunta = (float) promedioPreguntaAux / fuentesQueHanRespondido;
+                            promediorespuestas.add((Double) Math.rint(promedioPregunta * 10) / 10);
+                        }
+                    } else {
+                        float promediorespuestapreguntaxfuente[] = new float[fuentes.size()];
+                        for (int j = 0; j < fuentes.size(); j++) {
+                            suma = 0;
+                            numP = 0;
+                            List<ResultadoEvaluacion> rs = null;
+                            rs = resultadoEvaluacionService.buscarPorProcesoPreguntaFuente(proceso.getId(), pregunta.getId(), fuentes.get(j).getId());
+                            for (ResultadoEvaluacion respuesta : rs) {
+                                if (!respuesta.getRespuesta().equals("0")) {
+                                    suma += Integer.parseInt(respuesta.getRespuesta());
+                                    numP++;
+                                }
+                            }
+                            if (suma > 0) {
+                                promediorespuestapreguntaxfuente[j] = (float) suma / numP;
+                            }
+                        }
+                        //calculamos el promedio de respuesta por pregunta usando los promedios por encuesta
+                        float promedioPreguntaAux = 0;
+                        int fuentesQueHanRespondido = 0;
+                        int cantidadFuentes = fuentes.size();
+                        for (int m = 0; m < cantidadFuentes; m++) {
+                            if (promediorespuestapreguntaxfuente[m] > 0.0) {
+                                fuentesQueHanRespondido++;
+                            }
+                            promedioPreguntaAux += promediorespuestapreguntaxfuente[m];
+                        }
+                        if (fuentesQueHanRespondido > 0) {
+                            promedioPregunta = (float) promedioPreguntaAux / fuentesQueHanRespondido;
+                        } else {
+                            promedioPregunta = (float) 0.0;
+                        }
+                        promediorespuestas.add((Double) Math.rint(promedioPregunta * 10) / 10);
+                    }
+                }
+
+                int numPre = 0;
+                for (int q = 0; q < promediorespuestas.size(); q++) {
+                    if (promediorespuestas.get(q) > 0.0) {
+                        cumplimientoXcaracteristica += promediorespuestas.get(q);
+                        numPre++;
+                    }
+                }
+                if (numPre > 0) {
+                    cumplimiento[a] = (float) cumplimientoXcaracteristica / numPre;
+                } else {
+                    cumplimiento[a] = (float) 0.0;
+                }
+            }
+        }
+
+        InformeCaracteristicasDTO informeCaracteristicasDTO = new InformeCaracteristicasDTO(caracteristicas, cumplimiento); //Total personas que contestaron la pregunta
+
+        return informeCaracteristicasDTO;
     }
 }//End class

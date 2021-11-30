@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.dto.InformeCaracteristicasDTO;
+import com.utb.autoevaluacion.dto.InformeDetalleCaracteristicaDTO;
 import com.utb.autoevaluacion.dto.InformeFactoresDTO;
 import java.util.List;
 
@@ -26,5 +27,9 @@ public interface InformeService {
     List<Object> informePreguntasPorProceso(Integer procesoId);
     
     List<Object> informePreguntasPorProcesoyPublico(Integer procesoId, Integer publico);
+    
+    InformeDetalleCaracteristicaDTO informeDetallePorCaracteristica(Integer procesoId, Integer caracteristicaId);
+    
+    InformeCaracteristicasDTO informeDetallePorFactor(Integer procesoId, Integer factorId);
 
 }

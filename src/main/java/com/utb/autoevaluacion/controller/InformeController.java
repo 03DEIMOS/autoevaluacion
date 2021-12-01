@@ -175,7 +175,7 @@ public class InformeController {
         model.addAttribute("resultado", resultado);
         model.addAttribute("factor", factor);
         model.addAttribute("proceso", proceso);
-        return "comitePrograma\\proceso\\informe\\detalleCaracteristicaP";
+        return "comitePrograma\\proceso\\informe\\detalleFactorP";
     }
     
 }

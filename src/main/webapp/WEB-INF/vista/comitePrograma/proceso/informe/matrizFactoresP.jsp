@@ -38,7 +38,7 @@
                                             </td>
 
                                             <td style="text-align: left">   
-                                                <a href="#detallePFactor&${factor.getId()}" data="${factor.nombre}">${factor.nombre}</a>
+                                                <a href="#informe/detallePFactor/${procesoId}/${factor.id}" data="${factor.nombre}">${factor.nombre}</a>
                                             </td>
                                             <td>   
                                                 <fmt:formatNumber type="number" maxFractionDigits="1" value="${resultado.cumplimientoF[iter2.index]}"/>

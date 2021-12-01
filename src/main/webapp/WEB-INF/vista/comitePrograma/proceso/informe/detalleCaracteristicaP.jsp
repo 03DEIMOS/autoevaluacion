@@ -9,8 +9,9 @@
 </style>
 <script type="text/javascript">
     $(function () {
-    $('.tool').tooltip().click(function(e){
-    $(this).tooltip('hide');
+        $('.tool').tooltip().click(function(e){
+        $(this).tooltip('hide');
+        });
     });
 </script>
 <div class="hero-unit">

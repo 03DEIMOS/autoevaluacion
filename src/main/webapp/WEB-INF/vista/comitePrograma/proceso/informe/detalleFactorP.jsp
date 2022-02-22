@@ -19,8 +19,8 @@
         <div id="conte" class="span10">
             <legend>Factor: ${factor.nombre}</legend>
             <ul class="breadcrumb">
-                <li><a href="<%=request.getContextPath()%>/#/informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
-                <li><a href="<%=request.getContextPath()%>/#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Características</a><span class="divider">/</span></li>
+                <li><a href="#informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
+                <li><a href="#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Características</a><span class="divider">/</span></li>
                 <li class="active tool" data-placement="top" rel="tooltip" data-original-title="${factor.nombre}">Factor ${factor.codigo}</li>
 
             </ul>

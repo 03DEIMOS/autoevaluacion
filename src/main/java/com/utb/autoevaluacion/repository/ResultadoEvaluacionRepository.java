@@ -23,13 +23,55 @@ public interface ResultadoEvaluacionRepository extends JpaRepository<ResultadoEv
             + " ORDER BY  a.item_pregunta_id ASC",
             nativeQuery = true)
     List<ResultadoEvaluacion> findByProcesoItemPreguntaFuente(Integer procesoId, Integer itemPreguntaId, Integer fuenteId);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+        + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2 AND b.fuente_id = ?3"
+        + " AND b.variable1 = ?4 AND b.variable2 = ?5"
+        + " ORDER BY  a.item_pregunta_id ASC",
+        nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoItemPreguntaFuenteyVariables(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable1, String variable2);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+        + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2 AND b.fuente_id = ?3"
+        + " AND b.variable1 = ?4"
+        + " ORDER BY  a.item_pregunta_id ASC",
+        nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoItemPreguntaFuenteyVariable1(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable1);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+        + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2 AND b.fuente_id = ?3"
+        + " AND b.variable2 = ?4"
+        + " ORDER BY  a.item_pregunta_id ASC",
+        nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoItemPreguntaFuenteyVariable2(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable2);
 
     @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
             + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND b.fuente_id = ?3"
             + " AND a.item_pregunta_id IS NULL ORDER BY  a.pregunta_id ASC",
             nativeQuery = true)
     List<ResultadoEvaluacion> findByProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND b.fuente_id = ?3"
+            + " AND b.variable1 = ?4 AND b.variable2 = ?5"
+            + " AND a.item_pregunta_id IS NULL ORDER BY  a.pregunta_id ASC",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoPreguntaFuenteyVariables(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable1, String variable2);
+    
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND b.fuente_id = ?3"
+            + " AND b.variable1 = ?4"
+            + " AND a.item_pregunta_id IS NULL ORDER BY  a.pregunta_id ASC",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoPreguntaFuenteyVariable1(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable1);
 
+    @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
+            + " WHERE b.proceso_id= ?1 AND a.pregunta_id = ?2 AND b.fuente_id = ?3"
+            + " AND b.variable2 = ?4"
+            + " AND a.item_pregunta_id IS NULL ORDER BY  a.pregunta_id ASC",
+            nativeQuery = true)
+    List<ResultadoEvaluacion> findByProcesoPreguntaFuenteyVariable2(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable2);
+    
     @Query(value = "SELECT a.* FROM resultadoevaluacion a INNER JOIN persona b ON b.id = a.persona_id"
             + " WHERE b.proceso_id= ?1 AND a.item_pregunta_id = ?2  AND a.respuesta = ?3 ",
             nativeQuery = true)

@@ -748,4 +748,204 @@ public class InformeServiceImpl implements InformeService {
 
         return informeCaracteristicasDTO;
     }
+
+    @Override
+    public List<Object> informeDMAPorProcesoyPublico(Integer procesoId, Integer fuenteId) {
+        List<Object> informeDMA = new ArrayList();
+        Proceso proceso = procesoService.buscarProceso(procesoId);
+        Modelo modelo = proceso.getModeloId();
+        List<Caracteristica> caracteristicas = caracteristicaService.buscarPorModeloYConPreguntasAsociadas(modelo);
+        for (Caracteristica caracteristica : caracteristicas) {
+            if (caracteristica.getPreguntaList().size() > 0) {
+                List<Pregunta> preguntas = caracteristica.getPreguntaList();
+                for (Pregunta pregunta : preguntas) {
+                    Fuente fuente = fuenteService.buscarFuente(fuenteId);
+                    Integer primerMasAlto = 5;
+                    Integer segundoMasAlto = 4;
+
+                    InformeDmaDTO infDMAResult = new InformeDmaDTO(pregunta,
+                            new ArrayList<String>(),// de itempregunta
+                            new ArrayList<String>(), // de fuente
+                            caracteristica,//Caracteristica
+                            caracteristica.getFactorId(),//Factor
+                            new ArrayList<Double>(), // de dma para cuando NO tiene subpreguntas
+                            new ArrayList<List<Double>>(), //de dma para cuando SI tiene subpreguntas
+                            new ArrayList<Double>(), // de ceros para cuando NO tiene subpreguntas
+                            new ArrayList<List<Double>>()); //de ceros para cuando SI tiene subpreguntas
+
+                    if (pregunta.getItemPreguntas().size() > 0) {
+                        for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
+                            List<Double> DMAList = new ArrayList();
+                            List<Double> cerosList = new ArrayList();
+
+                            infDMAResult.getItemPregunta().add(pregunta.getItemPreguntas().get(i).getItemPregunta());
+
+                            List<ResultadoEvaluacion> rs = null;
+                            rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaFuente(proceso.getId(),
+                                    pregunta.getItemPreguntas().get(i).getId(), fuente.getId());
+                            int cuatros = 0;
+                            int cincos = 0;
+                            int ceros = 0;
+                            for (ResultadoEvaluacion respuestas : rs) {
+                                if (respuestas.getRespuesta().equals("0")) {
+                                    ceros++;
+                                } else if (respuestas.getRespuesta().equals(segundoMasAlto.toString())) {
+                                    cuatros++;
+                                } else if (respuestas.getRespuesta().equals(primerMasAlto.toString())) {
+                                    cincos++;
+                                }
+                            }
+                            if (rs.isEmpty()) {
+                                DMAList.add(-1.0);
+                                cerosList.add(-1.0);
+                            } else {
+                                double dma = (double) ((cincos + cuatros) * 100) / rs.size();
+                                double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
+                                DMAList.add(dma);
+                                cerosList.add(cerosPorcentaje);
+
+                            }
+
+                            infDMAResult.getDMAList().add(DMAList);
+                            infDMAResult.getPorcentajeCerosList().add(cerosList);
+                        }
+
+                        infDMAResult.getFuente().add(fuente.getNombre());
+                        informeDMA.add(infDMAResult);
+                    } else {
+
+                        List<ResultadoEvaluacion> rs = null;
+                        rs = resultadoEvaluacionService.buscarPorProcesoPreguntaFuente(proceso.getId(),
+                                pregunta.getId(), fuente.getId());
+                        int cuatros = 0, cincos = 0, ceros = 0;
+                        for (ResultadoEvaluacion respuestas : rs) {
+                            if (respuestas.getRespuesta().equals("0")) {
+                                ceros++;
+                            } else if (respuestas.getRespuesta().equals(segundoMasAlto.toString())) {
+                                cuatros++;
+                            } else if (respuestas.getRespuesta().equals(primerMasAlto.toString())) {
+                                cincos++;
+                            }
+                        }
+                        if (rs.isEmpty()) {
+                            infDMAResult.getDMA().add(-1.0);
+                            infDMAResult.getPorcentajeCeros().add(-1.0);
+                            infDMAResult.getFuente().add(fuente.getNombre());
+                        } else {
+                            double dma = (double) ((cincos + cuatros) * 100) / rs.size();
+                            double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
+                            infDMAResult.getDMA().add(dma);
+                            infDMAResult.getPorcentajeCeros().add(cerosPorcentaje);
+                            infDMAResult.getFuente().add(fuente.getNombre());
+
+                        }
+                        informeDMA.add(infDMAResult);
+                    }
+                }
+
+            }
+        }
+
+        return informeDMA;
+    }
+
+    @Override
+    public List<Object> informeDMAPorProcesoyPublicoyVariables(Integer procesoId, Integer fuenteId, String variable1, String variable2) {
+        List<Object> informeDMA = new ArrayList();
+        Proceso proceso = procesoService.buscarProceso(procesoId);
+        Modelo modelo = proceso.getModeloId();
+        List<Caracteristica> caracteristicas = caracteristicaService.buscarPorModeloYConPreguntasAsociadas(modelo);
+        for (Caracteristica caracteristica : caracteristicas) {
+            if (caracteristica.getPreguntaList().size() > 0) {
+                List<Pregunta> preguntas = caracteristica.getPreguntaList();
+                for (Pregunta pregunta : preguntas) {
+                    Fuente fuente = fuenteService.buscarFuente(fuenteId);
+                    Integer primerMasAlto = 5;
+                    Integer segundoMasAlto = 4;
+
+                    InformeDmaDTO infDMAResult = new InformeDmaDTO(pregunta,
+                            new ArrayList<String>(),// de itempregunta
+                            new ArrayList<String>(), // de fuente
+                            caracteristica,//Caracteristica
+                            caracteristica.getFactorId(),//Factor
+                            new ArrayList<Double>(), // de dma para cuando NO tiene subpreguntas
+                            new ArrayList<List<Double>>(), //de dma para cuando SI tiene subpreguntas
+                            new ArrayList<Double>(), // de ceros para cuando NO tiene subpreguntas
+                            new ArrayList<List<Double>>()); //de ceros para cuando SI tiene subpreguntas
+
+                    if (pregunta.getItemPreguntas().size() > 0) {
+                        for (int i = 0; i < pregunta.getItemPreguntas().size(); i++) {// Si la pregunta tiene subpreguntas
+                            List<Double> DMAList = new ArrayList();
+                            List<Double> cerosList = new ArrayList();
+
+                            infDMAResult.getItemPregunta().add(pregunta.getItemPreguntas().get(i).getItemPregunta());
+
+                            List<ResultadoEvaluacion> rs = null;
+                            rs = resultadoEvaluacionService.buscarPorProcesoItemPreguntaFuenteyVariables(proceso.getId(),
+                                    pregunta.getItemPreguntas().get(i).getId(), fuente.getId(), variable1, variable2);
+                            int cuatros = 0;
+                            int cincos = 0;
+                            int ceros = 0;
+                            for (ResultadoEvaluacion respuestas : rs) {
+                                if (respuestas.getRespuesta().equals("0")) {
+                                    ceros++;
+                                } else if (respuestas.getRespuesta().equals(segundoMasAlto.toString())) {
+                                    cuatros++;
+                                } else if (respuestas.getRespuesta().equals(primerMasAlto.toString())) {
+                                    cincos++;
+                                }
+                            }
+                            if (rs.isEmpty()) {
+                                DMAList.add(-1.0);
+                                cerosList.add(-1.0);
+                            } else {
+                                double dma = (double) ((cincos + cuatros) * 100) / rs.size();
+                                double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
+                                DMAList.add(dma);
+                                cerosList.add(cerosPorcentaje);
+
+                            }
+
+                            infDMAResult.getDMAList().add(DMAList);
+                            infDMAResult.getPorcentajeCerosList().add(cerosList);
+                        }
+
+                        infDMAResult.getFuente().add(fuente.getNombre());
+                        informeDMA.add(infDMAResult);
+                    } else {
+
+                        List<ResultadoEvaluacion> rs = null;
+                        rs = resultadoEvaluacionService.buscarPorProcesoPreguntaFuenteyVariables(proceso.getId(),
+                                pregunta.getId(), fuente.getId(), variable1, variable2);
+                        int cuatros = 0, cincos = 0, ceros = 0;
+                        for (ResultadoEvaluacion respuestas : rs) {
+                            if (respuestas.getRespuesta().equals("0")) {
+                                ceros++;
+                            } else if (respuestas.getRespuesta().equals(segundoMasAlto.toString())) {
+                                cuatros++;
+                            } else if (respuestas.getRespuesta().equals(primerMasAlto.toString())) {
+                                cincos++;
+                            }
+                        }
+                        if (rs.isEmpty()) {
+                            infDMAResult.getDMA().add(-1.0);
+                            infDMAResult.getPorcentajeCeros().add(-1.0);
+                            infDMAResult.getFuente().add(fuente.getNombre());
+                        } else {
+                            double dma = (double) ((cincos + cuatros) * 100) / rs.size();
+                            double cerosPorcentaje = (double) ((ceros) * 100) / rs.size();
+                            infDMAResult.getDMA().add(dma);
+                            infDMAResult.getPorcentajeCeros().add(cerosPorcentaje);
+                            infDMAResult.getFuente().add(fuente.getNombre());
+
+                        }
+                        informeDMA.add(infDMAResult);
+                    }
+                }
+
+            }
+        }
+
+        return informeDMA;
+    }
 }//End class

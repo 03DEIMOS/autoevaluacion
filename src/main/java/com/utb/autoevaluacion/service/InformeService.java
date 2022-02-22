@@ -20,6 +20,10 @@ public interface InformeService {
     
     List<Object> informeDMAPorProceso(Integer procesoId);
     
+    List<Object> informeDMAPorProcesoyPublico(Integer procesoId, Integer fuenteId);
+    
+    List<Object> informeDMAPorProcesoyPublicoyVariables(Integer procesoId, Integer fuenteId, String variable1, String variable2);
+    
     InformeCaracteristicasDTO informeCaracteristicasPorProceso(Integer procesoId);
     
     InformeFactoresDTO informeFactoresPorProceso(Integer procesoId);

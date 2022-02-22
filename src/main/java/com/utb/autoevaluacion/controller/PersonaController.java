@@ -37,7 +37,11 @@ public class PersonaController {
             log.info("ha ocurrido un error buscando la poblacion:{} ", e);
             
         }
+        boolean variablePresente2 = personas.stream()
+                .filter(p -> p.getVariable2()!=null && !p.getVariable2().isEmpty())
+                .findAny().isPresent();
         model.addAttribute("personas", personas);
+        model.addAttribute("variable2Exist", variablePresente2);
         return "comitePrograma\\muestra\\selectorListMuestra";
 
     }

@@ -23,22 +23,94 @@
         background-color: #f0ad4e;
         color: #fff;
     }
+
+    .form-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -5px;
+        margin-left: -5px;
+    }
+
 </style>
+<script type="text/javascript">
+    $(function() {
+        $("#filtrar").click(function() {
+            var a = $("#variables1 option:selected").index();
+            var b = $("#variables2 option:selected").index();
+            console.log(a);
+            console.log(b);
+            if ((a==-1||a == 0) && (b==-1 || b == 0)) {
+                $("#help1").html('<div class="alert alert-info" role="alert"><strong>Atenci&oacute;n</strong> Seleccione al menos una opción para poder filtrar.</div>');
+            }else {//para hacer el editar muestra
+                $("#help1").empty();
+                $("#tablaInformeDMA").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: "/autoevaluacion/informe/informeDMAFiltrado/proceso/${proceso.id}/publico/${fuente.id}",
+                    data: $("#formFiltro").serialize(),
+                    success: function(datos) {
+                        $("#tablaInformeDMA").append(datos);
+                        setTimeout(function() {
+                            $("#dancing-dots-text").remove();
+                        }, 200);
+                    } //fin success
+                }); //fin $.ajax    
+            }
+        });
+    });
+</script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div class="hero-unit">
     <div class="row">
         <input type="button" class="btn btn-primary" onclick="tableToExcel('conte', 'Informe  de  Preguntas por Proceso')" value="Exportar a Excel">
         <div id="conte" class="span12">
-            <fieldset>
-                <legend>
-                    Informe DMA
-                </legend>
-                <br>
-            </fieldset>
-            <div>
+            <form id="formFiltro" class=""  style="margin-bottom: 0px">
+                <fieldset>
+                    <legend>
+                        Informe DMA por Fuente
+                    </legend>
+                    <br>
+                </fieldset>
 
+                <div class="span10" style="margin-left: 0px">
+                    <div class="form-inline">
+                        <c:if test="${fn:length(variables1)!= 0}">
+                            <label for="variables1">Variable1</label>
+                            <select name="variables1" id="variables1" class="form-control">
+                                <option value="--">Seleccionar</option>
+                                <c:choose>
+                                    <c:when test="${fn:length(variables1)!= 0}">
+                                        <c:forEach items="${variables1}" var="variable1" varStatus="iter">
+                                            <option value="${variable1}">${variable1}</option>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
+                            </select>
+                        </c:if>
+                        <c:if test="${fn:length(variables2)!= 0}">
+                            <label for="variables2">Variable2</label>
+                            <select name="variables2" id="variables2" class="form-control">
+                                <option value="--">Seleccionar</option>
+                                <c:forEach items="${variables2}" var="variable2" varStatus="iter">
+                                    <option value="${variable2}">${variable2}</option>
+                                </c:forEach>
+                            </select>
+                        </c:if>
+                        <c:if test="${fn:length(variables1)!= 0 || fn:length(variables2)!= 0}">
+                            <button type="button" class="btn btn-primary" id="filtrar">Filtrar</button>
+                        </c:if>    
 
+                    </div>
+
+                </div>
+            </form> 
+            <br/>
+            <div id="help1"></div>
+            <div id="tablaInformeDMA">
                 <c:forEach items="${resultado}" var="InformeDMA" varStatus="status">
                     <table class="table table-bordered" id="tableR">
                         <thead style="background-color: #ffffff;">
@@ -51,7 +123,7 @@
                             <tr>
                                 <c:forEach items="${InformeDMA.fuente}" var="fuente" varStatus="status2">
                                     <th class="span1">${fuente}</th>
-                                </c:forEach>
+                                    </c:forEach>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,19 +193,19 @@
                     </table>
                 </c:forEach>
             </div>
-                    </div>
+        </div>
     </div>
 </div>
-<script type="text/javascript">
-                           var tableToExcel = (function() {             var uri = 'data:application/vnd.ms-excel;base64,'
-                   , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
-   , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-   , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
- return function(table, name) {
-   if (!table.nodeType) table = document.getElementById(table)
-   var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-   window.location.href = uri + base64(format(template, ctx))
- }
+                    <script type="text/javascript">
+                            var tableToExcel = (function() {             var uri = 'data:application/vnd.ms-excel;base64,'
+                    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+, base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+, format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+return function(table, name) {
+if (!table.nodeType) table = document.getElementById(table)
+var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+window.location.href = uri + base64(format(template, ctx))
+}
 })()
 </script>
 

@@ -19,10 +19,10 @@
         <div id="conte" class="span10">
             <legend>Caracter&iacute;stica: ${caracteristica.nombre}</legend>
             <ul class="breadcrumb">
-                <li><a href="<%=request.getContextPath()%>/#/informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
-                <li><a href="<%=request.getContextPath()%>/#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Caracter&iacute;sticas</a> <span class="divider">/</span></li>
+                <li><a href="#informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
+                <li><a href="#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Caracter&iacute;sticas</a> <span class="divider">/</span></li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/#informe/detallePFactor/${procesoId}/${caracteristica.getFactorId().id}" class="tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.getFactorId().nombre}">Factor ${caracteristica.getFactorId().codigo}</a> 
+                    <a href="#informe/detallePFactor/${procesoId}/${caracteristica.getFactorId().id}" class="tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.getFactorId().nombre}">Factor ${caracteristica.getFactorId().codigo}</a> 
                     <span class="divider">/</span>
                 </li>
                 <li class="active tool" data-placement="top" rel="tooltip" data-original-title="${caracteristica.nombre}">Caracter&iacute;stica ${caracteristica.codigo}</li>

@@ -52,4 +52,12 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
             nativeQuery = true)
     Integer cantidadMuestraEncuestaTerminadaPorProcesoFuente(Integer procesoId, Integer fuenteId);
     
+    @Query(value = "SELECT DISTINCT(variable1) FROM persona WHERE proceso_id = ?1 "
+            + "AND fuente_id = ?2 AND estado = 'A' AND ES_MUESTRA='S' AND terminado='S' AND variable1 is not null and variable1!=''", nativeQuery = true)
+    List buscarVariables1PorProcesoYFuenteActivaYTerminada(Integer proceso, Integer fuente);
+    
+    @Query(value = "SELECT DISTINCT(variable2) FROM persona WHERE proceso_id = ?1 "
+            + "AND fuente_id = ?2 AND estado = 'A' AND ES_MUESTRA='S' AND terminado='S'  AND variable2 is not null and variable2!=''", nativeQuery = true)
+    List buscarVariables2PorProcesoYFuenteActivaYTerminada(Integer proceso, Integer fuente);
+    
 }

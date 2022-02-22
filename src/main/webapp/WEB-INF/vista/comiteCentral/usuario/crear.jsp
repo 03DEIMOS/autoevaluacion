@@ -53,71 +53,42 @@
 <script src="<%=request.getContextPath()%>/js/typeahead.bundle.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript">
-            $(function() {
+    $(function () {
 
-    var programas = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: [
-    <c:forEach items="${programas}" var="programa" varStatus="status">
-        <c:choose>
-            <c:when test="${(status.index+1) != programas.size()}">
-            {
-            value: '${programa.id}',
-                    text: '${programa.nombre}'
-            },</c:when><c:otherwise>
-            {
-            value: '${programa.id}',
-                    text: '${programa.nombre}'
-            }
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-        ]
-        });
-                programas.initialize();
-                var elt = $('#inputProgramas');
-                elt.tagsinput({
-        itemValue: 'value',
-                itemText: 'text',
-                typeaheadjs: {
-        name: 'programas',
-                displayKey: 'text',
-                source: programas.ttAdapter()
-        }
-        });
-                $.validator.addMethod('positiveNumber',
-                function(value) {
-                return (Number(value) > 0) && (value == parseInt(value, 10));
+        $.validator.addMethod('positiveNumber',
+                function (value) {
+                    return (Number(value) > 0) && (value == parseInt(value, 10));
                 }, 'Ingrese un numero entero positivo.');
-                $("#formCrearCoordinador").validate({
-        submitHandler: function() {
-        if (elt.tagsinput('items').length){
+        $("#formCrearUsuario").validate({
+            submitHandler: function () {
                 $.ajax({
-                 type: 'POST',
-                 url: "/autoevaluacion/controladorCC?action=crearCoordinador",
-                 data: $("#formCrearCoordinador").serialize(),
-                 success: function() {
-                 location = "/autoevaluacion/#listarCoordinadores";
-                 } //fin success
-                 }); //fin $.ajax
-        } else{
-        alert("debe seleccionar al menos un programa");
-        }
-        }
+                    type: 'POST',
+                    url: "/autoevaluacion/usuario/crear",
+                    data: $("#formCrearUsuario").serialize(),
+                    success: function () {
+                        location.hash = "usuario/usuarios";
+                    } //fin success
+                }); //fin $.ajax
+            }
         });
-        });
+    });
 </script>
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
-            <form id="formCrearCoordinador" class="form-horizontal" method="post">
+            <form id="formCrearUsuario" class="form-horizontal" method="post">
                 <fieldset>
-                    <legend>Crear Coordinador</legend>
+                    <legend>Crear Usuario</legend>
                     <div class="control-group">
                         <label for="codigo"  class="control-label">C&oacute;digo</label>
                         <div class="controls">
-                            <input type="text" name="codigo" id="codigo" class="input-xlarge {required:true, positiveNumber:true}" value=""/>
+                            <input type="text" name="codigo" id="codigo" class="input-xlarge {required:true}" value=""/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="identificacion"  class="control-label">Identificacion</label>
+                        <div class="controls">
+                            <input type="text" name="identificacion" id="identificacion" class="input-xlarge {required:true, positiveNumber:true}" value=""/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -135,25 +106,18 @@
                     <div class="control-group">
                         <label for="clave"  class="control-label">Clave</label>
                         <div class="controls">
-                            <input type="text" name="clave" id="clave" class="input-xlarge {required:true}" value=""/>
+                            <input type="password" name="clave" id="clave" class="input-xlarge {required:true}" value=""/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="correo"  class="control-label">Correo electr&oacute;nico</label>
+                        <label for="email"  class="control-label">Correo electr&oacute;nico</label>
                         <div class="controls">
-                            <input type="text" name="correo" id="correo" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="email" id="email" class="input-xlarge {required:true}" value=""/>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label for="programa"  class="control-label">Programa</label>
-                        <div class="controls">
-                            <input type="text" name="programas" id="inputProgramas"/>
-                        </div>
-                    </div>
-
 
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Crear Coordinador</button>
+                        <button class="btn btn-primary" type="submit">Crear Usuario</button>
                         <button class="btn" type="reset">Cancelar</button>
                     </div>
                 </fieldset>

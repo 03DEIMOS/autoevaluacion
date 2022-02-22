@@ -14,7 +14,7 @@
             <legend>Matriz de Calidad de Factores</legend>
             <ul class="breadcrumb">
                 <li class="active">Matriz de Calidad de Factores  <span class="divider">/</span></li>
-                <li><a href="<%=request.getContextPath()%>/#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Características</a></li>
+                <li><a href="#informe/informeCaracteristicas/${procesoId}">Matriz de Calidad de Características</a></li>
             </ul>
             <br>
             <c:choose>

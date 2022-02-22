@@ -17,6 +17,7 @@ import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.FactorService;
 import com.utb.autoevaluacion.service.FuenteService;
 import com.utb.autoevaluacion.service.InformeService;
+import com.utb.autoevaluacion.service.PersonaService;
 import com.utb.autoevaluacion.service.PreguntaService;
 import com.utb.autoevaluacion.service.ProcesoService;
 import java.util.List;
@@ -46,7 +47,7 @@ public class InformeController {
     ProcesoService procesoService;
 
     @Autowired
-    private PreguntaService preguntaService;
+    private PersonaService personaService;
     
     @Autowired
     private CaracteristicaService caracteristicaService;
@@ -77,7 +78,6 @@ public class InformeController {
 
     @GetMapping("/informeDMA/{procesoId}")
     public String informeDMAPorProceso(@PathVariable Integer procesoId, Model model) {
-
         List<Object> resultado = null;
         try {
             resultado = informeService.informeDMAPorProceso(procesoId);
@@ -86,6 +86,31 @@ public class InformeController {
         }
         model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\dmaProgramas";
+    }
+    @GetMapping("/informeDMA/{procesoId}/publico/{fuenteId}")
+    public String informeDMAPorProcesoyFuente(@PathVariable Integer procesoId, @PathVariable Integer fuenteId, Model model) {
+        Proceso proceso = null;
+        Fuente fuente = null;
+        List<Object> resultado = null;
+        List variables1 = null;
+        List variables2 = null;
+        try {
+            resultado = informeService.informeDMAPorProcesoyPublico(procesoId, fuenteId);
+            variables1 = personaService.buscarVariablesPorProcesoYFuenteActivaYTerminado(procesoId, fuenteId, "variable1");
+            variables2 = personaService.buscarVariablesPorProcesoYFuenteActivaYTerminado(procesoId, fuenteId, "variable2");
+            proceso = procesoService.buscarProceso(procesoId);
+            fuente = fuenteService.buscarFuente(fuenteId);
+            
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+        }
+        model.addAttribute("resultado", resultado);
+        model.addAttribute("variables1", variables1);
+        model.addAttribute("variables2", variables2);
+        model.addAttribute("proceso", proceso);
+        model.addAttribute("fuente", fuente);
+        
+        return "comitePrograma\\proceso\\informe\\dmaProgramasXFuente";
     }
     
     @GetMapping("/informeCaracteristicas/{procesoId}")
@@ -138,6 +163,19 @@ public class InformeController {
         }
         model.addAttribute("resultado", resultado);
         return "comitePrograma\\proceso\\informe\\informePreguntas";
+    }
+    
+    @PostMapping("/informeDMAFiltrado/proceso/{procesoId}/publico/{fuenteId}")
+     public String informeDMAFiltradoPorProcesoyFuente(@PathVariable Integer procesoId, @PathVariable Integer fuenteId, @RequestParam(required = false) String variables1, @RequestParam(required = false) String variables2, Model model) {
+        log.info("Ejecutanto metodo [informeDMAFiltradoPorProcesoyFuente] procesoId:{}, fuenteId:{}, variables1:{}, variables2:{} ", procesoId, fuenteId, variables1, variables2);
+        List<Object> resultado = null;
+        try {
+            resultado = informeService.informeDMAPorProcesoyPublicoyVariables(procesoId, fuenteId, variables1, variables2);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+        }
+        model.addAttribute("resultado", resultado);
+        return "comitePrograma\\proceso\\informe\\dmaProgramasXFuenteFiltrado";
     }
     
     @GetMapping("/detallePCaracteristica/{procesoId}/{caracteristicaId}")

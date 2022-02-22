@@ -12,9 +12,19 @@ import java.util.List;
 
 
 public interface UsuarioService {
-
+        
+        void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email);
+        
 	Usuario buscarUsuario(Integer id);
 	
 	Usuario buscarUsuarioPorUsuario(String usuario);
+        
+        List<Usuario> buscarUsuarios();
+
+        Usuario buscarUsuarioPorId(Integer usuarioId);
+
+        void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email);
+
+        void cambiarContrasena(Integer usuarioId, String claveActual, String nuevaClave1, String nuevaClave2) throws Exception;
 	
 }

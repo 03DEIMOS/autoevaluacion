@@ -111,4 +111,19 @@ public class PersonaServiceImpl implements PersonaService {
         }
         return cantidadTotalMuestraPorProcesoFuente;
     }
+
+    @Override
+    public List buscarVariablesPorProcesoYFuenteActivaYTerminado(Integer procesoId, Integer fuenteId, String variable) {
+         List variables1 = null;
+        try {
+            if(variable.equals("variable1")){
+                variables1 = personaRepository.buscarVariables1PorProcesoYFuenteActivaYTerminada(procesoId, fuenteId);
+            }else{
+                variables1 = personaRepository.buscarVariables2PorProcesoYFuenteActivaYTerminada(procesoId, fuenteId);
+            }
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{}", e);
+        }
+        return variables1;
+    }   
 }

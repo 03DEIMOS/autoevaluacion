@@ -13,7 +13,7 @@
         <div id="conte" class="span10">
             <legend>Matriz de Calidad de Caracteristicas</legend>
             <ul class="breadcrumb">
-                <li><a href="<%=request.getContextPath()%>/#/informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
+                <li><a href="#informe/informeFactores/${procesoId}">Matriz de Calidad de Factores</a> <span class="divider">/</span></li>
                 <li class="active">Matriz de Calidad de Características</li>
             </ul>
             <br>

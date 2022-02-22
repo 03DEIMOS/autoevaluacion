@@ -18,7 +18,11 @@ public interface ResultadoEvaluacionService {
     
     List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuente(Integer procesoId, Integer itemPreguntaId, Integer fuenteId);
     
+    List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuenteyVariables(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable1, String variable2);
+    
     List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId);
+    
+    List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuenteyVariables(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable1, String variable2);
     
     List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaRespuesta(Integer procesoId, Integer itemPreguntaId, Integer respuesta);
     

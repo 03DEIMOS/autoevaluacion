@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Usuario;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     Usuario findByIdentificacion(String identificacion);
     
     Usuario findByUsuario(String usuario);
+    
+    List<Usuario> findByContrasenaIsNotNull();
 }

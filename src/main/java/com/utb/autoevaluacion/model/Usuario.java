@@ -43,6 +43,9 @@ public class Usuario {
     
     @Column(name = "ENABLED")
     private Boolean enabled;
+    
+    private String contrasena;
+    
 
      public Usuario(String usuario, String identificacion, String nombre, String apellido,
             String email, String estado, boolean enabled) {

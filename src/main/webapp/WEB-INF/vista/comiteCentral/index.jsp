@@ -47,12 +47,11 @@
                                 <li class="active"><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>
                                 <li class="dropdown loggining"> 
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon-user"></i> ${nombre}
+                                        <i class="icon-user"></i> ${usuario.nombre}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a target="_blank" href="DescargarLog">Descargar Log</a></li>
-                                        <li><a href="#">Cambiar Contrase&ntilde;a</a></li>
+                                        <li><a href="#usuario/contrasena/${usuario.id}">Cambiar Contrase&ntilde;a</a></li>
                                         <li class="divider"></li>
                                         <li><a href="<%=request.getContextPath()%>/#CerrarSesion">Cerrar Sesion</a></li>
                                     </ul>
@@ -113,8 +112,8 @@
                         <li class="nav-header">Modelo</li>
                         <li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>
                         <li class="divider"></li>
-                        <li class="nav-header">Programas</li>
-                        <li><a href="#listarProgramas"><i class="icon-reorder"></i> Listar Programas</a></li>
+                        <li class="nav-header">Usuarios</li>
+                        <li><a href="#usuario/usuarios"><i class="icon-reorder"></i> Listar Usuarios</a></li>
                         <li class="divider"></li>
                         <li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>
                     </ul>
@@ -235,6 +234,31 @@
         <h4>Ponderación de Características.</h4>
         <br>
         <p>Debe ponderar los factores antes de proceder con la ponderación de características.</p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary" data-dismiss="modal" href="#">Cerrar</a>
+    </div>
+</div>
+
+<div class="modal hide fade" id="modalClaveOK">
+    <div class="modal-header">
+        <a data-dismiss="modal" class="close">×</a>
+        <h3>Atención!</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Contrase&nacute;a cambiada exitosamente.</h4>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary" data-dismiss="modal" href="#">Cerrar</a>
+    </div>
+</div>
+<div class="modal hide fade" id="modalClaveERROR">
+    <div class="modal-header">
+        <a data-dismiss="modal" class="close">×</a>
+        <h3>Error!</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Ha ocurrido un error.</h4>
     </div>
     <div class="modal-footer">
         <a class="btn btn-primary" data-dismiss="modal" href="#">Cerrar</a>

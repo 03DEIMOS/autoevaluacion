@@ -103,8 +103,8 @@ $(function () {
                 '<li class="nav-header">Modelo</li>' +
                 '<li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>' +
                 '<li class="divider"></li>' +
-                '<li class="nav-header">Programas</li>' +
-                '<li><a href="#listarProgramas"><i class="icon-reorder"></i> Listar Programas</a></li>' +
+                '<li class="nav-header">Usuarios</li>' +
+                '<li><a href="#usuario/usuarios"><i class="icon-reorder"></i> Listar Usuarios</a></li>' +
                 '<li class="divider"></li>' +
                 '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
                 '</ul>');

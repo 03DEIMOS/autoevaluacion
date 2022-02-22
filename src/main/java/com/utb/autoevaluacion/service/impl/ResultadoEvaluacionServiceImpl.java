@@ -58,7 +58,7 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
 
         return resultadoEvaluaciones;
     }
-
+    
     @Override
     public List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuente(Integer procesoId, Integer preguntaId, Integer fuenteId) {
         List<ResultadoEvaluacion> resultadoEvaluaciones = null;
@@ -161,6 +161,50 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
             log.error("Ha ocurrido un error inesperado:{}", e);
         }
         return totalPersonasContestaronPregunta;
+    }
+    
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuenteyVariables(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable1, String variable2) {
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            if(variable1!=null && variable2!=null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuenteyVariables(procesoId, itemPreguntaId, fuenteId, variable1, variable2 );
+            }else if(variable1!=null && variable2==null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuenteyVariable1(procesoId, itemPreguntaId, fuenteId, variable1);
+            }else if(variable1==null && variable2!=null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuenteyVariable2(procesoId, itemPreguntaId, fuenteId, variable2);
+            }else if(variable1==null && variable2==null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuente(procesoId, itemPreguntaId, fuenteId);
+            }
+            
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado " + e, e);
+        }
+
+        return resultadoEvaluaciones;
+    }
+    
+    @Override
+    public List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuenteyVariables(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable1, String variable2) {
+         log.debug("Ejecutando metodo  buscarPorProcesoPreguntaFuenteyVariables procesoId:{}, preguntaId:{}, fuenteId:{}, variable1:{}, variable2:{} ",
+                procesoId, preguntaId, fuenteId, variable1, variable2);
+        List<ResultadoEvaluacion> resultadoEvaluaciones = null;
+        try {
+            if(variable1!=null && variable2!=null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariables(procesoId, preguntaId, fuenteId, variable1, variable2);
+            }else if(variable1!=null && variable2==null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariable1(procesoId, preguntaId, fuenteId, variable1);
+            }else if(variable1==null && variable2!=null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariable2(procesoId, preguntaId, fuenteId, variable2);
+            }else if(variable1==null && variable2==null){
+                resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuente(procesoId, preguntaId, fuenteId);
+            }
+                
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado " + e, e);
+        }
+
+        return resultadoEvaluaciones;
     }
 
 }

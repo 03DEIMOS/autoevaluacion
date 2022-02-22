@@ -248,6 +248,7 @@
                             <th>Apellidos</th>
                             <th>Correo electrónico</th>
                             <th>Variable1</th>
+                            <c:if test="${variable2Exist}"><th>Variable2</th></c:if>
                         </tr>
                     </thead>
                     <tbody id="bodytablaestudiante">
@@ -268,6 +269,7 @@
                                         <td>${persona.getUsuarioId().apellido}</td>
                                         <td>${persona.getUsuarioId().email}</td>
                                         <td>${persona.variable1}</td>
+                                         <c:if test="${variable2Exist}"><td>${persona.variable2}</td></c:if>
                                     </tr>
                                 </c:forEach>
                             </c:when>

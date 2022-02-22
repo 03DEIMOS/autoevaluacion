@@ -167,7 +167,14 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
     public List<ResultadoEvaluacion> buscarPorProcesoItemPreguntaFuenteyVariables(Integer procesoId, Integer itemPreguntaId, Integer fuenteId, String variable1, String variable2) {
         List<ResultadoEvaluacion> resultadoEvaluaciones = null;
         try {
-            if(variable1!=null && variable2!=null){
+            if(variable1!=null && variable1.equals("--")){
+                variable1 = null;
+            }
+            if(variable2!=null && variable2.equals("--")){
+                variable2 = null;
+            }
+            
+            if(variable1!=null  && variable2!=null){
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuenteyVariables(procesoId, itemPreguntaId, fuenteId, variable1, variable2 );
             }else if(variable1!=null && variable2==null){
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoItemPreguntaFuenteyVariable1(procesoId, itemPreguntaId, fuenteId, variable1);
@@ -186,20 +193,27 @@ public class ResultadoEvaluacionServiceImpl implements ResultadoEvaluacionServic
     
     @Override
     public List<ResultadoEvaluacion> buscarPorProcesoPreguntaFuenteyVariables(Integer procesoId, Integer preguntaId, Integer fuenteId, String variable1, String variable2) {
-         log.debug("Ejecutando metodo  buscarPorProcesoPreguntaFuenteyVariables procesoId:{}, preguntaId:{}, fuenteId:{}, variable1:{}, variable2:{} ",
+        log.debug("Ejecutando metodo  buscarPorProcesoPreguntaFuenteyVariables procesoId:{}, preguntaId:{}, fuenteId:{}, variable1:{}, variable2:{} ",
                 procesoId, preguntaId, fuenteId, variable1, variable2);
         List<ResultadoEvaluacion> resultadoEvaluaciones = null;
         try {
-            if(variable1!=null && variable2!=null){
+            if (variable1 != null && variable1.equals("--")) {
+                variable1 = null;
+            }
+            if (variable2 != null && variable2.equals("--")) {
+                variable2 = null;
+            }
+
+            if (variable1 != null && variable2 != null) {
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariables(procesoId, preguntaId, fuenteId, variable1, variable2);
-            }else if(variable1!=null && variable2==null){
+            } else if (variable1 != null && variable2 == null) {
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariable1(procesoId, preguntaId, fuenteId, variable1);
-            }else if(variable1==null && variable2!=null){
+            } else if (variable1 == null && variable2 != null) {
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuenteyVariable2(procesoId, preguntaId, fuenteId, variable2);
-            }else if(variable1==null && variable2==null){
+            } else if (variable1 == null && variable2 == null) {
                 resultadoEvaluaciones = resultadoEvaluacionRepository.findByProcesoPreguntaFuente(procesoId, preguntaId, fuenteId);
             }
-                
+
         } catch (Exception e) {
             log.error("Ha ocurrido un error inesperado " + e, e);
         }

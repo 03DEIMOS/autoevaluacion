@@ -3,34 +3,26 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
-            <h3 style="margin: 0;">Listado de  programas</h3>
+            <h3 style="margin: 0;">Listado de  Facultades</h3>
             <c:choose>
-                <c:when test="${fn:length(listaPro)!= 0}">
+                <c:when test="${fn:length(listaFacultades)!= 0}">
                     <table id="tablaX" class="table table-striped table-bordered table-condensed">
                         <thead>
-                        <th>Nombre</th>
-                        <th>Modalidad</th>
-                        <th>Tipo de formación</th>
                         <th>Facultad</th>
-                        <th class="span1">Acci&oacute;n</th>
+                        <th>Descripcion</th>
+                        <th class="span2">Acci&oacute;n</th>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listaPro}" var="row" varStatus="iter">
+                            <c:forEach items="${listaFacultades}" var="facultad" varStatus="iter">
                                 <tr>
                                     <td>   
-                                        <c:out value="${row.nombre}"/>
+                                        <c:out value="${facultad.nombre}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${row.modalidad}"/>
-                                    </td>
-                                    <td>   
-                                        <c:out value="${row.tipoFormacion}"/>
-                                    </td>
-                                    <td>   
-                                        <c:out value="${row.facultadId.nombre}"/>
+                                        <c:out value="${facultad.descripcion}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#programa/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#facultad/editar/${facultad.id}" title="Editar"><i class="icon-edit"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -48,7 +40,7 @@
                                     {
                                         extend: 'excelHtml5',
                                         text: 'Exportar a excel',
-                                        title: 'Programas'
+                                        title: 'Facultades'
                                     }
                                 ],
                                 language: {
@@ -61,11 +53,12 @@
                     </script>
                 </c:when>
                 <c:otherwise>
-                    No existen Programas registrados en el sistema.
+                    No existen facultades registrados en el sistema.
                 </c:otherwise>
             </c:choose>
             <br/>
-            <a href="#programa/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear programa</a>
+            <a href="#facultad/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear facultad</a>
+
         </div>
     </div>
-</div>  
+</div>    

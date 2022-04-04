@@ -8,6 +8,7 @@ package com.utb.autoevaluacion.service.impl;
 import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.Factor;
 import com.utb.autoevaluacion.model.Modelo;
+import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.repository.CaracteristicaRepository;
 import com.utb.autoevaluacion.repository.FactorRepository;
 import com.utb.autoevaluacion.repository.ModeloRepository;
@@ -46,12 +47,13 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
     }
 
     @Override
-    public void crearCaracteristica(String codigo, String nombre, Integer factorId) {
+    public void crearCaracteristica(String codigo, String nombre, Integer factorId, List<Pregunta> preguntas) {
         
         try {
             Caracteristica caracteristica = new Caracteristica();
             caracteristica.setCodigo(codigo);
             caracteristica.setNombre(nombre);
+            caracteristica.setPreguntaList(preguntas);
             Factor factor = factorRepository.findById(factorId).get();
             caracteristica.setFactorId(factor);
             caracteristicaRepository.saveAndFlush(caracteristica);
@@ -77,12 +79,13 @@ public class CaracteristicaServiceImpl implements CaracteristicaService{
     }
 
     @Override
-    public void actualizarCaracteristica(Integer caracteristicaId, String codigo, String nombre, Integer factorId) {
+    public void actualizarCaracteristica(Integer caracteristicaId, String codigo, String nombre, Integer factorId, List<Pregunta> preguntas) {
          try {
             Caracteristica caracteristica = new Caracteristica();
             caracteristica.setId(caracteristicaId);
             caracteristica.setCodigo(codigo);
             caracteristica.setNombre(nombre);
+            caracteristica.setPreguntaList(preguntas);
             Factor factor = factorRepository.findById(factorId).get();
             caracteristica.setFactorId(factor);
             caracteristicaRepository.saveAndFlush(caracteristica);

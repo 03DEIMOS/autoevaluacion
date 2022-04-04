@@ -8,7 +8,7 @@
         var $fcbklist = $('#fcbklist');
         var $listItems = $fcbklist.find('li');
 
-        $.fcbkListSelection("#fcbklist", "600", "50", "3");
+        $.fcbkListSelection("#fcbklist", "600", "100", "3");
 
         $(".clearer").before('<input type="text" id="filter" class="input-medium search-query" placeholder="Buscar" style="padding-top: 0px; padding-bottom: 0px; float: right; border-right-width: 1px; padding-right: 14px; margin-right: 35px;">');
 
@@ -206,6 +206,32 @@
                             </select>                
                         </div>
                     </div>
+                    <div class="control-group" id="preguntas">
+                        <label for="descripcion" class="control-label">Asignar Preguntas</label>
+                        <div class="controls">
+                            <ul id="fcbklist">
+                                <c:forEach items="${listaP}" var="item" varStatus="iter">
+                                    <c:choose>
+                                        <c:when test="${item.caracteristicaList.contains(caracteristica)}">
+                                            <li>
+                                                <strong>${item.codigo}</strong><br/> 
+                                                <span class="fcbkitem_text">${item.pregunta}</span>
+                                                <input name="P${item.id}" type="hidden" checked="checked" value="1"/>
+                                            </li>
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li>
+                                                <strong>${item.codigo}</strong><br/> 
+                                                <span class="fcbkitem_text">${item.pregunta}</span>
+                                                <input name="P${item.id}" type="hidden" value="0"/>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>    
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                         <button class="btn" type="reset">Cancelar</button>

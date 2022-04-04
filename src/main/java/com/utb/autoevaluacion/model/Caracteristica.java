@@ -34,9 +34,6 @@ public class Caracteristica implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Factor factorId;
     
-    @JoinColumn(name = "modelo_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Modelo modeloId;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pregunta_has_caracteristica",

@@ -8,7 +8,7 @@
         var $fcbklist = $('#fcbklist');
         var $listItems = $fcbklist.find('li');
 
-        $.fcbkListSelection("#fcbklist", "600", "50", "3");
+        $.fcbkListSelection("#fcbklist", "600", "100", "3");
 
         $(".clearer").before('<input type="text" id="filter" class="input-medium search-query" placeholder="Buscar" style="padding-top: 0px; padding-bottom: 0px; float: right; border-right-width: 1px; padding-right: 14px; margin-right: 35px;">');
 
@@ -198,6 +198,20 @@
                             </select>                
                         </div>
                     </div>
+                    <div class="control-group" id="preguntas">
+                        <label for="fcbklist" class="control-label">Asignar Preguntas</label>
+                        <div class="controls">
+                            <ul id="fcbklist">
+                                <c:forEach items="${listaP}" var="row" varStatus="iter">
+                                    <li>
+                                        <strong>${row.codigo}</strong><br/> 
+                                        <span class="fcbkitem_text">${row.pregunta}</span>
+                                        <input name="P${row.id}" type="hidden" value="0"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>  
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Crear Caracteristica</button>
                         <button class="btn" type="reset">Cancelar</button>

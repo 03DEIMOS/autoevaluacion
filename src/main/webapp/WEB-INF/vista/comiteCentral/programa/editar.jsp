@@ -4,11 +4,11 @@
         $("#formX").validate({
             submitHandler: function() {
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=editarPrograma",
+                    type: 'PUT',
+                    url: "/autoevaluacion/programa/editar",
                     data: $("#formX").serialize(),
-                    success: function() {
-                        location = "/autoevaluacion/#listarProgramas";
+                    success: function () {
+                        location.hash = "programa/programas";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -21,6 +21,7 @@
             <form id="formX" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Editar programa</legend>
+                    <input type="hidden" name="programaId" value="${programa.id}">
                     <div class="control-group">
                         <label for="nombre"  class="control-label">Nombre</label>
                         <div class="controls">
@@ -58,7 +59,7 @@
                             <select id="tipoformacion" name="tipoformacion" class="input-xlarge {required:true}">
                                 <option></option>
                                 <c:choose>
-                                    <c:when test="${programa.tipoformacion == 'Universitaria'}">
+                                    <c:when test="${programa.tipoFormacion == 'Universitaria'}">
                                         <option value="Universitaria" selected="selected">Universitaria</option>
                                         <option value="Especializacion">Especialización</option>
                                         <option value="Maestria">Maestría</option>
@@ -66,7 +67,7 @@
                                         <option value="Tecnica">Técnica</option>
                                         <option value="Tecnologica">Tecnológica</option>
                                     </c:when>
-                                    <c:when test="${programa.tipoformacion == 'Especializacion'}">
+                                    <c:when test="${programa.tipoFormacion == 'Especializacion'}">
                                         <option value="Universitaria">Universitaria</option>
                                         <option value="Especializacion" selected="selected">Especialización</option>
                                         <option value="Maestria">Maestría</option>
@@ -74,7 +75,7 @@
                                         <option value="Tecnica">Técnica</option>
                                         <option value="Tecnologica">Tecnológica</option>
                                     </c:when>
-                                    <c:when test="${programa.tipoformacion == 'Maestria'}">
+                                    <c:when test="${programa.tipoFormacion == 'Maestria'}">
                                         <option value="Universitaria">Universitaria</option>
                                         <option value="Especializacion">Especialización</option>
                                         <option value="Maestria" selected="selected">Maestría</option>
@@ -82,7 +83,7 @@
                                         <option value="Tecnica">Técnica</option>
                                         <option value="Tecnologica">Tecnológica</option>
                                     </c:when>
-                                    <c:when test="${programa.tipoformacion == 'Doctorado'}">
+                                    <c:when test="${programa.tipoFormacion == 'Doctorado'}">
                                         <option value="Universitaria">Universitaria</option>
                                         <option value="Especializacion">Especialización</option>
                                         <option value="Maestria">Maestría</option>
@@ -90,7 +91,7 @@
                                         <option value="Tecnica">Técnica</option>
                                         <option value="Tecnologica">Tecnológica</option>
                                     </c:when>
-                                    <c:when test="${programa.tipoformacion == 'Tecnica'}">
+                                    <c:when test="${programa.tipoFormacion == 'Tecnica'}">
                                         <option value="Universitaria">Universitaria</option>
                                         <option value="Especializacion">Especialización</option>
                                         <option value="Maestria">Maestría</option>
@@ -98,7 +99,7 @@
                                         <option value="Tecnica" selected="selected">Técnica</option>
                                         <option value="Tecnologica">Tecnológica</option>
                                     </c:when>
-                                    <c:when test="${programa.tipoformacion == 'Tecnologica'}">
+                                    <c:when test="${programa.tipoFormacion == 'Tecnologica'}">
                                         <option value="Universitaria">Universitaria</option>
                                         <option value="Especializacion">Especialización</option>
                                         <option value="Maestria">Maestría</option>
@@ -111,9 +112,9 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="facultad" class="control-label">Facultad</label>
+                        <label for="facultadId" class="control-label">Facultad</label>
                         <div class="controls">
-                            <select id="facultad" name="facultad" class="input-xlarge {required:true}">
+                            <select id="facultadId" name="facultadId" class="input-xlarge {required:true}">
                                 <option></option>
                                 <c:forEach items="${listaFac}" var="row" varStatus="iter">
                                     <c:choose>

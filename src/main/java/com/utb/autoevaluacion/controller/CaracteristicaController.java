@@ -1,8 +1,13 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.Caracteristica;
+import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.FactorService;
+import com.utb.autoevaluacion.service.PreguntaService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +31,10 @@ public class CaracteristicaController {
 
     @Autowired
     private FactorService factorService;
-
+    
+    @Autowired
+    private PreguntaService preguntaService;
+    
     @GetMapping("/caracteristicas/{modeloId}")
     public String caracteristicas(@PathVariable Integer modeloId, Model model) {
         model.addAttribute("listaC", caracteristicaService.getCaracteristicasByModelo(modeloId));
@@ -39,6 +47,7 @@ public class CaracteristicaController {
         log.info("Ejecutanto metodo [formularioCrearCaracteristica] modeloId:{} ", modeloId);
         model.addAttribute("modeloId", modeloId);
         model.addAttribute("listaF", factorService.getFactoresByModelo(modeloId));
+        model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\caracteristica\\crear";
     }
 
@@ -48,17 +57,25 @@ public class CaracteristicaController {
         Caracteristica caracteristica = caracteristicaService.buscarCaracteristica(caracteristicaId);
         model.addAttribute("listaF", factorService.getFactoresByModelo(modeloId));
         model.addAttribute("caracteristica", caracteristica);
+        model.addAttribute("listaP", preguntaService.getPreguntas());
         model.addAttribute("modeloId", modeloId);
         return "comiteCentral\\caracteristica\\editar";
     }
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crearCaracteristica(@RequestParam String codigo, @RequestParam String nombre, @RequestParam Integer factorId) {
+    public ResponseEntity<?> crearCaracteristica(@RequestParam String codigo, @RequestParam String nombre, @RequestParam Integer factorId, @RequestParam Map<String,String> requestParams) {
 
         log.info("Ejecutanto metodo [crearCaracteristica] codigo:{}, nombre:{}, factorId:{} ", codigo, nombre, factorId);
         HttpStatus status;
         try {
-            caracteristicaService.crearCaracteristica(codigo, nombre, factorId);
+            List<Pregunta> preguntas = preguntaService.getPreguntas();
+            List<Pregunta> aux = new ArrayList<>();
+            if (preguntas != null) {
+                preguntas.stream().filter((pregunta) -> (requestParams.get("P" + pregunta.getId()).equals("1"))).forEachOrdered((pregunta) -> {
+                    aux.add(pregunta);
+                });
+            }
+            caracteristicaService.crearCaracteristica(codigo, nombre, factorId, aux);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
@@ -68,11 +85,18 @@ public class CaracteristicaController {
     }
 
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarCaracteristica(@RequestParam Integer caracteristicaId, @RequestParam String codigo, @RequestParam String nombre, @RequestParam Integer factorId) {
+    public ResponseEntity<?> editarCaracteristica(@RequestParam Integer caracteristicaId, @RequestParam String codigo, @RequestParam String nombre, @RequestParam Integer factorId, @RequestParam Map<String,String> requestParams) {
         log.info("Ejecutanto metodo [editarCaracteristica] caracteristicaId:{}, codigo:{}, nombre:{}, factorId:{} ", caracteristicaId, codigo, nombre, factorId);
         HttpStatus status;
         try {
-            caracteristicaService.actualizarCaracteristica(caracteristicaId, codigo, nombre, factorId);
+            List<Pregunta> preguntas = preguntaService.getPreguntas();
+            List<Pregunta> aux = new ArrayList<>();
+            if (preguntas != null) {
+                preguntas.stream().filter((pregunta) -> (requestParams.get("P" + pregunta.getId()).equals("1"))).forEachOrdered((pregunta) -> {
+                    aux.add(pregunta);
+                });
+            }
+            caracteristicaService.actualizarCaracteristica(caracteristicaId, codigo, nombre, factorId, aux);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);

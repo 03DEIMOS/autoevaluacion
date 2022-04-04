@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -44,6 +45,9 @@ public class Pregunta implements Serializable  {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
     private TipoPregunta tipoPregunta;
+    
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "preguntaList")
+    private List<Caracteristica> caracteristicaList;
 
     public Pregunta() { }
 

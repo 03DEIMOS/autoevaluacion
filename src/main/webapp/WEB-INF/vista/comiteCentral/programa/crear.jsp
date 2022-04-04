@@ -5,10 +5,10 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCC?action=crearPrograma",
+                    url: "/autoevaluacion/programa/crear",
                     data: $("#formX").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarProgramas";
+                        location.hash = "programa/programas";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -58,9 +58,9 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="facultad" class="control-label">Facultad</label>
+                        <label for="facultadId" class="control-label">Facultad</label>
                         <div class="controls">
-                            <select id="facultad" name="facultad" class="input-xlarge {required:true}">
+                            <select id="facultadId" name="facultadId" class="input-xlarge {required:true}">
                                 <option></option>
                                 <c:forEach items="${listaFac}" var="row" varStatus="iter">
                                     <option value="${row.id}">${row.nombre}</option>

@@ -7,6 +7,7 @@ package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.model.Encuesta;
 import com.utb.autoevaluacion.model.Persona;
+import com.utb.autoevaluacion.model.Pregunta;
 import java.util.List;
 
 /**
@@ -18,9 +19,9 @@ public interface EncuestaService {
     
     List<Encuesta> getEncuestasByModelo(Integer modeloId);
     
-    void crearEncuesta(String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha);
+    void crearEncuesta(String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha, Integer fuenteId, List<Pregunta> preguntas);
     
-    void actualizarEncuesta(Integer encuestaId, String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha);
+    void actualizarEncuesta(Integer encuestaId, String codigo, String nombre, String objetivo, String instrucciones, String version, String fecha, Integer fuenteId, List<Pregunta> preguntas);
     
     Encuesta buscarEncuesta(Integer id);
     

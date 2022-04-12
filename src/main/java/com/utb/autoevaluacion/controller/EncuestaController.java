@@ -11,6 +11,7 @@ import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.model.ResultadoEvaluacion;
 import com.utb.autoevaluacion.service.EncuestaService;
+import com.utb.autoevaluacion.service.FuenteService;
 import com.utb.autoevaluacion.service.PersonaService;
 import com.utb.autoevaluacion.service.PreguntaService;
 import com.utb.autoevaluacion.service.ResultadoEvaluacionService;
@@ -51,6 +52,9 @@ public class EncuestaController {
     @Autowired
     private PreguntaService preguntaService;
 
+    @Autowired
+    private FuenteService fuenteService;
+
     @GetMapping("/encuestas")
     public String encuestas(Model model) {
         model.addAttribute("listaE", encuestaService.getEncuestas());
@@ -60,6 +64,8 @@ public class EncuestaController {
     @GetMapping("/crear")
     public String formularioCrearEncuesta(Model model) {
         log.info("Ejecutanto metodo [formularioCrearEncuesta] ");
+        model.addAttribute("listaFu", fuenteService.buscarFuentes());
+        model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\encuesta\\crear";
     }
 
@@ -68,6 +74,7 @@ public class EncuestaController {
         log.info("Ejecutanto metodo [formularioEditarEncuesta] encuestaId:{} ", encuestaId);
         Encuesta encuesta = encuestaService.buscarEncuesta(encuestaId);
         model.addAttribute("encuesta", encuesta);
+        model.addAttribute("listaFu", fuenteService.buscarFuentes());
         model.addAttribute("listaP", preguntaService.getPreguntas());
         return "comiteCentral\\encuesta\\editar";
     }
@@ -81,12 +88,19 @@ public class EncuestaController {
     }
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crearEncuesta(@RequestParam String codigo, @RequestParam String nombre, @RequestParam String objetivo, @RequestParam String instrucciones, @RequestParam String version, @RequestParam String fecha) {
+    public ResponseEntity<?> crearEncuesta(@RequestParam String codigo, @RequestParam String nombre, @RequestParam String objetivo, @RequestParam String instrucciones, @RequestParam String version, @RequestParam String fecha, @RequestParam Integer fuenteId, @RequestParam Map<String, String> requestParams) {
 
-        log.info("Ejecutanto metodo [crearEncuesta] codigo:{}, nombre:{}, objetivo:{}, instrucciones:{}, version:{}, fecha:{} ", codigo, nombre, objetivo, instrucciones, version, fecha);
+        log.info("Ejecutanto metodo [crearEncuesta] codigo:{}, nombre:{}, objetivo:{}, instrucciones:{}, version:{}, fecha:{}, fuenteId:{} ", codigo, nombre, objetivo, instrucciones, version, fecha, fuenteId);
         HttpStatus status;
         try {
-            encuestaService.crearEncuesta(codigo, nombre, objetivo, instrucciones, version, fecha);
+            List<Pregunta> preguntas = preguntaService.getPreguntas();
+            List<Pregunta> aux = new ArrayList<>();
+            if (preguntas != null) {
+                preguntas.stream().filter((pregunta) -> (requestParams.get("P" + pregunta.getId()).equals("1"))).forEachOrdered((pregunta) -> {
+                    aux.add(pregunta);
+                });
+            }
+            encuestaService.crearEncuesta(codigo, nombre, objetivo, instrucciones, version, fecha, fuenteId, aux);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
@@ -145,11 +159,18 @@ public class EncuestaController {
     }
 
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarEncuesta(@RequestParam Integer encuestaId, @RequestParam String codigo, @RequestParam String nombre, @RequestParam String objetivo, @RequestParam String instrucciones, @RequestParam String version, @RequestParam String fecha) {
-        log.info("Ejecutanto metodo [editarModelo] encuestaId:{}, codigo:{}, nombre:{}, objetivo:{}, instrucciones:{}, version:{}, fecha:{} ", encuestaId, codigo, nombre, objetivo, instrucciones, version, fecha);
+    public ResponseEntity<?> editarEncuesta(@RequestParam Integer encuestaId, @RequestParam String codigo, @RequestParam String nombre, @RequestParam String objetivo, @RequestParam String instrucciones, @RequestParam String version, @RequestParam String fecha, @RequestParam Integer fuenteId, @RequestParam Map<String, String> requestParams) {
+        log.info("Ejecutanto metodo [editarEncuesta] encuestaId:{}, codigo:{}, nombre:{}, objetivo:{}, instrucciones:{}, version:{}, fecha:{}, fuenteId:{} ", encuestaId, codigo, nombre, objetivo, instrucciones, version, fecha, fuenteId);
         HttpStatus status;
         try {
-            encuestaService.actualizarEncuesta(encuestaId, codigo, nombre, objetivo, instrucciones, version, fecha);
+            List<Pregunta> preguntas = preguntaService.getPreguntas();
+            List<Pregunta> aux = new ArrayList<>();
+            if (preguntas != null) {
+                preguntas.stream().filter((pregunta) -> (requestParams.get("P" + pregunta.getId()).equals("1"))).forEachOrdered((pregunta) -> {
+                    aux.add(pregunta);
+                });
+            }
+            encuestaService.actualizarEncuesta(encuestaId, codigo, nombre, objetivo, instrucciones, version, fecha, fuenteId, aux);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);

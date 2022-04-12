@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -42,6 +43,9 @@ public class Encuesta  implements Serializable {
     
     @Column(name="fecha")
     private String fecha;
+    
+    @ManyToOne(optional = false)
+    private Fuente fuente;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "encuestahaspregunta",

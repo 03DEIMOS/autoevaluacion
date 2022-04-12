@@ -58,4 +58,31 @@ public class FuenteServiceImpl implements FuenteService{
         }
         return fuentes;
     }
+
+    @Override
+    public void crearFuente(String nombre, String descripcion) {
+         Fuente fuente = new Fuente();
+
+        fuente.setNombre(nombre);
+        fuente.setDescripcion(descripcion);
+        try {
+            fuenteRepository.saveAndFlush(fuente);
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al crear la fuente", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public void actualizarFuente(Integer fuenteId, String nombre, String descripcion) {
+        try {
+            Fuente fuente = fuenteRepository.findById(fuenteId).get();
+            fuente.setNombre(nombre);
+            fuente.setDescripcion(descripcion);
+            fuenteRepository.saveAndFlush(fuente);
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al actualizar la fuente", e);
+            throw e;
+        }
+    }
 }

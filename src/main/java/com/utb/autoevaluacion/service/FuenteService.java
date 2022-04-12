@@ -22,4 +22,8 @@ public interface FuenteService {
     
     List<Fuente> buscarFuentesXmodeloXpregunta(Integer idModelo, Integer idPregunta) ;
     
+    void crearFuente(String nombre, String descripcion);
+    
+    void actualizarFuente(Integer fuenteId, String nombre, String descripcion);
+    
 }

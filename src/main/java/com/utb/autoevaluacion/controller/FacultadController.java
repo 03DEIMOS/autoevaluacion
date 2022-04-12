@@ -29,7 +29,7 @@ public class FacultadController {
     private FacultadService facultadService;
     
     @GetMapping("/facultades")
-    public String modelos(Model model) {
+    public String facultades(Model model) {
         model.addAttribute("listaFacultades", facultadService.getFacultades());
         return "comiteCentral\\facultad\\listar";
 

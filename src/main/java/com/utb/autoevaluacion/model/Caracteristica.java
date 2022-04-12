@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -34,7 +35,7 @@ public class Caracteristica implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Factor factorId;
     
-    
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pregunta_has_caracteristica",
             joinColumns = {

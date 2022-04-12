@@ -107,6 +107,7 @@ $(function () {
                 '<li><a href="#usuario/usuarios"><i class="icon-reorder"></i> Listar Usuarios</a></li>' +
                 '<li><a href="#facultad/facultades"><i class="icon-reorder"></i> Listar Facultades</a></li>' +
                 '<li><a href="#programa/programas"><i class="icon-reorder"></i> Listar Programas</a></li>' +
+                '<li><a href="#fuente/fuentes"><i class="icon-user"></i> P&uacute;blicos objetivo</a></li>' +
                 '<li class="divider"></li>' +
                 '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
                 '</ul>');

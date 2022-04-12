@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -42,10 +43,12 @@ public class Pregunta implements Serializable  {
     @JoinColumn(name = "preguntaid", referencedColumnName = "id", nullable = false)
     private List<ItemPregunta> itemPreguntas;
     
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo")
     private TipoPregunta tipoPregunta;
     
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "preguntaList")
     private List<Caracteristica> caracteristicaList;
 

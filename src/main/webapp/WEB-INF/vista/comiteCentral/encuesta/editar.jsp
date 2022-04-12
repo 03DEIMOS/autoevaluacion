@@ -214,14 +214,14 @@
                             <input type="text" name="fecha" id="fecha" class="input-xlarge {required:true}" value="${encuesta.getFecha()}"/>
                         </div>
                     </div>
-                    <%--<div class="control-group">
-                        <label for="fuente" class="control-label">Asignar Fuente</label>
+                    <div class="control-group">
+                        <label for="fuenteId" class="control-label">Asignar P&uacute;blico objetivo</label>
                         <div class="controls">
-                            <select id="fuente" name="fuente" class="{required:true}">
+                            <select id="fuenteId" name="fuenteId" class="{required:true}">
                                 <option value=""></option>    
                                 <c:forEach items="${listaFu}" var="item" varStatus="iter">
                                     <c:choose>
-                                        <c:when test="${item==fuenteSeleccionada}">
+                                        <c:when test="${item==encuesta.getFuente()}">
                                             <option value="${item.id}" selected="selected">${item.nombre}</option>    
                                         </c:when>
                                         <c:otherwise>
@@ -231,12 +231,10 @@
                                 </c:forEach>
                             </select>                
                         </div>
-                    </div>   --%> 
+                    </div>   
                     <div class="control-group">
                         <label  class="control-label">Asignar Preguntas</label>
                         <div class="controls">
-
-
                             <ul id="fcbklist">
                                 <c:forEach items="${listaP}" var="item" varStatus="iter">
                                     <c:choose>

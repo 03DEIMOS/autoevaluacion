@@ -3,20 +3,13 @@
 
     $(function() {
         $("#formCrearProceso").validate({
-            submitHandler: function() {
+            submitHandler: function () {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCP?action=crearProceso",
+                    url: "/autoevaluacion/proceso/crear",
                     data: $("#formCrearProceso").serialize(),
-                    success: function(data) {
-                        $("#dancing-dots-text").remove();
-                        if (data == 1) {
-                            location = "/autoevaluacion/#controlPanel";
-                        }
-                        if (data == 0) {
-                            $('#modalCc3').modal();
-                            location = "/autoevaluacion/#controlPanel";
-                        }
+                    success: function () {
+                        location.hash = "proceso/procesos";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -30,10 +23,10 @@
                 <fieldset>
                     <legend>Nuevo Proceso de Autoevaluaci&oacute;n</legend>
                     <div class="control-group">
-                        <label for="programa"  class="control-label">Programa</label>
+                        <label for="programaId"  class="control-label">Programa</label>
                         <div class="controls">
-                            <select id="programa" name="programa" class="input-xlarge">
-                                <c:forEach items="${listPrograma}" var="item" >
+                            <select id="programaId" name="programaId" class="input-xlarge">
+                                <c:forEach items="${programas}" var="item" >
                                     <option value="${item.id}">${item.nombre}</option>
                                 </c:forEach>
                             </select>   
@@ -46,10 +39,10 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="modelo" class="control-label">Modelo</label>
+                        <label for="modeloId" class="control-label">Modelo</label>
                         <div class="controls">
-                            <select id="modelo" name="modelo" class="input-xlarge">
-                                <c:forEach items="${listModelo}" var="item" >
+                            <select id="modeloId" name="modeloId" class="input-xlarge">
+                                <c:forEach items="${modelos}" var="item" >
                                     <option value="${item.id}">${item.nombre}</option>
                                 </c:forEach>
                             </select>   

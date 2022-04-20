@@ -110,7 +110,7 @@
                 </c:otherwise>
             </c:choose>
             <br>
-            <a href="#preparedCrearProceso" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear nuevo proceso</a>
+            <a href="#proceso/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear nuevo proceso</a>
         </div>
     </div>
 </div>

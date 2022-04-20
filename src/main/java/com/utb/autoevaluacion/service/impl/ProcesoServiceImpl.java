@@ -52,7 +52,6 @@ public class ProcesoServiceImpl implements ProcesoService {
 
     @Override
     public void crearProceso(Proceso proceso) {
-        proceso.setEstado("En Configuración");
         try {
             procesoRepository.saveAndFlush(proceso);
         } catch (Exception e) {

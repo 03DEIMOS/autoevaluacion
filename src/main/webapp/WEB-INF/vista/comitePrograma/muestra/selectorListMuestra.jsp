@@ -113,8 +113,8 @@
 
         $("#bpreparedCrearPersona").click(function () {
             $.ajax({
-                type: 'POST',
-                url: "/autoevaluacion/controladorCP?action=preparedCrearEvaluador&fuente=${fuenteX}",
+                type: 'GET',
+                url: "/autoevaluacion/persona/crearEvaluador/${proceso}/${fuente}",
                 success: function (datos) {
                     $("#editM").empty();
                     $("#editM").append(datos);
@@ -128,7 +128,7 @@
         $("#bpreparedEliminarPersonas").click(function () {
             $.ajax({
                 type: 'POST',
-                url: "/autoevaluacion/controladorCP?action=eliminarPersonas&fuente=${fuenteX}",
+                url: "/autoevaluacion/controladorCP?action=eliminarPersonas&fuente=${fuente}",
                 success: function () {
                     $("#listM").empty();
                     $.ajax({
@@ -151,7 +151,7 @@
         $("#bpreparedEditarMuestra").click(function () {
             $.ajax({
                 type: 'POST',
-                url: "/autoevaluacion/controladorCP?action=preparedEditarMuestra&fuente=${fuenteX}",
+                url: "/autoevaluacion/controladorCP?action=preparedEditarMuestra&fuente=${fuente}",
                 success: function (datos) {
                     $("#editM").empty();
                     $("#editM").append(datos);
@@ -276,6 +276,7 @@
                         </c:choose>
                     </tbody>
                 </table>
+                <a id="bpreparedCrearPersona" class="btn btn-large btn-primary"><i class="icon-edit-sign"></i> Crear Evaluador</a>
                 <p id="total0" style="font-weight: bold">Total: ${fn:length(personas)}</p>
 
                 <h2>Adjuntar Archivo con la población</h2> 
@@ -385,7 +386,7 @@
                         rows: ':visible'
                     },
                     text: 'Exportar a excel',
-                    title: 'Muestra ${fuenteX}'
+                    title: 'Muestra ${fuente}'
                 }
             ],
             language: {

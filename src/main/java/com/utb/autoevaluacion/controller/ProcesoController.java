@@ -64,6 +64,8 @@ public class ProcesoController {
         return "comitePrograma\\muestra\\listarMuestra";
     }
     
+    
+    
     @GetMapping("/crear")
     public String formularioCrearModelo(Model model) {
         log.info("Ejecutanto metodo [formularioCrearModelo]");
@@ -96,4 +98,22 @@ public class ProcesoController {
         }
         return new ResponseEntity<>(status);
     }
+    
+    @PostMapping(value = "/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoProceso(@RequestParam Integer procesoId, @RequestParam String estado) {
+
+        log.info("Ejecutanto medoto cambiarEstadoProceso() procesoId:{}, estado]:{}" , procesoId, estado);
+        HttpStatus status;
+        try {
+            Proceso proceso = procesoService.buscarProceso(procesoId);
+            procesoService.cambiarEstadoProceso(proceso, estado);
+            status = HttpStatus.CREATED;
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error: " , e);
+            status = HttpStatus.CONFLICT;
+        }
+        return new ResponseEntity<>(status);
+    }
+    
+    
 }

@@ -36,7 +36,7 @@
                                             <span class="label label-warning"><i class="icon-cog"></i> En Configuración</span>
                                         </td>
                                         <td>
-                                            <i class="icon-chevron-sign-right"></i><a href="#ejecutarPro&${row.id}"> Ejecutar Proceso</a>
+                                            <i class="icon-chevron-sign-right"></i><a href="#proceso/cambiarEstado/${row.id}/En Ejecución"> Ejecutar Proceso</a>
                                         </td>
                                     </tr>
                                 </c:if>

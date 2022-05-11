@@ -42,8 +42,16 @@ public class PersonaController {
                 .findAny().isPresent();
         model.addAttribute("personas", personas);
         model.addAttribute("variable2Exist", variablePresente2);
+        model.addAttribute("proceso", procesoId);
+        model.addAttribute("fuente", fuenteId);
         return "comitePrograma\\muestra\\selectorListMuestra";
 
+    }
+    
+    @GetMapping("/crearEvaluador/{procesoId}/{fuenteId}")
+    public String formularioCrearEvaluador(@PathVariable Integer procesoId, Model model) {
+        log.info("Ejecutanto metodo [formularioCrearEvaluador] ");
+        return "comitePrograma\\muestra\\crearEvaluador";
     }
     
 }

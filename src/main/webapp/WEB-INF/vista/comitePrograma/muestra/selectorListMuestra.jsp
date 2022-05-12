@@ -123,8 +123,24 @@
                     });
                 } //fin success
             }); //fin $.ajax    
-
         });
+
+        $('.editarEvaluador').click(function (e) {
+            $.ajax({
+                type: 'GET',
+                url: "/autoevaluacion/persona/editarEvaluador/${proceso}/${fuente}/" + $(this).attr('personaid'),
+                success: function (datos) {
+                    $("#editM").empty();
+                    $("#editM").append(datos);
+                    $("#contenido").show(200, function () {
+                        $("#dancing-dots-text").remove();
+                    });
+                } //fin success
+            }); //fin $.ajax    
+        });
+
+        
+
         $("#bpreparedEliminarPersonas").click(function () {
             $.ajax({
                 type: 'POST',
@@ -147,22 +163,6 @@
             }); //fin $.ajax    
 
         });
-
-        $("#bpreparedEditarMuestra").click(function () {
-            $.ajax({
-                type: 'POST',
-                url: "/autoevaluacion/controladorCP?action=preparedEditarMuestra&fuente=${fuente}",
-                success: function (datos) {
-                    $("#editM").empty();
-                    $("#editM").append(datos);
-                    $("#contenido").show(200, function () {
-                        $("#dancing-dots-text").remove();
-                    });
-                } //fin success
-            }); //fin $.ajax    
-
-        });
-
 
         $("#printEnlace").click(function () {
             $('#printMuestra').printArea();
@@ -249,9 +249,10 @@
                             <th>Correo electrónico</th>
                             <th>Variable1</th>
                             <c:if test="${variable2Exist}"><th>Variable2</th></c:if>
-                        </tr>
-                    </thead>
-                    <tbody id="bodytablaestudiante">
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodytablaestudiante">
                         <c:choose>
                             <c:when test="${fn:length(personas)!= 0}">
                                 <c:forEach items="${personas}" var="persona" varStatus="iter1">
@@ -269,7 +270,10 @@
                                         <td>${persona.getUsuarioId().apellido}</td>
                                         <td>${persona.getUsuarioId().email}</td>
                                         <td>${persona.variable1}</td>
-                                         <c:if test="${variable2Exist}"><td>${persona.variable2}</td></c:if>
+                                        <c:if test="${variable2Exist}"><td>${persona.variable2}</td></c:if>
+                                            <td class="action span2">
+                                                <a personaid="${persona.id}" class="editarEvaluador" title="Editar"><i class="icon-edit"></i></a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>

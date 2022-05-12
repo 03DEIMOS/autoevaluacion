@@ -5,7 +5,6 @@
  */
 package com.utb.autoevaluacion.service.impl;
 
-
 import com.utb.autoevaluacion.model.Proceso;
 import com.utb.autoevaluacion.repository.ProcesoRepository;
 import com.utb.autoevaluacion.service.ProcesoService;
@@ -23,7 +22,7 @@ public class ProcesoServiceImpl implements ProcesoService {
 
     @Autowired
     ProcesoRepository procesoRepository;
-    
+
     @Override
     public Proceso buscarProceso(Integer id) {
         Proceso proceso = null;
@@ -62,21 +61,21 @@ public class ProcesoServiceImpl implements ProcesoService {
     @Override
     public void cambiarEstadoProceso(Proceso proceso, String estado) {
         proceso.setEstado(estado);
-        switch(estado)
-        {
-            case "En Ejecución": proceso.setFechaInicio(""+LocalDate.now());
-            break;
-            case "Finalizado": proceso.setFechaCierre(""+LocalDate.now());
-            break;
-        }        
+        if (estado.equals("En Configuración")) {
+            proceso.setFechaCierre("--");
+            proceso.setFechaInicio("En Configuración");
+        } else if (estado.equals("En Ejecución")) {
+            proceso.setFechaCierre("--");
+            proceso.setFechaInicio("" + LocalDate.now());
+        } else if (estado.equals("Finalizado")) {
+            proceso.setFechaCierre("" + LocalDate.now());
+        }
         try {
             procesoRepository.saveAndFlush(proceso);
         } catch (Exception e) {
             log.error("Ha ocurrido un error inesperado: " + e, e);
         }
     }
-
- 
 
     @Override
     public void actualizarProceso(Proceso proceso) {

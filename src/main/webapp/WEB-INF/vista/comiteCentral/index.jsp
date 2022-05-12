@@ -190,13 +190,13 @@
         <h3>Atención!</h3>
     </div>
     <div class="modal-body">
-        <h4>Ejecutar Proceso de Autoevaluación.</h4>
+        <h4 id="title">Ejecutar Proceso de Autoevaluación.</h4>
         <br>
-        <p style="text-align: justify">Esta seguro que desea ejecutar el Proceso?.</p>
+        <p id="question" style="text-align: justify">Esta seguro que desea ejecutar el Proceso?.</p>
     </div>
     <div class="modal-footer">
         <a id="modalCc1b2" class="btn btn-secundary" data-dismiss="modal" href="#">Cancelar</a>
-        <a id="modalCc1b1" class="btn btn-primary" data-dismiss="modal" href="#">Ejecutar Proceso</a>
+        <a id="modalCc1b1" class="btn btn-primary" data-dismiss="modal">Si</a>
     </div>
 </div>
 <div class="modal hide fade" id="modalCc2">

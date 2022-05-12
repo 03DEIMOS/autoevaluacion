@@ -89,7 +89,7 @@ $(function () {
                 + '<button id="west-closer" class="close">&laquo;</button>'
                 + '<li><a href="#proceso/procesos"><i class="icon-level-up"></i>Regresar a procesos</a></li>'
                 + '<li class="nav-header">Proceso de Autoevaluación</li>'
-                + '<li><a href="#detalleProceso"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
+                + '<li><a href="#proceso/entrar/'+procesoId+'"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
                 + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
                 + '<li class="nav-header">Estado del proceso</li>'
                 + '<li><a href="#informe/estadoGeneralDelProceso/'+procesoId+'"><i class="icon-bar-chart"></i> Informes</a></li>'

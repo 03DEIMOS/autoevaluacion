@@ -101,8 +101,7 @@ public class ProcesoController {
     
     @PostMapping(value = "/cambiarEstado")
     public ResponseEntity<?> cambiarEstadoProceso(@RequestParam Integer procesoId, @RequestParam String estado) {
-
-        log.info("Ejecutanto medoto cambiarEstadoProceso() procesoId:{}, estado]:{}" , procesoId, estado);
+        log.info("Ejecutanto metodo cambiarEstadoProceso() procesoId:{}, estado:{}" , procesoId, estado);
         HttpStatus status;
         try {
             Proceso proceso = procesoService.buscarProceso(procesoId);

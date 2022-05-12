@@ -17,13 +17,13 @@
             }); //fin $.ajax  
         });
 
-        $("#formCrearEvaluador").validate({
+        $("#formEditarEvaluador").validate({
             submitHandler: function () {
-                $("#btnCrearEvaluador").attr("disabled", true);
+                $("#formEditarEvaluador").attr("disabled", true);
                 $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/persona/crearEvaluador",
-                    data: $("#formCrearEvaluador").serialize(),
+                    type: 'PUT',
+                    url: "/autoevaluacion/persona/editarEvaluador",
+                    data: $("#formEditarEvaluador").serialize(),
                     success: function () {
                         $("#listM").empty();
                         $.ajax({
@@ -47,55 +47,57 @@
 <div class="hero-unit divEvaluador">
     <div class="row">
         <div id="conte" class="span10">
-            <form id="formCrearEvaluador" class="form-horizontal" method="post">
+            <form id="formEditarEvaluador" class="form-horizontal" method="post">
                 <fieldset>
-                    <legend>Crear Evaluador</legend>
+                    <legend>Editar Evaluador</legend>
                     <input type="hidden" name="fuenteId" value="${fuenteId}"/>
                     <input type="hidden" name="procesoId" value="${procesoId}"/>
+                    <input type="hidden" name="personaId" value="${persona.id}"/>
+                    <input type="hidden" name="codigo" value="${persona.getUsuarioId().usuario}"/>
                     <div class="control-group">
                         <label for="codigo" class="control-label">Código</label>
                         <div class="controls">
-                            <input type="text" name="codigo" id="codigo" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="codigo" id="codigo" disabled class="input-xlarge {required:true}" value="${persona.getUsuarioId().usuario}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="identificacion" class="control-label">Identificación</label>
                         <div class="controls">
-                            <input type="text" name="identificacion" id="identificacion" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="identificacion" id="identificacion" class="input-xlarge {required:true}" value="${persona.getUsuarioId().identificacion}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="nombre"  class="control-label">Nombres</label>
                         <div class="controls">
-                            <input type="text" name="nombre" id="nombre" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="nombre" id="nombre" class="input-xlarge {required:true}" value="${persona.getUsuarioId().nombre}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="apellido"  class="control-label">Apellidos</label>
                         <div class="controls">
-                            <input type="text" name="apellido" id="apellido" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="apellido" id="apellido" class="input-xlarge {required:true}" value="${persona.getUsuarioId().apellido}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="correo"  class="control-label">Correo electrónico</label>
                         <div class="controls">
-                            <input type="text" name="correo" id="correo" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="correo" id="correo" class="input-xlarge {required:true}" value="${persona.getUsuarioId().email}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="variable1"  class="control-label">Variable 1</label>
                         <div class="controls">
-                            <input type="text" name="variable1" id="variable1" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="variable1" id="variable1" class="input-xlarge {required:true}" value="${persona.variable1}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="variable2"  class="control-label">Variable 2</label>
                         <div class="controls">
-                            <input type="text" name="variable2" id="variable2" class="input-xlarge {required:true}" value=""/>
+                            <input type="text" name="variable2" id="variable2" class="input-xlarge {required:true}" value="${persona.variable2}"/>
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit" id="btnCrearEvaluador">Crear Evaluador</button>
+                        <button class="btn btn-primary" type="submit" id="btnEditarEvaluador">Editar Evaluador</button>
                         <button class="btn" id="btnCancelar" type="button">Cancelar</button>
                     </div>
                 </fieldset>

@@ -26,5 +26,8 @@ public interface PersonaService {
     
     Integer cantidadTotalMuestraPorProcesoFuente(Integer procesoId, Integer fuenteId);
     
- 
+    void crearEvaluador(String identificacion, String codigo, String nombre, String apellido, String correo, String variable1, String variable2, Integer fuenteId, Integer procesoId);
+    
+    void actualizarEvaluador(Integer personaId, String identificacion, String codigo, String nombre, String apellido, String correo, String variable1, String variable2, Integer fuenteId, Integer procesoId);
+    
 }

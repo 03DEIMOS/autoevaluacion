@@ -1,6 +1,7 @@
 package com.utb.autoevaluacion.controller;
 
 
+import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.OportunidadMejoraService;
 import com.utb.autoevaluacion.service.ProcesoService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,9 @@ public class OportunidadMejoraController {
     private ProcesoService procesoService;
     
     @Autowired
+    private CaracteristicaService caracteristicaService;
+    
+    @Autowired
     private OportunidadMejoraService oportunidadMejoraService;
 
     @GetMapping("/oportunidadesMejora/{procesoId}")
@@ -40,5 +44,14 @@ public class OportunidadMejoraController {
         return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\listar";
 
     }
+    
+    @GetMapping("/crear/{procesoId}")
+    public String formularioCrearOportunidadMejora(@PathVariable Integer procesoId, Model model) {
+        log.info("Ejecutanto método [formularioCrearOportunidadMejora] procesoId:{} ", procesoId);
+        model.addAttribute("procesoId", procesoId);
+        //model.addAttribute("listaC", CaracteristicaService.getCaracteristicas());
+        return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\crear";
+    }
+
 
 }

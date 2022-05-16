@@ -42,7 +42,7 @@
                             </c:otherwise>
                         </c:choose>
                         <br/>
-                        <a href="#/${procesoId}" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear Oportunidad de Mejora</a>
+                        <a href="#oportunidadMejora/crear/${procesoId}" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear Oportunidad de Mejora</a>
                     </div>
    
                 </div>

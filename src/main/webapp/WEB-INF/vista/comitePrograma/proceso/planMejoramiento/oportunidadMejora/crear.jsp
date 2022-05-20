@@ -10,10 +10,10 @@
             submitHandler: function() {
                 $.ajax({
                     type: 'POST',
-                    url: "/autoevaluacion/controladorCP?action=crearHallazgo2",
-                    data: $("#formCrearHallazgo").serialize(),
+                    url: "/autoevaluacion/oportunidadMejora/crear",
+                    data: $("#formCrearOportunidadMejora").serialize(),
                     success: function() {
-                        location = "/autoevaluacion/#listarHallazgos";
+                        location = "oportunidadMejora/oportunidadesMejora/${procesoId}";
                     } //fin success
                 }); //fin $.ajax    */
             }
@@ -27,18 +27,7 @@
                 <fieldset>
                     <legend>Crear Oportunidad Mejoramiento</legend>
                     <div class="control-group">
-                        <label for="factorId" class="control-label">Asignar Factor</label>
-                        <div class="controls">
-                            <select id="factorId" name="factorId" class="{required:true}">
-                                <option></option>
-                                <c:forEach items="${listaF}" var="factor" varStatus="iter">
-                                    <option value="${factor.id}">${factor.codigo} ${factor.nombre}</option>
-                                </c:forEach>
-                            </select>                
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="caracteristicaId" class="control-label">Asignar Caracter&iacute;stica</label>
+                        <label for="caracteristicaId" class="control-label">Caracter&iacute;stica</label>
                         <div class="controls">
                             <select id="caracteristicaId" name="caracteristicaId" class="{required:true}">
                                 <option></option>
@@ -59,12 +48,6 @@
                         <label for="eje" class="control-label">Eje Estrat&eacute;gico</label>
                         <div class="controls">
                             <input type="text" name="eje" id="eje" class="input-xlarge {required:true}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="oportunidadMejoramiento" class="control-label">Oportunidad Mejoramiento</label>
-                        <div class="controls">
-                            <textarea rows="3" name="oportunidadMejoramiento" id="oportunidadMejoramiento" class="input-xlarge {required:true}"></textarea>
                         </div>
                     </div>
                     

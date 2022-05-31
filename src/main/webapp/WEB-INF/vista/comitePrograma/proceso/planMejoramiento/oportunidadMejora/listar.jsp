@@ -16,21 +16,49 @@
                         <c:when test="${fn:length(listaO)!= 0}">
                             <table id="tablaX" class="table table-striped table-bordered table-condensed">
                                 <thead>
-                                    <th>Hallazgo</th>
-                                    <th>L&iacute;nea de Acci&oacute;n</th>    
+                                    <th>Factor</th>
+                                    <th>Caracteristica</th>
+                                    <th>Oportunidad de mejoramiento</th>
+                                    <th>Eje estrategico del PDI</th>
+                                    <th>L&iacute;neas de Acci&oacute;n del PDI</th>    
+                                    <th>Estado</th>    
+                                    <th>Reponsable</th>    
+                                    <th>Fecha inicio</th>    
+                                    <th>Fecha fin</th>    
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${listaO}" var="oportunidadMejora" varStatus="iter">
                                             <tr>
                                                 <td>   
+                                                    <c:out value="${oportunidadMejora.caracteristicaId.factorId.nombre}"/>
+                                                </td>
+                                                <td>   
+                                                    <c:out value="${oportunidadMejora.caracteristicaId.nombre}"/>
+                                                </td>
+                                                <td>   
                                                     <c:out value="${oportunidadMejora.hallazgo}"/>
                                                 </td>
                                                 <td>   
-                                                    <c:out value="${oportunidadMejora.linea_accion}"/>
+                                                    <c:out value="${oportunidadMejora.eje}"/>
                                                 </td>
                                                 <td>   
-                                                    <a href="#editarHallazgo&${oportunidadMejora.idHallazgo}" title="Editar"><i class="icon-edit"></i></a>
-                                                    <a href="#listarObjetivos&${oportunidadMejora.idHallazgo}" title="Ver objetivos"><i class="icon-signin"></i></a>
+                                                    <c:out value="${oportunidadMejora.lineaAccion}"/>
+                                                </td>
+                                                <td>   
+                                                    <c:out value="${oportunidadMejora.estado}"/>
+                                                </td>
+                                                <td>   
+                                                    <c:out value="${oportunidadMejora.responsable}"/>
+                                                </td>
+                                                <td>   
+                                                    <c:out value="${oportunidadMejora.fechaInicio}"/>
+                                                </td>
+                                                <td>   
+                                                    <c:out value="${oportunidadMejora.fechaFin}"/>
+                                                </td>
+                                                <td>   
+                                                    <a href="#oportunidadMejora/editar/${oportunidadMejora.idHallazgo}" title="Editar"><i class="icon-edit"></i></a>
+                                                    <a href="#" title="Ver seguimientos"><i class="icon-signin"></i></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

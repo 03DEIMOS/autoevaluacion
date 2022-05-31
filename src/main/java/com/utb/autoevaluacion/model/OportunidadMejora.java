@@ -46,7 +46,7 @@ public class OportunidadMejora implements Serializable {
     private String eje;
     
     @Column(name="linea_accion")
-    private String linea_accion;
+    private String lineaAccion;
     
     @Column(name="estado")
     private String estado;
@@ -55,10 +55,10 @@ public class OportunidadMejora implements Serializable {
     private String responsable;
     
     @Column(name="fecha_inicio")
-    private String fecha_inicio;
+    private String fechaInicio;
         
     @Column(name="fecha_fin")
-    private String fecha_fin;
+    private String fechaFin;
     
     public OportunidadMejora() {  } 
     

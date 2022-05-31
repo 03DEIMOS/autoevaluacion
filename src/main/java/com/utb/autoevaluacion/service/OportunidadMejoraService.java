@@ -18,5 +18,10 @@ public interface OportunidadMejoraService {
  
  List<OportunidadMejora> getOportunidadMejoraByProceso(Integer procesoId);
  
- void crearOpotunidadMejora(String hallazgo, Integer procesoId, Integer caracteristicaId, String eje, String linea_accion, String estado, String responsable);
+ void crearOportunidadMejora(String hallazgo, Integer procesoId, Integer caracteristicaId, String eje, String lineaAccion, 
+         String estado, String responsable, String fechaInicio, String fechaFinal);
+ void actualizarOportunidadMejora(Integer hallazgoId, String hallazgo, Integer procesoId, Integer caracteristicaId, String eje, String lineaAccion, 
+         String estado, String responsable, String fechaInicio, String fechaFinal);
+ 
+ OportunidadMejora buscarOportunidadMejora(Integer id);
 }

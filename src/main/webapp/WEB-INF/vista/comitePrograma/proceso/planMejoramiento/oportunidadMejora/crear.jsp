@@ -1,19 +1,29 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/datepicker.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" language="JavaScript">
-    $(document).ready(function() {
-        $('.tool').tooltip().click(function(e) {
+    $(document).ready(function () {
+        $('.tool').tooltip().click(function (e) {
             $(this).tooltip('hide');
         });
+        
+        $('#fechaInicio').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+        $('#fechaFinal').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+        
         $("#formCrearOportunidadMejora").validate({
-            submitHandler: function() {
+            submitHandler: function () {
                 $.ajax({
                     type: 'POST',
                     url: "/autoevaluacion/oportunidadMejora/crear",
                     data: $("#formCrearOportunidadMejora").serialize(),
-                    success: function() {
-                        location = "oportunidadMejora/oportunidadesMejora/${procesoId}";
+                    success: function () {
+                        location.hash = "oportunidadMejora/oportunidadesMejora/${procesoId}";
                     } //fin success
                 }); //fin $.ajax    */
             }
@@ -26,6 +36,7 @@
             <form id="formCrearOportunidadMejora" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Crear Oportunidad Mejoramiento</legend>
+                    <input name="procesoId" type="hidden" value="${procesoId}"/>
                     <div class="control-group">
                         <label for="caracteristicaId" class="control-label">Caracter&iacute;stica</label>
                         <div class="controls">
@@ -37,7 +48,7 @@
                             </select>                
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <label for="oportunidadMejoramiento" class="control-label">Oportunidad Mejoramiento</label>
                         <div class="controls">
@@ -45,14 +56,14 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="eje" class="control-label">Eje Estrat&eacute;gico</label>
+                        <label for="eje" class="control-label">Eje Estrat&eacute;gico del PDI</label>
                         <div class="controls">
                             <input type="text" name="eje" id="eje" class="input-xlarge {required:true}"/>
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                        <label for="lineaAccion" class="control-label">L&iacute;neas de acci&oacute;n</label>
+                        <label for="lineaAccion" class="control-label">L&iacute;neas de acci&oacute;n del PDI</label>
                         <div class="controls">
                             <textarea rows="3" name="lineaAccion" id="lineaAccion" class="input-xlarge {required:true}"></textarea>
                         </div>
@@ -74,12 +85,24 @@
                             <input type="text" name="responsable" id="responsable" class="input-xlarge {required:true}"/>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label for="fechaInicio" class="control-label">Fecha de inicio</label>
+                        <div class="controls">
+                            <input type="text" name="fechaInicio" id="fechaInicio" class="form-control" value="" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="fechaFinal" class="control-label">Fecha de finalización </label>
+                        <div class="controls">
+                            <input type="text" name="fechaFinal" id="fechaFinal" class="form-control" value="" >
+                        </div>
+                    </div>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Crear Oportunidad Mejoramiento</button>
                         <button class="btn" type="reset">Cancelar</button>
                     </div>
                 </fieldset>
-                
+
             </form>
         </div>
     </div>

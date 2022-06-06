@@ -47,7 +47,8 @@ public class OportunidadMejoraController {
     
     @Autowired
     private OportunidadMejoraService oportunidadMejoraService;
-
+    
+   
     @GetMapping("/oportunidadesMejora/{procesoId}")
     public String oportunidadesMejora(@PathVariable Integer procesoId, Model model) {
         model.addAttribute("listaO", oportunidadMejoraService.getOportunidadMejoraByProceso(procesoId));

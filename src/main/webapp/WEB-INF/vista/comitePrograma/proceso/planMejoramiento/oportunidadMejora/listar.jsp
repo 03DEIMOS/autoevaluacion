@@ -58,7 +58,7 @@
                                                 </td>
                                                 <td>   
                                                     <a href="#oportunidadMejora/editar/${oportunidadMejora.idHallazgo}" title="Editar"><i class="icon-edit"></i></a>
-                                                    <a href="#" title="Ver seguimientos"><i class="icon-signin"></i></a>
+                                                    <a href="#seguimiento/seguimientos/${oportunidadMejora.idHallazgo}" title="Ver seguimientos"><i class="icon-signin"></i></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

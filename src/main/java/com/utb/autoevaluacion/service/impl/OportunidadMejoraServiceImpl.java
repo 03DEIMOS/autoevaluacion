@@ -106,4 +106,9 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
         }
     }
 
+    /*@Override
+    public List<OportunidadMejora> getSeguimientoByOportunidadMejora(Integer hallazgoId) {
+        return oportunidadMejoraRepository.findSeguimientoByOportunidadMejoraId(hallazgoId);
+    }*/
+
 }

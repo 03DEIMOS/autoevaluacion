@@ -20,8 +20,10 @@ public interface OportunidadMejoraService {
  
  void crearOportunidadMejora(String hallazgo, Integer procesoId, Integer caracteristicaId, String eje, String lineaAccion, 
          String estado, String responsable, String fechaInicio, String fechaFinal);
+ 
  void actualizarOportunidadMejora(Integer hallazgoId, String hallazgo, Integer procesoId, Integer caracteristicaId, String eje, String lineaAccion, 
          String estado, String responsable, String fechaInicio, String fechaFinal);
  
  OportunidadMejora buscarOportunidadMejora(Integer id);
+ 
 }

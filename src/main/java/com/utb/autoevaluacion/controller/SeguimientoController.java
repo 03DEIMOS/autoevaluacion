@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.OportunidadMejora;
+import com.utb.autoevaluacion.model.Seguimiento;
 import com.utb.autoevaluacion.service.OportunidadMejoraService;
 import com.utb.autoevaluacion.service.SeguimientoService;
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +67,16 @@ public class SeguimientoController {
             status = HttpStatus.CONFLICT;
         }
         return new ResponseEntity<>(status);
+    }
+    
+    @GetMapping("/editar/{idSeguimiento}/{idHallazgo}")
+    public String formularioEditarSeguimiento(@PathVariable Integer idSeguimiento, @PathVariable Integer idHallazgo, Model model) {
+        log.info("Ejecutanto metodo [formularioEditarSeguimiento] idSeguimiento:{}, idHallazgo:{} ", idSeguimiento, idHallazgo);
+        Seguimiento seguimiento = seguimientoService.buscarSeguimiento(idSeguimiento);
+        model.addAttribute("idSeguimiento", seguimiento);
+        model.addAttribute("idHallazgo", seguimiento.getOportunidadMejora().getIdHallazgo());
+        model.addAttribute("seguimiento", seguimiento);
+        return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\editar";
     }
 
 }

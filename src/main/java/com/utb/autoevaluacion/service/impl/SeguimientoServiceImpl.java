@@ -6,6 +6,7 @@ import com.utb.autoevaluacion.repository.SeguimientoRepository;
 import com.utb.autoevaluacion.model.Seguimiento;
 import com.utb.autoevaluacion.repository.OportunidadMejoraRepository;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,22 @@ public class SeguimientoServiceImpl implements SeguimientoService{
             log.info("Ha ocurrido un error al crear la Actividad de Seguimiento: ", e);
             throw e;
         }
+    }
+
+    @Override
+    public Seguimiento buscarSeguimiento(Integer idSeguimiento) {
+        Seguimiento seguimiento = null;
+        Optional<Seguimiento> seguimientoOptional = null;
+        try {
+            seguimientoOptional = seguimientoRepository.findById(idSeguimiento);
+            if (seguimientoOptional.isPresent()) {
+                seguimiento = seguimientoOptional.get();
+            }
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado", e);
+        }
+        return seguimiento;
+        
     }
     
 }

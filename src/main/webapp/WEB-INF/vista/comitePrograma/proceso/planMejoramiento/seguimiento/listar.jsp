@@ -37,7 +37,7 @@
                                                     <c:out value="${seguimiento.avances}"/>
                                                 </td>
                                                 <td>   
-                                                    <a href="#seguimiento/editar/${seguimiento.idSeguimiento}" title="Editar"><i class="icon-edit"></i></a>
+                                                    <a href="#seguimiento/editar/${seguimiento.idSeguimiento}/${idHallazgo}" title="Editar"><i class="icon-edit"></i></a>
                                                     <a href="#" title="Ver avances"><i class="icon-signin"></i></a>
                                                 </td>
                                             </tr>

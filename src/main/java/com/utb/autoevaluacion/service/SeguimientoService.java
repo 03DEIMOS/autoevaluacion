@@ -16,5 +16,7 @@ public interface SeguimientoService {
     List<Seguimiento> getSeguimientoByOportunidadMejora(Integer idHallazgo);
     
     void crearSeguimiento(String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances, Integer idHallazgo);
+    
+    Seguimiento buscarSeguimiento(Integer idSeguimiento);
 
 }

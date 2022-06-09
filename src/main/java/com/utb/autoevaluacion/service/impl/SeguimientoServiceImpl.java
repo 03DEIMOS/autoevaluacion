@@ -71,12 +71,9 @@ public class SeguimientoServiceImpl implements SeguimientoService{
     }
 
     @Override
-    public void actualizarSeguimiento(Integer idSeguimiento, Integer idHallazgo, String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances) {
+    public void actualizarSeguimiento(Integer idSeguimiento, String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances) {
         try{
             Seguimiento seguimiento = seguimientoRepository.findById(idSeguimiento).get();
-            OportunidadMejora oportunidadMejora = oportunidadMejoraRepository.findById(idHallazgo).get();
-            seguimiento.setIdSeguimiento(idSeguimiento);
-            seguimiento.setOportunidadMejora(oportunidadMejora);
             seguimiento.setFechaProgramada(fechaProgramada);
             seguimiento.setFechaRealizado(fechaRealizado);
             seguimiento.setPorcentajeAvance(porcentajeAvance);

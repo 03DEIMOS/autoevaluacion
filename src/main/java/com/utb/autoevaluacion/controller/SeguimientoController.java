@@ -47,7 +47,6 @@ public class SeguimientoController {
     @GetMapping("/crear/{idHallazgo}")
     public String formularioCrearSeguimiento(@PathVariable Integer idHallazgo, Model model) {
         log.info("Ejecutanto método [formularioCrearSeguimiento] idHallazgo:{} ", idHallazgo);
-        OportunidadMejora oportunidadMejora = oportunidadMejoraService.buscarOportunidadMejora(idHallazgo);
         model.addAttribute("idHallazgo", idHallazgo);
         //model.addAttribute("listaS", caracteristicaService.getCaracteristicasByModelo(proceso.getModeloId().getId()));
         return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\crear";
@@ -55,7 +54,7 @@ public class SeguimientoController {
     
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearSeguimiento(@RequestParam String fechaProgramada, @RequestParam String fechaRealizado, 
-            @RequestParam Integer porcentajeAvance, @RequestParam String avances, @RequestParam Integer idHallazgo) {
+            @RequestParam(defaultValue = "0") Integer porcentajeAvance, @RequestParam String avances, @RequestParam Integer idHallazgo) {
 
         log.info("Ejecutanto metodo [crearSeguimiento] fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{}, idHallazgo:{} ", fechaProgramada, fechaRealizado, porcentajeAvance, avances, idHallazgo);
         HttpStatus status;
@@ -70,24 +69,22 @@ public class SeguimientoController {
         return new ResponseEntity<>(status);
     }
     
-    @GetMapping("/editar/{idSeguimiento}/{idHallazgo}")
-    public String formularioEditarSeguimiento(@PathVariable Integer idSeguimiento, @PathVariable Integer idHallazgo, Model model) {
-        log.info("Ejecutanto metodo [formularioEditarSeguimiento] idSeguimiento:{}, idHallazgo:{} ", idSeguimiento, idHallazgo);
+    @GetMapping("/editar/{idSeguimiento}")
+    public String formularioEditarSeguimiento(@PathVariable Integer idSeguimiento, Model model) {
+        log.info("Ejecutanto metodo [formularioEditarSeguimiento] idSeguimiento:{} ", idSeguimiento);
         Seguimiento seguimiento = seguimientoService.buscarSeguimiento(idSeguimiento);
-        model.addAttribute("idSeguimiento", seguimiento);
-        model.addAttribute("idHallazgo", seguimiento.getOportunidadMejora().getIdHallazgo());
         model.addAttribute("seguimiento", seguimiento);
         return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\editar";
     }
     
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, @RequestParam Integer idHallazgo, @RequestParam String fechaProgramada, 
+    public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, @RequestParam String fechaProgramada, 
             @RequestParam String fechaRealizado, @RequestParam Integer porcentajeAvance, @RequestParam String avances) {
-        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, idHallazgo:{}, fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{} ",
-                idSeguimiento, idHallazgo, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{} ",
+                idSeguimiento, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
         HttpStatus status;
         try {
-            seguimientoService.actualizarSeguimiento(idSeguimiento, idHallazgo, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+            seguimientoService.actualizarSeguimiento(idSeguimiento, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " , e);

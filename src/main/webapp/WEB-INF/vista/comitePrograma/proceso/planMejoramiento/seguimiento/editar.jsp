@@ -23,7 +23,7 @@
                     url: "/autoevaluacion/seguimiento/editar",
                     data: $("#formEditarSeguimiento").serialize(),
                     success: function () {
-                        location.hash = "seguimiento/seguimientos/${idHallazgo}";
+                        location.hash = "seguimiento/seguimientos/${seguimiento.oportunidadMejora.idHallazgo}";
                     } //fin success
                 }); //fin $.ajax    */
             }
@@ -34,7 +34,6 @@
     <div style="margin-left: -30px;">
          <div id="conte" class="span10" style="text-align: justify">
             <form id="formEditarSeguimiento" class="form-horizontal">
-                <input type="hidden" name="idHallazgo" value="${idHallazgo}">
                  <input type="hidden" name="idSeguimiento"  value="${seguimiento.idSeguimiento}"/>
                 <fieldset>
                     <legend>Editar Actividades de Seguimiento</legend>
@@ -55,13 +54,13 @@
                     <div class="control-group">
                         <label for="porcentajeAvance" class="control-label">Porcentaje Avances: </label>
                         <div class="controls">
-                            <input type="text" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:true}" value="${seguimiento.porcentajeAvance}"/>
+                            <input type="number" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:true}" value="${seguimiento.porcentajeAvance}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="avances" class="control-label">Avances: </label>
                         <div class="controls">
-                            <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:true}">${seguimiento.avances}</textarea>
+                            <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:false}">${seguimiento.avances}</textarea>
                         </div>
                     </div>
                     

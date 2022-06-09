@@ -53,14 +53,14 @@
                     <div class="control-group">
                         <label for="porcentajeAvance" class="control-label">% Avance de la Actividad*</label>
                         <div class="controls">
-                            <input type="text" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:true}"/> %
+                            <input type="number" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:false}"/> %
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label for="avances" class="control-label">Avances*</label>
                         <div class="controls">
-                            <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:true}"></textarea>             
+                            <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:false}"></textarea>             
                         </div>
                     </div>
                     

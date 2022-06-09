@@ -34,8 +34,8 @@
     <div style="margin-left: -30px;">
          <div id="conte" class="span10" style="text-align: justify">
             <form id="formEditarSeguimiento" class="form-horizontal">
-                <input type="hidden" name="hallazgoId" value="${idHallazgo}">
-                 <input type="hidden" name="idSeguimiento"  value="${idSeguimiento}"/>
+                <input type="hidden" name="idHallazgo" value="${idHallazgo}">
+                 <input type="hidden" name="idSeguimiento"  value="${seguimiento.idSeguimiento}"/>
                 <fieldset>
                     <legend>Editar Actividades de Seguimiento</legend>
                     

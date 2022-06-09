@@ -69,5 +69,25 @@ public class SeguimientoServiceImpl implements SeguimientoService{
         return seguimiento;
         
     }
+
+    @Override
+    public void actualizarSeguimiento(Integer idSeguimiento, Integer idHallazgo, String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances) {
+        try{
+            Seguimiento seguimiento = seguimientoRepository.findById(idSeguimiento).get();
+            OportunidadMejora oportunidadMejora = oportunidadMejoraRepository.findById(idHallazgo).get();
+            seguimiento.setIdSeguimiento(idSeguimiento);
+            seguimiento.setOportunidadMejora(oportunidadMejora);
+            seguimiento.setFechaProgramada(fechaProgramada);
+            seguimiento.setFechaRealizado(fechaRealizado);
+            seguimiento.setPorcentajeAvance(porcentajeAvance);
+            seguimiento.setAvances(avances);
+            
+            seguimientoRepository.saveAndFlush(seguimiento);
+            
+        } catch (Exception e) {
+            log.info("Ha ocurrido un error al actualizar la actividad de seguimiento", e);
+            throw e;
+        }
+    }
     
 }

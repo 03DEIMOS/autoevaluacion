@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50500
 File Encoding         : 65001
 
-Date: 2022-06-05 21:44:38
+Date: 2022-06-08 21:42:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,5 +34,5 @@ CREATE TABLE `seguimiento` (
 -- ----------------------------
 -- Records of seguimiento
 -- ----------------------------
-INSERT INTO `seguimiento` VALUES ('174', '7', '05/06/2022', '05/06/2022', '10', 'Avance de Prueba');
-INSERT INTO `seguimiento` VALUES ('175', '7', '05/06/2022', '', '0', 'Avance de prueba 2');
+INSERT INTO `seguimiento` VALUES ('174', '7', '05/06/2022', '05/06/2022', '30', 'Avance de Prueba');
+INSERT INTO `seguimiento` VALUES ('175', '7', '05/06/2022', '08/06/2022', '12', 'Avance de prueba Editada');

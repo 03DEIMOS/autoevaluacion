@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -78,5 +79,22 @@ public class SeguimientoController {
         model.addAttribute("seguimiento", seguimiento);
         return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\editar";
     }
+    
+    @PutMapping(value = "/editar")
+    public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, @RequestParam Integer idHallazgo, @RequestParam String fechaProgramada, 
+            @RequestParam String fechaRealizado, @RequestParam Integer porcentajeAvance, @RequestParam String avances) {
+        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, idHallazgo:{}, fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{} ",
+                idSeguimiento, idHallazgo, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+        HttpStatus status;
+        try {
+            seguimientoService.actualizarSeguimiento(idSeguimiento, idHallazgo, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error: " , e);
+            status = HttpStatus.CONFLICT;
+        }
+        return new ResponseEntity<>(status);
+    }
+
 
 }

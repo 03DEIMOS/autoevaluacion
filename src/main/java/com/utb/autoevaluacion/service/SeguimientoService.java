@@ -19,4 +19,6 @@ public interface SeguimientoService {
     
     Seguimiento buscarSeguimiento(Integer idSeguimiento);
 
+    void actualizarSeguimiento(Integer idSeguimiento, Integer idHallazgo, String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances);
+ 
 }

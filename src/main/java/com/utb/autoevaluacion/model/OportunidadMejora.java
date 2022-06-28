@@ -34,9 +34,9 @@ public class OportunidadMejora implements Serializable {
     @Column(name="hallazgo")
     private String hallazgo;
       
-    @JoinColumn(name = "proceso_id", referencedColumnName = "id")
+    @JoinColumn(name = "plan_mejoramiento_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Proceso procesoId;
+    private PlanMejoramiento planMejoramientoId;
     
     @JoinColumn(name = "caracteristica_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
@@ -59,6 +59,9 @@ public class OportunidadMejora implements Serializable {
         
     @Column(name="fecha_fin")
     private String fechaFin;
+    
+    @Column(name="tipo")
+    private String tipo;
     
     public OportunidadMejora() {  } 
     

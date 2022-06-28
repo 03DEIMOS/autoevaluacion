@@ -10,8 +10,8 @@
 
                     <table id="tablaX" class="table table-striped table-bordered table-condensed">
                         <thead>
-                        <th class="span1">Tipo;digo</th>    
-                        <th class="span8">Descripci&oacute;n</th>
+                        <th class="span1">Tipo</th>    
+                        <th class="span8">Escala</th>
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>

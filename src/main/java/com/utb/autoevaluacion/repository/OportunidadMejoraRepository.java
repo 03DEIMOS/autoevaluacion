@@ -17,7 +17,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface OportunidadMejoraRepository extends JpaRepository<OportunidadMejora, Integer>{
-    @Query("Select h from OportunidadMejora h where h.procesoId.id=?1")
-    List<OportunidadMejora> findOportunidadMejoraByProcesoId(Integer procesoId);
+    @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1")
+    List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoId(Integer planMejoramientoId);
+    
+    @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1 and h.estado=?2")
+    List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoIdAndStatus(Integer planMejoramientoId, String status);
+    
 
 }

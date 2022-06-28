@@ -9,7 +9,7 @@
         $('.tool').tooltip().click(function (e) {
             $(this).tooltip('hide');
         });
-        
+
         $('#fechaInicio').datepicker({
             format: 'dd/mm/yyyy'
         });
@@ -23,7 +23,7 @@
                     url: "/autoevaluacion/oportunidadMejora/editar",
                     data: $("#formEditarOportunidadMejora").serialize(),
                     success: function () {
-                        location.hash = "oportunidadMejora/oportunidadesMejora/${procesoId}";
+                        location.hash = "oportunidadMejora/oportunidadesMejora/${planMejoramientoId}";
                     } //fin success
                 }); //fin $.ajax    */
             }
@@ -32,10 +32,10 @@
 </script>
 <div class="hero-unit">
     <div style="margin-left: -30px;">
-         <div id="conte" class="span10" style="text-align: justify">
+        <div id="conte" class="span10" style="text-align: justify">
             <form id="formEditarOportunidadMejora" class="form-horizontal">
                 <input type="hidden" name="hallazgoId" value="${oportunidadMejora.idHallazgo}">
-                 <input type="hidden" name="procesoId"  value="${procesoId}"/>
+                <input type="hidden" name="planMejoramientoId"  value="${planMejoramientoId}"/>
                 <fieldset>
                     <legend>Editar Oportunidad de mejora</legend>
                     <div class="control-group">
@@ -96,6 +96,23 @@
                                         <option>Abierta</option>
                                         <option>Permanente</option>
                                         <option selected="selected">Cerrada</option> 
+                                    </c:when>
+                                </c:choose>
+                            </select>                
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="tipo" class="control-label">Tipo</label>
+                        <div class="controls">
+                            <select id="tipo" name="tipo" class="{required:true}">
+                                <c:choose>
+                                    <c:when test="${oportunidadMejora.tipo == 'Institucional'}">
+                                        <option selected="selected">Institucional</option>
+                                        <option>Programa</option>
+                                    </c:when>
+                                    <c:when test="${oportunidadMejora.tipo == 'Programa'}">
+                                        <option>Institucional</option>
+                                        <option selected="selected">Programa</option>
                                     </c:when>
                                 </c:choose>
                             </select>                

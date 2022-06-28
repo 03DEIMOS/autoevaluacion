@@ -23,7 +23,7 @@
                     url: "/autoevaluacion/oportunidadMejora/crear",
                     data: $("#formCrearOportunidadMejora").serialize(),
                     success: function () {
-                        location.hash = "oportunidadMejora/oportunidadesMejora/${procesoId}";
+                        location.hash = "oportunidadMejora/oportunidadesMejora/${planMejoramientoId}";
                     } //fin success
                 }); //fin $.ajax    */
             }
@@ -36,7 +36,7 @@
             <form id="formCrearOportunidadMejora" class="form-horizontal" method="post">
                 <fieldset>
                     <legend>Crear Oportunidad Mejoramiento</legend>
-                    <input name="procesoId" type="hidden" value="${procesoId}"/>
+                    <input name="planMejoramientoId" type="hidden" value="${planMejoramientoId}"/>
                     <div class="control-group">
                         <label for="caracteristicaId" class="control-label">Caracter&iacute;stica</label>
                         <div class="controls">
@@ -76,6 +76,15 @@
                                 <option>Abierta</option>
                                 <option>Permanente</option>
                                 <option>Cerrada</option>
+                            </select>                
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="tipo" class="control-label">Tipo</label>
+                        <div class="controls">
+                            <select id="tipo" name="tipo" class="{required:true}">
+                                <option>Institucional</option>
+                                <option>Programa</option>
                             </select>                
                         </div>
                     </div>

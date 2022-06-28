@@ -77,27 +77,47 @@
         <div class="ui-layout-center">
             <div id="conte" class="span12" style="text-align: justify">
                 <div class="hero-unit">
-                    <h2>Autoevaluación UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</h2>
-                    <p style='font-size: 16px; font-weight: 200; line-height: 22px;'>Dentro de este contexto, la autoevaluación de los programas es una tarea permanente de las instituciones de educación superior y hace parte del proceso mejoramiento continuo de los mismos, con el fin de darle cumplimiento a los requisitos exigidos por el MEN para el funcionamiento de los programas y aún más para acreditar en alta calidad,   sin embargo, es importante tener en cuenta que, el proceso de acreditación de alta calidad de programas, es de carácter voluntario,  y es decisión de las instituciones acogerse a los lineamientos del Consejo Nacional de Acreditación CNA.
-                        En este sentido, la UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR asumió el proceso de autoevaluación con fines de acreditación desde el año 1996, el cual dio sus primeros frutos en el año 2002 al obtener la acreditación de alta calidad de los programas de Ingeniería Naval, Oceanografía Física y Administración Marítima.  Posteriormente, en los años 2007 y 2008 se obtuvo la renovación de acreditación a los programas mencionados. De igual manera, los programas de Ciencias Navales para oficiales Navales e Infantería de Marina obtuvieron su acreditación en el año 2011.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    <h2>Sistema Interno de Aseguramiento de la Calidad UTB</h2>
+
+                    <p style='font-size: 16px; font-weight: 200; line-height: 22px;'>
+                        El Sistema Integral de Aseguramiento de la Calidad SIAC-UTB se soporta en una noción de la calidad1
+                        que exige que el actuar institucional sea coherente con los propósitos expresados en la misión y
+                        visión institucional (consistencia interna) y la capacidad de atender las necesidades planteadas por
+                        el nuestro entorno social, económico, empresarial, cultural y ambiental (consistencia externa). 
                     </p>
+                    <p style='font-size: 16px; font-weight: 200; line-height: 22px;'>
+                        El Sistema integral de Aseguramiento de la Calidad Institucional se fundamenta en cuatro
+                        elementos: Evaluación continua y permanente de la actividad institucional, consideraciones de los
+                        resultados evaluativos para ajustar metas institucionales, trabajo por el mejoramiento continuo y la
+                        rendición de cuenta a los grupos de interés y comunidad académica. EL SIAC-UTB concibe cinco (5)
+                        pilares: Gestión Institucional, Gestión Docente, Gestión Investigativa, Gestión de la Extensión y
+                        Gestión Académica- administrativa. 
+                    </p>
+                    <p>
+                        <img src="img/siac-utb.png"/>
+                    </p>
+
+
                 </div>
                 <div class="row-fluid">
                     <div class="span7">
                         <h3>Referencias Normativas</h3>
                         <ul> 
                             <li style="display: block;">1) Ley 30 de 1992, por la cual se organiza el servicio público de educación superior.</li>
-                            <li style="display: block;">2) Ley 1188 del 25 de abril de 2008, por la cual se regula el registro calificado de programas de educación superior y se dictan otras disposiciones.</li>
-                            <li style="display: block;">3) Decreto 1075 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Educación.</li>
-                            <li style="display: block;">4) Decreto 1295 del 20 de julio de 2010, por el cual se reglamenta el registro calificado del que trata la Ley 1188 de 2008, la oferta y desarrollo de programas académicos de educación superior.</li>
-                            <li style="display: block;">5) Decreto 2904 de 1994, por el cual se reglamenta el proceso de acreditación.</li>
+                            <li style="display: block;">2) Decreto 1075 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Educación.</li>
+                            <li style="display: block;">3) Decreto 1330 de 2019, mediante el cual se actualiza las condiciones de calidad del registro calificado.</li>
+                            <li style="display: block;">4) Resolución 021795 de 2020, mediante el cual se establecen los parámetros de autoevaluación, verificación y evaluación de las condiciones de calidad de programas. decreto 1330 de 2019.</li>
+                            <li style="display: block;">5) Acuerdo CESU 02 de 2020. por el cual se reglamenta el proceso de acreditación.</li>
+                            <li style="display: block;">6) Lineamientos y guías del proceso de acreditación institucional y de programas 2021.</li>
                         </ul>
                     </div>
                     <div class="span5">
-                        <h3>Modelo de Autoevaluación UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</h3>
-                        <p>El modelo de autoevaluación de la UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR, que involucra todos los componentes consignados en la Guía de Autoevaluación del C.N.A., es en primera instancia, una herramienta de verificación y apoyo, que brinda  estrategias para promover en la comunidad educativa, el fortalecimiento del concepto de calidad y el desarrollo de una cultura de evaluación. En segundo lugar, es un mecanismo para obtener información relevante y oportuna acerca de las fortalezas, debilidades, amenazas y oportunidades, sobre las cuales sea posible hacer un diagnóstico, formular un juicio crítico y fundamentar el proceso de toma de decisiones. 
-                            <br/>Dentro de este contexto, se concibe el modelo de autoevaluación como la carta de navegación que permite trazar rumbos, fijar metas, orientar acciones, métodos y procedimientos, en pro de la evaluación de la calidad del servicio educativo, el manejo adecuado de los recursos, la eficiencia, la efectividad operativa y administrativa en el cumplimiento de la Misión y la Visión Institucional. 
+                        <h3>Modelo de Autoevaluación UTB</h3>
+                        <p>
+                            La Universidad Tecnológica de Bolívar concibe la autoevaluación como una práctica permanente, una autorreflexión de carácter estratégico, esencialmente analítica, participativa y orientada al mejoramiento continuo. Los procesos de autoevaluación con fines de renovación de la acreditación institucional y de programas son de gran significación para la universidad ya que fortalecen su capacidad de autorregulación. 
+                        </p>
+                        <p>
+                            El modelo de autoevaluación consta de cinco etapas, a saber: i) organización del Comité de Acreditación, ii) diseño e implementación del plan comunicacional, iii) recolección y análisis de la información, iv) consolidación del informe de autoevaluación e identificación de propuestas de mejoramiento, y v) calificación de factores y características.
                         </p>
                     </div><!--/span-->
                 </div><!--/row-->
@@ -119,24 +139,8 @@
                         <li><a href="#fuente/fuentes"><i class="icon-user"></i> P&uacute;blicos objetivo</a></li>
                         <li class="divider"></li>
                         <li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>
+                        <li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>
                     </ul>
-                </div>
-                <div>
-                    <div style="padding: 8px 0pt;" class="well">
-                        <ul class="nav nav-list">  
-                            <li class="nav-header">¿Qui&eacute;n est&aacute; en l&iacute;nea&quest;</li>
-                            <li id="popover" title="Personas logueadas" 
-                                data-content="
-                                <c:forEach items="${personasLogueadas}" var="persona" varStatus="index">
-                                    ${persona}<br/>
-                                </c:forEach>
-                            ">
-                            <a href="#"><i class="icon-group"></i> 
-                                Hay ${personasLogueadas.size()} persona(s) en linea</a></li>
-
-                            </ui>
-                    </div>
-
                 </div>
             </div>
         </div><!--/West-->

@@ -93,8 +93,6 @@ $(function () {
                 + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
                 + '<li class="nav-header">Estado del proceso</li>'
                 + '<li><a href="#informe/estadoGeneralDelProceso/'+procesoId+'"><i class="icon-bar-chart"></i> Informes</a></li>'
-                + '<li class="nav-header">Plan de mejoramiento</li>'
-                + '<li><a href="#oportunidadMejora/oportunidadesMejora/'+procesoId+'"><i class="icon-bar-chart"></i> Plan de Mejoramiento</a></li>'
                 + '</ul>');
     };
 
@@ -112,6 +110,7 @@ $(function () {
                 '<li><a href="#fuente/fuentes"><i class="icon-user"></i> P&uacute;blicos objetivo</a></li>' +
                 '<li class="divider"></li>' +
                 '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
+                '<li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>'+
                 '</ul>');
     };
     function menuFactores(modeloId) {

@@ -31,6 +31,7 @@
                     <script type="text/javascript">
                         $(document).ready(function() {
                             $('#tablaX').DataTable({
+                                pageLength:15,
                                 dom: 'Bfrtip',
                                 buttons: [
                                     {

@@ -10,18 +10,18 @@
 
                     <table id="tablaX" class="table table-striped table-bordered table-condensed">
                         <thead>
-                        <th class="span1">C&oacute;digo</th>    
-                        <th class="span8">Caracteristica</th>
+                        <th class="span3">Factor</th>    
+                        <th class="span6">Caracteristica</th>
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>
                             <c:forEach items="${listaC}" var="caracteristica" varStatus="iter">
                                 <tr>
                                     <td>   
-                                        <c:out value="${caracteristica.codigo}"/>
+                                        <c:out value="${caracteristica.factorId.codigo} - ${caracteristica.factorId.nombre}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${caracteristica.nombre}"/>
+                                        <c:out value="${caracteristica.codigo} - ${caracteristica.nombre}"/>
                                     </td>
                                     <td class="action span2">
                                         <a href="#caracteristica/editar/${caracteristica.id}/${modeloId}" title="Editar"><i class="icon-edit"></i></a>

@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.model.OportunidadMejora;
+import com.utb.autoevaluacion.model.TipoAccion;
 import java.util.List;
 
 /**
@@ -18,13 +19,17 @@ public interface OportunidadMejoraService {
  
  List<OportunidadMejora> getOportunidadMejoraByPlanMejoramiento(Integer planMejoramientoId);
  
- List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndStatus(Integer planMejoramientoId, String status);
+ List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndFactor(Integer planMejoramientoId, Integer factorId);
+ 
+ List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndStatus(Integer planMejoramientoId, TipoAccion status);
  
  void crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion, 
-         String estado, String tipo, String responsable, String fechaInicio, String fechaFinal);
+         Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal
+         ,String recurso, String indicador, String meta, String lineaBase);
  
  void actualizarOportunidadMejora(Integer hallazgoId, String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion, 
-         String estado, String tipo, String responsable, String fechaInicio, String fechaFinal);
+         Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal
+        ,String recurso, String indicador, String meta, String lineaBase);
  
  OportunidadMejora buscarOportunidadMejora(Integer id);
  

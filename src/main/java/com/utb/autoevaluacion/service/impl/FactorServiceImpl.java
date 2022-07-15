@@ -82,4 +82,10 @@ public class FactorServiceImpl implements FactorService {
         List<Factor> factores = factorRepository.buscarPorModeloYConPreguntasAsociadas(modeloId);
         return factores;
     }
+
+    @Override
+    public List<Factor> getFactoresByPlanMejora(Integer planMejoraId) {
+        List<Factor> factores = factorRepository.findByPlanMejora(planMejoraId);
+        return factores;
+    }
 }

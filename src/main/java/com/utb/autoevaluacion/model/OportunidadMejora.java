@@ -6,6 +6,8 @@
 package com.utb.autoevaluacion.model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -48,8 +51,9 @@ public class OportunidadMejora implements Serializable {
     @Column(name="linea_accion")
     private String lineaAccion;
     
-    @Column(name="estado")
-    private String estado;
+    @JoinColumn(name = "estado_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TipoAccion estadoId;
     
     @Column(name="responsable")
     private String responsable;
@@ -62,6 +66,23 @@ public class OportunidadMejora implements Serializable {
     
     @Column(name="tipo")
     private String tipo;
+    
+    @Column(name="recurso")
+    private String recurso;
+    
+    @Column(name="indicador")
+    private String indicador;
+    
+    @Column(name="meta")
+    private String meta;
+    
+    @Column(name="linea_base")
+    private String lineaBase;
+    
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "idseguimiento", referencedColumnName = "idHallazgo")
+    private List<Seguimiento> seguimientos;
     
     public OportunidadMejora() {  } 
     

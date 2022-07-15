@@ -41,6 +41,13 @@ public class CaracteristicaController {
         return "comiteCentral\\caracteristica\\listar";
 
     }
+    
+    @GetMapping("/caracteristicasByFactor/{factorId}")
+    public String caracteristicasByFactor(@PathVariable Integer factorId, Model model) {
+        model.addAttribute("listaC", caracteristicaService.getCaracteristicasByFactor(factorId));
+        return "comiteCentral\\caracteristica\\listarByFactor";
+
+    }
 
     @GetMapping("/crear/{modeloId}")
     public String formularioCrearCaracteristica(@PathVariable Integer modeloId, Model model) {

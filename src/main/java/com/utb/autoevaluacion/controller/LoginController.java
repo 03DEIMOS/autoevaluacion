@@ -8,9 +8,11 @@ package com.utb.autoevaluacion.controller;
 import com.utb.autoevaluacion.model.Encuesta;
 import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.model.Usuario;
+import com.utb.autoevaluacion.model.Variable;
 import com.utb.autoevaluacion.service.EncuestaService;
 import com.utb.autoevaluacion.service.PersonaService;
 import com.utb.autoevaluacion.service.UsuarioService;
+import com.utb.autoevaluacion.service.VariableService;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -41,6 +43,9 @@ public class LoginController {
 
     @Autowired
     EncuestaService encuestaService;
+
+    @Autowired
+    VariableService variableService;
 
     @GetMapping("/")
     public String index() {
@@ -103,6 +108,12 @@ public class LoginController {
                 String generatedPassword = sb.toString();
                 if (generatedPassword.equals(usuario.getContrasena())) {
                     model.addAttribute("usuario", usuario);
+                    String textoIndex = "";
+                    Variable variableTextoIndex = variableService.getVariableByLlave("TEXTO_INDEX");
+                    if (variableTextoIndex != null) {
+                        textoIndex = variableTextoIndex.getValor();
+                    }
+                    model.addAttribute("textoIndex", textoIndex);
                     return "comiteCentral\\index";
                 }
             }

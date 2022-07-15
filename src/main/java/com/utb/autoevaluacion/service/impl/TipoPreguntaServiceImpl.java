@@ -53,7 +53,7 @@ public class TipoPreguntaServiceImpl implements TipoPreguntaService {
         try {
             tipoPreguntaRepository.saveAndFlush(tipoPregunta);
         } catch (Exception e) {
-            log.error("Ha ocurrido un error inesperado: "+e, e);
+            log.error("Ha ocurrido un error inesperado:{} ", e);
         }
     }
 
@@ -62,7 +62,7 @@ public class TipoPreguntaServiceImpl implements TipoPreguntaService {
         try {
             tipoPreguntaRepository.deleteById(id);
         } catch (Exception e) {
-            log.error("Ha ocurrido un error inesperado: "+e, e);
+            log.error("Ha ocurrido un error inesperado:{} ", e);
         }
     }
 
@@ -71,7 +71,7 @@ public class TipoPreguntaServiceImpl implements TipoPreguntaService {
         try {
             tipoPreguntaRepository.saveAndFlush(tipoPregunta);
         } catch (Exception e) {
-            log.error("Ha ocurrido un error inesperado: ", e);
+            log.error("Ha ocurrido un error inesperado:{} ", e);
         }
     }
  }

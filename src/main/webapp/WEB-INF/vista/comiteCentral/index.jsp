@@ -76,51 +76,7 @@
 
         <div class="ui-layout-center">
             <div id="conte" class="span12" style="text-align: justify">
-                <div class="hero-unit">
-                    <h2>Sistema Interno de Aseguramiento de la Calidad UTB</h2>
-
-                    <p style='font-size: 16px; font-weight: 200; line-height: 22px;'>
-                        El Sistema Integral de Aseguramiento de la Calidad SIAC-UTB se soporta en una noción de la calidad1
-                        que exige que el actuar institucional sea coherente con los propósitos expresados en la misión y
-                        visión institucional (consistencia interna) y la capacidad de atender las necesidades planteadas por
-                        el nuestro entorno social, económico, empresarial, cultural y ambiental (consistencia externa). 
-                    </p>
-                    <p style='font-size: 16px; font-weight: 200; line-height: 22px;'>
-                        El Sistema integral de Aseguramiento de la Calidad Institucional se fundamenta en cuatro
-                        elementos: Evaluación continua y permanente de la actividad institucional, consideraciones de los
-                        resultados evaluativos para ajustar metas institucionales, trabajo por el mejoramiento continuo y la
-                        rendición de cuenta a los grupos de interés y comunidad académica. EL SIAC-UTB concibe cinco (5)
-                        pilares: Gestión Institucional, Gestión Docente, Gestión Investigativa, Gestión de la Extensión y
-                        Gestión Académica- administrativa. 
-                    </p>
-                    <p>
-                        <img src="img/siac-utb.png"/>
-                    </p>
-
-
-                </div>
-                <div class="row-fluid">
-                    <div class="span7">
-                        <h3>Referencias Normativas</h3>
-                        <ul> 
-                            <li style="display: block;">1) Ley 30 de 1992, por la cual se organiza el servicio público de educación superior.</li>
-                            <li style="display: block;">2) Decreto 1075 de 2015, por medio del cual se expide el Decreto Único Reglamentario del Sector Educación.</li>
-                            <li style="display: block;">3) Decreto 1330 de 2019, mediante el cual se actualiza las condiciones de calidad del registro calificado.</li>
-                            <li style="display: block;">4) Resolución 021795 de 2020, mediante el cual se establecen los parámetros de autoevaluación, verificación y evaluación de las condiciones de calidad de programas. decreto 1330 de 2019.</li>
-                            <li style="display: block;">5) Acuerdo CESU 02 de 2020. por el cual se reglamenta el proceso de acreditación.</li>
-                            <li style="display: block;">6) Lineamientos y guías del proceso de acreditación institucional y de programas 2021.</li>
-                        </ul>
-                    </div>
-                    <div class="span5">
-                        <h3>Modelo de Autoevaluación UTB</h3>
-                        <p>
-                            La Universidad Tecnológica de Bolívar concibe la autoevaluación como una práctica permanente, una autorreflexión de carácter estratégico, esencialmente analítica, participativa y orientada al mejoramiento continuo. Los procesos de autoevaluación con fines de renovación de la acreditación institucional y de programas son de gran significación para la universidad ya que fortalecen su capacidad de autorregulación. 
-                        </p>
-                        <p>
-                            El modelo de autoevaluación consta de cinco etapas, a saber: i) organización del Comité de Acreditación, ii) diseño e implementación del plan comunicacional, iii) recolección y análisis de la información, iv) consolidación del informe de autoevaluación e identificación de propuestas de mejoramiento, y v) calificación de factores y características.
-                        </p>
-                    </div><!--/span-->
-                </div><!--/row-->
+              ${textoIndex}
             </div> 
         </div><!--/Center-->
 
@@ -140,6 +96,10 @@
                         <li class="divider"></li>
                         <li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>
                         <li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>
+                        <li class="divider"></li>
+                        <li class="nav-header">Configuración</li>
+                        <li><a href="#parametro/parametros"><i class="icon-bookmark"></i>Parametros</a></li>
+                        <li><a href="#tipoAccion/listar"><i class="icon-ticket"></i>Tipos de acción</a></li>
                     </ul>
                 </div>
             </div>

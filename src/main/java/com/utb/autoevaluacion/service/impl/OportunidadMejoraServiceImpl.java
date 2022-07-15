@@ -9,10 +9,12 @@ import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.OportunidadMejora;
 import com.utb.autoevaluacion.model.PlanMejoramiento;
 import com.utb.autoevaluacion.model.Proceso;
+import com.utb.autoevaluacion.model.TipoAccion;
 import com.utb.autoevaluacion.repository.OportunidadMejoraRepository;
 import com.utb.autoevaluacion.repository.ProcesoRepository;
 import com.utb.autoevaluacion.repository.CaracteristicaRepository;
 import com.utb.autoevaluacion.repository.PlanMejoramientoRepository;
+import com.utb.autoevaluacion.repository.TipoAccionRepository;
 import com.utb.autoevaluacion.service.OportunidadMejoraService;
 import java.util.List;
 import java.util.Optional;
@@ -37,13 +39,21 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
     @Autowired
     CaracteristicaRepository caracteristicaRepository;
 
+    @Autowired
+    TipoAccionRepository tipoAccionRepository;
+
     @Override
     public List<OportunidadMejora> getOportunidadMejoraByPlanMejoramiento(Integer planMejoramientoId) {
         return oportunidadMejoraRepository.findOportunidadMejoraByPlanMejoramientoId(planMejoramientoId);
     }
-    
+
     @Override
-    public List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndStatus(Integer planMejoramientoId, String status) {
+    public List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndFactor(Integer planMejoramientoId, Integer factorId) {
+        return oportunidadMejoraRepository.findOportunidadMejoraByPlanMejoramientoIdAndFactorId(planMejoramientoId, factorId);
+    }
+
+    @Override
+    public List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndStatus(Integer planMejoramientoId, TipoAccion status) {
         return oportunidadMejoraRepository.findOportunidadMejoraByPlanMejoramientoIdAndStatus(planMejoramientoId, status);
     }
 
@@ -54,21 +64,26 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
 
     @Override
     public void crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion,
-            String estado, String tipo, String responsable, String fechaInicio, String fechaFinal) {
+            Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal, String recurso, String indicador, String meta, String lineaBase) {
         OportunidadMejora oportunidadMejora = new OportunidadMejora();
 
         PlanMejoramiento planMejoramiento = planMejoramientoRepository.findById(planMejoramientoId).get();
         oportunidadMejora.setHallazgo(hallazgo);
         oportunidadMejora.setPlanMejoramientoId(planMejoramiento);
         Caracteristica caracteristica = caracteristicaRepository.findById(caracteristicaId).get();
+        TipoAccion tipoAccion = tipoAccionRepository.findById(estadoId).get();
         oportunidadMejora.setCaracteristicaId(caracteristica);
         oportunidadMejora.setEje(eje);
         oportunidadMejora.setLineaAccion(lineaAccion);
-        oportunidadMejora.setEstado(estado);
+        oportunidadMejora.setEstadoId(tipoAccion);
         oportunidadMejora.setTipo(tipo);
         oportunidadMejora.setResponsable(responsable);
         oportunidadMejora.setFechaInicio(fechaInicio);
         oportunidadMejora.setFechaFin(fechaFinal);
+        oportunidadMejora.setRecurso(recurso);
+        oportunidadMejora.setIndicador(indicador);
+        oportunidadMejora.setMeta(meta);
+        oportunidadMejora.setLineaBase(lineaBase);
         try {
             oportunidadMejoraRepository.saveAndFlush(oportunidadMejora);
         } catch (Exception e) {
@@ -93,24 +108,30 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
     }
 
     @Override
-    public void actualizarOportunidadMejora(Integer hallazgoId, String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion, String estado, String tipo, String responsable, String fechaInicio, String fechaFinal) {
+    public void actualizarOportunidadMejora(Integer hallazgoId, String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion,
+            Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal, String recurso, String indicador, String meta, String lineaBase) {
         try {
             OportunidadMejora oportunidadMejora = oportunidadMejoraRepository.findById(hallazgoId).get();
             PlanMejoramiento planMejoramiento = planMejoramientoRepository.findById(planMejoramientoId).get();
             oportunidadMejora.setHallazgo(hallazgo);
             oportunidadMejora.setPlanMejoramientoId(planMejoramiento);
             Caracteristica caracteristica = caracteristicaRepository.findById(caracteristicaId).get();
+            TipoAccion tipoAccion = tipoAccionRepository.findById(estadoId).get();
             oportunidadMejora.setCaracteristicaId(caracteristica);
             oportunidadMejora.setEje(eje);
             oportunidadMejora.setLineaAccion(lineaAccion);
-            oportunidadMejora.setEstado(estado);
+            oportunidadMejora.setEstadoId(tipoAccion);
             oportunidadMejora.setTipo(tipo);
             oportunidadMejora.setResponsable(responsable);
             oportunidadMejora.setFechaInicio(fechaInicio);
             oportunidadMejora.setFechaFin(fechaFinal);
+            oportunidadMejora.setRecurso(recurso);
+            oportunidadMejora.setIndicador(indicador);
+            oportunidadMejora.setMeta(meta);
+            oportunidadMejora.setLineaBase(lineaBase);
             oportunidadMejoraRepository.saveAndFlush(oportunidadMejora);
         } catch (Exception e) {
-            log.error("Ha ocurrido un error al actualizar la oportunidad de mejora", e);
+            log.error("Ha ocurrido un error al actualizar la oportunidad de mejora:{}", e);
             throw e;
         }
     }

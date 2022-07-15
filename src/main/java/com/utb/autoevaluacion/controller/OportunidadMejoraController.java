@@ -4,10 +4,15 @@ import com.utb.autoevaluacion.model.Caracteristica;
 import com.utb.autoevaluacion.model.OportunidadMejora;
 import com.utb.autoevaluacion.model.PlanMejoramiento;
 import com.utb.autoevaluacion.model.Proceso;
+import com.utb.autoevaluacion.model.Seguimiento;
+import com.utb.autoevaluacion.model.TipoAccion;
 import com.utb.autoevaluacion.service.CaracteristicaService;
+import com.utb.autoevaluacion.service.FactorService;
 import com.utb.autoevaluacion.service.OportunidadMejoraService;
 import com.utb.autoevaluacion.service.PlanMejoramientoService;
 import com.utb.autoevaluacion.service.ProcesoService;
+import com.utb.autoevaluacion.service.SeguimientoService;
+import com.utb.autoevaluacion.service.TipoAccionService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +52,15 @@ public class OportunidadMejoraController {
     private CaracteristicaService caracteristicaService;
 
     @Autowired
+    private FactorService factorService;
+
+    @Autowired
+    private TipoAccionService tipoAccionService;
+
+    @Autowired
+    private SeguimientoService seguimientoService;
+
+    @Autowired
     private OportunidadMejoraService oportunidadMejoraService;
 
     @GetMapping("/oportunidadesMejora/{planMejoramientoId}")
@@ -76,7 +90,9 @@ public class OportunidadMejoraController {
     public String formularioCrearOportunidadMejora(@PathVariable Integer planMejoramientoId, Model model) {
         log.info("Ejecutanto método [formularioCrearOportunidadMejora] planMejoramientoId:{} ", planMejoramientoId);
         model.addAttribute("planMejoramientoId", planMejoramientoId);
+        model.addAttribute("listaF", factorService.getFactores());
         model.addAttribute("listaC", caracteristicaService.getCaracteristicas());
+        model.addAttribute("tiposAccion", tipoAccionService.getTiposAccion());
         return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\crear";
     }
 
@@ -88,39 +104,70 @@ public class OportunidadMejoraController {
         return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\clonar";
     }
 
+    @GetMapping("/copiarOportunidades/{planMejoramientoId}")
+    public String formularioCopiarOportunidadMejora(@PathVariable Integer planMejoramientoId, Model model) {
+        log.info("Ejecutanto método [formularioCopiarOportunidadMejora] planMejoramientoId:{} ", planMejoramientoId);
+        model.addAttribute("planMejoramientoId", planMejoramientoId);
+        model.addAttribute("planesMejoramiento", planMejoramientoService.buscarPlanesMejoramientoInstitucionales());
+        return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\copiarInstitucionales";
+    }
+
     @GetMapping("/editar/{idHallazgo}")
     public String formularioEditarOportunidadMejora(@PathVariable Integer idHallazgo, Model model) {
         log.info("Ejecutanto metodo [formularioEditarOportunidadMejora] idHallazgo:{} ", idHallazgo);
         OportunidadMejora oportunidadMejora = oportunidadMejoraService.buscarOportunidadMejora(idHallazgo);
-        model.addAttribute("listaC", caracteristicaService.getCaracteristicas());
+        model.addAttribute("listaF", factorService.getFactores());
+        model.addAttribute("listaC", caracteristicaService.getCaracteristicasByFactor(oportunidadMejora.getCaracteristicaId().getFactorId().getId()));
         model.addAttribute("planMejoramientoId", oportunidadMejora.getPlanMejoramientoId().getId());
+        model.addAttribute("tiposAccion", tipoAccionService.getTiposAccion());
         model.addAttribute("oportunidadMejora", oportunidadMejora);
         return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\editar";
     }
-    
+
     @GetMapping("/reporteCuantitativo/{planMejoramientoId}")
     public String reporteCuantitativo(@PathVariable Integer planMejoramientoId, Model model) {
         log.info("Ejecutanto metodo [reporteCuantitativo] planMejoramientoId:{} ", planMejoramientoId);
         model.addAttribute("planMejoramientoId", planMejoramientoId);
-        model.addAttribute("abierta", oportunidadMejoraService.getOportunidadMejoraByPlanMejoramientoAndStatus(planMejoramientoId, "Abierta").size());
-        model.addAttribute("cerrada", oportunidadMejoraService.getOportunidadMejoraByPlanMejoramientoAndStatus(planMejoramientoId, "Cerrada").size());
-        model.addAttribute("permanente", oportunidadMejoraService.getOportunidadMejoraByPlanMejoramientoAndStatus(planMejoramientoId, "Permanente").size());
+        List<TipoAccion> tiposAccion = tipoAccionService.getTiposAccion();
+        Integer cantidad[] = new Integer[tiposAccion.size()];
+        for (int i = 0; i < tiposAccion.size(); i++) {
+            cantidad[i] = oportunidadMejoraService.getOportunidadMejoraByPlanMejoramientoAndStatus(planMejoramientoId, tiposAccion.get(i)).size();
+
+        }
+        model.addAttribute("cantidad", cantidad);
+        model.addAttribute("tiposAccion", tiposAccion);
         return "comitePrograma\\proceso\\informe\\reporteCuantitativo";
     }
-    
+
+    @GetMapping("/reporteSeguimiento/{planMejoramientoId}")
+    public String reporteSeguimiento(@PathVariable Integer planMejoramientoId, Model model) {
+        log.info("Ejecutanto metodo [reporteSeguimiento] planMejoramientoId:{} ", planMejoramientoId);
+        model.addAttribute("planMejoramiento", planMejoramientoService.buscarPlanMejoramiento(planMejoramientoId));
+        List<OportunidadMejora> oportunidadesMejoraByPlanMejoramiento = oportunidadMejoraService.getOportunidadMejoraByPlanMejoramiento(planMejoramientoId);
+        for (OportunidadMejora oportunidadMejora : oportunidadesMejoraByPlanMejoramiento) {
+            List<Seguimiento> seguimientoByOportunidadMejora = seguimientoService.getSeguimientoByOportunidadMejora(oportunidadMejora.getIdHallazgo());
+            oportunidadMejora.setSeguimientos(seguimientoByOportunidadMejora);
+        }
+        model.addAttribute("oportunidadesMejora", oportunidadesMejoraByPlanMejoramiento);
+        return "comitePrograma\\proceso\\informe\\reporteSeguimiento";
+    }
 
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearOportunidadMejora(@RequestParam String oportunidadMejoramiento, @RequestParam Integer planMejoramientoId,
-            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, @RequestParam String estado,
-            @RequestParam String tipo, @RequestParam String responsable, @RequestParam String fechaInicio, @RequestParam String fechaFinal) {
+            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, @RequestParam Integer estadoId,
+            @RequestParam String tipo, @RequestParam String responsable, @RequestParam String fechaInicio, @RequestParam String fechaFinal,
+            @RequestParam String recurso, @RequestParam String indicador, @RequestParam String meta, @RequestParam String lineaBase) {
 
         log.info("Ejecutanto metodo [crearOportunidadMejora] "
-                + "oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, ejeEstrategico:{}, lineaAccion:{}, estado:{}, tipo:{}, responsable:{}, fechaInicio:{}, fechaFinal:{}",
-                oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estado, tipo, responsable, fechaInicio, fechaFinal);
+                + "oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, ejeEstrategico:{}, lineaAccion:{}, estadoId:{}, tipo:{}, responsable:{}, "
+                + "fechaInicio:{}, fechaFinal:{}, recurso:{}, indicador:{}, meta:{}, lineaBase:{}",
+                oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoId, tipo, responsable, fechaInicio, fechaFinal,
+                recurso, indicador, meta, lineaBase);
         HttpStatus status;
         try {
 
-            oportunidadMejoraService.crearOportunidadMejora(oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estado, tipo, responsable, fechaInicio, fechaFinal);
+            oportunidadMejoraService.crearOportunidadMejora(oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoId, tipo,
+                    responsable, fechaInicio, fechaFinal, recurso, indicador, meta, lineaBase);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error:{} ", e);
@@ -143,11 +190,49 @@ public class OportunidadMejoraController {
                         oportunidadMejora.getCaracteristicaId().getId(),
                         oportunidadMejora.getEje(),
                         oportunidadMejora.getLineaAccion(),
-                        oportunidadMejora.getEstado(),
+                        oportunidadMejora.getEstadoId().getId(),
                         oportunidadMejora.getTipo(),
                         oportunidadMejora.getResponsable(),
                         oportunidadMejora.getFechaInicio(),
-                        oportunidadMejora.getFechaFin());
+                        oportunidadMejora.getFechaFin(),
+                        oportunidadMejora.getRecurso(),
+                        oportunidadMejora.getIndicador(),
+                        oportunidadMejora.getMeta(),
+                        oportunidadMejora.getLineaBase()
+                );
+            }
+            status = HttpStatus.CREATED;
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error:{} ", e);
+            status = HttpStatus.CONFLICT;
+        }
+        return new ResponseEntity<>(status);
+    }
+
+    @PostMapping(value = "/copiarInstitucionales")
+    public ResponseEntity<?> copiarInstitucionales(@RequestParam Integer planMejoramientoOrigen, @RequestParam Integer planMejoramientoDestino, @RequestParam Integer factorId) {
+        log.info("Ejecutanto metodo [copiarInstitucionales] "
+                + "planMejoramientoOrigen:{}, planMejoramientoDestino:{}, factorId:{}", planMejoramientoOrigen, planMejoramientoDestino, factorId);
+        HttpStatus status;
+        try {
+            List<OportunidadMejora> oportunidadMejoraOrigen = oportunidadMejoraService.getOportunidadMejoraByPlanMejoramientoAndFactor(planMejoramientoOrigen, factorId);
+            for (OportunidadMejora oportunidadMejora : oportunidadMejoraOrigen) {
+                oportunidadMejoraService.crearOportunidadMejora(
+                        oportunidadMejora.getHallazgo(),
+                        planMejoramientoDestino,
+                        oportunidadMejora.getCaracteristicaId().getId(),
+                        oportunidadMejora.getEje(),
+                        oportunidadMejora.getLineaAccion(),
+                        oportunidadMejora.getEstadoId().getId(),
+                        oportunidadMejora.getTipo(),
+                        oportunidadMejora.getResponsable(),
+                        oportunidadMejora.getFechaInicio(),
+                        oportunidadMejora.getFechaFin(),
+                        oportunidadMejora.getRecurso(),
+                        oportunidadMejora.getIndicador(),
+                        oportunidadMejora.getMeta(),
+                        oportunidadMejora.getLineaBase()
+                );
             }
             status = HttpStatus.CREATED;
         } catch (Exception e) {
@@ -159,14 +244,18 @@ public class OportunidadMejoraController {
 
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editarOportunidadMejora(@RequestParam Integer hallazgoId, @RequestParam String oportunidadMejoramiento, @RequestParam Integer planMejoramientoId,
-            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, @RequestParam String estado, @RequestParam String tipo,
-            @RequestParam String responsable, @RequestParam String fechaInicio, @RequestParam String fechaFinal) {
+            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, @RequestParam Integer estadoId, @RequestParam String tipo,
+            @RequestParam String responsable, @RequestParam String fechaInicio, @RequestParam String fechaFinal,
+            @RequestParam String recurso, @RequestParam String indicador, @RequestParam String meta, @RequestParam String lineaBase) {
         log.info("Ejecutanto metodo [editarOportunidadMejora] "
-                + "hallazgoId:{}, oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, eje:{}, lineaAccion:{}, estado:{}, tipo:{}, responsable:{}, fechaInicio:{}, fechaFinal:{} ",
-                hallazgoId, oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estado, tipo, responsable, fechaInicio, fechaFinal);
+                + "hallazgoId:{}, oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, eje:{}, lineaAccion:{}, estadoId:{}, tipo:{}, responsable:{}, "
+                + "fechaInicio:{}, fechaFinal:{}, recurso:{}, indicador:{}, meta:{}, lineaBase:{} ",
+                hallazgoId, oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoId, tipo, responsable, fechaInicio, fechaFinal,
+                recurso, indicador, meta, lineaBase);
         HttpStatus status;
         try {
-            oportunidadMejoraService.actualizarOportunidadMejora(hallazgoId, oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estado, tipo, responsable, fechaInicio, fechaFinal);
+            oportunidadMejoraService.actualizarOportunidadMejora(hallazgoId, oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje,
+                    lineaAccion, estadoId, tipo, responsable, fechaInicio, fechaFinal, recurso, indicador, meta, lineaBase);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error:{} ", e);

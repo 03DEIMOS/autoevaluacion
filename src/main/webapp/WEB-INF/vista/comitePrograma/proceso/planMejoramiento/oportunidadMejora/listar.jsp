@@ -59,11 +59,11 @@
                 </ul>
             -->
 
-     <!--        <ul class="breadcrumb">
-                <li></li>
-                <a id="printEnlace" target="_blank" href="#" style="float: right; cursor: pointer;"><i class="icon-eye-open"></i> Ver Plan de Mejoramiento</a>
-            </ul>
-     -->
+            <!--        <ul class="breadcrumb">
+                       <li></li>
+                       <a id="printEnlace" target="_blank" href="#" style="float: right; cursor: pointer;"><i class="icon-eye-open"></i> Ver Plan de Mejoramiento</a>
+                   </ul>
+            -->
 
             <h3 style="margin: 0;">Listado de  Oportunidades de Mejoramiento</h3>
             <c:choose>
@@ -79,7 +79,12 @@
                         <th>Tipo</th>    
                         <th>Reponsable</th>    
                         <th>Fecha inicio</th>    
-                        <th>Fecha fin</th>    
+                        <th>Fecha fin</th> 
+                        <th>Recurso</th>    
+                        <th>Indicador</th>    
+                        <th>Meta</th>    
+                        <th>Línea de base del indicador</th> 
+                        <th></th> 
                         </thead>
                         <tbody>
                             <c:forEach items="${listaO}" var="oportunidadMejora" varStatus="iter">
@@ -100,9 +105,9 @@
                                         <c:out value="${oportunidadMejora.lineaAccion}"/>
                                     </td>
                                     <td>   
-                                        <c:out value="${oportunidadMejora.estado}"/>
+                                        <c:out value="${oportunidadMejora.estadoId.tipo}"/>
                                     </td>
-                                     <td>   
+                                    <td>   
                                         <c:out value="${oportunidadMejora.tipo}"/>
                                     </td>
                                     <td>   
@@ -114,13 +119,25 @@
                                     <td>   
                                         <c:out value="${oportunidadMejora.fechaFin}"/>
                                     </td>
+                                     <td>   
+                                        <c:out value="${oportunidadMejora.recurso}"/>
+                                    </td>
+                                    <td>   
+                                        <c:out value="${oportunidadMejora.indicador}"/>
+                                    </td>
+                                    <td>   
+                                        <c:out value="${oportunidadMejora.meta}"/>
+                                    </td>
+                                    <td>   
+                                        <c:out value="${oportunidadMejora.lineaBase}"/>
+                                    </td>
                                     <td>   
                                         <a href="#oportunidadMejora/editar/${oportunidadMejora.idHallazgo}" title="Editar"><i class="icon-edit"></i></a>
                                         <a href="#oportunidadMejora/eliminar/${oportunidadMejora.idHallazgo}" title="Eliminar" class = "eliminarOportunidadMejora"
-                                            modalTitle="Eliminar Oportunidad de Mejoramiento." 
-                                            modalDescription="¿Está seguro que desea cambiar eliminar esta Oportunidad de Mejoramiento?."
-                                            oportunidadMejoramientoId="${oportunidadMejora.idHallazgo}" 
-                                            ><i class="icon-remove"></i></a>
+                                           modalTitle="Eliminar Oportunidad de Mejoramiento." 
+                                           modalDescription="¿Está seguro que desea cambiar eliminar esta Oportunidad de Mejoramiento?."
+                                           oportunidadMejoramientoId="${oportunidadMejora.idHallazgo}" 
+                                           ><i class="icon-remove"></i></a>
                                         <a href="#seguimiento/seguimientos/${oportunidadMejora.idHallazgo}" title="Ver seguimientos"><i class="icon-signin"></i></a>
                                     </td>
                                 </tr>
@@ -135,7 +152,9 @@
             <br/>
             <a href="#oportunidadMejora/crear/${planMejoramientoId}" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear Oportunidad de Mejora</a>
             <a href="#oportunidadMejora/clonar/${planMejoramientoId}" class="btn btn-large btn"><i class="icon-group"></i> Clonar Oportunidades de Mejora</a>
+            <a href="#oportunidadMejora/copiarOportunidades/${planMejoramientoId}" class="btn btn-large btn"><i class="icon-group"></i> Copiar Oportunidades de Mejora Institucionales</a>
             <a href="#oportunidadMejora/reporteCuantitativo/${planMejoramientoId}" class="btn btn-large btn"><i class="icon-group"></i> Reporte cuantitativo por tipos de acción</a>
+            <a href="#oportunidadMejora/reporteSeguimiento/${planMejoramientoId}" class="btn btn-large btn"><i class="icon-group"></i> Reporte de seguimientos</a>
         </div>
 
     </div>

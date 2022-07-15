@@ -28,6 +28,24 @@
                 }); //fin $.ajax    */
             }
         });
+
+        $("#factorId").change(function () {
+            $("#caracteristicaId").empty();
+            var a = $("#factorId option:selected").index();
+            if (a !== 0) {
+                $("#caracteristicaId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: "/autoevaluacion/caracteristica/caracteristicasByFactor/" + $("#factorId option:selected").val(),
+                    success: function (datos) {
+                        $("#caracteristicaId").append(datos);
+                        setTimeout(function () {
+                            $("#dancing-dots-text").remove();
+                        }, 200);
+                    } //fin success
+                }); //fin $.ajax    
+            }
+        });
     });
 </script>
 <div class="hero-unit">
@@ -38,6 +56,24 @@
                 <input type="hidden" name="planMejoramientoId"  value="${planMejoramientoId}"/>
                 <fieldset>
                     <legend>Editar Oportunidad de mejora</legend>
+                    <div class="control-group">
+                        <label for="factorId" class="control-label">Factor</label>
+                        <div class="controls">
+                            <select id="factorId" name="factorId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${listaF}" var="factor" varStatus="iter">
+                                    <c:choose>
+                                        <c:when test="${factor != oportunidadMejora.getCaracteristicaId().getFactorId()}">
+                                            <option value="${factor.id}">${factor.codigo} ${factor.nombre}</option>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option  selected="selected" value="${factor.id}">${factor.codigo} ${factor.nombre}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>                
+                        </div>
+                    </div>
                     <div class="control-group">
                         <label for="caracteristicaId" class="control-label">Caracter&iacute;stica</label>
                         <div class="controls">
@@ -78,27 +114,21 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="estado" class="control-label">Estado</label>
+                        <label for="estadoId" class="control-label">Estado</label>
                         <div class="controls">
-                            <select id="estado" name="estado" class="{required:true}">
-                                <c:choose>
-                                    <c:when test="${oportunidadMejora.estado == 'Abierta'}">
-                                        <option selected="selected">Abierta</option>
-                                        <option>Permanente</option>
-                                        <option>Cerrada</option> 
-                                    </c:when>
-                                    <c:when test="${oportunidadMejora.estado == 'Permanente'}">
-                                        <option>Abierta</option>
-                                        <option selected="selected">Permanente</option>
-                                        <option>Cerrada</option> 
-                                    </c:when>
-                                    <c:when test="${oportunidadMejora.estado == 'Cerrada'}">
-                                        <option>Abierta</option>
-                                        <option>Permanente</option>
-                                        <option selected="selected">Cerrada</option> 
-                                    </c:when>
-                                </c:choose>
-                            </select>                
+                            <select id="estadoId" name="estadoId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
+                                    <c:choose>
+                                        <c:when test="${tipoAccion != oportunidadMejora.getEstadoId()}">
+                                            <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option selected="selected" value="${tipoAccion.id}">${tipoAccion.tipo}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>      
                         </div>
                     </div>
                     <div class="control-group">
@@ -134,6 +164,30 @@
                         <label for="fechaFinal" class="control-label">Fecha de finalización </label>
                         <div class="controls">
                             <input type="text" name="fechaFinal" id="fechaFinal" class="form-control" value="${oportunidadMejora.fechaFin}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="recurso" class="control-label">Recursos</label>
+                        <div class="controls">
+                            <input type="text" name="recurso" id="recurso" class="form-control" value="${oportunidadMejora.recurso}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="indicador" class="control-label">Indicador</label>
+                        <div class="controls">
+                            <input type="text" name="indicador" id="indicador" class="form-control" value="${oportunidadMejora.indicador}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="meta" class="control-label">Meta</label>
+                        <div class="controls">
+                            <input type="text" name="meta" id="meta" class="form-control" value="${oportunidadMejora.meta}" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="lineaBase" class="control-label">Línea de base del indicador</label>
+                        <div class="controls">
+                            <input type="text" name="lineaBase" id="lineaBase" class="form-control" value="${oportunidadMejora.lineaBase}" >
                         </div>
                     </div>
                     <div class="form-actions span8">

@@ -15,13 +15,20 @@ import org.springframework.stereotype.Repository;
  *
  * @author DEIMOS
  */
-
 @Repository
-public interface FactorRepository extends JpaRepository<Factor, Integer>{
-    
+public interface FactorRepository extends JpaRepository<Factor, Integer> {
+
     @Query("Select f from Factor f where f.modeloId.id=?1")
     List<Factor> findFactorByModeloId(Integer modeloId);
-    
+
+    @Query(value = "select f.* from plan_mejoramiento a "
+            + "join hallazgo b on a.id = b.plan_mejoramiento_id "
+            + "join caracteristica c on b.caracteristica_id = c.id "
+            + "join factor f on f.id = c.factor_id "
+            + "where a.id = ?1",
+            nativeQuery = true)
+    List<Factor> findByPlanMejora(Integer planMejoraId);
+
     @Query("SELECT f FROM Factor f "
             + "INNER JOIN Caracteristica c ON c.factorId.id = f.id "
             + "WHERE f.modeloId.id = ?1 and size(c.preguntaList) > 0 "

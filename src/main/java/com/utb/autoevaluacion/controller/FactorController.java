@@ -38,6 +38,13 @@ public class FactorController {
         return "comiteCentral\\factor\\crear";
     }
 
+    @GetMapping("/factoresByPlanMejora/{planMejoraId}")
+    public String factoresByPlanMejora(@PathVariable Integer planMejoraId, Model model) {
+        model.addAttribute("listaF", factorService.getFactoresByPlanMejora(planMejoraId));
+        return "comiteCentral\\factor\\listarByPlanMejora";
+
+    }
+
     @GetMapping("/editar/{factorId}")
     public String formularioEditarFactor(@PathVariable Integer factorId, Model model) {
         log.info("Ejecutanto metodo [formularioEditarFactor] factorId:{} ", factorId);

@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.OportunidadMejora;
+import com.utb.autoevaluacion.model.TipoAccion;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,8 +21,11 @@ public interface OportunidadMejoraRepository extends JpaRepository<OportunidadMe
     @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1")
     List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoId(Integer planMejoramientoId);
     
-    @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1 and h.estado=?2")
-    List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoIdAndStatus(Integer planMejoramientoId, String status);
+    @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1 and h.caracteristicaId.factorId.id=?2")
+    List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoIdAndFactorId(Integer planMejoramientoId, Integer factorId);
+    
+    @Query("Select h from OportunidadMejora h where h.planMejoramientoId.id=?1 and h.estadoId=?2")
+    List<OportunidadMejora> findOportunidadMejoraByPlanMejoramientoIdAndStatus(Integer planMejoramientoId, TipoAccion status);
     
 
 }

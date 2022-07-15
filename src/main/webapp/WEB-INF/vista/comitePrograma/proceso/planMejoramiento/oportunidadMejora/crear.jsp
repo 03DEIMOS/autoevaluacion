@@ -8,14 +8,14 @@
         $('.tool').tooltip().click(function (e) {
             $(this).tooltip('hide');
         });
-        
+
         $('#fechaInicio').datepicker({
             format: 'dd/mm/yyyy'
         });
         $('#fechaFinal').datepicker({
             format: 'dd/mm/yyyy'
         });
-        
+
         $("#formCrearOportunidadMejora").validate({
             submitHandler: function () {
                 $.ajax({
@@ -28,6 +28,26 @@
                 }); //fin $.ajax    */
             }
         });
+
+        $("#factorId").change(function () {
+            $("#caracteristicaId").empty();
+            var a = $("#factorId option:selected").index();
+            if (a !== 0) {
+                $("#caracteristicaId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: "/autoevaluacion/caracteristica/caracteristicasByFactor/" + $("#factorId option:selected").val(),
+                    success: function (datos) {
+                        $("#caracteristicaId").append(datos);
+                        setTimeout(function () {
+                            $("#dancing-dots-text").remove();
+                        }, 200);
+                    } //fin success
+                }); //fin $.ajax    
+            }
+        });
+
+
     });
 </script>
 <div class="hero-unit">
@@ -38,9 +58,20 @@
                     <legend>Crear Oportunidad Mejoramiento</legend>
                     <input name="planMejoramientoId" type="hidden" value="${planMejoramientoId}"/>
                     <div class="control-group">
+                        <label for="factorId" class="control-label">Factor</label>
+                        <div class="controls">
+                            <select id="factorId" name="factorId" class="{required:true} input-xxlarge">
+                                <option></option>
+                                <c:forEach items="${listaF}" var="factor" varStatus="iter">
+                                    <option value="${factor.id}">${factor.codigo} ${factor.nombre}</option>
+                                </c:forEach>
+                            </select>                
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label for="caracteristicaId" class="control-label">Caracter&iacute;stica</label>
                         <div class="controls">
-                            <select id="caracteristicaId" name="caracteristicaId" class="{required:true}">
+                            <select id="caracteristicaId" name="caracteristicaId" class="{required:true} input-xxlarge">
                                 <option></option>
                                 <c:forEach items="${listaC}" var="caracteristica" varStatus="iter">
                                     <option value="${caracteristica.id}">${caracteritica.codigo} ${caracteristica.nombre}</option>
@@ -70,13 +101,14 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="estado" class="control-label">Estado</label>
+                        <label for="estadoId" class="control-label">Estado</label>
                         <div class="controls">
-                            <select id="estado" name="estado" class="{required:true}">
-                                <option>Abierta</option>
-                                <option>Permanente</option>
-                                <option>Cerrada</option>
-                            </select>                
+                            <select id="estadoId" name="estadoId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
+                                    <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>
+                                </c:forEach>
+                            </select>     
                         </div>
                     </div>
                     <div class="control-group">
@@ -101,9 +133,33 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="fechaFinal" class="control-label">Fecha de finalización </label>
+                        <label for="fechaFinal" class="control-label">Fecha de finalización</label>
                         <div class="controls">
                             <input type="text" name="fechaFinal" id="fechaFinal" class="form-control" value="" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="recurso" class="control-label">Recursos</label>
+                        <div class="controls">
+                            <input type="text" name="recurso" id="recurso" class="form-control" value="" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="indicador" class="control-label">Indicador</label>
+                        <div class="controls">
+                            <input type="text" name="indicador" id="indicador" class="form-control" value="" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="meta" class="control-label">Meta</label>
+                        <div class="controls">
+                            <input type="text" name="meta" id="meta" class="form-control" value="" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="lineaBase" class="control-label">Línea de base del indicador</label>
+                        <div class="controls">
+                            <input type="text" name="lineaBase" id="lineaBase" class="form-control" value="" >
                         </div>
                     </div>
                     <div class="form-actions">

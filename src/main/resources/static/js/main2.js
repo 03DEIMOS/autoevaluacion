@@ -89,10 +89,10 @@ $(function () {
                 + '<button id="west-closer" class="close">&laquo;</button>'
                 + '<li><a href="#proceso/procesos"><i class="icon-level-up"></i>Regresar a procesos</a></li>'
                 + '<li class="nav-header">Proceso de Autoevaluación</li>'
-                + '<li><a href="#proceso/entrar/'+procesoId+'"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
-                + '<li><a href="#proceso/muestra/'+procesoId+'"><i class="icon-group"></i> Poblacion Asignada</a></li>'
+                + '<li><a href="#proceso/entrar/' + procesoId + '"><i class="icon-cogs"></i> Detalle de Proceso</a></li>'
+                + '<li><a href="#proceso/muestra/' + procesoId + '"><i class="icon-group"></i> Poblacion Asignada</a></li>'
                 + '<li class="nav-header">Estado del proceso</li>'
-                + '<li><a href="#informe/estadoGeneralDelProceso/'+procesoId+'"><i class="icon-bar-chart"></i> Informes</a></li>'
+                + '<li><a href="#informe/estadoGeneralDelProceso/' + procesoId + '"><i class="icon-bar-chart"></i> Informes</a></li>'
                 + '</ul>');
     };
 
@@ -110,7 +110,10 @@ $(function () {
                 '<li><a href="#fuente/fuentes"><i class="icon-user"></i> P&uacute;blicos objetivo</a></li>' +
                 '<li class="divider"></li>' +
                 '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
-                '<li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>'+
+                '<li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>' +
+                '<li class="divider"></li>' +
+                '<li class="nav-header">Configuración</li>' +
+                '<li><a href="#parametro/parametros"><i class="icon-bookmark"></i> Listar Parametros</a></li>' +
                 '</ul>');
     };
     function menuFactores(modeloId) {
@@ -167,7 +170,7 @@ $(function () {
 
                     if ($("ul.nav-list li:eq(1)").html().trim() !== "Factores" && hash.indexOf("#modelo/entrar/") !== -1) {
                         menuFactores(modelo);
-                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && (hash.indexOf("#modelo/modelos") !== -1 || hash.indexOf("#proceso/procesos") !== -1 )) {
+                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && (hash.indexOf("#modelo/modelos") !== -1 || hash.indexOf("#proceso/procesos") !== -1)) {
                         menuModelo();
                     } else if ($("ul.nav-list li:eq(1)").html().trim() !== "Proceso de Autoevaluación" && hash.indexOf("#proceso/entrar/") !== -1) {
                         menuProceso(proceso);

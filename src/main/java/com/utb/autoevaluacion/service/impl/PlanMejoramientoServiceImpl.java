@@ -74,6 +74,17 @@ public class PlanMejoramientoServiceImpl implements PlanMejoramientoService{
         }
         return planesMejoramiento;
     }
+    
+    @Override
+    public List<PlanMejoramiento> buscarPlanesMejoramientoInstitucionales() {
+        List<PlanMejoramiento> planesMejoramiento = null;
+        try {
+            planesMejoramiento = planMejoramientoRepository.findInstitucionales();
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+        return planesMejoramiento;
+    }
 
     @Override
     public void cambiarEstadoPlanMejoramiento(PlanMejoramiento planMejoramiento, String estado) {

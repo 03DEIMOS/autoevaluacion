@@ -9,6 +9,8 @@ public interface FactorService {
     
     List<Factor> getFactoresByModelo(Integer modeloId);
     
+    List<Factor> getFactoresByPlanMejora(Integer planMejoraId);
+    
     void crearFactor(String codigo, String nombre, Integer modeloId);
     
     void actualizarFactor(Integer factorId, String codigo, String nombre, Integer modeloId);

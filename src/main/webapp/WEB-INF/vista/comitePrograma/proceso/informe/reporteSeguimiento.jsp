@@ -2,6 +2,29 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script type="text/javascript">
+
+    $(function () {
+        $("#descargarReporteSeguimiento").click(function () {
+            fetch('/autoevaluacion/oportunidadMejora/descargarReporteSeguimiento/'+${planMejoramiento.id})
+                    .then(resp => resp.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        // the filename you want
+                        a.download = 'reporteSeguimientos.xls';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    })
+                    .catch(() => alert('Ha ocurrido un error intentando descargar el formato de población!'));
+        });
+    });
+</script>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,6 +35,7 @@
         <div class="hero-unit">
             <div style="margin-left: -30px;">
                 <div id="conte" class="span12" style="text-align: justify">
+                    <a id="descargarReporteSeguimiento" target="_blank"><i class="icon-download-alt"></i> Descargar Reporte en Excel</a>
                     <table class="table table-bordered table-striped">
                         <tbody>
                             <tr>
@@ -83,22 +107,18 @@
                                                     <td colspan="10">
                                                         <table id="tablaX" class="table table-striped table-bordered table-condensed">
                                                             <thead>
-                                                            <th>Fecha Programada</th>
                                                             <th>Fecha Realizado</th>
-                                                            <th>Porcentaje Avances</th>
                                                             <th>Avances</th>
+                                                             <th>Estado</th>
                                                             </thead>
                                                             <tbody>
                                                                 <c:forEach items="${oportunidadMejora.seguimientos}" var="seguimiento">
                                                                     <tr>
                                                                         <td>   
-                                                                            <c:out value="${seguimiento.fechaProgramada}"/>
-                                                                        </td>
-                                                                        <td>   
                                                                             <c:out value="${seguimiento.fechaRealizado}"/>
                                                                         </td>
                                                                         <td>   
-                                                                            <c:out value="${seguimiento.porcentajeAvance}"/>
+                                                                            <c:out value="${seguimiento.estado}"/>
                                                                         </td>
                                                                         <td>   
                                                                             <c:out value="${seguimiento.avances}"/>

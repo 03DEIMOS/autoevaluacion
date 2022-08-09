@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TipoAccionRepository extends JpaRepository<TipoAccion, Integer>{
     
-   
+   TipoAccion findByTipo(String tipo);
 }

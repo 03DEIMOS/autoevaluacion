@@ -34,14 +34,11 @@ public class Seguimiento implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private OportunidadMejora oportunidadMejora;
     
-    @Column(name="fecha_programado")
-    private String fechaProgramada;
-    
     @Column(name="fecha_realizado")
     private String fechaRealizado;
     
-    @Column(name="porcentaje_avance")
-    private Integer porcentajeAvance;
+    @Column(name="estado")
+    private String estado;
     
     @Column(name="avances")
     private String avances;

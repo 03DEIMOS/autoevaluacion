@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
@@ -41,6 +42,7 @@ public class OportunidadMejora implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private PlanMejoramiento planMejoramientoId;
     
+    @ToString.Exclude
     @JoinColumn(name = "caracteristica_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Caracteristica caracteristicaId;
@@ -79,7 +81,7 @@ public class OportunidadMejora implements Serializable {
     @Column(name="linea_base")
     private String lineaBase;
     
-    
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "idseguimiento", referencedColumnName = "idHallazgo")
     private List<Seguimiento> seguimientos;

@@ -34,9 +34,6 @@ public class SeguimientoController {
     @Autowired
     private SeguimientoService seguimientoService;
     
-    @Autowired
-    private OportunidadMejoraService oportunidadMejoraService;
-    
     @GetMapping("/seguimientos/{idHallazgo}")
     public String oportunidadesMejora(@PathVariable Integer idHallazgo, Model model) {
         model.addAttribute("listaS", seguimientoService.getSeguimientoByOportunidadMejora(idHallazgo));
@@ -53,14 +50,14 @@ public class SeguimientoController {
     }
     
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crearSeguimiento(@RequestParam String fechaProgramada, @RequestParam String fechaRealizado, 
-            @RequestParam(defaultValue = "0") Integer porcentajeAvance, @RequestParam String avances, @RequestParam Integer idHallazgo) {
+    public ResponseEntity<?> crearSeguimiento(@RequestParam String fechaRealizado, 
+            @RequestParam String avances, @RequestParam String estado, @RequestParam Integer idHallazgo) {
 
-        log.info("Ejecutanto metodo [crearSeguimiento] fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{}, idHallazgo:{} ", fechaProgramada, fechaRealizado, porcentajeAvance, avances, idHallazgo);
+        log.info("Ejecutanto metodo [crearSeguimiento] fechaRealizado:{}, avances:{}, estado:{}, idHallazgo:{} ", fechaRealizado, avances, estado, idHallazgo);
         HttpStatus status;
         try {
             
-            seguimientoService.crearSeguimiento(fechaProgramada, fechaRealizado, porcentajeAvance, avances, idHallazgo);
+            seguimientoService.crearSeguimiento(fechaRealizado, avances, estado, idHallazgo);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " , e);
@@ -78,13 +75,13 @@ public class SeguimientoController {
     }
     
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, @RequestParam String fechaProgramada, 
-            @RequestParam String fechaRealizado, @RequestParam Integer porcentajeAvance, @RequestParam String avances) {
-        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, fechaProgramada:{}, fechaRealizado:{}, porcentajeAvance:{}, avances:{} ",
-                idSeguimiento, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+    public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, 
+            @RequestParam String fechaRealizado, @RequestParam String avances, @RequestParam String estado) {
+        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, fechaRealizado:{}, avances:{}, estado:{} ",
+                idSeguimiento, fechaRealizado, avances, estado);
         HttpStatus status;
         try {
-            seguimientoService.actualizarSeguimiento(idSeguimiento, fechaProgramada, fechaRealizado, porcentajeAvance, avances);
+            seguimientoService.actualizarSeguimiento(idSeguimiento, fechaRealizado, avances, estado);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " , e);

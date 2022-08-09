@@ -1,5 +1,21 @@
+<link rel="stylesheet" href="css/summernote-lite.css">
+<script src="js/summernote-lite.js"></script> 
 <script type="text/javascript">
-    $(function() {
+    $(function () {
+
+        $('#valor').summernote({
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
         $("#formEditarParametro").validate({
             submitHandler: function() {
                 $.ajax({
@@ -30,7 +46,7 @@
                     <div class="control-group">
                         <label for="valor" class="control-label">Valor</label>
                         <div class="controls">
-                            <textarea rows="10" name="valor" id="valor" class="input-xxlarge {required:true}">${variable.valor}</textarea>
+                            <textarea rows="10" name="valor" id="valor" class="{required:true}">${variable.valor}</textarea>
                         </div>
                     </div>
 

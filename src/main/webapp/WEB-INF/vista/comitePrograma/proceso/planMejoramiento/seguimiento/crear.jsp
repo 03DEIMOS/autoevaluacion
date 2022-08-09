@@ -9,9 +9,6 @@
             $(this).tooltip('hide');
         });
         
-        $('#fechaProgramada').datepicker({
-            format: 'dd/mm/yyyy'
-        });
         $('#fechaRealizado').datepicker({
             format: 'dd/mm/yyyy'
         });
@@ -38,22 +35,9 @@
                     <legend>Crear Actividades de Seguimiento</legend>
                     <input name="idHallazgo" type="hidden" value="${idHallazgo}"/>
                     <div class="control-group">
-                        <label for="fechaProgramada" class="control-label">Fecha Seguimiento Programada*</label>
-                        <div class="controls">
-                            <input type="text" name="fechaProgramada" id="fechaProgramada" class="input-xlarge {required:true}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Seguimiento Realizada</label>
                         <div class="controls">
                             <input type="text" name="fechaRealizado" id="fechaRealizado" class="input-xlarge {required:false}"/>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="porcentajeAvance" class="control-label">% Avance de la Actividad*</label>
-                        <div class="controls">
-                            <input type="number" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:false}"/> %
                         </div>
                     </div>
 
@@ -63,7 +47,12 @@
                             <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:false}"></textarea>             
                         </div>
                     </div>
-                    
+                    <div class="control-group">
+                        <label for="estado" class="control-label">Estado</label>
+                        <div class="controls">
+                            <input type="text" name="estado" id="estado" class="input-xlarge {required:false}"/> 
+                        </div>
+                    </div>
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Registrar Seguimiento</button>
                         <button class="btn" type="reset">Cancelar</button>

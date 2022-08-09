@@ -5,7 +5,9 @@
  */
 package com.utb.autoevaluacion.service.impl;
 
+import com.utb.autoevaluacion.model.Programa;
 import com.utb.autoevaluacion.model.Usuario;
+import com.utb.autoevaluacion.repository.ProgramaRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +31,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    ProgramaRepository programaRepository;
 
     @Override
     public Usuario buscarUsuario(Integer id) {
@@ -70,8 +75,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email) {
+    public void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email, Integer[] idProgramas) {
         try {
+            
+            List<Programa> programas = new ArrayList<>();
             Usuario usuario = new Usuario();
             usuario.setUsuario(codigo);
             usuario.setIdentificacion(identificacion);
@@ -82,6 +89,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             usuario.setContrasena(generatedPassword);
             usuario.setEmail(email);
+            
+            for (int i = 0; i < idProgramas.length; i++) {
+                programas.add(programaRepository.findById(idProgramas[i]).get()) ;
+                
+            }
+            usuario.setProgramaList(programas);
             usuarioRepository.saveAndFlush(usuario);
         } catch (Exception e) {
             log.error("Ha ocurrido un error al crear el usuario" + e);
@@ -109,9 +122,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email) {
+    public void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email, Integer[] idProgramas) {
         try {
-
+            List<Programa> programas = new ArrayList<>();
             Optional<Usuario> usuarioOptional = usuarioRepository.findById(usuarioId);
             if (usuarioOptional.isPresent()) {
                 Usuario usuario = usuarioOptional.get();
@@ -119,6 +132,11 @@ public class UsuarioServiceImpl implements UsuarioService {
                 usuario.setNombre(nombre);
                 usuario.setApellido(apellidos);
                 usuario.setEmail(email);
+                for (int i = 0; i < idProgramas.length; i++) {
+                    programas.add(programaRepository.findById(idProgramas[i]).get());
+
+                }
+                usuario.setProgramaList(programas);
                 usuarioRepository.saveAndFlush(usuario);
             } else {
                 log.error("usuario no encontrado usuario:{}", usuarioId);

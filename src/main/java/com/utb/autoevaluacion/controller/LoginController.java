@@ -114,7 +114,15 @@ public class LoginController {
                         textoIndex = variableTextoIndex.getValor();
                     }
                     model.addAttribute("textoIndex", textoIndex);
-                    return "comiteCentral\\index";
+                    boolean isAdmin = usuario.getProgramaList()
+                            .stream()
+                            .anyMatch(s -> s.getId()==1);
+                    if(isAdmin){
+                        return "comiteCentral\\index";
+                    }else{
+                        return "comitePrograma\\index";
+                    }
+                    
                 }
             }
         } catch (UnsupportedEncodingException ex) {

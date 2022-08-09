@@ -46,6 +46,12 @@ public class Usuario {
     
     private String contrasena;
     
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "programa_has_usuario",
+            joinColumns = { @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "programa_id", referencedColumnName = "id", nullable = false) })
+    private List<Programa> programaList;
+    
 
      public Usuario(String usuario, String identificacion, String nombre, String apellido,
             String email, String estado, boolean enabled) {

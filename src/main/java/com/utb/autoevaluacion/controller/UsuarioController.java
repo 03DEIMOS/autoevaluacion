@@ -6,6 +6,7 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.Usuario;
+import com.utb.autoevaluacion.service.ProgramaService;
 import com.utb.autoevaluacion.service.UsuarioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
     
+    @Autowired
+    private ProgramaService programaService;
+    
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioService.buscarUsuarios());
@@ -42,6 +46,7 @@ public class UsuarioController {
     @GetMapping("/crear")
     public String crearUsuario(Model model) {
         log.info("Ejecutanto metodo [crearUsuario]");
+        model.addAttribute("programas", programaService.getProgramas());
         return "comiteCentral\\usuario\\crear";
 
     }
@@ -51,6 +56,7 @@ public class UsuarioController {
         log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}",usuarioId);
         Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("programas", programaService.getProgramas());
         return "comiteCentral\\usuario\\editar";
 
     }
@@ -66,13 +72,13 @@ public class UsuarioController {
     
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearUsuario(@RequestParam String codigo, @RequestParam String identificacion, @RequestParam String nombre,
-            @RequestParam String apellidos, @RequestParam String clave, @RequestParam String email) {
+            @RequestParam String apellidos, @RequestParam String clave, @RequestParam String email, @RequestParam Integer[] programas) {
 
-        log.info("Ejecutanto metodo [crearUsuario] codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, clave:{}, email:{}",
-                codigo, identificacion, nombre, apellidos, clave, email);
+        log.info("Ejecutanto metodo [crearUsuario] codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, clave:{}, email:{}, programas:{}",
+                codigo, identificacion, nombre, apellidos, clave, email, programas);
         HttpStatus status;
         try {
-            usuarioService.crearUsuario(codigo, identificacion, nombre, apellidos, clave, email);
+            usuarioService.crearUsuario(codigo, identificacion, nombre, apellidos, clave, email, programas);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
@@ -84,12 +90,12 @@ public class UsuarioController {
     
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editarUsuario(@RequestParam Integer usuarioId, @RequestParam String codigo, @RequestParam String identificacion, 
-            @RequestParam String nombre, @RequestParam String apellidos, @RequestParam String email) {
-        log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}, codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, email:{} ", 
-                usuarioId, codigo, identificacion, nombre, apellidos, email);
+            @RequestParam String nombre, @RequestParam String apellidos, @RequestParam String email, @RequestParam Integer[] programas) {
+        log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}, codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, email:{}, programas:{} ", 
+                usuarioId, codigo, identificacion, nombre, apellidos, email, programas);
         HttpStatus status;
         try {
-            usuarioService.actualizarUsuario(usuarioId, codigo, identificacion, nombre, apellidos, email);
+            usuarioService.actualizarUsuario(usuarioId, codigo, identificacion, nombre, apellidos, email, programas);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error:{} " , e);

@@ -11,7 +11,7 @@
     {
         display: none;
     }
-
+    
     .tt-dropdown-menu {
         position: absolute;
         top: 100%;
@@ -47,32 +47,70 @@
         color: #ffffff;
         text-decoration: none;
         outline: 0;
-        background-color: #428bca;
+        background-color: #428bca !important;
     }
 </style>
 <script src="<%=request.getContextPath()%>/js/typeahead.bundle.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
 
-        $.validator.addMethod('positiveNumber',
-                function (value) {
-                    return (Number(value) > 0) && (value == parseInt(value, 10));
-                }, 'Ingrese un numero entero positivo.');
-        $("#formCrearUsuario").validate({
-            submitHandler: function () {
-                $.ajax({
-                    type: 'POST',
-                    url: "/autoevaluacion/usuario/crear",
-                    data: $("#formCrearUsuario").serialize(),
-                    success: function () {
-                        location.hash = "usuario/usuarios";
-                    } //fin success
-                }); //fin $.ajax
+    var programas = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [
+    <c:forEach items="${programas}" var="programa" varStatus="status">
+        <c:choose>
+            <c:when test="${(status.index+1) != programas.size()}">
+            {
+            value: '${programa.id}',
+                    text: '${programa.nombre}'
+            },</c:when><c:otherwise>
+            {
+            value: '${programa.id}',
+                    text: '${programa.nombre}'
             }
-        });
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+            ]
     });
-</script>
+    programas.initialize();
+    var elt = $('#inputProgramas');
+    elt.tagsinput({
+    itemValue: 'value',
+            itemText: 'text',
+            typeaheadjs: {
+            name: 'programas',
+                    displayKey: 'text',
+                    source: programas.ttAdapter()
+            }
+    });
+    $.validator.addMethod('positiveNumber',
+            function (value) {
+            return (Number(value) > 0) && (value == parseInt(value, 10));
+            }, 'Ingrese un numero entero positivo.');
+    
+    $("#formCrearUsuario").validate({
+        submitHandler: function() {
+        if (elt.tagsinput('items').length){
+        $.ajax({
+        type: 'POST',
+                url: "/autoevaluacion/usuario/crear",
+                data: $("#formCrearUsuario").serialize(),
+                success: function () {
+                location.hash = "usuario/usuarios";
+                } //fin success
+        }); //fin $.ajax
+        } else{
+        alert("debe seleccionar al menos un programa");
+        }
+
+        }
+        });
+    });</script>
+<script src="<%=request.getContextPath()%>/js/typeahead.bundle.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap-tagsinput.min.js"></script>
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
@@ -113,6 +151,13 @@
                         <label for="email"  class="control-label">Correo electr&oacute;nico</label>
                         <div class="controls">
                             <input type="text" name="email" id="email" class="input-xlarge {required:true}" value=""/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="programas"  class="control-label">Programa</label>
+                        <div class="controls">
+                            <input type="text" name="programas" id="inputProgramas"/>
                         </div>
                     </div>
 

@@ -16,25 +16,21 @@
                         <c:when test="${fn:length(listaS)!= 0}">
                             <table id="tablaX" class="table table-striped table-bordered table-condensed">
                                 <thead>
-                                    <th>Fecha Programada</th>
                                     <th>Fecha Realizado</th>
-                                    <th>Porcentaje Avances</th>
                                     <th>Avances</th>
+                                     <th>Estado</th>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${listaS}" var="seguimiento" varStatus="iter">
                                             <tr>
                                                 <td>   
-                                                    <c:out value="${seguimiento.fechaProgramada}"/>
-                                                </td>
-                                                <td>   
                                                     <c:out value="${seguimiento.fechaRealizado}"/>
                                                 </td>
                                                 <td>   
-                                                    <c:out value="${seguimiento.porcentajeAvance}"/>
-                                                </td>
-                                                <td>   
                                                     <c:out value="${seguimiento.avances}"/>
+                                                </td>
+                                                 <td>   
+                                                    <c:out value="${seguimiento.estado}"/>
                                                 </td>
                                                 <td>   
                                                     <a href="#seguimiento/editar/${seguimiento.idSeguimiento}" title="Editar"><i class="icon-edit"></i></a>

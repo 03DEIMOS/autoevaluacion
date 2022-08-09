@@ -10,9 +10,6 @@
             $(this).tooltip('hide');
         });
         
-        $('#fechaProgramada').datepicker({
-            format: 'dd/mm/yyyy'
-        });
         $('#fechaRealizado').datepicker({
             format: 'dd/mm/yyyy'
         });
@@ -39,30 +36,25 @@
                     <legend>Editar Actividades de Seguimiento</legend>
                     
                     <div class="control-group">
-                        <label for="fechaProgramada" class="control-label">Fecha Programada: </label>
-                        <div class="controls">
-                            <input type="text" name="fechaProgramada" id="fechaProgramada" class="input-xlarge {required:true}" value="${seguimiento.fechaProgramada}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Realizado: </label>
                         <div class="controls">
                             <input type="text" name="fechaRealizado" id="fechaRealizado" class="input-xlarge {required:false}" value="${seguimiento.fechaRealizado}"/>
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label for="porcentajeAvance" class="control-label">Porcentaje Avances: </label>
-                        <div class="controls">
-                            <input type="number" name="porcentajeAvance" id="porcentajeAvance" class="input-xlarge {required:true}" value="${seguimiento.porcentajeAvance}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
+                   <div class="control-group">
                         <label for="avances" class="control-label">Avances: </label>
                         <div class="controls">
                             <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:false}">${seguimiento.avances}</textarea>
                         </div>
                     </div>
+                        
+                    <div class="control-group">
+                        <label for="estado" class="control-label">Estado: </label>
+                        <div class="controls">
+                            <input type="text" name="estado" id="estado" class="input-xlarge {required:false}" value="${seguimiento.estado}"/>
+                        </div>
+                    </div>    
                     
                     <div class="form-actions span8">
                         <button class="btn btn-primary" type="submit">Editar Actividad de Seguimiento</button>

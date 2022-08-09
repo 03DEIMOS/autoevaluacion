@@ -57,4 +57,9 @@ public class TipoAccionServiceImpl implements TipoAccionService {
         }
     }
 
+    @Override
+    public TipoAccion getTipoAccionByTipo(String tipo) {
+        return tipoAccionRepository.findByTipo(tipo);
+    }
+
 }

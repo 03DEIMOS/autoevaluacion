@@ -11,7 +11,7 @@
     {
         display: none;
     }
-
+    
     .tt-dropdown-menu {
         position: absolute;
         top: 100%;
@@ -47,14 +47,50 @@
         color: #ffffff;
         text-decoration: none;
         outline: 0;
-        background-color: #428bca;
+        background-color: #428bca !important;
     }
 </style>
 <script src="<%=request.getContextPath()%>/js/typeahead.bundle.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
 
+    var programas = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [
+    <c:forEach items="${programas}" var="programa" varStatus="status">
+        <c:choose>
+            <c:when test="${(status.index+1) != programas.size()}">
+            {
+            value: '${programa.id}',
+                    text: '${programa.nombre}'
+            },</c:when><c:otherwise>
+            {
+            value: '${programa.id}',
+                    text: '${programa.nombre}'
+            }
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+            ]
+    });
+    programas.initialize();
+    var elt = $('#inputProgramas');
+    elt.tagsinput({
+    itemValue: 'value',
+            itemText: 'text',
+            typeaheadjs: {
+            name: 'programas',
+                    displayKey: 'text',
+                    source: programas.ttAdapter()
+            }
+    });
+        
+        <c:forEach items="${usuario.programaList}" var="programa">
+            elt.tagsinput('add', { value: ${programa.id}, text: '${programa.nombre}' });
+            </c:forEach>
+        
         $.validator.addMethod('positiveNumber',
                 function (value) {
                     return (Number(value) > 0) && (value == parseInt(value, 10));
@@ -111,6 +147,12 @@
                         <label for="email"  class="control-label">Correo electr&oacute;nico</label>
                         <div class="controls">
                             <input type="text" name="email" id="email" class="input-xlarge" value="${usuario.email}"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="programas"  class="control-label">Programa</label>
+                        <div class="controls">
+                            <input type="text" name="programas" id="inputProgramas"/>
                         </div>
                     </div>
                     <div class="form-actions">

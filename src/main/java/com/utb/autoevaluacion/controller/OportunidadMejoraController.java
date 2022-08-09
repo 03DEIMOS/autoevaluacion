@@ -13,12 +13,36 @@ import com.utb.autoevaluacion.service.PlanMejoramientoService;
 import com.utb.autoevaluacion.service.ProcesoService;
 import com.utb.autoevaluacion.service.SeguimientoService;
 import com.utb.autoevaluacion.service.TipoAccionService;
+import com.utb.autoevaluacion.service.UtilitarioService;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +52,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /*
@@ -91,8 +116,7 @@ public class OportunidadMejoraController {
         log.info("Ejecutanto método [formularioCrearOportunidadMejora] planMejoramientoId:{} ", planMejoramientoId);
         model.addAttribute("planMejoramientoId", planMejoramientoId);
         model.addAttribute("listaF", factorService.getFactores());
-        model.addAttribute("listaC", caracteristicaService.getCaracteristicas());
-        model.addAttribute("tiposAccion", tipoAccionService.getTiposAccion());
+        model.addAttribute("listaC", Collections.emptyList());
         return "comitePrograma\\proceso\\planMejoramiento\\oportunidadMejora\\crear";
     }
 
@@ -152,21 +176,67 @@ public class OportunidadMejoraController {
         return "comitePrograma\\proceso\\informe\\reporteSeguimiento";
     }
 
+    @RequestMapping(path = "/descargarReporteSeguimiento/{planMejoramientoId}", method = RequestMethod.GET)
+    public ResponseEntity<Resource> descargarReporteSeguimiento(@PathVariable Integer planMejoramientoId) throws IOException {
+        log.info("Ejecutanto metodo [descargarReporteSeguimiento] planMejoramientoId:{} ", planMejoramientoId);
+        List<OportunidadMejora> oportunidadesMejora = oportunidadMejoraService.getOportunidadMejoraByPlanMejoramiento(planMejoramientoId);
+        for (OportunidadMejora oportunidadMejora : oportunidadesMejora) {
+            List<Seguimiento> seguimientoByOportunidadMejora = seguimientoService.getSeguimientoByOportunidadMejora(oportunidadMejora.getIdHallazgo());
+            oportunidadMejora.setSeguimientos(seguimientoByOportunidadMejora);
+        }
+
+        byte[] excelReport = OportunidadMejoraController.buildExcelReport(oportunidadesMejora);
+
+        try {
+            HttpHeaders header = new HttpHeaders();
+            header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=reporteSeguimientos.xls");
+            header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            header.add("Pragma", "no-cache");
+            header.add("Expires", "0");
+
+            ByteArrayResource resource = new ByteArrayResource(excelReport);
+
+            return ResponseEntity.ok()
+                    .headers(header)
+                    .contentLength(excelReport.length)
+                    .contentType(MediaType.parseMediaType("application/octet-stream"))
+                    .body(resource);
+        } catch (Exception ex) {
+            log.error("ha ocurrido un error:{}", ex);
+            return ResponseEntity.badRequest().body(null);
+        }
+
+    }
+
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearOportunidadMejora(@RequestParam String oportunidadMejoramiento, @RequestParam Integer planMejoramientoId,
-            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, @RequestParam Integer estadoId,
+            @RequestParam Integer caracteristicaId, @RequestParam String eje, @RequestParam String lineaAccion, 
             @RequestParam String tipo, @RequestParam String responsable, @RequestParam String fechaInicio, @RequestParam String fechaFinal,
             @RequestParam String recurso, @RequestParam String indicador, @RequestParam String meta, @RequestParam String lineaBase) {
-
+        
+        /*
+         <div class="control-group">
+                        <label for="estadoId" class="control-label">Estado</label>
+                        <div class="controls">
+                            <select id="estadoId" name="estadoId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
+                                    <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>
+                                </c:forEach>
+                            </select>     
+                        </div>
+                    </div>
+        */
+        
         log.info("Ejecutanto metodo [crearOportunidadMejora] "
-                + "oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, ejeEstrategico:{}, lineaAccion:{}, estadoId:{}, tipo:{}, responsable:{}, "
+                + "oportunidadMejoramiento:{}, planMejoramientoId:{}, caracteristicaId:{}, ejeEstrategico:{}, lineaAccion:{}, tipo:{}, responsable:{}, "
                 + "fechaInicio:{}, fechaFinal:{}, recurso:{}, indicador:{}, meta:{}, lineaBase:{}",
-                oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoId, tipo, responsable, fechaInicio, fechaFinal,
+                oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, tipo, responsable, fechaInicio, fechaFinal,
                 recurso, indicador, meta, lineaBase);
         HttpStatus status;
         try {
-
-            oportunidadMejoraService.crearOportunidadMejora(oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoId, tipo,
+            TipoAccion estadoAbierta = tipoAccionService.getTipoAccionByTipo("Abierta");
+            oportunidadMejoraService.crearOportunidadMejora(oportunidadMejoramiento, planMejoramientoId, caracteristicaId, eje, lineaAccion, estadoAbierta.getId(), tipo,
                     responsable, fechaInicio, fechaFinal, recurso, indicador, meta, lineaBase);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
@@ -264,4 +334,91 @@ public class OportunidadMejoraController {
         return new ResponseEntity<>(status);
     }
 
+    private static byte[] buildExcelReport(List<OportunidadMejora> oportunidadesMejora)
+            throws FileNotFoundException, IOException {
+        log.info("Ejecutando buildExcelReport(): oportunidadesMejora[" + oportunidadesMejora + "]");
+        int numberRow = 3;
+        InputStream excelFile = new FileInputStream(new ClassPathResource("reporteSeguimientos.xls").getFile());
+        //new FileInputStream(new File("config/plantillas/reporteSeguimientos.xls"));
+        HSSFWorkbook workbook = new HSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        for (OportunidadMejora item : oportunidadesMejora) {
+            Row newRow = sheet.createRow(++numberRow);
+
+            Cell cellFactor = newRow.createCell(0);
+            cellFactor.setCellValue(item.getCaracteristicaId().getFactorId().getNombre());
+
+            Cell cellCaracteristica = newRow.createCell(1);
+            cellCaracteristica.setCellValue(item.getCaracteristicaId().getNombre());
+
+            Cell cellOportunidadMejora = newRow.createCell(2);
+            cellOportunidadMejora.setCellValue(item.getHallazgo());
+
+            Cell cellEjeEstrategico = newRow.createCell(3);
+            cellEjeEstrategico.setCellValue(item.getEje());
+
+            Cell cellLineaAccion = newRow.createCell(4);
+            cellLineaAccion.setCellValue(item.getLineaAccion());
+
+            Cell cellEstado = newRow.createCell(5);
+            cellEstado.setCellValue(item.getEstadoId().getTipo());
+
+            Cell cellTipo = newRow.createCell(6);
+            cellTipo.setCellValue(item.getTipo());
+
+            Cell cellResponsable = newRow.createCell(7);
+            cellResponsable.setCellValue(item.getResponsable());
+
+            Cell cellFechaInicio = newRow.createCell(8);
+            cellFechaInicio.setCellValue(item.getFechaInicio());
+
+            Cell cellFechaFinal = newRow.createCell(9);
+            cellFechaFinal.setCellValue(item.getFechaFin());
+
+            Cell cellRecurso = newRow.createCell(10);
+            cellRecurso.setCellValue(item.getRecurso());
+
+            Cell cellIndicador = newRow.createCell(11);
+            cellIndicador.setCellValue(item.getIndicador());
+
+            Cell cellMeta = newRow.createCell(12);
+            cellMeta.setCellValue(item.getMeta());
+
+            Cell cellLineaBase = newRow.createCell(13);
+            cellLineaBase.setCellValue(item.getLineaBase());
+        }
+        numberRow = 3;
+        Sheet sheet2 = workbook.getSheetAt(1);
+        for (OportunidadMejora oportunidadMejora : oportunidadesMejora) {
+            for (Seguimiento seguimiento : oportunidadMejora.getSeguimientos()) {
+                Row newRow = sheet2.createRow(++numberRow);
+                Cell cellFactor = newRow.createCell(0);
+                cellFactor.setCellValue(oportunidadMejora.getCaracteristicaId().getFactorId().getNombre());
+
+                Cell cellCaracteristica = newRow.createCell(1);
+                cellCaracteristica.setCellValue(oportunidadMejora.getCaracteristicaId().getNombre());
+
+                Cell cellOportunidadMejora = newRow.createCell(2);
+                cellOportunidadMejora.setCellValue(oportunidadMejora.getHallazgo());
+
+                Cell cellFechaRealizada = newRow.createCell(3);
+                cellFechaRealizada.setCellValue(seguimiento.getFechaRealizado());
+
+                Cell cellAvances = newRow.createCell(4);
+                cellAvances.setCellValue(seguimiento.getAvances());
+                
+                Cell cellEstado = newRow.createCell(5);
+                cellEstado.setCellValue(seguimiento.getEstado());
+            }
+
+        }
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        workbook.write(bos);
+        byte[] fileWithError = bos.toByteArray();
+
+        log.info("Resultado buildExcelReport() ", Arrays.toString(fileWithError));
+        return fileWithError;
+    }
 }

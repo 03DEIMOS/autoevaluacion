@@ -19,6 +19,8 @@ public interface TipoAccionService {
 
     TipoAccion getTipoAccionById(Integer id);
     
+    TipoAccion getTipoAccionByTipo(String tipo);
+    
     void crearTipoAccion(TipoAccion tipoAccion);
     
     void actualizarTipoAccion(TipoAccion tipoAccion);    

@@ -15,10 +15,10 @@ import java.util.List;
 public interface SeguimientoService {
     List<Seguimiento> getSeguimientoByOportunidadMejora(Integer idHallazgo);
     
-    void crearSeguimiento(String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances, Integer idHallazgo);
+    void crearSeguimiento(String fechaRealizado, String avances, String estado, Integer idHallazgo);
     
     Seguimiento buscarSeguimiento(Integer idSeguimiento);
 
-    void actualizarSeguimiento(Integer idSeguimiento, String fechaProgramada, String fechaRealizado, Integer porcentajeAvance, String avances);
+    void actualizarSeguimiento(Integer idSeguimiento, String fechaRealizado, String avances, String estado);
  
 }

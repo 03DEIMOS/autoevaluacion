@@ -101,17 +101,6 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="estadoId" class="control-label">Estado</label>
-                        <div class="controls">
-                            <select id="estadoId" name="estadoId" class="{required:true}">
-                                <option></option>
-                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
-                                    <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>
-                                </c:forEach>
-                            </select>     
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <label for="tipo" class="control-label">Tipo</label>
                         <div class="controls">
                             <select id="tipo" name="tipo" class="{required:true}">

@@ -6,8 +6,10 @@
 package com.utb.autoevaluacion.service.impl;
 
 import com.utb.autoevaluacion.model.Fuente;
+import com.utb.autoevaluacion.model.OportunidadMejora;
 import com.utb.autoevaluacion.model.Persona;
 import com.utb.autoevaluacion.model.Proceso;
+import com.utb.autoevaluacion.model.Seguimiento;
 import com.utb.autoevaluacion.model.Usuario;
 import com.utb.autoevaluacion.repository.FuenteRepository;
 import com.utb.autoevaluacion.repository.PersonaRepository;
@@ -35,10 +37,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import com.utb.autoevaluacion.service.UtilitarioService;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 @Service
 @Slf4j
@@ -112,7 +118,6 @@ public class UtilitarioServiceImpl implements UtilitarioService {
                         && apellido != null && !("").equals(apellido.trim())
                         && email != null && !("").equals(email.trim())) {
 
-                    
                     Proceso proceso = procesoRepository.findById(procesoId).get();
                     Fuente fuente = fuenteRepository.findById(fuenteId).get();
 
@@ -125,7 +130,7 @@ public class UtilitarioServiceImpl implements UtilitarioService {
         }
         log.info("Personas:{} ", personas.toString());
         for (Persona persona : personas) {
-          Usuario usuarioBd = usuarioRepository.findByUsuario(persona.getUsuarioId().getUsuario());
+            Usuario usuarioBd = usuarioRepository.findByUsuario(persona.getUsuarioId().getUsuario());
             if (usuarioBd == null) {
                 Usuario idUsuario = usuarioRepository.saveAndFlush(persona.getUsuarioId());
                 persona.setUsuarioId(idUsuario);
@@ -134,7 +139,7 @@ public class UtilitarioServiceImpl implements UtilitarioService {
                 }catch(Exception e){
                     log.error("Ha ocurrido un error creando a la persona error:{} ",  e);
                 }
-                
+
             } else {
                 log.info("Usuario ya existe y no se creara usuario.codigo :{}", usuarioBd.getUsuario());
                 //personaDAO.inactivarPersona(persona.getFuente().getId(), persona.getProceso().getId(),usuarioBd.getId());

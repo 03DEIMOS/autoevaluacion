@@ -1,13 +1,30 @@
+<link rel="stylesheet" href="css/summernote-lite.css">
+<script src="js/summernote-lite.js"></script> 
 <script type="text/javascript">
-    $(function() {
+    $(function () {
+
+        $('#valor').summernote({
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+
         $("#formCrearParametro").validate({
-            submitHandler: function() {
+            submitHandler: function () {
                 $.ajax({
                     type: 'POST',
                     url: "/autoevaluacion/parametro/crear",
                     data: $("#formCrearParametro").serialize(),
-                    success: function() {
-                    location.hash = "parametro/parametros";
+                    success: function () {
+                        location.hash = "parametro/parametros";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -29,7 +46,7 @@
                     <div class="control-group">
                         <label for="valor" class="control-label">Valor</label>
                         <div class="controls">
-                            <textarea rows="10" name="valor" id="valor" class="input-xxlarge {required:true}"></textarea>
+                            <textarea id="valor" name="valor"></textarea>
                         </div>
                     </div>
 

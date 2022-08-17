@@ -9,6 +9,7 @@ import com.utb.autoevaluacion.model.OportunidadMejora;
 import com.utb.autoevaluacion.model.Seguimiento;
 import com.utb.autoevaluacion.service.OportunidadMejoraService;
 import com.utb.autoevaluacion.service.SeguimientoService;
+import com.utb.autoevaluacion.service.TipoAccionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,12 @@ public class SeguimientoController {
     @Autowired
     private SeguimientoService seguimientoService;
     
+    @Autowired
+    private OportunidadMejoraService oportunidadMejoraService;
+    
+    @Autowired
+    private TipoAccionService tipoAccionService;
+    
     @GetMapping("/seguimientos/{idHallazgo}")
     public String oportunidadesMejora(@PathVariable Integer idHallazgo, Model model) {
         model.addAttribute("listaS", seguimientoService.getSeguimientoByOportunidadMejora(idHallazgo));
@@ -45,19 +52,21 @@ public class SeguimientoController {
     public String formularioCrearSeguimiento(@PathVariable Integer idHallazgo, Model model) {
         log.info("Ejecutanto método [formularioCrearSeguimiento] idHallazgo:{} ", idHallazgo);
         model.addAttribute("idHallazgo", idHallazgo);
-        //model.addAttribute("listaS", caracteristicaService.getCaracteristicasByModelo(proceso.getModeloId().getId()));
+        OportunidadMejora oportunidadMejora = oportunidadMejoraService.buscarOportunidadMejora(idHallazgo);
+        model.addAttribute("tiposAccion", tipoAccionService.getTiposAccion());
+        model.addAttribute("oportunidadMejora", oportunidadMejora);
         return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\crear";
     }
     
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearSeguimiento(@RequestParam String fechaRealizado, 
-            @RequestParam String avances, @RequestParam String estado, @RequestParam Integer idHallazgo) {
+            @RequestParam String avances, @RequestParam Integer estadoId, @RequestParam Integer idHallazgo) {
 
-        log.info("Ejecutanto metodo [crearSeguimiento] fechaRealizado:{}, avances:{}, estado:{}, idHallazgo:{} ", fechaRealizado, avances, estado, idHallazgo);
+        log.info("Ejecutanto metodo [crearSeguimiento] fechaRealizado:{}, avances:{}, estadoId:{}, idHallazgo:{} ", fechaRealizado, avances, estadoId, idHallazgo);
         HttpStatus status;
         try {
-            
-            seguimientoService.crearSeguimiento(fechaRealizado, avances, estado, idHallazgo);
+            seguimientoService.crearSeguimiento(fechaRealizado, avances, idHallazgo);
+            oportunidadMejoraService.actualizarEstadoOportunidadMejora(idHallazgo, estadoId);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " , e);
@@ -71,17 +80,22 @@ public class SeguimientoController {
         log.info("Ejecutanto metodo [formularioEditarSeguimiento] idSeguimiento:{} ", idSeguimiento);
         Seguimiento seguimiento = seguimientoService.buscarSeguimiento(idSeguimiento);
         model.addAttribute("seguimiento", seguimiento);
+        OportunidadMejora oportunidadMejora = seguimiento.getOportunidadMejora();
+        model.addAttribute("tiposAccion", tipoAccionService.getTiposAccion());
+        model.addAttribute("oportunidadMejora", oportunidadMejora);
         return "comitePrograma\\proceso\\planMejoramiento\\seguimiento\\editar";
     }
     
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editarSeguimiento(@RequestParam Integer idSeguimiento, 
-            @RequestParam String fechaRealizado, @RequestParam String avances, @RequestParam String estado) {
-        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, fechaRealizado:{}, avances:{}, estado:{} ",
-                idSeguimiento, fechaRealizado, avances, estado);
+            @RequestParam String fechaRealizado, @RequestParam String avances, @RequestParam Integer estadoId) {
+        log.info("Ejecutanto metodo [editarSeguimiento] idSeguimiento:{}, fechaRealizado:{}, avances:{}, estadoId:{} ",
+                idSeguimiento, fechaRealizado, avances, estadoId);
         HttpStatus status;
         try {
-            seguimientoService.actualizarSeguimiento(idSeguimiento, fechaRealizado, avances, estado);
+            Seguimiento seguimiento = seguimientoService.buscarSeguimiento(idSeguimiento);
+            seguimientoService.actualizarSeguimiento(idSeguimiento, fechaRealizado, avances);
+            oportunidadMejoraService.actualizarEstadoOportunidadMejora(seguimiento.getOportunidadMejora().getIdHallazgo(), estadoId);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " , e);

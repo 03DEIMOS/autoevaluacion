@@ -109,16 +109,12 @@
                                                             <thead>
                                                             <th>Fecha Realizado</th>
                                                             <th>Avances</th>
-                                                             <th>Estado</th>
                                                             </thead>
                                                             <tbody>
                                                                 <c:forEach items="${oportunidadMejora.seguimientos}" var="seguimiento">
                                                                     <tr>
                                                                         <td>   
                                                                             <c:out value="${seguimiento.fechaRealizado}"/>
-                                                                        </td>
-                                                                        <td>   
-                                                                            <c:out value="${seguimiento.estado}"/>
                                                                         </td>
                                                                         <td>   
                                                                             <c:out value="${seguimiento.avances}"/>

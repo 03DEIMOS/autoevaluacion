@@ -37,9 +37,6 @@ public class Seguimiento implements Serializable {
     @Column(name="fecha_realizado")
     private String fechaRealizado;
     
-    @Column(name="estado")
-    private String estado;
-    
     @Column(name="avances")
     private String avances;
     

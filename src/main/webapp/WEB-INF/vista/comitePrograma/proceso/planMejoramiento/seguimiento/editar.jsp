@@ -34,7 +34,12 @@
                  <input type="hidden" name="idSeguimiento"  value="${seguimiento.idSeguimiento}"/>
                 <fieldset>
                     <legend>Editar Actividades de Seguimiento</legend>
-                    
+                    <div class="control-group">
+                        <label class="control-label">Oportunidad de Mejoramiento </label>
+                        <div class="controls">
+                           ${oportunidadMejora.getHallazgo()}
+                        </div>
+                    </div>
                     <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Realizado: </label>
                         <div class="controls">
@@ -50,11 +55,23 @@
                     </div>
                         
                     <div class="control-group">
-                        <label for="estado" class="control-label">Estado: </label>
+                        <label for="estadoId" class="control-label">Estado</label>
                         <div class="controls">
-                            <input type="text" name="estado" id="estado" class="input-xlarge {required:false}" value="${seguimiento.estado}"/>
+                            <select id="estadoId" name="estadoId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
+                                    <c:choose>
+                                        <c:when test="${tipoAccion != oportunidadMejora.getEstadoId()}">
+                                            <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option selected="selected" value="${tipoAccion.id}">${tipoAccion.tipo}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>      
                         </div>
-                    </div>    
+                    </div>  
                     
                     <div class="form-actions span8">
                         <button class="btn btn-primary" type="submit">Editar Actividad de Seguimiento</button>

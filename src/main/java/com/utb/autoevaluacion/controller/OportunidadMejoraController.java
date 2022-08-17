@@ -408,8 +408,6 @@ public class OportunidadMejoraController {
                 Cell cellAvances = newRow.createCell(4);
                 cellAvances.setCellValue(seguimiento.getAvances());
                 
-                Cell cellEstado = newRow.createCell(5);
-                cellEstado.setCellValue(seguimiento.getEstado());
             }
 
         }

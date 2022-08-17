@@ -31,6 +31,8 @@ public interface OportunidadMejoraService {
          Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal
         ,String recurso, String indicador, String meta, String lineaBase);
  
+  void actualizarEstadoOportunidadMejora(Integer hallazgoId, Integer estadoId);
+ 
  OportunidadMejora buscarOportunidadMejora(Integer id);
  
  void eliminarOportunidadMejora(Integer oportunidadMejoraId);

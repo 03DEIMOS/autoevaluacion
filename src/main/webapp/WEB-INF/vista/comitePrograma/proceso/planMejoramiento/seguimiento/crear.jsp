@@ -8,11 +8,11 @@
         $('.tool').tooltip().click(function (e) {
             $(this).tooltip('hide');
         });
-        
+
         $('#fechaRealizado').datepicker({
             format: 'dd/mm/yyyy'
         });
-        
+
         $("#formCrearSeguimiento").validate({
             submitHandler: function () {
                 $.ajax({
@@ -35,6 +35,12 @@
                     <legend>Crear Actividades de Seguimiento</legend>
                     <input name="idHallazgo" type="hidden" value="${idHallazgo}"/>
                     <div class="control-group">
+                        <label class="control-label">Oportunidad de Mejoramiento </label>
+                        <div class="controls">
+                           ${oportunidadMejora.getHallazgo()}
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Seguimiento Realizada</label>
                         <div class="controls">
                             <input type="text" name="fechaRealizado" id="fechaRealizado" class="input-xlarge {required:false}"/>
@@ -47,12 +53,26 @@
                             <textarea rows="3" name="avances" id="avances" class="input-xlarge {required:false}"></textarea>             
                         </div>
                     </div>
+                    
                     <div class="control-group">
-                        <label for="estado" class="control-label">Estado</label>
+                        <label for="estadoId" class="control-label">Estado</label>
                         <div class="controls">
-                            <input type="text" name="estado" id="estado" class="input-xlarge {required:false}"/> 
+                            <select id="estadoId" name="estadoId" class="{required:true}">
+                                <option></option>
+                                <c:forEach items="${tiposAccion}" var="tipoAccion" varStatus="iter">
+                                    <c:choose>
+                                        <c:when test="${tipoAccion != oportunidadMejora.getEstadoId()}">
+                                            <option value="${tipoAccion.id}">${tipoAccion.tipo}</option>    
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option selected="selected" value="${tipoAccion.id}">${tipoAccion.tipo}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>      
                         </div>
                     </div>
+                    
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Registrar Seguimiento</button>
                         <button class="btn" type="reset">Cancelar</button>

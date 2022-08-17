@@ -6,7 +6,6 @@
 package com.utb.autoevaluacion.service;
 
 import com.utb.autoevaluacion.model.TipoAccion;
-import com.utb.autoevaluacion.model.Variable;
 import java.util.List;
 
 /**

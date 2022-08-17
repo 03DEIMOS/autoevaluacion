@@ -146,4 +146,16 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
         }
     }
 
+    @Override
+    public void actualizarEstadoOportunidadMejora(Integer hallazgoId, Integer estadoId) {
+        try {
+            OportunidadMejora oportunidadMejora = oportunidadMejoraRepository.findById(hallazgoId).get();
+            TipoAccion tipoAccion = tipoAccionRepository.findById(estadoId).get();
+            oportunidadMejora.setEstadoId(tipoAccion);
+            oportunidadMejoraRepository.saveAndFlush(oportunidadMejora);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error al intentar eliminar la oportunidad de mejora:{} ", e);
+        }
+    }
+
 }

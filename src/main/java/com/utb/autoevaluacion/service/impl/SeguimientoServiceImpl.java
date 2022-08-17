@@ -37,13 +37,12 @@ public class SeguimientoServiceImpl implements SeguimientoService{
     }
 
     @Override
-    public void crearSeguimiento(String fechaRealizado, String avances, String estado, Integer idHallazgo) {
+    public void crearSeguimiento(String fechaRealizado, String avances, Integer idHallazgo) {
         Seguimiento seguimiento = new Seguimiento();
 
         OportunidadMejora oportunidadMejora = oportunidadMejoraRepository.findById(idHallazgo).get();
         seguimiento.setOportunidadMejora(oportunidadMejora);
         seguimiento.setFechaRealizado(fechaRealizado);
-        seguimiento.setEstado(estado);
         seguimiento.setAvances(avances);
         try {
             seguimientoRepository.saveAndFlush(seguimiento);
@@ -70,13 +69,11 @@ public class SeguimientoServiceImpl implements SeguimientoService{
     }
 
     @Override
-    public void actualizarSeguimiento(Integer idSeguimiento, String fechaRealizado, String avances, String estado) {
+    public void actualizarSeguimiento(Integer idSeguimiento, String fechaRealizado, String avances) {
         try{
             Seguimiento seguimiento = seguimientoRepository.findById(idSeguimiento).get();
             seguimiento.setFechaRealizado(fechaRealizado);
-            seguimiento.setEstado(estado);
             seguimiento.setAvances(avances);
-            
             seguimientoRepository.saveAndFlush(seguimiento);
             
         } catch (Exception e) {

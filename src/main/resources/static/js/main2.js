@@ -100,6 +100,7 @@ $(function () {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
+                '<li><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>' +
                 '<li class="nav-header">Modelo</li>' +
                 '<li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>' +
                 '<li class="divider"></li>' +
@@ -120,6 +121,7 @@ $(function () {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
+                '<li><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>' +
                 '<li><a href="#modelo/modelos"><i class="icon-level-up"></i>Men&uacute; modelo</a></li>' +
                 '<li class="nav-header">Factores</li>' +
                 '<li><a href="#factor/factores/' + modeloId + '"><i class="icon-th-large"></i> Listar factores</a></li>' +
@@ -140,6 +142,11 @@ $(function () {
     var hash;
     $(window).hashchange(function () {
         hash = location.hash;
+        if (hash === "#inicio") {
+            location.reload();
+            return;
+        }
+        
         if (hash === "#CerrarSesion") {
             $.post('/autoevaluacion/cerrarSesion', function () {
                 location = "/autoevaluacion";
@@ -170,7 +177,7 @@ $(function () {
 
                     if ($("ul.nav-list li:eq(1)").html().trim() !== "Factores" && hash.indexOf("#modelo/entrar/") !== -1) {
                         menuFactores(modelo);
-                    } else if (($("ul.nav-list li:eq(1)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && (hash.indexOf("#modelo/modelos") !== -1 || hash.indexOf("#proceso/procesos") !== -1)) {
+                    } else if (($("ul.nav-list li:eq(2)").html().trim() === "Factores" || $("ul.nav-list li:eq(1)").html().trim() === "Proceso de Autoevaluación") && (hash.indexOf("#modelo/modelos") !== -1 || hash.indexOf("#proceso/procesos") !== -1)) {
                         menuModelo();
                     } else if ($("ul.nav-list li:eq(1)").html().trim() !== "Proceso de Autoevaluación" && hash.indexOf("#proceso/entrar/") !== -1) {
                         menuProceso(proceso);

@@ -3,6 +3,9 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
+            <ul class="breadcrumb">
+                <li>Procesos de autoevaluacion<span class="divider">/</span></li>
+            </ul>
             <h3>Detalle de Proceso de Autoevaluación</h3>
             <c:choose>
                 <c:when test="${fn:length(listProceso)!= 0}">

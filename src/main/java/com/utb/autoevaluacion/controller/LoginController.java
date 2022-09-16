@@ -56,7 +56,7 @@ public class LoginController {
     public String indexAdmin() {
         return "indexAdmin";
     }
-
+    
     @PostMapping("cerrarSesion")
     public String cerrarSesion() {
         log.info("Ejecutando metodo cerrarSesion");
@@ -114,10 +114,7 @@ public class LoginController {
                         textoIndex = variableTextoIndex.getValor();
                     }
                     model.addAttribute("textoIndex", textoIndex);
-                    boolean isAdmin = usuario.getProgramaList()
-                            .stream()
-                            .anyMatch(s -> s.getId()==1);
-                    if(isAdmin){
+                    if("Administrador".equals(usuario.getTipo())){
                         return "comiteCentral\\index";
                     }else{
                         return "comitePrograma\\index";

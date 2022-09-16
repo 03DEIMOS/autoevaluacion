@@ -7,8 +7,10 @@ package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.PlanMejoramiento;
 import com.utb.autoevaluacion.model.Programa;
+import com.utb.autoevaluacion.model.Usuario;
 import com.utb.autoevaluacion.service.PlanMejoramientoService;
 import com.utb.autoevaluacion.service.ProgramaService;
+import com.utb.autoevaluacion.service.UsuarioService;
 import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,17 +39,32 @@ public class PlanMejoramientoController {
 
     @Autowired
     ProgramaService programaService;
+    
+    @Autowired 
+    UsuarioService usuarioService;
 
-    @GetMapping("/listar")
-    public String listar(Model model) {
-        model.addAttribute("listPlanes", planMejoramientoService.buscarPlanesMejoramiento());
+    @GetMapping("/listar/{usuarioId}")
+    public String listar(@PathVariable Integer usuarioId, Model model) {
+        Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
+        if("Administrador".equals(usuario.getTipo())){
+            model.addAttribute("listPlanes", planMejoramientoService.buscarPlanesMejoramiento());
+        }else{
+           model.addAttribute("listPlanes", planMejoramientoService.buscarPlanesMejoramientoByUserId(usuarioId));
+        }
+        model.addAttribute("usuarioId", usuarioId);
         return "comiteCentral\\planesMejoramiento\\listar";
     }
 
-    @GetMapping("/crear")
-    public String formularioCrearPlanMejoramiento(Model model) {
+    @GetMapping("/crear/{usuarioId}")
+    public String formularioCrearPlanMejoramiento(@PathVariable Integer usuarioId, Model model) {
         log.info("Ejecutanto metodo [formularioCrearPlanMejoramiento]");
-        model.addAttribute("programas", programaService.getProgramas());
+        Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
+        if("Administrador".equals(usuario.getTipo())){
+            model.addAttribute("programas", programaService.getProgramas());
+        }else{
+           model.addAttribute("programas", usuario.getProgramaList());
+        }
+        model.addAttribute("usuarioId", usuarioId);
         return "comiteCentral\\planesMejoramiento\\crear";
     }
 
@@ -72,12 +89,18 @@ public class PlanMejoramientoController {
         return new ResponseEntity<>(status);
     }
 
-    @GetMapping("/editar/{planMejoramientoId}")
-    public String formularioEditarPlanMejoramiento(@PathVariable Integer planMejoramientoId, Model model) {
+    @GetMapping("/editar/{planMejoramientoId}/{usuarioId}")
+    public String formularioEditarPlanMejoramiento(@PathVariable Integer planMejoramientoId, @PathVariable Integer usuarioId, Model model) {
         log.info("Ejecutanto metodo [formularioEditarPlanMejoramiento] planMejoramientoId:{} ", planMejoramientoId);
         PlanMejoramiento planMejoramiento = planMejoramientoService.buscarPlanMejoramiento(planMejoramientoId);
-        model.addAttribute("programas", programaService.getProgramas());
+        Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
+        if("Administrador".equals(usuario.getTipo())){
+           model.addAttribute("programas", programaService.getProgramas());
+        }else{
+          model.addAttribute("programas", usuario.getProgramaList());
+        }
         model.addAttribute("planMejoramiento", planMejoramiento);
+        model.addAttribute("usuarioId", usuarioId);
         return "comiteCentral\\planesMejoramiento\\editar";
     }
 

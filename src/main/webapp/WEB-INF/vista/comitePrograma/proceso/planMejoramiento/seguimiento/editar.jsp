@@ -33,13 +33,7 @@
             <form id="formEditarSeguimiento" class="form-horizontal">
                  <input type="hidden" name="idSeguimiento"  value="${seguimiento.idSeguimiento}"/>
                 <fieldset>
-                    <legend>Editar Actividades de Seguimiento</legend>
-                    <div class="control-group">
-                        <label class="control-label">Oportunidad de Mejoramiento </label>
-                        <div class="controls">
-                           ${oportunidadMejora.getHallazgo()}
-                        </div>
-                    </div>
+                    <legend>Editar Seguimiento: ${oportunidadMejora.getHallazgo()}</legend>
                     <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Realizado: </label>
                         <div class="controls">

@@ -47,7 +47,7 @@
                                 <li class="active"><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>
                                 <li class="dropdown loggining"> 
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon-user"></i> ${usuario.nombre}
+                                        <i class="icon-user"></i> ${usuario.nombre} - ( ${usuario.tipo})
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -85,6 +85,7 @@
                 <div id="menu" style="padding: 8px 0pt;" class="well">
                     <ul class="nav nav-list">  
                         <button id="west-closer" class="close">&laquo;</button>
+                        <li class="active"><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>
                         <li class="nav-header">Modelo</li>
                         <li><a href="#modelo/modelos"><i class="icon-reorder"></i> Listar Modelos</a></li>
                         <li class="divider"></li>
@@ -95,7 +96,7 @@
                         <li><a href="#fuente/fuentes"><i class="icon-user"></i> P&uacute;blicos objetivo</a></li>
                         <li class="divider"></li>
                         <li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>
-                        <li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>
+                        <li><a href="#planMejoramiento/listar/${usuario.id}"><i class="icon-th"></i> Planes de Mejoramiento</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Configuración</li>
                         <li><a href="#parametro/parametros"><i class="icon-bookmark"></i>Parametros</a></li>

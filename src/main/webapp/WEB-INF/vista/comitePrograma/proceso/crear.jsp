@@ -18,6 +18,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#proceso/procesos">Procesos</a><span class="divider">/</span></li>
+            <li>Crear</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formCrearProceso" class="form-horizontal" method="post">
                 <fieldset>

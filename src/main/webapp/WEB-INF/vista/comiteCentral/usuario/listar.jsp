@@ -3,6 +3,9 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
+            <ul class="breadcrumb">
+                <li>Usuarios<span class="divider">/</span></li>
+            </ul>
             <h3 style="margin: 0;">Listado de  Usuarios</h3>
             <c:choose>
                 <c:when test="${fn:length(usuarios)!= 0}">
@@ -12,6 +15,7 @@
                         <th class="span1">Identificaci&oacute;n</th>    
                         <th class="span4">Nombre</th>
                         <th class="span4">Apellido</th>
+                        <th class="span2">Tipo</th>
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>
@@ -28,6 +32,9 @@
                                     </td>
                                      <td>   
                                         <c:out value="${row.apellido}"/>
+                                    </td>
+                                     <td>   
+                                        <c:out value="${row.tipo}"/>
                                     </td>
                                     <td class="action span2">
                                         <a href="#usuario/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>

@@ -109,10 +109,24 @@
 
             }
         });
+        
+        $("#tipo").change(function () {
+            var selected = $("#tipo option:selected").val();
+            elt.tagsinput('removeAll');
+            if(selected == "Administrador" ){
+                $("#programas").hide();
+            }else{
+                $("#programas").show();
+            }
+        });
     });
 </script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#usuario/usuarios" >Usuarios</a><span class="divider">/</span></li>
+            <li>Editar</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formEditarUsuario" class="form-horizontal" method="post">
                 <fieldset>
@@ -149,7 +163,32 @@
                             <input type="text" name="email" id="email" class="input-xlarge" value="${usuario.email}"/>
                         </div>
                     </div>
-                    <div class="control-group">
+                        
+                            <div class="control-group">
+                                <label for="tipo"  class="control-label">Tipo</label>
+                                <div class="controls">
+                                    <select id="tipo" name="tipo" class="{required:true}">
+                                        <option></option>
+                                        <option value="Administrador" 
+                                                <c:if test="${usuario.tipo == 'Administrador'}">
+                                                    selected="selected"
+                                                </c:if>     
+                                                >Administrador</option>
+                                        <option value="Decano"
+                                                <c:if test="${usuario.tipo == 'Decano'}">
+                                                    selected="selected"
+                                                </c:if>     
+                                                >Decano</option>
+                                        <option value="Director de Programa"
+                                                <c:if test="${usuario.tipo == 'Director de Programa'}">
+                                                    selected="selected"
+                                                </c:if>     
+                                                >Director de Programa</option>
+                                    </select>  
+                                </div>
+                            </div>    
+                        
+                    <div id="programas" class="control-group">
                         <label for="programas"  class="control-label">Programa</label>
                         <div class="controls">
                             <input type="text" name="programas" id="inputProgramas"/>

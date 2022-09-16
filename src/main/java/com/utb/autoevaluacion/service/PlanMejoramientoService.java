@@ -25,6 +25,8 @@ public interface PlanMejoramientoService {
     
     List<PlanMejoramiento> buscarPlanesMejoramiento();
     
+    List<PlanMejoramiento> buscarPlanesMejoramientoByUserId(Integer userId); 
+    
     List<PlanMejoramiento> buscarPlanesMejoramientoInstitucionales();
     
     void cambiarEstadoPlanMejoramiento(PlanMejoramiento planMejoramiento, String estado);

@@ -16,6 +16,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+         <ul class="breadcrumb">
+             <li><a href="#modelo/modelos" >Modelos</a><span class="divider">/</span></li>
+                <li>Editar</li>
+            </ul>
         <div id="conte" class="span10">
             <form id="formEditarModelo" class="form-horizontal" method="post">
                 <fieldset>

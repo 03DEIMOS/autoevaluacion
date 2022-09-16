@@ -92,27 +92,42 @@
             }, 'Ingrese un numero entero positivo.');
     
     $("#formCrearUsuario").validate({
-        submitHandler: function() {
-        if (elt.tagsinput('items').length){
-        $.ajax({
-        type: 'POST',
-                url: "/autoevaluacion/usuario/crear",
-                data: $("#formCrearUsuario").serialize(),
-                success: function () {
-                location.hash = "usuario/usuarios";
-                } //fin success
-        }); //fin $.ajax
-        } else{
-        alert("debe seleccionar al menos un programa");
-        }
-
-        }
+            submitHandler: function() {
+            var selected = $("#tipo option:selected").val();
+            if (elt.tagsinput('items').length || selected == "Administrador"){
+                $.ajax({
+                    type: 'POST',
+                    url: "/autoevaluacion/usuario/crear",
+                    data: $("#formCrearUsuario").serialize(),
+                    success: function () {
+                        location.hash = "usuario/usuarios";
+                    } //fin success
+                }); //fin $.ajax
+            } else{
+                alert("debe seleccionar al menos un programa");
+                }
+            }
         });
+        
+        $("#tipo").change(function () {
+            var selected = $("#tipo option:selected").val();
+            if(selected == "Administrador" ){
+                $("#programas").hide();
+            }else{
+                $("#programas").show();
+                elt.tagsinput('removeAll');
+            }
+        });
+        
     });</script>
 <script src="<%=request.getContextPath()%>/js/typeahead.bundle.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-tagsinput.min.js"></script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#usuario/usuarios" >Usuarios</a><span class="divider">/</span></li>
+            <li>Crear</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formCrearUsuario" class="form-horizontal" method="post">
                 <fieldset>
@@ -153,13 +168,25 @@
                             <input type="text" name="email" id="email" class="input-xlarge {required:true}" value=""/>
                         </div>
                     </div>
-
                     <div class="control-group">
+                        <label for="tipo"  class="control-label">Tipo</label>
+                        <div class="controls">
+                            <select id="tipo" name="tipo" class="{required:true}">
+                                <option></option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Decano">Decano</option>
+                                <option value="Director de Programa">Director de Programa</option>
+                            </select>  
+                        </div>
+                    </div>
+                    
+                    <div id="programas" class="control-group">
                         <label for="programas"  class="control-label">Programa</label>
                         <div class="controls">
                             <input type="text" name="programas" id="inputProgramas"/>
                         </div>
                     </div>
+                    
 
                     <div class="form-actions">
                         <button class="btn btn-primary" type="submit">Crear Usuario</button>

@@ -6,7 +6,9 @@
 package com.utb.autoevaluacion.repository;
 
 import com.utb.autoevaluacion.model.Programa;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +17,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProgramaRepository extends JpaRepository<Programa, Integer>{
+    
+    @Query("Select p from Programa p where p.nombre <> 'INSTITUCIONAL'")
+    List<Programa> programasNoInstitucional();
+    
+    @Query("Select p from Programa p where p.nombre = 'INSTITUCIONAL'")
+    Programa programaInstitucional();
     
 }

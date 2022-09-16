@@ -84,4 +84,14 @@ public class ProgramaServiceImpl implements ProgramaService {
         return programa;
     }
 
+    @Override
+    public List<Programa> getProgramasNoInstitucional() {
+        return programaRepository.programasNoInstitucional();
+    }
+
+    @Override
+    public Programa buscarProgramaInstitucional() {
+        return programaRepository.programaInstitucional();
+    }
+
 }

@@ -48,6 +48,9 @@
     <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li>Procesos<span class="divider">/</span></li>
+        </ul>
         <div id="conte" class="span10">
             <h3>Procesos de autoevaluación activos</h3>
             <c:choose>

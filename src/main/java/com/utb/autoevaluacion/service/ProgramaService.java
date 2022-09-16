@@ -15,10 +15,14 @@ import java.util.List;
 public interface ProgramaService {
     
     List<Programa> getProgramas();
+    
+    List<Programa> getProgramasNoInstitucional();
 
     void crearPrograma(String nombre, String descripcion, String modalidad, String tipoformacion, Integer facultadId);
     
     void actualizarPrograma(Integer programaId, String nombre, String descripcion, String modalidad, String tipoformacion, Integer facultadId);
     
     Programa buscarPrograma(Integer programaId);
+    
+    Programa buscarProgramaInstitucional();
 }

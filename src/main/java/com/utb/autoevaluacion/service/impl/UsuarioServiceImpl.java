@@ -75,7 +75,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email, Integer[] idProgramas) {
+    public void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email, String tipo, Integer[] idProgramas) {
         try {
             
             List<Programa> programas = new ArrayList<>();
@@ -84,7 +84,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setIdentificacion(identificacion);
             usuario.setNombre(nombre);
             usuario.setApellido(apellidos);
-
+            usuario.setTipo(tipo);
             String generatedPassword = textToMD5(clave);
 
             usuario.setContrasena(generatedPassword);
@@ -122,7 +122,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email, Integer[] idProgramas) {
+    public void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email, String tipo, Integer[] idProgramas) {
         try {
             List<Programa> programas = new ArrayList<>();
             Optional<Usuario> usuarioOptional = usuarioRepository.findById(usuarioId);
@@ -131,6 +131,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 usuario.setIdentificacion(identificacion);
                 usuario.setNombre(nombre);
                 usuario.setApellido(apellidos);
+                usuario.setTipo(tipo);
                 usuario.setEmail(email);
                 for (int i = 0; i < idProgramas.length; i++) {
                     programas.add(programaRepository.findById(idProgramas[i]).get());

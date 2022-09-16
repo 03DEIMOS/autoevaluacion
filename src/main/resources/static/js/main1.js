@@ -100,7 +100,6 @@ $(function () {
         $(".ui-layout-content > .alert").remove();
         $("#menu").html('<ul class="nav nav-list">' +
                 '<button id="west-closer" class="close">&laquo;</button>' +
-                '<li><a href="#proceso/procesos"><i class="icon-th"></i> Procesos</a></li>' +
                 '<li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>' +
                 '</ul>');
     };
@@ -128,6 +127,12 @@ $(function () {
     var hash;
     $(window).hashchange(function () {
         hash = location.hash;
+        
+        if (hash === "#inicio") {
+            location.reload();
+            return;
+        }
+        
         if (hash === "#CerrarSesion") {
             $.post('/autoevaluacion/cerrarSesion', function () {
                 location = "/autoevaluacion";

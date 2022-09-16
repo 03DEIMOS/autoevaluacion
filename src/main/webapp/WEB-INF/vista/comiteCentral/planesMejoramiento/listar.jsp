@@ -3,6 +3,9 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
+            <ul class="breadcrumb">
+                <li>Planes de Mejoramiento<span class="divider">/</span></li>
+            </ul>
             <h3>Listado de Planes de Mejoramiento</h3>
             <c:choose>
                 <c:when test="${fn:length(listPlanes)!= 0}">
@@ -26,7 +29,7 @@
                                         <c:out value="${item.estado}"/>
                                     </td>
                                     <td class="action span2">
-                                        <a href="#planMejoramiento/editar/${item.id}" title="Editar"><i class="icon-edit"></i></a>
+                                        <a href="#planMejoramiento/editar/${item.id}/${usuarioId}" title="Editar"><i class="icon-edit"></i></a>
                                         <a href="#oportunidadMejora/oportunidadesMejora/${item.id}" title="Entrar"><i class="icon-signin"></i></a>
                                     </td>
                                 </tr>
@@ -39,7 +42,7 @@
                 </c:otherwise>
             </c:choose>
             <br/>
-            <a href="#planMejoramiento/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear Plan de Mejoramiento</a>
+            <a href="#planMejoramiento/crear/${usuarioId}" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear Plan de Mejoramiento</a>
         </div>
     </div>
 </div>

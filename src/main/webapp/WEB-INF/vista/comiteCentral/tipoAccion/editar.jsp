@@ -16,6 +16,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#tipoAccion/listar" >Tipos de Acción</a><span class="divider">/</span></li>
+            <li>Editar</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formEditarTipoAccion" class="form-horizontal" method="post">
                 <fieldset>

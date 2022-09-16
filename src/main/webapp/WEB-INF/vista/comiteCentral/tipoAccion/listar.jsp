@@ -3,7 +3,9 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
-
+            <ul class="breadcrumb">
+                <li>Tipos de acción<span class="divider">/</span></li>
+            </ul>
             <h3>Listado de Tipos de Acción</h3>
             <c:choose>
                 <c:when test="${fn:length(listaTipoAccion)!= 0}">

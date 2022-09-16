@@ -9,7 +9,7 @@
                     url: "/autoevaluacion/planMejoramiento/crear",
                     data: $("#formCrearPlanMejoramiento").serialize(),
                     success: function () {
-                        location.hash = "planMejoramiento/listar";
+                        location.hash = "planMejoramiento/listar/${usuarioId}";
                     } //fin success
                 }); //fin $.ajax    
             }
@@ -18,6 +18,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+         <ul class="breadcrumb">
+            <li><a href="#planMejoramiento/listar/${usuarioId}">Planes de Mejoramiento</a><span class="divider">/</span></li>
+            <li>Crear</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formCrearPlanMejoramiento" class="form-horizontal" method="post">
                 <fieldset>

@@ -46,6 +46,8 @@ public class Usuario {
     
     private String contrasena;
     
+    private String tipo;
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "programa_has_usuario",
             joinColumns = { @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false) },

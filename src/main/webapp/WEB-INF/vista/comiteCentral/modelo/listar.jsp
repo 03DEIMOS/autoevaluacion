@@ -3,8 +3,10 @@
 <div class="hero-unit">
     <div class="row">
         <div id="conte" class="span10">
-
-            <h3>Listado de  Modelos</h3>
+            <ul class="breadcrumb">
+                <li>Modelos<span class="divider">/</span></li>
+            </ul>
+            <h3>Listado de Modelos</h3>
             <c:choose>
                 <c:when test="${fn:length(listaM)!= 0}">
 

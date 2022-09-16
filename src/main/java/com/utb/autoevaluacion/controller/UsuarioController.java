@@ -5,9 +5,11 @@
  */
 package com.utb.autoevaluacion.controller;
 
+import com.utb.autoevaluacion.model.Programa;
 import com.utb.autoevaluacion.model.Usuario;
 import com.utb.autoevaluacion.service.ProgramaService;
 import com.utb.autoevaluacion.service.UsuarioService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +48,8 @@ public class UsuarioController {
     @GetMapping("/crear")
     public String crearUsuario(Model model) {
         log.info("Ejecutanto metodo [crearUsuario]");
-        model.addAttribute("programas", programaService.getProgramas());
+        List<Programa> programas = programaService.getProgramasNoInstitucional();
+        model.addAttribute("programas", programas);
         return "comiteCentral\\usuario\\crear";
 
     }
@@ -56,7 +59,8 @@ public class UsuarioController {
         log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}",usuarioId);
         Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
         model.addAttribute("usuario", usuario);
-        model.addAttribute("programas", programaService.getProgramas());
+        List<Programa> programas = programaService.getProgramasNoInstitucional();
+        model.addAttribute("programas", programas );
         return "comiteCentral\\usuario\\editar";
 
     }
@@ -72,13 +76,18 @@ public class UsuarioController {
     
     @PostMapping(value = "/crear")
     public ResponseEntity<?> crearUsuario(@RequestParam String codigo, @RequestParam String identificacion, @RequestParam String nombre,
-            @RequestParam String apellidos, @RequestParam String clave, @RequestParam String email, @RequestParam Integer[] programas) {
+            @RequestParam String apellidos, @RequestParam String clave, @RequestParam String email, @RequestParam String tipo, @RequestParam Integer[] programas) {
 
-        log.info("Ejecutanto metodo [crearUsuario] codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, clave:{}, email:{}, programas:{}",
-                codigo, identificacion, nombre, apellidos, clave, email, programas);
+        log.info("Ejecutanto metodo [crearUsuario] codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, clave:{}, email:{}, tipo:{}, programas:{}",
+                codigo, identificacion, nombre, apellidos, clave, email, tipo, programas);
         HttpStatus status;
         try {
-            usuarioService.crearUsuario(codigo, identificacion, nombre, apellidos, clave, email, programas);
+            Programa programaInstitucional = programaService.buscarProgramaInstitucional();
+            if(tipo.equals("Administrador") && programas.length == 0){
+                programas = new Integer[1];
+                programas[0] = programaInstitucional.getId();
+            }
+            usuarioService.crearUsuario(codigo, identificacion, nombre, apellidos, clave, email, tipo, programas);
             status = HttpStatus.CREATED;
         } catch (Exception e) {
             log.error("Ha ocurrido un error: " + e);
@@ -90,12 +99,18 @@ public class UsuarioController {
     
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editarUsuario(@RequestParam Integer usuarioId, @RequestParam String codigo, @RequestParam String identificacion, 
-            @RequestParam String nombre, @RequestParam String apellidos, @RequestParam String email, @RequestParam Integer[] programas) {
-        log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}, codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, email:{}, programas:{} ", 
-                usuarioId, codigo, identificacion, nombre, apellidos, email, programas);
+            @RequestParam String nombre, @RequestParam String apellidos, @RequestParam String email, @RequestParam String tipo, @RequestParam Integer[] programas) {
+        log.info("Ejecutanto metodo [editarUsuario] usuarioId:{}, codigo:{}, identificacion:{}, nombre:{}, apellidos:{}, email:{}, tipo:{}, programas:{} ", 
+                usuarioId, codigo, identificacion, nombre, apellidos, email, tipo, programas);
         HttpStatus status;
         try {
-            usuarioService.actualizarUsuario(usuarioId, codigo, identificacion, nombre, apellidos, email, programas);
+            Programa programaInstitucional = programaService.buscarProgramaInstitucional();
+            if(tipo.equals("Administrador") && programas.length == 0){
+                programas = new Integer[1];
+                programas[0] = programaInstitucional.getId();
+            }
+            
+            usuarioService.actualizarUsuario(usuarioId, codigo, identificacion, nombre, apellidos, email, tipo, programas);
             status = HttpStatus.OK;
         } catch (Exception e) {
             log.error("Ha ocurrido un error:{} " , e);

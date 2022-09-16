@@ -32,6 +32,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#parametro/parametros" >Parametros</a><span class="divider">/</span></li>
+            <li>Editar</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formEditarParametro" class="form-horizontal" method="post">
                 <fieldset>

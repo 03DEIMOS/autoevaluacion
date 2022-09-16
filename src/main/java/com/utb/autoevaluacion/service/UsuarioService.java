@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface UsuarioService {
         
-        void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email, Integer[] programas);
+        void crearUsuario(String codigo, String identificacion, String nombre, String apellidos, String clave, String email, String tipo, Integer[] programas);
         
 	Usuario buscarUsuario(Integer id);
 	
@@ -23,7 +23,7 @@ public interface UsuarioService {
 
         Usuario buscarUsuarioPorId(Integer usuarioId);
 
-        void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email, Integer[] programas);
+        void actualizarUsuario(Integer usuarioId, String codigo, String identificacion, String nombre, String apellidos, String email, String tipo, Integer[] programas);
 
         void cambiarContrasena(Integer usuarioId, String claveActual, String nuevaClave1, String nuevaClave2) throws Exception;
 	

@@ -96,5 +96,16 @@ public class PlanMejoramientoServiceImpl implements PlanMejoramientoService{
             log.error("Ha ocurrido un error inesperado:{} ", e);
         }
     }
+
+    @Override
+    public List<PlanMejoramiento> buscarPlanesMejoramientoByUserId(Integer userId) {
+        List<PlanMejoramiento> planesMejoramiento = null;
+        try {
+            planesMejoramiento = planMejoramientoRepository.findPlanesMejoramientoByUserId(userId);
+        } catch (Exception e) {
+            log.error("Ha ocurrido un error inesperado:{} ", e);
+        }
+        return planesMejoramiento;
+    }
     
 }

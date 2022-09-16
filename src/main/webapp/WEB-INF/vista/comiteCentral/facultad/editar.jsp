@@ -18,6 +18,10 @@
 </script>
 <div class="hero-unit">
     <div class="row">
+        <ul class="breadcrumb">
+            <li><a href="#facultad/facultades">Facultades</a><span class="divider">/</span></li>
+            <li>Editar</li>
+        </ul>
         <div id="conte" class="span10">
             <form id="formEditarFacultad" class="form-horizontal">
                 <fieldset>

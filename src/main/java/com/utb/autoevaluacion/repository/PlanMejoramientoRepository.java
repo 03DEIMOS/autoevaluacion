@@ -23,5 +23,12 @@ public interface PlanMejoramientoRepository extends JpaRepository<PlanMejoramien
             + "where b.nombre = 'INSTITUCIONAL'",
             nativeQuery = true)
     List<PlanMejoramiento> findInstitucionales();
+    
+    @Query(value = "select a.* from plan_mejoramiento a "
+            + " inner join programa_has_usuario u on u.programa_id = a.programa_id "
+            + " where usuario_id = ?1",
+            nativeQuery = true)
+    List<PlanMejoramiento> findPlanesMejoramientoByUserId(Integer userId);
+    
 
 }

@@ -32,14 +32,8 @@
         <div id="conte" class="span10" style="text-align: justify">
             <form id="formCrearSeguimiento" class="form-horizontal" method="post">
                 <fieldset>
-                    <legend>Crear Actividades de Seguimiento</legend>
+                    <legend>Seguimiento: ${oportunidadMejora.getHallazgo()}</legend>
                     <input name="idHallazgo" type="hidden" value="${idHallazgo}"/>
-                    <div class="control-group">
-                        <label class="control-label">Oportunidad de Mejoramiento </label>
-                        <div class="controls">
-                           ${oportunidadMejora.getHallazgo()}
-                        </div>
-                    </div>
                     <div class="control-group">
                         <label for="fechaRealizado" class="control-label">Fecha Seguimiento Realizada</label>
                         <div class="controls">

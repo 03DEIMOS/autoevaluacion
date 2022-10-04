@@ -33,16 +33,16 @@
 <div class="hero-unit">
     <div class="row">
         <ul class="breadcrumb">
-            <li><a href="#parametro/parametros" >Parametros</a><span class="divider">/</span></li>
+            <li><a href="#parametro/parametros" >Páginas Personalizadas</a><span class="divider">/</span></li>
             <li>Editar</li>
         </ul>
         <div id="conte" class="span10">
             <form id="formEditarParametro" class="form-horizontal" method="post">
                 <fieldset>
-                    <legend>Editar Parametro</legend>
+                    <legend>Editar página personalizada</legend>
                     <input type="hidden" name="variableId" value="${variable.id}"/>
                     <div class="control-group">
-                        <label for="llave"  class="control-label">Llave</label>
+                        <label for="llave"  class="control-label">Página personalizada</label>
                         <div class="controls">
                             <input type="text" name="llave" id="llave" class="input-xlarge {required:true}" value="${variable.llave}"/>
                         </div>

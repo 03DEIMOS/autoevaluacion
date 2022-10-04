@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="control-group">
-                        <label for="plan" class="control-label">Descripci&oacute;n</label>
+                        <label for="plan" class="control-label">Temporalidad del plan de mejoramiento</label>
                         <div class="controls">
                             <textarea rows="3" name="plan" id="plan" class="input-xxlarge {required:true}">${planMejoramiento.plan}</textarea>
                         </div>

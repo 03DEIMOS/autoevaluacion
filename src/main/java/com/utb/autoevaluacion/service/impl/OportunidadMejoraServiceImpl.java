@@ -63,7 +63,7 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
     }
 
     @Override
-    public void crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion,
+    public OportunidadMejora crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion,
             Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal, String recurso, String indicador, String meta, String lineaBase) {
         OportunidadMejora oportunidadMejora = new OportunidadMejora();
 
@@ -85,11 +85,13 @@ public class OportunidadMejoraServiceImpl implements OportunidadMejoraService {
         oportunidadMejora.setMeta(meta);
         oportunidadMejora.setLineaBase(lineaBase);
         try {
-            oportunidadMejoraRepository.saveAndFlush(oportunidadMejora);
+            OportunidadMejora oportunidadDeMejora = oportunidadMejoraRepository.saveAndFlush(oportunidadMejora);
+            return oportunidadDeMejora;
         } catch (Exception e) {
             log.info("Ha ocurrido un error al crear la oportunidad de mejoramiento:{} ", e);
             throw e;
         }
+
     }
 
     @Override

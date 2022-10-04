@@ -24,4 +24,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Integer>{
     @Query("Select p from Programa p where p.nombre = 'INSTITUCIONAL'")
     Programa programaInstitucional();
     
+    @Query("Select p from Programa p where p.facultadId.id = ?1")
+    List<Programa> getProgramasByFacultad(Integer facultadId);
+    
 }

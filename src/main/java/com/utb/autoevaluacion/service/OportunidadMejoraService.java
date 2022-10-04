@@ -23,7 +23,7 @@ public interface OportunidadMejoraService {
  
  List<OportunidadMejora> getOportunidadMejoraByPlanMejoramientoAndStatus(Integer planMejoramientoId, TipoAccion status);
  
- void crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion, 
+ OportunidadMejora crearOportunidadMejora(String hallazgo, Integer planMejoramientoId, Integer caracteristicaId, String eje, String lineaAccion, 
          Integer estadoId, String tipo, String responsable, String fechaInicio, String fechaFinal
          ,String recurso, String indicador, String meta, String lineaBase);
  

@@ -44,4 +44,7 @@ public class PlanMejoramiento {
 
     @Column(name = "fechafin")
     private String fechaCierre;
+    
+    @Column(name="tipo_plan")
+    private String tipoPlan;
 }

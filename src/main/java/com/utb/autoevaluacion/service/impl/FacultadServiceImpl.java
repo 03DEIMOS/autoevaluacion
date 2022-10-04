@@ -72,4 +72,9 @@ public class FacultadServiceImpl implements FacultadService {
         return facultad;
     }
 
+    @Override
+    public List<Facultad> getFacultadesNoInstitucional() {
+          return facultadRepository.getFacultadesNoInstitucional();
+    }
+
 }

@@ -94,4 +94,9 @@ public class ProgramaServiceImpl implements ProgramaService {
         return programaRepository.programaInstitucional();
     }
 
+    @Override
+    public List<Programa> getProgramasByFacultad(Integer facultadId) {
+       return programaRepository.getProgramasByFacultad(facultadId);
+    }
+
 }

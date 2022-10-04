@@ -37,4 +37,10 @@ public interface PreguntaRepository extends JpaRepository<Pregunta, Integer> {
             + "group by p.id",
             nativeQuery = true)
     List<Pregunta> buscarPreguntasPorProcesoyPublico(Integer procesoId, Integer fuenteId);
+    
+    
+    @Query("Select p from Pregunta p where p.tipoProceso=?1")
+    List<Pregunta> buscarPreguntasPorTipoProceso(String tipoProceso);
+    
+    
 }

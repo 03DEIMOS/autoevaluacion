@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/fcbklistselection.css">
 <script src="<%=request.getContextPath()%>/js/fcbklistselection.js" type="text/javascript"></script>
 <script type="text/javascript" language="JavaScript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         //id(ul id),width,height(element height),row(elements in row)        
         var $fcbklist = $('#fcbklist');
         var $listItems = $fcbklist.find('li');
@@ -15,7 +15,7 @@
 
 
 
-        $('#filter').keyup(function() {
+        $('#filter').keyup(function () {
             var $this = $(this);
 
             var val = $this.val();
@@ -73,31 +73,31 @@
          It is case-insensitive, unlike the built-in :contains selector. 
          ***/
         $.extend($.expr[':'], {
-            icontains: function(elem, i, match) {
+            icontains: function (elem, i, match) {
                 return (new RegExp(match[3], 'im')).test($(elem).text());
             }
         });
 
         $("#formCrearCaracteristica").validate({
-            submitHandler: function() {
+            submitHandler: function () {
                 $.ajax({
                     type: 'POST',
                     url: "/autoevaluacion/caracteristica/crear",
                     data: $("#formCrearCaracteristica").serialize(),
-                    success: function() {
+                    success: function () {
                         location.hash = "caracteristica/caracteristicas/${modeloId}";
                     } //fin success
                 }); //fin $.ajax    
             }
         });
-        var removeValue = function(obj) {
+        var removeValue = function (obj) {
             var randid = obj.find("[type=hidden]").attr("randid");
             var inputid = elem.attr('id') + "_values";
             if ($("#" + inputid).length != 0) {
                 try {
                     eval("json = " + $("#" + inputid).val() + ";");
                     var string = "{";
-                    $.each(json, function(i, item) {
+                    $.each(json, function (i, item) {
                         if (i && item && i != randid) {
                             string += "\"" + i + "\":\"" + item + "\",";
                         }
@@ -106,19 +106,17 @@
                     if (string.length > 2) {
                         string = string.substr(0, (string.length - 1));
                         string += "}"
-                    }
-                    else {
+                    } else {
                         string = "";
                     }
                     $("#" + inputid).val(string);
-                }
-                catch (e) {
+                } catch (e) {
                 }
             }
         }
         var seleccionados = [];
         elem = $("#fcbklist");
-        $.each(elem.children("li").children(".fcbklist_item"), function(i, obj) {
+        $.each(elem.children("li").children(".fcbklist_item"), function (i, obj) {
             obj = $(obj);
             if (obj.hasClass("itemselected")) {
                 seleccionados.push(obj.find("[type=hidden]").attr("randid"));
@@ -127,10 +125,10 @@
         })
 
 
-        $("button[type='reset']").click(function() {
+        $("button[type='reset']").click(function () {
 
             elem = $("#fcbklist");
-            $.each(elem.children("li").children(".fcbklist_item"), function(i, obj) {
+            $.each(elem.children("li").children(".fcbklist_item"), function (i, obj) {
                 obj = $(obj);
                 var encontrado = false;
                 for (var i = 0; i < seleccionados.length && !encontrado; i++)
@@ -164,7 +162,7 @@
             });
         });
 
-
+     
 
 
     });

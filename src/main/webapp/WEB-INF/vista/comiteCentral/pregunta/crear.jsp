@@ -84,6 +84,15 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label for="tipoProceso" class="control-label">Tipo de Proceso</label>
+                        <div class="controls">
+                            <select name="tipoProceso" id="tipoProceso" class="{required:true}">
+                                <option value="Institucional" >Institucional</option>
+                                <option value="Programas" >Programas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <div class="controls">
                             <input name="sencilla" id="sencilla" type="checkbox" value="1"> Establecer esto como una escala de valoración de una sola fila (quitar las opciones de fila)?
                         </div>

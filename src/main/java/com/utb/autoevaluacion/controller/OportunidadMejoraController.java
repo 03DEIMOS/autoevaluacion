@@ -254,7 +254,8 @@ public class OportunidadMejoraController {
         try {
             List<OportunidadMejora> oportunidadMejoraOrigen = oportunidadMejoraService.getOportunidadMejoraByPlanMejoramiento(planMejoramientoOrigen);
             for (OportunidadMejora oportunidadMejora : oportunidadMejoraOrigen) {
-                oportunidadMejoraService.crearOportunidadMejora(
+               
+                OportunidadMejora newOportunidadMejora = oportunidadMejoraService.crearOportunidadMejora(
                         oportunidadMejora.getHallazgo(),
                         planMejoramientoDestino,
                         oportunidadMejora.getCaracteristicaId().getId(),
@@ -270,6 +271,10 @@ public class OportunidadMejoraController {
                         oportunidadMejora.getMeta(),
                         oportunidadMejora.getLineaBase()
                 );
+                List<Seguimiento> seguimientos = seguimientoService.getSeguimientoByOportunidadMejora(oportunidadMejora.getIdHallazgo());
+                for (Seguimiento seguimiento : seguimientos) {
+                    seguimientoService.crearSeguimiento(seguimiento.getFechaRealizado(), seguimiento.getAvances(), newOportunidadMejora.getIdHallazgo());
+                }
             }
             status = HttpStatus.CREATED;
         } catch (Exception e) {

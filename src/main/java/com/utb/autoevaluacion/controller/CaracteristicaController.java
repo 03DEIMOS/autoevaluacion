@@ -1,9 +1,11 @@
 package com.utb.autoevaluacion.controller;
 
 import com.utb.autoevaluacion.model.Caracteristica;
+import com.utb.autoevaluacion.model.Modelo;
 import com.utb.autoevaluacion.model.Pregunta;
 import com.utb.autoevaluacion.service.CaracteristicaService;
 import com.utb.autoevaluacion.service.FactorService;
+import com.utb.autoevaluacion.service.ModeloService;
 import com.utb.autoevaluacion.service.PreguntaService;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,9 @@ public class CaracteristicaController {
     @Autowired
     private PreguntaService preguntaService;
     
+    @Autowired
+    private ModeloService modeloService;
+    
     @GetMapping("/caracteristicas/{modeloId}")
     public String caracteristicas(@PathVariable Integer modeloId, Model model) {
         model.addAttribute("listaC", caracteristicaService.getCaracteristicasByModelo(modeloId));
@@ -53,8 +58,13 @@ public class CaracteristicaController {
     public String formularioCrearCaracteristica(@PathVariable Integer modeloId, Model model) {
         log.info("Ejecutanto metodo [formularioCrearCaracteristica] modeloId:{} ", modeloId);
         model.addAttribute("modeloId", modeloId);
+        Modelo modelo = modeloService.buscarModelo(modeloId);
         model.addAttribute("listaF", factorService.getFactoresByModelo(modeloId));
-        model.addAttribute("listaP", preguntaService.getPreguntas());
+        if(modelo.getNombre().toUpperCase().contains("INSTITUCIONAL")){
+            model.addAttribute("listaP", preguntaService.getPreguntasPorTipoProceso("Institucional"));
+        }else{
+            model.addAttribute("listaP", preguntaService.getPreguntasPorTipoProceso("Programas"));
+        }
         return "comiteCentral\\caracteristica\\crear";
     }
 
@@ -64,7 +74,12 @@ public class CaracteristicaController {
         Caracteristica caracteristica = caracteristicaService.buscarCaracteristica(caracteristicaId);
         model.addAttribute("listaF", factorService.getFactoresByModelo(modeloId));
         model.addAttribute("caracteristica", caracteristica);
-        model.addAttribute("listaP", preguntaService.getPreguntas());
+         Modelo modelo = modeloService.buscarModelo(modeloId);
+         if(modelo.getNombre().toUpperCase().contains("INSTITUCIONAL")){
+            model.addAttribute("listaP", preguntaService.getPreguntasPorTipoProceso("Institucional"));
+        }else{
+            model.addAttribute("listaP", preguntaService.getPreguntasPorTipoProceso("Programas"));
+        }
         model.addAttribute("modeloId", modeloId);
         return "comiteCentral\\caracteristica\\editar";
     }

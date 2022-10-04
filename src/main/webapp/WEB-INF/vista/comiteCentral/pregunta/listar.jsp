@@ -12,7 +12,8 @@
                         <thead>
                         <th class="span1">C&oacute;digo</th>    
                         <th class="span5">Pregunta</th>
-                        <th class="span3">Tipo</th>
+                        <th class="span1">Tipo</th>
+                        <th class="span1">Tipo Proceso</th>
                         <th class="span1">Acci&oacute;n</th>
                         </thead>
                         <tbody>
@@ -26,6 +27,9 @@
                                     </td>
                                     <td>   
                                         <c:out value="${row.tipoPregunta.tipo}"/>
+                                    </td>
+                                    <td>   
+                                        <c:out value="${row.tipoProceso}"/>
                                     </td>
                                     <td class="action span2">
                                         <a href="#pregunta/editar/${row.id}" title="Editar"><i class="icon-edit"></i></a>

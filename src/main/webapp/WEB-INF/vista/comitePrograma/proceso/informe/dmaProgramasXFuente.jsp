@@ -66,7 +66,7 @@
 <!DOCTYPE html>
 <div class="hero-unit">
     <div class="row">
-        <input type="button" class="btn btn-primary" onclick="tableToExcel('conte', 'Informe  de  Preguntas por Proceso')" value="Exportar a Excel">
+        <input type="button" class="btn btn-primary" onclick="tableToExcel('tablaInformeDMA', 'Informe  de  Preguntas por Proceso')" value="Exportar a Excel">
         <div id="conte" class="span12">
             <form id="formFiltro" class=""  style="margin-bottom: 0px">
                 <fieldset>

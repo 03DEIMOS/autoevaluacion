@@ -69,7 +69,7 @@ public class PlanMejoramientoController {
     }
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crearProceso(@RequestParam Integer programaId, @RequestParam String plan) {
+    public ResponseEntity<?> crearProceso(@RequestParam Integer programaId, @RequestParam String plan, @RequestParam String tipoPlan) {
 
         log.info("Ejecutanto metodo crearProceso programaId:{}, plan:{} ", programaId, plan);
         HttpStatus status;

@@ -114,7 +114,7 @@ $(function () {
                 '<li><a href="#planMejoramiento/listar"><i class="icon-th"></i> Planes de Mejoramiento</a></li>' +
                 '<li class="divider"></li>' +
                 '<li class="nav-header">Configuración</li>' +
-                '<li><a href="#parametro/parametros"><i class="icon-bookmark"></i> Listar Parametros</a></li>' +
+                '<li><a href="#parametro/parametros"><i class="icon-bookmark"></i> Páginas Personalizadas</a></li>' +
                 '</ul>');
     };
     function menuFactores(modeloId) {

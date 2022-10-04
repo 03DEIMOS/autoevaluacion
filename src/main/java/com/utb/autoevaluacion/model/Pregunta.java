@@ -39,6 +39,9 @@ public class Pregunta implements Serializable  {
     @Column(name="disenio")
     private String disenio;
     
+    @Column(name="tipo_proceso")
+    private String tipoProceso;
+    
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "preguntaid", referencedColumnName = "id", nullable = false)
     private List<ItemPregunta> itemPreguntas;

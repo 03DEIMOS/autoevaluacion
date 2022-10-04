@@ -89,7 +89,7 @@ public class PreguntaController {
 
     @PostMapping(value = "/vistaPreviaEditar")
     public String vistaPreviaEditar(@RequestParam Integer preguntaId, Model model) {
-        log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}", preguntaId);
+        log.info("Ejecutanto metodo [vistaPreviaEditar] pregunta:{}", preguntaId);
         try {
             Pregunta p = preguntaService.buscarPregunta(preguntaId);
             model.addAttribute("pregunta", p);
@@ -101,14 +101,15 @@ public class PreguntaController {
     }
 
     @PostMapping(value = "/crear")
-    public ResponseEntity<?> crear(@RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla, @RequestParam(value = "subpregunta[]") String[] subpreguntas, Model model) {
-        log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}, tipoId:{}, sencilla:{}, subpreguntas:{} ", pregunta, tipoId, sencilla, subpreguntas);
+    public ResponseEntity<?> crear(@RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla, @RequestParam String tipoProceso, @RequestParam(value = "subpregunta[]") String[] subpreguntas, Model model) {
+        log.info("Ejecutanto metodo [crear] pregunta:{}, tipoId:{}, sencilla:{}, tipoProceso:{}, subpreguntas:{}", pregunta, tipoId, sencilla, tipoProceso, subpreguntas);
         HttpStatus status;
         try {
             TipoPregunta tipoPregunta = tipoPreguntaService.buscarTipoPregunta(tipoId);
             Pregunta p = new Pregunta();
             p.setPregunta(pregunta);
             p.setTipoPregunta(tipoPregunta);
+            p.setTipoProceso(tipoProceso);
             List<ItemPregunta> itemPreguntas = new ArrayList<ItemPregunta>();
             for (String subpregunta : subpreguntas) {
                 ItemPregunta itemPregunta = new ItemPregunta();
@@ -126,19 +127,24 @@ public class PreguntaController {
     }
 
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editar(@RequestParam Integer preguntaId, @RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla, @RequestParam(value = "subpregunta[]") String[] subpreguntas, Model model) {
-        log.info("Ejecutanto metodo [vistaPrevia] pregunta:{}, tipoId:{}, sencilla:{}, subpreguntas:{} ", pregunta, tipoId, sencilla, subpreguntas);
+    public ResponseEntity<?> editar(@RequestParam Integer preguntaId, @RequestParam String pregunta, @RequestParam Integer tipoId, @RequestParam boolean sencilla,
+            @RequestParam String tipoProceso, @RequestParam(value = "subpregunta[]", required = false) String[] subpreguntas, Model model) {
+        log.info("Ejecutanto metodo [editar] preguntaId:{}, pregunta:{}, tipoId:{}, sencilla:{}, tipoProceso:{}, subpreguntas:{} ",
+                preguntaId, pregunta, tipoId, sencilla, tipoProceso, subpreguntas);
         HttpStatus status;
         try {
             TipoPregunta tipoPregunta = tipoPreguntaService.buscarTipoPregunta(tipoId);
             Pregunta p = preguntaService.buscarPregunta(preguntaId);
             p.setPregunta(pregunta);
             p.setTipoPregunta(tipoPregunta);
+            p.setTipoProceso(tipoProceso);
             p.getItemPreguntas().clear();
-            for (String subpregunta : subpreguntas) {
-                ItemPregunta itemPregunta = new ItemPregunta();
-                itemPregunta.setItemPregunta(subpregunta);
-                p.getItemPreguntas().add(itemPregunta);
+            if (subpreguntas != null) {
+                for (String subpregunta : subpreguntas) {
+                    ItemPregunta itemPregunta = new ItemPregunta();
+                    itemPregunta.setItemPregunta(subpregunta);
+                    p.getItemPreguntas().add(itemPregunta);
+                }
             }
             preguntaService.actualizarPregunta(p);
             status = HttpStatus.OK;

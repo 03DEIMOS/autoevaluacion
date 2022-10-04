@@ -16,6 +16,8 @@ public interface PreguntaService {
 
     List<Pregunta> getPreguntas();
     
+    List<Pregunta> getPreguntasPorTipoProceso(String tipoProceso);
+    
     List<Pregunta> getPreguntasPorProceso(Integer procesoId);
 
     Pregunta crearPregunta(Pregunta pregunta);

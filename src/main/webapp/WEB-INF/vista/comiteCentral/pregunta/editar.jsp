@@ -93,6 +93,25 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label for="tipoProceso" class="control-label">Tipo de Proceso</label>
+                        <div class="controls">
+                            <select name="tipoProceso" id="tipoProceso" class="{required:true}">
+                                <c:choose>
+                                    <c:when test="${pregunta.tipoProceso == 'Institucional'}">
+                                        <option value="Institucional" selected="selected">Institucional</option>
+                                        <option value="Programas">Programas</option>
+                                    </c:when>
+                                    <c:when test="${pregunta.tipoProceso == 'Programas'}">
+                                        <option value="Institucional" >Institucional</option>
+                                        <option value="Programas" selected="selected">Programas</option>
+                                    </c:when>
+                                </c:choose>
+
+                            </select>
+                        </div>
+                    </div>    
+
+                    <div class="control-group">
                         <div class="controls">
                             <input name="sencilla" id="sencilla" type="checkbox" value="${sencilla}"> Establecer esto como una escala de valoración de una sola fila (quitar las opciones de fila)?
                         </div>

@@ -34,15 +34,15 @@
 <div class="hero-unit">
     <div class="row">
         <ul class="breadcrumb">
-            <li><a href="#parametro/parametros" >Parametros</a><span class="divider">/</span></li>
+            <li><a href="#parametro/parametros" >Páginas Personalizadas</a><span class="divider">/</span></li>
             <li>Crear</li>
         </ul>
         <div id="conte" class="span10">
             <form id="formCrearParametro" class="form-horizontal" method="post">
                 <fieldset>
-                    <legend>Crear Parametro</legend>
+                    <legend>Crear página personalizada</legend>
                     <div class="control-group">
-                        <label for="llave"  class="control-label">Llave</label>
+                        <label for="llave"  class="control-label">Página personalizada</label>
                         <div class="controls">
                             <input type="text" name="llave" id="llave" class="input-xlarge {required:true}" value=""/>
                         </div>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Crear Parametro</button>
+                        <button class="btn btn-primary" type="submit">Crear página personalizada</button>
                         <button class="btn" type="reset">Cancelar</button>
                     </div>
                 </fieldset>

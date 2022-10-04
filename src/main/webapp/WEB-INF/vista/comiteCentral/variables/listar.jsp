@@ -4,15 +4,15 @@
     <div class="row">
         <div id="conte" class="span10">
             <ul class="breadcrumb">
-                <li>Parametros<span class="divider">/</span></li>
+                <li>Páginas Personalizadas<span class="divider">/</span></li>
             </ul>
-            <h3>Listado de Parametros del Software</h3>
+            <h3>Páginas personalizadas de la aplicación</h3>
             <c:choose>
                 <c:when test="${fn:length(listaV)!= 0}">
 
                     <table class="table table-striped table-bordered table-condensed">
                         <thead>
-                        <th>Llave</th>    
+                        <th>Página</th>    
                         <th>Acci&oacute;n</th>
                         </thead>
                         <tbody>
@@ -30,10 +30,10 @@
                     </table>
                 </c:when>
                 <c:otherwise>
-                    No Existen Parametros Registrados en el Sistema.
+                    No Existen Páginas Personalizadas Registradas en el Sistema.
                 </c:otherwise>
             </c:choose>
-            <a href="#parametro/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear parametro</a>
+            <a href="#parametro/crear" class="btn btn-large btn-primary llamador"><i class="icon-plus"></i> Crear página personalizada</a>
         </div>
     </div>
 </div>    

@@ -8,6 +8,8 @@ package com.utb.autoevaluacion.controller;
 import com.utb.autoevaluacion.model.Programa;
 import com.utb.autoevaluacion.service.FacultadService;
 import com.utb.autoevaluacion.service.ProgramaService;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,24 @@ public class ProgramaController {
         model.addAttribute("listaPro", programaService.getProgramas());
         return "comiteCentral\\programa\\listar";
     }
+    
+     @GetMapping("/programaInstitucional")
+    public String programaInstitucional(Model model) {
+        Programa programaInstitucional = programaService.buscarProgramaInstitucional();
+        List<Programa> list = new ArrayList<>();
+        list.add(programaInstitucional);
+        model.addAttribute("listaP", list);
+        return "comiteCentral\\programa\\listEmbedded";
+    }
 
+    @GetMapping("/programasByFacultad/{facultadId}")
+    public String programasByFacultad(@PathVariable Integer facultadId, Model model) {
+        model.addAttribute("listaP", programaService.getProgramasByFacultad(facultadId));               
+        return "comiteCentral\\programa\\listEmbedded";
+
+    }
+    
+    
     @GetMapping("/crear")
     public String formularioCrearPrograma(Model model) {
         log.info("Ejecutanto metodo [formularioCrearPrograma] ");

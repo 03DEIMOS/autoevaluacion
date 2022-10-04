@@ -41,7 +41,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" style="padding-top: 10px; padding-bottom: 5px;" href="#"><img src="img/LETRAS.png"/></a>
+                        <a class="brand" style="padding-top: 10px; padding-bottom: 5px;"><img src="img/LETRAS.png"/></a>
                         <div class="nav-collapse collapse">
                             <ul class="nav barra" >
                                 <li class="active"><a href="#inicio"><i class="icon-home"></i> Inicio</a></li>
@@ -99,7 +99,7 @@
                         <li><a href="#planMejoramiento/listar/${usuario.id}"><i class="icon-th"></i> Planes de Mejoramiento</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Configuración</li>
-                        <li><a href="#parametro/parametros"><i class="icon-bookmark"></i>Parametros</a></li>
+                        <li><a href="#parametro/parametros"><i class="icon-bookmark"></i>Páginas Personalizadas</a></li>
                         <li><a href="#tipoAccion/listar"><i class="icon-ticket"></i>Tipos de acción</a></li>
                     </ul>
                 </div>

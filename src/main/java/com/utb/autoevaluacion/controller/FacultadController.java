@@ -34,6 +34,12 @@ public class FacultadController {
         return "comiteCentral\\facultad\\listar";
 
     }
+    @GetMapping("/facultadesEmbedded")
+    public String facultadesEmbedded(Model model) {
+        model.addAttribute("listaF", facultadService.getFacultadesNoInstitucional());
+        return "comiteCentral\\facultad\\listEmbedded";
+
+    }
     
     @GetMapping("/crear")
     public String formularioCrearFacultad(Model model) {

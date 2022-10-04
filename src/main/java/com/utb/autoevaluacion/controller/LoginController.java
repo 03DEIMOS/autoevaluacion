@@ -109,7 +109,7 @@ public class LoginController {
                 if (generatedPassword.equals(usuario.getContrasena())) {
                     model.addAttribute("usuario", usuario);
                     String textoIndex = "";
-                    Variable variableTextoIndex = variableService.getVariableByLlave("TEXTO_INDEX");
+                    Variable variableTextoIndex = variableService.getVariableByLlave("CONTENIDO_PANTALLA_INICIAL");
                     if (variableTextoIndex != null) {
                         textoIndex = variableTextoIndex.getValor();
                     }

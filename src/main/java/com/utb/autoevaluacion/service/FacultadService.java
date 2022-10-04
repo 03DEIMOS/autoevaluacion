@@ -15,6 +15,8 @@ import java.util.List;
 public interface FacultadService {
     
     List<Facultad> getFacultades();
+    
+    List<Facultad> getFacultadesNoInstitucional();
 
     void crearFacultad(String nombre, String descripcion);
     

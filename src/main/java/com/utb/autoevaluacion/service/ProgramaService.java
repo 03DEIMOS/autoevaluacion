@@ -16,6 +16,8 @@ public interface ProgramaService {
     
     List<Programa> getProgramas();
     
+    List<Programa> getProgramasByFacultad(Integer facultadId);
+    
     List<Programa> getProgramasNoInstitucional();
 
     void crearPrograma(String nombre, String descripcion, String modalidad, String tipoformacion, Integer facultadId);

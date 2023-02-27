@@ -135,7 +135,7 @@ $(function () {
         
         if (hash === "#CerrarSesion") {
             $.post('/autoevaluacion/cerrarSesion', function () {
-                location = "/autoevaluacion";
+                location = "/autoevaluacion/admin";
 
             });//fin post
 

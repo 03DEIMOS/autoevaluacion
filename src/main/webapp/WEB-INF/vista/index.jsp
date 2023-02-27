@@ -39,15 +39,6 @@
                     <div class="alert alert-error fade in" id="login-error">
                         <button type="button" class="close" id="close1">x</button>
                         <label generated='true' class='error'>${message}</label>
-                    </div>
-                </c:if>
-                <!--<h2 class="form-signin-heading">Acceder</h2>-->
-                <div style="text-align: center">
-                    <input type="text" placeholder="Código" name="codigo" id="codigo" class="{required:true}">
-                    <button id="btnIniciar" type="submit" class="btn btn-primary" style="margin-bottom: 15px;">Acceder</button>
-                    <label style="color:white;">* Si es Directivo o Administrativo por favor ingrese con su número de cédula.</label>
-                </div>
-            </form>
         </div>
 
         <!--</div>-->

@@ -53,7 +53,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="#usuario/contrasena/${usuario.id}">Cambiar Contrase&ntilde;a</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="<%=request.getContextPath()%>/#CerrarSesion">Cerrar Sesion</a></li>
+                                        <li><a href="#CerrarSesion">Cerrar Sesion</a></li>
                                     </ul>
 
                                 </li>

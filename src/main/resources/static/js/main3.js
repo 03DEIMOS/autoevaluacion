@@ -37,7 +37,7 @@ $(function () {
         hash = location.hash;
         if (hash === "#cerrarSesion") {
             $.post('/autoevaluacion/cerrarSesion', function () {
-                location = "/autoevaluacion";
+                location = "/autoevaluacion/public";
             }); //fin post
 
         }

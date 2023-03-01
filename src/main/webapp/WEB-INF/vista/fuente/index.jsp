@@ -51,7 +51,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/#cerrarSesion">Cerrar Sesion</a></li>
+                                <li><a href="<%=request.getContextPath()%>/logout">Cerrar Sesion</a></li>
                             </ul>
 
                         </li>
@@ -67,7 +67,7 @@
 <div class="ui-layout-south ui-widget-content"> 
     <footer id="footer" class="contenedor_footer fondo_footer">
         <div class="links">
-            <a style="font-weight: normal;-moz-text-decoration-line: none;"><span class="muted">&copy; Universidad Tecnológica de Bolívar</span></a>
+            <a style="font-weight: normal;-moz-text-decoration-line: none;"><span class="muted">&copy; Universidad TecnolÃ³gica de BolÃ­var</span></a>
         </div>
     </footer>
 </div><!--South-->
@@ -81,7 +81,7 @@
                         <tbody>
                             <tr>
                                 <td rowspan="2" style="width: 25%; text-align: center;"><img src="<%=request.getContextPath()%>/img/LogoUTB.png"></td>
-                                <td style="width: 75%; text-align: center; vertical-align: middle;">UNIVERSIDAD TECNOLÓGICA DE BOLÍVAR</td>
+                                <td style="width: 75%; text-align: center; vertical-align: middle;">UNIVERSIDAD TECNOLÃGICA DE BOLÃVAR</td>
                             </tr>
                             <tr>
                                 <td style="width: 75%; text-align: center; vertical-align: middle;">${encuesta.getNombre()}</td>
@@ -193,7 +193,7 @@
                     <div class="row"> 
                         <div class="span2">
                             <div style="text-align: left; margin-top: 22px;">
-                                <button class="btn btn-primary" data-content="Env&iacute;a la encuesta evaluada. Verifique que todas las preguntas han sido respondidas correctamente. Esta operación no se podrá deshacer."  value="1" data-original-title="Enviar encuesta" type="submit">Enviar</button>
+                                <button class="btn btn-primary" data-content="Env&iacute;a la encuesta evaluada. Verifique que todas las preguntas han sido respondidas correctamente. Esta operaciÃ³n no se podrÃ¡ deshacer."  value="1" data-original-title="Enviar encuesta" type="submit">Enviar</button>
                             </div>    
                         </div>
                     </div>
@@ -259,7 +259,7 @@
 </html>
 <div class="modal hide fade" id="myModalGracias">
     <div class="modal-header">
-        <a data-dismiss="modal" style="margin-top: 0px; padding: 0px" class="close">×</a>
+        <a data-dismiss="modal" style="margin-top: 0px; padding: 0px" class="close">Ã</a>
         <h3>Gracias</h3>
     </div>
     <div class="modal-body">
@@ -272,8 +272,8 @@
 </div>
 <div class="modal hide fade" id="modalSeleccionPerfil">
     <div class="modal-header">
-        <a data-dismiss="modal" style="margin-top: 0px; padding: 0px" class="close">×</a>
-        <h3>Atención</h3>
+        <a data-dismiss="modal" style="margin-top: 0px; padding: 0px" class="close">Ã</a>
+        <h3>AtenciÃ³n</h3>
     </div>
     <div class="modal-body">
         Debe seleccionar al menos un perfil para diligenciar la encuesta.

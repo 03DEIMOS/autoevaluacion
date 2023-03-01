@@ -33,12 +33,8 @@
    
 
         <!--<div class="container">-->
-        <div class="row" id="login" >
-            <form name="formularioLogin" class="form-signin" id="formulario_login" action="<%=request.getContextPath()%>/" method="post" style="max-width: 700px;">
-                <c:if test="${errorLogin == true}">
-                    <div class="alert alert-error fade in" id="login-error">
-                        <button type="button" class="close" id="close1">x</button>
-                        <label generated='true' class='error'>${message}</label>
+        <div class="form-signin" >
+            <a href="<%=request.getContextPath()%>/public" class="btn btn-primary btn-large" role="button">Responder encuesta</a>
         </div>
 
         <!--</div>-->

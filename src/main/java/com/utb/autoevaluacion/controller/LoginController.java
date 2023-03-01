@@ -79,7 +79,12 @@ public class LoginController {
     public String indexAdmin() {
         return "indexAdmin";
     }
-
+    
+    @RequestMapping(value = {"/home"})
+    public String home() {
+        return "index";
+    }
+    
     @PostMapping("cerrarSesion")
     public String cerrarSesion(HttpServletRequest request, HttpServletResponse response) {
         log.info("Ejecutando metodo cerrarSesion");

@@ -44,7 +44,7 @@
                                 $("#dancing-dots-text").remove();
                                 $("#myModalGracias").modal();
                                 $('#myModalGracias').on('hidden', function () {
-                                    location = "<%=request.getContextPath()%>/#CerrarSesion";
+                                    location = "<%=request.getContextPath()%>/logout";
                                 });
                             } //fin success
                         }); //fin $.ajax

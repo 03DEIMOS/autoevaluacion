@@ -64,7 +64,7 @@ public class LoginController {
 
     private SamlProviderProvisioning<ServiceProviderService> provisioning;
 
-    @Value("${saml.discovery.url:autoevaluacion/saml/sp/discovery}")
+    @Value("${saml.discovery.url}")
     private String samlDiscoveryUrl;
 
     @Value("${saml.discovery.entity-id:https://sts.windows.net/ea649e50-27d2-4318-9cb9-2fcffe16fd41/}")
